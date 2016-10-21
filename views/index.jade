@@ -63,8 +63,8 @@ block content
                 // /.container-fluid
         .container
             div
-                h1(style='text-align: center') Наверно, очень длинный заголовок
-            .col-md-8.col-lg-4(style='height: 400px;')
+                h1(style='text-align: center') #{longTitle}
+            .col-md-8.col-lg-6(style='height: 400px;')
                 #carousel-example-generic.carousel.slide(data-ride='carousel')
                     // Indicators
                     ol.carousel-indicators
@@ -89,7 +89,7 @@ block content
                     a.right.carousel-control(href='#carousel-example-generic', role='button', data-slide='next')
                         span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
                         span.sr-only Next
-            .col-md-4.col-lg-8
+            .col-md-4.col-lg-6
                 h1 Заголовок
                 p
                     | Какой-то вступительный текст...
