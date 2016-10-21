@@ -53,9 +53,9 @@ block content
                                     span.caret
                                 ul.dropdown-menu
                                     li
-                                        a(href='signup.html') Регистрация
+                                        a(href='/signup') Регистрация
                                     li
-                                        a(href='signin.html') Войти
+                                        a(href='/signin') Войти
                                     li.divider(role='separator')
                                     li
                                         a(href='#') Ссылки
@@ -64,7 +64,7 @@ block content
         .container
             div
                 h1(style='text-align: center') Наверно, очень длинный заголовок
-            .col-md-8(style='height: 400px;')
+            .col-md-8.col-lg-4(style='height: 400px;')
                 #carousel-example-generic.carousel.slide(data-ride='carousel')
                     // Indicators
                     ol.carousel-indicators
@@ -89,7 +89,7 @@ block content
                     a.right.carousel-control(href='#carousel-example-generic', role='button', data-slide='next')
                         span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
                         span.sr-only Next
-            .col-md-4
+            .col-md-4.col-lg-8
                 h1 Заголовок
                 p
                     | Какой-то вступительный текст...
