@@ -19,10 +19,8 @@ block content
                         ul.nav.navbar-nav
                             li
                                 a(href='/') Главная
-                            li.active
-                                a(href='/seminars')
-                                    span.sr-only (current)
-                                    | Семинары
+                            li
+                                a(href='/seminars') Семинары
                             li.dropdown
                                 a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                                     | Еще
@@ -45,8 +43,10 @@ block content
                                 input.form-control(type='text', placeholder='Введите запрос')
                             button.btn.btn-default(type='submit') Поиск
                         ul.nav.navbar-nav.navbar-right
-                            li
-                                a(href='/about') О нас
+                            li.active
+                                a(href='/about')
+                                    | О нас
+                                    span.sr-only (current)
                             li.dropdown
                                 a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                                     | Кабинет
@@ -64,7 +64,7 @@ block content
         .container
             div
                 p
-                h1 Семинары
+                h1 О нас
                 p
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
         script(src='./scripts/bootstrap.min.js')

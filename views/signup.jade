@@ -12,17 +12,15 @@ block content
                             span.icon-bar
                             span.icon-bar
                             span.icon-bar
-                        a.navbar-brand(href='index.html')
+                        a.navbar-brand(href='/')
                             img.img-responsive(src='./images/law-brand.png')
                     // Collect the nav links, forms, and other content for toggling
                     #bs-example-navbar-collapse-1.collapse.navbar-collapse
                         ul.nav.navbar-nav
                             li
                                 a(href='/') Главная
-                            li.active
-                                a(href='/seminars')
-                                    span.sr-only (current)
-                                    | Семинары
+                            li
+                                a(href='/seminars') Семинары
                             li.dropdown
                                 a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                                     | Еще
@@ -64,7 +62,7 @@ block content
         .container
             div
                 p
-                h1 Семинары
+                h1 Регистрация
                 p
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
         script(src='./scripts/bootstrap.min.js')
