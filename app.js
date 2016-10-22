@@ -1,17 +1,15 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-
-var index = require('./routes/index');
-var seminars = require('./routes/seminars');
-var about = require('./routes/about');
-var signup = require('./routes/signup');
-var signin = require('./routes/signin');
-
-var app = express();
+var express = require('express'),
+path = require('path'),
+favicon = require('serve-favicon'),
+logger = require('morgan'),
+cookieParser = require('cookie-parser'),
+bodyParser = require('body-parser'),
+index = require('./routes/index'),
+seminars = require('./routes/seminars'),
+about = require('./routes/about'),
+signup = require('./routes/signup'),
+signin = require('./routes/signin'),
+app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

@@ -1,7 +1,7 @@
 .footer-bottom {
     margin-top: 200px;
     border-top: 1px solid ;
-    background: #e7e7e7;
+    background: #0f0f0f;
     height: 200px;
 }
 
@@ -24,4 +24,30 @@
     font-size: 30pt;
     color: white;
     margin-top: 80px;
+}
+.footer-bottom a {
+    color: white;
+}
+
+a:hover {
+    text-decoration: none;
+}
+.links.col-md-2 h3 {
+    color: white;
+}
+
+/*.row.questions {*/
+    /*margin-top: 20px;*/
+/*}*/
+
+.row.answers {
+    text-align: right;
+}
+
+.btn.btn-primary {
+    margin-right: 5px;
+}
+
+.badge {
+    margin-left: 5px;
 }
