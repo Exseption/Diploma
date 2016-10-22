@@ -2,6 +2,7 @@ extends layout
 
 block content
     body
+        include standard/header-image
         .container
             nav.navbar.navbar-default
                 .container-fluid
@@ -63,8 +64,30 @@ block content
                 // /.container-fluid
         .container
             div
-                p
-                h1 Семинары
-                p
+                .bs-example(data-example-id='bordered-table')
+                    table.table.table-bordered
+                        thead
+                            tr
+                                th #
+                                th First Name
+                                th Last Name
+                                th Username
+                        tbody
+                            tr
+                                th(scope='row') 1
+                                td Mark
+                                td Otto
+                                td @mdo
+                            tr
+                                th(scope='row') 2
+                                td Jacob
+                                td Thornton
+                                td @fat
+                            tr
+                                th(scope='row') 3
+                                td Larry
+                                td the Bird
+                                td @twitter
+        include standard/footer
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
         script(src='./scripts/bootstrap.min.js')

@@ -2,6 +2,7 @@ extends layout
 
 block content
     body
+        include standard/header-image
         .container
             nav.navbar.navbar-default
                 .container-fluid
@@ -64,5 +65,6 @@ block content
                 p
                 h1 Форма входа
                 p
+        include standard/footer
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
         script(src='./scripts/bootstrap.min.js')
