@@ -61,10 +61,26 @@ block content
                     // /.navbar-collapse
                 // /.container-fluid
         .container
-            div
-                p
-                h1 Форма входа
-                p
+            .col-md-4
+            .col-md-4
+                #{title}
+                form(method='post', action='/login')
+                    .form-group
+                        label(for='exampleInputEmail1') Почтовый ящик
+                        input#exampleInputEmail1.form-control(type='email', name='email', placeholder='Email', value='test@mail.ru')
+                    .form-group
+                        label(for='exampleInputPassword1') Пароль
+                        input#exampleInputPassword1.form-control(type='password', name='pass', placeholder='Password', value = 'test')
+
+                    .checkbox
+                        label
+                            input(type='checkbox')
+                            |  Запомнить меня
+                    button.btn.btn-default(type='submit') Отправить
+            .col-md-4
+        .container
+            #{test}
+
         include standard/footer
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
         script(src='./scripts/bootstrap.min.js')

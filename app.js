@@ -4,12 +4,15 @@ favicon = require('serve-favicon'),
 logger = require('morgan'),
 cookieParser = require('cookie-parser'),
 bodyParser = require('body-parser'),
+
+session = require('express-session'),
+    
 index = require('./routes/index'),
 seminars = require('./routes/seminars'),
 about = require('./routes/about'),
 signup = require('./routes/signup'),
 signin = require('./routes/signin'),
-add = require('./routes/add'),
+
 app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -21,6 +24,32 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.post('/add', function (req, res) {
+    var item = req.body.item;
+    req.session.item = item;
+    console.log(req.session.item);
+    res.redirect('/seminars');
+});
+
+app.get('/test', function (req, res) {
+    res.redirect('/');
+    console.log(req.session.item);
+
+});
+
+
+
+app.post('/login', function (req, res) {
+    res.send(req.body);
+})
+
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -29,8 +58,6 @@ app.use('/seminars', seminars);
 app.use('/about', about);
 app.use('/signup', signup);
 app.use('/signin', signin);
-
-app.use('/add', add);
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

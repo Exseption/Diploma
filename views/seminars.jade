@@ -30,7 +30,7 @@ block content
                                     span.caret
                                 ul.dropdown-menu
                                     li
-                                        a(href='#') Action
+                                        a(href='/test') Action
                                     li
                                         a(href='#') Another action
                                     li
@@ -76,7 +76,7 @@ block content
                             //тестируем отправку формы
                             form(action='/add', method='post')
                                 button.btn.btn-primary(type='submit') Купить
-                                input(type='hidden', name='item 1', value='item 1')
+                                input(type='hidden', name='item', value='value 1')
                 .col-sm-6.col-md-3
                     .thumbnail
                         img(src='http://placehold.it/242x200', alt='...')
@@ -86,7 +86,7 @@ block content
                             //тестируем отправку формы
                             form(action='/add', method='post')
                                 button.btn.btn-primary(type='submit') Купить
-                                input(type='hidden', name='item 2', value='item 2')
+                                input(type='hidden', name='item', value='value 2')
                 .col-sm-6.col-md-3
                     .thumbnail
                         img(src='http://placehold.it/242x200', alt='...')
@@ -96,7 +96,7 @@ block content
                             //тестируем отправку формы
                             form(action='/add', method='post')
                                 button.btn.btn-primary(type='submit') Купить
-                                input(type='hidden', name='item 3', value='item 3')
+                                input(type='hidden', name='item 3', value='value 3')
                 .col-sm-6.col-md-3
                     .thumbnail
                         img(src='http://placehold.it/242x200', alt='...')
