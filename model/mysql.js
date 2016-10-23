@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
     password    :   '',
     database: 'law-portal'
 });
-// connection.selectAllUsers = function () {
+connection.selectAllUsers = function () {
     connection.connect();
 
     connection.query('SELECT * from users',
@@ -19,5 +19,5 @@ var connection = mysql.createConnection({
         console.log(result);
     });
     connection.end(); 
-// };
+};
 module.exports = connection;
