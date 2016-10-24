@@ -6,19 +6,30 @@ var connection = mysql.createConnection({
     password    :   'qwerty',
     database: 'law-portal'
 });
-connection.selectUser = function (username) {
+connection.findOne = function (username) {
     connection.connect();
 
-    connection.query('SELECT * from users WHERE username=?',[username], function (error, result, fields) {
+    connection.query('SELECT * from users WHERE username=?'
+        ,[username], function (error, result, fields) {
         if (error){
             throw error;
         }
-        console.log(result);
+        //console.log(result);
     });
-    connection.end(); 
+    connection.end();
 };
+
+connection.findById = function (id) {
+    connection.connect();
+
+    connection.query('SELECT * from users WHERE id=?'
+        ,[id], function (error, result, fields) {
+        if (error){
+            throw error;
+        }
+        //console.log(result);
+    });
+    connection.end();
+};
+
 module.exports = connection;
-
-
-
-connection.selectUser('igor');

@@ -20,7 +20,8 @@
     "connect-flash": "*",
     "https": "*",
     "express-session": "*",
-    "mysql": "*"
+    "mysql": "*",
+    "mongoose": "*"
   },
   "engines": {
     "node": "4.x.x",

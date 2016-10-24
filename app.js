@@ -4,14 +4,12 @@ favicon = require('serve-favicon'),
 logger = require('morgan'),
 cookieParser = require('cookie-parser'),
 bodyParser = require('body-parser'),
-
-//session = require('express-session'),
-//index = require('./routes/index'),
-//seminars = require('./routes/seminars'),
-//about = require('./routes/about'),
-//register = require('./routes/register'),
-//login = require('./routes/login'),
+session = require('express-session'),
 routes = require('./routes/index'),
+passport = require('passport'),
+mysql = require('./model/mysql'),
+// mongoose = require('mongoose'),
+LocalStrategy = require('passport-local').Strategy;
 
 app = express();
 
@@ -24,41 +22,46 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-//app.use(session({
-//  secret: 'keyboard cat',
-//  resave: false,
-//  saveUninitialized: true
-//}));
-//
-//app.post('/add', function (req, res) {
-//    var item = req.body.item;
-//    req.session.item = item;
-//    console.log(req.session.item);
-//    res.redirect('/seminars');
-//});
-//
-//app.get('/test', function (req, res) {
-//    res.redirect('/');
-//    console.log(req.session.item);
-//
-//});
-//
-//
-//
-//app.post('/login', function (req, res) {
-//    res.send(req.body);
-//})
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+      mysql.findOne(username), function(err, user) {
+        if (err) { 
+          return done(err);
+        }
+        if (!user) {
+          return done(null, false, { 
+            message: 'Некорректный никнейм.'
+          });
+        }
+        if (!user.validPassword(password)) {
+          return done(null, false, { message: 'Некорректный пароль.' });
+        }
+        return done(null, user);
+      };
+    }
+));
 
+app.use(session({
+                  secret: 'my secret',
+                  resave: true,
+                  saveUninitialized: true
+                }));
 
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  mysql.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', routes);
-
-//app.use('/seminars', seminars);
-//app.use('/about', about);
-//app.use('/register', register);
-//app.use('/login', login);
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
