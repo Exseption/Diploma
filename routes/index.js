@@ -41,4 +41,11 @@ router.get('/seminars', function(req, res, next) {
     });
 });
 
+router.get('/resources', function(req, res, next) {
+    res.render('resources', {
+        title: 'Ресурсы',
+        portalTitle: 'Название'
+    });
+});
+
 module.exports = router;
