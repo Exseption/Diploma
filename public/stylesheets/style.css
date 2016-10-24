@@ -36,10 +36,6 @@ a:hover {
     color: white;
 }
 
-/*.row.questions {*/
-    /*margin-top: 20px;*/
-/*}*/
-
 .row.answers {
     text-align: right;
 }
@@ -62,4 +58,8 @@ a:hover {
 .rights {
     text-align: center;
     color: white;
+}
+
+.resources-div a {
+    color: black;
 }
