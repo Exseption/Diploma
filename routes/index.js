@@ -48,4 +48,8 @@ router.get('/resources', function(req, res, next) {
     });
 });
 
+router.get('/index.html', function(req, res, next) {
+    res.render('reg', {});
+});
+
 module.exports = router;
