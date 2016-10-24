@@ -7,7 +7,7 @@ block content
         .container
             div
                 h1(style='text-align: center') #{longTitle}
-            .col-md-8.col-lg-6.col-sm-8(style='height: 400px;')
+            .col-md-8.col-lg-6.col-sm-8
                 #carousel-example-generic.carousel.slide(data-ride='carousel')
                     ol.carousel-indicators
                         li.active(data-target='#carousel-example-generic', data-slide-to='0')
@@ -29,55 +29,54 @@ block content
                     a.right.carousel-control(href='#carousel-example-generic', role='button', data-slide='next')
                         span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
                         span.sr-only Next
-            .col-md-4.col-lg-6.col-sm-4
+            .col-md-3.col-lg-5.col-sm-4
                 h3 Задайте свой вопрос
-                textarea.form-control(rows='5')
-                .row
-                    br
-                form.form-inline
-                    .form-group
-                        label(for='exampleInputName2') Имя
-                        input#exampleInputName2.form-control(type='text', placeholder='Иван Иванов')
-                    .form-group
-                        label(for='exampleInputEmail2') Почта
-                        input#exampleInputEmail2.form-control(type='email', placeholder='ivan_ivanov@example.com')
-                    button.btn.btn-success(type='submit') Отправить
+                form
+                    textarea.form-control(rows='5')
+                    .row
+                        br
+                    form.form-inline
+                        .form-group
+
+                            input#exampleInputName2.form-control(type='text', placeholder='Ваше имя')
+                        .form-group
+
+                            input#exampleInputEmail2.form-control(type='email', placeholder='Почтовый ящик')
+                        button.btn.btn-success(type='submit') Отправить
+            .col-md-1.col-lg-1
         .container
+            .row.title-block-answers
+                h2 Последние вопросы
             .row.questions
                 .col-md-1
                 .col-md-10
                     .panel.panel-info
                         .panel-heading
-                            a(href='#') Заголовок вопроса 1
+                            a(href='#') #{questionTitle}
                         .panel-body
-                            |      Идейные соображения высшего порядка, а также дальнейшее развитие различных форм
-                            | деятельности обеспечивает широкому кругу (специалистов) участие в формировании существенных
-                            | финансовых и административных условий. Задача организации, в особенности же укрепление и развитие
-                            | структуры требуют определения и уточнения направлений прогрессивного развития. Товарищи! новая
-                            | модель организационной деятельности способствует подготовки и реализации дальнейших направлений
-                            | развития.
+                            | #{questionBody}
                             .row.answers
                                 button.btn.btn-primary(type='button')
                                     | Ответов
-                                    span.badge 4
+                                    span.badge #{numberOfAnswers}
                 .col-md-1
-            .row.questions
-                .col-md-1
-                .col-md-10
-                    .panel.panel-info
-                        .panel-heading
-                            a(href='#') Заголовок вопроса 2
-                        .panel-body
-                            |      Идейные соображения высшего порядка, а также дальнейшее развитие различных форм
-                            | деятельности обеспечивает широкому кругу (специалистов) участие в формировании существенных
-                            | финансовых и административных условий. Задача организации, в особенности же укрепление и развитие
-                            | структуры требуют определения и уточнения направлений прогрессивного развития. Товарищи! новая
-                            | модель организационной деятельности способствует подготовки и реализации дальнейших направлений
-                            | развития.
-                            .row.answers
-                                button.btn.btn-primary(type='button')
-                                    | Ответов
-                                    span.badge 1
+            //.row.questions
+            //    .col-md-1
+            //    .col-md-10
+            //        .panel.panel-info
+            //            .panel-heading
+            //                a(href='#') Заголовок вопроса 2
+            //            .panel-body
+            //                |      Идейные соображения высшего порядка, а также дальнейшее развитие различных форм
+            //                | деятельности обеспечивает широкому кругу (специалистов) участие в формировании существенных
+            //                | финансовых и административных условий. Задача организации, в особенности же укрепление и развитие
+            //                | структуры требуют определения и уточнения направлений прогрессивного развития. Товарищи! новая
+            //                | модель организационной деятельности способствует подготовки и реализации дальнейших направлений
+            //                | развития.
+            //                .row.answers
+            //                    button.btn.btn-primary(type='button')
+            //                        | Ответов
+            //                        span.badge 1
                 .col-md-1
 
         include standard/footer

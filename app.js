@@ -10,8 +10,8 @@ session = require('express-session'),
 index = require('./routes/index'),
 seminars = require('./routes/seminars'),
 about = require('./routes/about'),
-signup = require('./routes/signup'),
-signin = require('./routes/signin'),
+register = require('./routes/register'),
+login = require('./routes/login'),
 
 app = express();
 
@@ -56,8 +56,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/seminars', seminars);
 app.use('/about', about);
-app.use('/signup', signup);
-app.use('/signin', signin);
+app.use('/register', register);
+app.use('/login', login);
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

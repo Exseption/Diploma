@@ -51,3 +51,15 @@ a:hover {
 .badge {
     margin-left: 5px;
 }
+
+.title-block-answers {
+    text-align: center;
+}
+
+.col-md-4.col-lg-6.col-sm-4 > h3 {
+    margin-top: 0;
+}
+.rights {
+    text-align: center;
+    color: white;
+}
