@@ -5,13 +5,13 @@ logger = require('morgan'),
 cookieParser = require('cookie-parser'),
 bodyParser = require('body-parser'),
 
-session = require('express-session'),
-    
-index = require('./routes/index'),
-seminars = require('./routes/seminars'),
-about = require('./routes/about'),
-register = require('./routes/register'),
-login = require('./routes/login'),
+//session = require('express-session'),
+//index = require('./routes/index'),
+//seminars = require('./routes/seminars'),
+//about = require('./routes/about'),
+//register = require('./routes/register'),
+//login = require('./routes/login'),
+routes = require('./routes/index'),
 
 app = express();
 
@@ -24,40 +24,41 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true
-}));
-
-app.post('/add', function (req, res) {
-    var item = req.body.item;
-    req.session.item = item;
-    console.log(req.session.item);
-    res.redirect('/seminars');
-});
-
-app.get('/test', function (req, res) {
-    res.redirect('/');
-    console.log(req.session.item);
-
-});
-
-
-
-app.post('/login', function (req, res) {
-    res.send(req.body);
-})
+//app.use(session({
+//  secret: 'keyboard cat',
+//  resave: false,
+//  saveUninitialized: true
+//}));
+//
+//app.post('/add', function (req, res) {
+//    var item = req.body.item;
+//    req.session.item = item;
+//    console.log(req.session.item);
+//    res.redirect('/seminars');
+//});
+//
+//app.get('/test', function (req, res) {
+//    res.redirect('/');
+//    console.log(req.session.item);
+//
+//});
+//
+//
+//
+//app.post('/login', function (req, res) {
+//    res.send(req.body);
+//})
 
 
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/seminars', seminars);
-app.use('/about', about);
-app.use('/register', register);
-app.use('/login', login);
+app.use('/', routes);
+
+//app.use('/seminars', seminars);
+//app.use('/about', about);
+//app.use('/register', register);
+//app.use('/login', login);
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
