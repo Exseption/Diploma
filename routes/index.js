@@ -7,7 +7,6 @@ var isAuthenticated = function (req, res, next) {
     res.redirect('/');
 };
 
-
 module.exports = function (passport) {
 
     router.post('/login', passport.authenticate('login', {
@@ -16,31 +15,24 @@ module.exports = function (passport) {
         failureFlash : true
     }));
 
-    /* GET Registration Page */
     router.get('/signup', function(req, res){
-        res.render('signup',{message: req.flash('message')});
+        res.render('register',{message: req.flash('message')});
     });
 
-    /* Handle Registration POST */
     router.post('/signup', passport.authenticate('signup', {
         successRedirect: '/home',
-        failureRedirect: '/signup',
+        failureRedirect: '/register',
         failureFlash : true
     }));
 
-    /* GET Home Page */
     router.get('/home', isAuthenticated, function(req, res){
         res.render('home', { user: req.user });
     });
 
-    /* Handle Logout */
     router.get('/signout', function(req, res) {
         req.logout();
         res.redirect('/');
     });
-
-
-
 
     router.get('/', function(req, res, next) {
         res.render('index', {
