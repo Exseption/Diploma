@@ -10,7 +10,6 @@ passport = require('passport'),
 mongoose = require('mongoose'),
 dbConfig = require('./model/db'),
 app = express();
-
 mongoose.connect(dbConfig.url);
 
 app.set('views', path.join(__dirname, 'views'));
