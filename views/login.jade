@@ -7,8 +7,9 @@ block content
         .container
             .row
                 .col-sm-6.col-md-4.col-md-offset-4
-                    .text-center.login-title Войти
+
                     .text-center.account-wall
+                        .text-center.login-title Авторизация
                         img(class='profile-img', src='https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120')
                         form(class='form-signin', action='/login', method='POST')
                             input(type='text', name='username' class='form-control', placeholder='Почтовый ящик',required, autofocus)
