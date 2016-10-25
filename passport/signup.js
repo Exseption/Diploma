@@ -12,15 +12,14 @@ module.exports = function(passport){
                 findOrCreateUser = function(){
                     User.findOne({ 'username' :  username }, function(err, user) {
                         if (err){
-                            console.log('Ошибка: '+err);
+                            console.log('Error in SignUp: '+err);
                             return done(err);
                         }
                         if (user) {
-                            console.log('Пользователь с таким логином уже существует: '+username);
-                            return done(null, false, req.flash('message','Пользователь уже существует'));
+                            console.log('User already exists with username: '+username);
+                            return done(null, false, req.flash('message','User Already Exists'));
                         } else {
                             var newUser = new User();
-
                             newUser.username = username;
                             newUser.password = createHash(password);
                             newUser.email = req.param('email');
@@ -29,10 +28,10 @@ module.exports = function(passport){
 
                             newUser.save(function(err) {
                                 if (err){
-                                    console.log('Ошибка пользователя: '+err);
+                                    console.log('Error in Saving user: '+err);
                                     throw err;
                                 }
-                                console.log('Регистрация пользователя прошла упешно');
+                                console.log('User Registration succesful');
                                 return done(null, newUser);
                             });
                         }
@@ -41,9 +40,7 @@ module.exports = function(passport){
                 process.nextTick(findOrCreateUser);
             })
     );
-
     var createHash = function(password){
         return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
     }
-
 };

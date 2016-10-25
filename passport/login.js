@@ -14,16 +14,15 @@ module.exports = function(passport){
                             return done(err);
                         if (!user){
                             console.log('Пользователь с таким логином не найден '+username);
-                            return done(null, false, req.flash('message', 'Пользователь не найден'));
+                            return done(null, false, req.flash('message', 'Юзер не найден'));
                         }
                         if (!isValidPassword(user, password)){
                             console.log('Invalid Password');
-                            return done(null, false, req.flash('message', 'Некорректный пароль')); // redirect back to login page
+                            return done(null, false, req.flash('message', 'Неправильный пароль'));
                         }
                         return done(null, user);
                     }
                 );
-
             })
     );
     var isValidPassword = function(user, password){
