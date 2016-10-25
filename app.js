@@ -8,10 +8,15 @@ session = require('express-session'),
 routes = require('./routes/index'),
 passport = require('passport'),
 mysql = require('./model/mysql'),
-// mongoose = require('mongoose'),
+mongoose = require('mongoose'),
+
+dbConfig = require('./model/db'),
+
 LocalStrategy = require('passport-local').Strategy;
 
 app = express();
+
+mongoose.connect(dbConfig.url);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -42,19 +47,19 @@ passport.use(new LocalStrategy(
 ));
 
 app.use(session({
-                  secret: 'my secret',
+                  secret: 'mySecretKey',
                   resave: true,
                   saveUninitialized: true
                 }));
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+    done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
-  mysql.findById(id, function(err, user) {
-    done(err, user);
-  });
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
 });
 
 app.use(passport.initialize());
