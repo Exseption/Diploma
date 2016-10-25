@@ -12,12 +12,12 @@ module.exports = function(passport){
                 findOrCreateUser = function(){
                     User.findOne({ 'username' :  username }, function(err, user) {
                         if (err){
-                            console.log('Error in SignUp: '+err);
+                            console.log('Ошибка: '+err);
                             return done(err);
                         }
                         if (user) {
-                            console.log('User already exists with username: '+username);
-                            return done(null, false, req.flash('message','User Already Exists'));
+                            console.log('Пользователь с таким логином уже существует: '+username);
+                            return done(null, false, req.flash('message','Пользователь уже существует'));
                         } else {
                             var newUser = new User();
 
@@ -29,10 +29,10 @@ module.exports = function(passport){
 
                             newUser.save(function(err) {
                                 if (err){
-                                    console.log('Error in Saving user: '+err);
+                                    console.log('Ошибка пользователя: '+err);
                                     throw err;
                                 }
-                                console.log('User Registration succesful');
+                                console.log('Регистрация пользователя прошла упешно');
                                 return done(null, newUser);
                             });
                         }
