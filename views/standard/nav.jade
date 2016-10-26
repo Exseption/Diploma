@@ -44,13 +44,19 @@
                         a(href='/about') О нас
                     li.dropdown
                         a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                            | Кабинет
-                            span.caret
+                            if !user
+                                | Кабинет
+                                span.caret
+                            else
+                                | Вы вошли как #{user.username}
+                                span.caret
                         ul.dropdown-menu
-                            li
-                                a(href='/signup') Регистрация
-                            li
-                                a(href='/login') Войти
-                            li.divider(role='separator')
-                            li
-                                a(href='#') Ссылки
+                            if !user
+                                li
+                                    a(href='/login') Войти
+                                li.divider(role='separator')
+                                li
+                                    a(href='/signup') Регистрация
+                            else
+                                li
+                                    a(href='/signout') Выйти

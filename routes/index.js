@@ -36,6 +36,8 @@ module.exports = function (passport) {
 
     router.get('/', function(req, res, next) {
         res.render('index', {
+            user: req.user,
+
             title: 'Главная',
             longTitle: 'Очень длинный заголовок',
             questionTitle: 'Название вопроса',
@@ -46,6 +48,7 @@ module.exports = function (passport) {
 
     router.get('/about', function(req, res, next) {
         res.render('about', {
+            user: req.user,
             title: 'О нас'
             , aboutBody: 'Очень много текста'
         });
@@ -65,6 +68,7 @@ module.exports = function (passport) {
 
     router.get('/seminars', function(req, res, next) {
         res.render('seminars', {
+            user:req.user,
             title: 'Семинары',
         });
     });
@@ -72,6 +76,7 @@ module.exports = function (passport) {
     router.get('/resources', function(req, res, next) {
         res.render('resources', {
             title: 'Ресурсы',
+            user: req.user
         });
     });
 
