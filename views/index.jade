@@ -48,15 +48,20 @@ block content
                 h4 Последние вопросы
             .row.questions
                 .col-md-1
+
+                //доделать!
                 .col-md-10
+                   -for (var a in applications)
                     .panel.panel-info
+
                         .panel-heading
-                            a(href='#') #{questionTitle}
-                        .panel-body
-                            | #{questionBody}
+                            a(href='#') #{applications[a].title}
+                        .panel-body #{applications[a].body}
                             .row.answers
                                 button.btn.btn-primary(type='button')
                                     | Ответов
-                                    span.badge #{numberOfAnswers}
+                                    span.badge #{applications[a].numberofanswers}
+
+
                 .col-md-1
         include standard/footer

@@ -12,6 +12,7 @@ module.exports = function (passport) {
 
     //добавил простое добавление статей
     router.post('/addapp', function (req, res) {
+        
         var newApp = new Application();
         newApp.body = req.body.appbody;
         newApp.dateofpublic = new Date();
@@ -27,7 +28,7 @@ module.exports = function (passport) {
 
     router.post('/login', passport.authenticate('login', {
         successRedirect: '/home',
-        failureRedirect: '/',
+        failureRedirect: '/login',
         failureFlash : true
     }));
 
@@ -51,14 +52,15 @@ module.exports = function (passport) {
     });
 
     router.get('/', function(req, res, next) {
-        res.render('index', {
-            user: req.user,
-
-            title: 'Главная',
-            longTitle: 'Очень длинный заголовок',
-            questionTitle: 'Название вопроса',
-            questionBody: 'Очень много текста',
-            numberOfAnswers: '4'
+        Application.find({},function (err, results) {
+            res.render('index', {
+                title: 'Главная',
+                
+                user: req.user,
+                longTitle: 'Очень длинный заголовок',
+                applications: results
+            }); 
+            console.log(results);
         });
     });
 
