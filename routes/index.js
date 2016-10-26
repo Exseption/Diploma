@@ -60,7 +60,7 @@ module.exports = function (passport) {
                 longTitle: 'Очень длинный заголовок',
                 applications: results
             }); 
-            console.log(results);
+            //console.log(results);
         });
     });
 
