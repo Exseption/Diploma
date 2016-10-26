@@ -1,9 +1,12 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
-module.exports = mongoose.model('Application',{
+var Application = new Schema({
     id: Number,
     title: String,
     body: String,
-    dateOfpublic: Date,
+    dateofpublic: Date,
     author: Number
 });
+
+module.exports = mongoose.model('Application',Application);

@@ -30,17 +30,17 @@ block content
                         span.sr-only Next
             .col-md-3.col-lg-5.col-sm-4
                 h4 Задайте свой вопрос
-                form
-                    textarea.form-control(rows='5')
+                form(method='POST', action='/addapp')
+                    textarea.form-control(rows='5', name='appbody')
                     .row
                         br
                     form.form-inline
                         .form-group
 
-                            input#exampleInputName2.form-control(type='text', placeholder='Ваше имя')
+                            input#exampleInputName2.form-control(name='username', type='text', placeholder='Ваше имя')
                         .form-group
 
-                            input#exampleInputEmail2.form-control(type='email', placeholder='Почтовый ящик')
+                            input#exampleInputEmail2.form-control(name='email', type='email', placeholder='Почтовый ящик')
                         button.btn.btn-success(type='submit') Отправить
             .col-md-1.col-lg-1
         .container

@@ -1,4 +1,5 @@
 var express = require('express'),
+    Application = require('../models/application'),
 router = express.Router();
 
 var isAuthenticated = function (req, res, next) {
@@ -8,6 +9,21 @@ var isAuthenticated = function (req, res, next) {
 };
 
 module.exports = function (passport) {
+
+    //добавил простое добавление статей
+    router.post('/addapp', function (req, res) {
+        var newApp = new Application();
+        newApp.body = req.body.appbody;
+        newApp.dateofpublic = new Date();
+        newApp.save(function (err) {
+            if (err){
+                console.log('Ошибка при добавлении вопроса');
+                throw err;
+            }
+            console.log('Добавлен вопрос' + newApp);
+            res.redirect('/');
+        })
+    });
 
     router.post('/login', passport.authenticate('login', {
         successRedirect: '/home',
