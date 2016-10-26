@@ -2,11 +2,12 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var Application = new Schema({
-    id: Number,
-    title: String,
-    body: String,
-    dateofpublic: Date,
-    author: Number
+    id: {type: Number},
+    title: { type: String },
+    body: { type: String },
+    dateofpublic: { type: Date },
+    author: { type: Number } ,
+    moderated: { type: Boolean }
 });
 
 module.exports = mongoose.model('Application',Application);
