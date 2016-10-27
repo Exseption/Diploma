@@ -19,9 +19,5 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "serve-favicon": "~2.3.0"
-  },
-  "engines": {
-    "node": "4.x.x",
-    "npm": "2.x.x"
   }
 }
