@@ -22,7 +22,7 @@ module.exports = function (passport) {
                 throw err;
             }
             console.log('Добавлен вопрос' + newApp);
-            res.redirect('/');
+            res.redirect('/'); //потом переделать под аякс
         })
     });
 

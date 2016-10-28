@@ -31,19 +31,19 @@ block content
             .col-md-3.col-lg-5.col-sm-4
                 h4 Задайте свой вопрос
                 form(method='POST', action='/addapp')
-                    textarea.form-control(rows='5', name='appbody')
+                    textarea.form-control#applicationtext(rows='5', name='appbody')
                     .row
                         br
                     form.form-inline
                         .form-group
 
-                            input#exampleInputName2.form-control(name='username', type='text', placeholder='Ваше имя')
+                            input#username.form-control(name='username', type='text', placeholder='Ваше имя')
                         .form-group
 
-                            input#exampleInputEmail2.form-control(name='email', type='email', placeholder='Почтовый ящик')
-                        button.btn.btn-success#index-btn(type='submit') Отправить
+                            input#email.form-control(name='email', type='email', placeholder='Почтовый ящик')
+                        button.btn.btn-success#formsubmit(type='submit') Отправить
             .col-md-1.col-lg-1
-        .container
+        .container#answers-block
             .row.title-block-answers
                 h4 Последние опубликованные вопросы
             .row.questions
