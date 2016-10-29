@@ -30,6 +30,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.disable('x-powered-by');
 
 var flash = require('connect-flash');
 app.use(flash());

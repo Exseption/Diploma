@@ -14,15 +14,18 @@ module.exports = function (passport) {
     router.post('/addapp', function (req, res) {
         
         var newApp = new Application();
-        newApp.body = req.body.appbody;
-        newApp.dateofpublic = new Date();
+        newApp.title = req.body.title;
+        newApp.body = req.body.body;
+        newApp.created = new Date();
+        
         newApp.save(function (err) {
             if (err){
                 console.log('Ошибка при добавлении вопроса');
                 throw err;
             }
             console.log('Добавлен вопрос' + newApp);
-            res.redirect('/'); //потом переделать под аякс
+            res.send({success: true});
+
         })
     });
 
@@ -31,6 +34,12 @@ module.exports = function (passport) {
         failureRedirect: '/login',
         failureFlash : true
     }));
+    
+    router.get('/test1', function (req, res) {
+        res.render('test1',{
+            
+        })
+    });
 
     router.get('/signup', function(req, res){
         res.render('register',{message: req.flash('message')});
@@ -52,7 +61,7 @@ module.exports = function (passport) {
     });
 
     router.get('/', function(req, res, next) {
-        Application.find({},function (err, results) {
+        Application.find({moderated:true},function (err, results) {
             res.render('index', {
                 title: 'Главная',
                 
@@ -60,7 +69,7 @@ module.exports = function (passport) {
                 longTitle: 'Очень длинный заголовок',
                 applications: results
             }); 
-            //console.log(results);
+            console.log(res.statusCode);
         });
     });
 

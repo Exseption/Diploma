@@ -29,27 +29,23 @@ block content
                         span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
                         span.sr-only Next
             .col-md-3.col-lg-5.col-sm-4
-                h4 Задайте свой вопрос
-                form(method='POST', action='/addapp')
-                    textarea.form-control#applicationtext(rows='5', name='appbody')
+                h4#title-indexform Задайте свой вопрос
+                form#indexform(method='POST', action='/addapp')
+                    input#applicationtitle.form-control(name='title', placeholder='Заголовок вопроса', required)
+                    textarea#applicationtext.form-control(rows='5', name='body', placeholder='Текст вопроса', required)
+                    input#username.form-control(name='username', type='text', placeholder='Ваше имя', required)
+                    input#email.form-control(name='email', type='email', placeholder='Почтовый ящик', required)
                     .row
                         br
-                    form.form-inline
-                        .form-group
+                    button.btn.btn-success#indexformsubmit(type='submit') Отправить
 
-                            input#username.form-control(name='username', type='text', placeholder='Ваше имя')
-                        .form-group
-
-                            input#email.form-control(name='email', type='email', placeholder='Почтовый ящик')
-                        button.btn.btn-success#formsubmit(type='submit') Отправить
             .col-md-1.col-lg-1
         .container#answers-block
             .row.title-block-answers
                 h4 Последние опубликованные вопросы
             .row.questions
                 .col-md-1
-
-                //доделать!
+                //доделать вывод массива!
                 .col-md-10
                    -for (var a in applications)
                     .panel.panel-info
