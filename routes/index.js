@@ -1,6 +1,7 @@
 var express = require('express'),
     Application = require('../models/application'),
-router = express.Router();
+    User = require('../models/user'),
+    router = express.Router();
 
 var isAuthenticated = function (req, res, next) {
     if(req.isAuthenticated())
@@ -8,8 +9,41 @@ var isAuthenticated = function (req, res, next) {
     res.redirect('/');
 };
 
+var isModer = function (req, res, next) {
+    if(req.user.userType == 'moder')
+        return next();
+    res.redirect('/');
+};
+
+
+
+
+
 module.exports = function (passport) {
 
+    router.post('/home/profile',isAuthenticated, function (req, res) {
+       res.render('profile', {
+           user: req.user
+           
+       }) 
+    });
+
+    router.post('/home/messages',isAuthenticated, function (req, res) {
+        res.render('messages', {
+            user: req.user
+
+        })
+    });
+    
+    
+    
+    //тестим работу ролевого доступа
+    router.get('/test1',isModer, function (req, res) {
+        res.render('test1',{ test1: 'Meeeee!',
+        user: req.user})
+    });
+    
+    
     //добавил простое добавление статей
     router.post('/addapp', function (req, res) {
         
@@ -35,12 +69,6 @@ module.exports = function (passport) {
         failureFlash : true
     }));
     
-    router.get('/test1', function (req, res) {
-        res.render('test1',{
-            
-        })
-    });
-
     router.get('/signup', function(req, res){
         res.render('register',{message: req.flash('message')});
     });

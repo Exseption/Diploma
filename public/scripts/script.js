@@ -21,4 +21,36 @@ jQuery(function($) {
             }
         });
     });
+    
+    $('#subnav-profile').click(function (evt) {
+        evt.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '/home/profile',
+            success: function (data) {
+                $('#profile').html(data)
+            },
+            error: function (err) {
+                console.log(err);
+            }
+
+        })
+    });
+
+    $('#subnav-messages').click(function (evt) {
+        evt.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '/home/messages',
+            success: function (data) {
+                $('#profile').html(data)
+            },
+            error: function (err) {
+                console.log(err);
+            }
+
+        })
+    })
+    
+    
 });
