@@ -1,89 +1,80 @@
-extends layout
+h3 Новинки
+.row
+    .col-sm-6.col-md-3
+        .thumbnail
+            img(src='http://placehold.it/242x200', alt='...')
+            .caption
+                h4 Семинар 1
+                p Текст какой-то
 
-block content
-    body
-        //include standard/header-image
-        include standard/nav
-        .container
-
-            h3 Новинки
-            .row
-                .col-sm-6.col-md-3
-                    .thumbnail
-                        img(src='http://placehold.it/242x200', alt='...')
-                        .caption
-                            h4 Семинар 1
-                            p Текст какой-то
-
-                            //тестируем отправку формы
-                            form(action='/add', method='post')
-                                button.btn.btn-primary(type='submit') Купить
-                                input(type='hidden', name='item', value='value 1')
-                .col-sm-6.col-md-3
-                    .thumbnail
-                        img(src='http://placehold.it/242x200', alt='...')
-                        .caption
-                            h4 Семинар 2
-                            p Текст какой-то
-                            //тестируем отправку формы
-                            form(action='/add', method='post')
-                                button.btn.btn-primary(type='submit') Купить
-                                input(type='hidden', name='item', value='value 2')
-                .col-sm-6.col-md-3
-                    .thumbnail
-                        img(src='http://placehold.it/242x200', alt='...')
-                        .caption
-                            h4 Семинар 3
-                            p Текст какой-то
-                            //тестируем отправку формы
-                            form(action='/add', method='post')
-                                button.btn.btn-primary(type='submit') Купить
-                                input(type='hidden', name='item 3', value='value 3')
-                .col-sm-6.col-md-3
-                    .thumbnail
-                        img(src='http://placehold.it/242x200', alt='...')
-                        .caption
-                            h4 Thumbnail label
-                            p Текст какой-то
-                            p
-                                a.btn.btn-primary(href='#', role='button') Button
-                                a.btn.btn-default(href='#', role='button') Button
-            h3 Популярные
-            .row
-                .col-sm-6.col-md-3
-                    .thumbnail
-                        img(src='http://placehold.it/242x200', alt='...')
-                        .caption
-                            h4 Thumbnail label
-                            p Текст какой-то
-                            p
-                                a.btn.btn-primary(href='#', role='button') Button
-                                a.btn.btn-default(href='#', role='button') Button
-                .col-sm-6.col-md-3
-                    .thumbnail
-                        img(src='http://placehold.it/242x200', alt='...')
-                        .caption
-                            h4 Thumbnail label
-                            p Текст какой-то
-                            p
-                                a.btn.btn-primary(href='#', role='button') Button
-                                a.btn.btn-default(href='#', role='button') Button
-                .col-sm-6.col-md-3
-                    .thumbnail
-                        img(src='http://placehold.it/242x200', alt='...')
-                        .caption
-                            h4 Thumbnail label
-                            p Текст какой-то
-                            p
-                                a.btn.btn-primary(href='#', role='button') Button
-                                a.btn.btn-default(href='#', role='button') Button
-                .col-sm-6.col-md-3
-                    .thumbnail
-                        img(src='http://placehold.it/242x200', alt='...')
-                        .caption
-                            h4 Thumbnail label
-                            p Текст какой-то
-                            p
-                                a.btn.btn-primary(href='#', role='button') Button
-                                a.btn.btn-default(href='#', role='button') Button
-        include standard/footer
+                //тестируем отправку формы
+                form(action='/add', method='post')
+                    button.btn.btn-primary(type='submit') Купить
+                    input(type='hidden', name='item', value='value 1')
+    .col-sm-6.col-md-3
+        .thumbnail
+            img(src='http://placehold.it/242x200', alt='...')
+            .caption
+                h4 Семинар 2
+                p Текст какой-то
+                //тестируем отправку формы
+                form(action='/add', method='post')
+                    button.btn.btn-primary(type='submit') Купить
+                    input(type='hidden', name='item', value='value 2')
+    .col-sm-6.col-md-3
+        .thumbnail
+            img(src='http://placehold.it/242x200', alt='...')
+            .caption
+                h4 Семинар 3
+                p Текст какой-то
+                //тестируем отправку формы
+                form(action='/add', method='post')
+                    button.btn.btn-primary(type='submit') Купить
+                    input(type='hidden', name='item 3', value='value 3')
+    .col-sm-6.col-md-3
+        .thumbnail
+            img(src='http://placehold.it/242x200', alt='...')
+            .caption
+                h4 Thumbnail label
+                p Текст какой-то
+                p
+                    a.btn.btn-primary(href='#', role='button') Button
+                    a.btn.btn-default(href='#', role='button') Button
+h3 Популярные
+.row
+    .col-sm-6.col-md-3
+        .thumbnail
+            img(src='http://placehold.it/242x200', alt='...')
+            .caption
+                h4 Thumbnail label
+                p Текст какой-то
+                p
+                    a.btn.btn-primary(href='#', role='button') Button
+                    a.btn.btn-default(href='#', role='button') Button
+    .col-sm-6.col-md-3
+        .thumbnail
+            img(src='http://placehold.it/242x200', alt='...')
+            .caption
+                h4 Thumbnail label
+                p Текст какой-то
+                p
+                    a.btn.btn-primary(href='#', role='button') Button
+                    a.btn.btn-default(href='#', role='button') Button
+    .col-sm-6.col-md-3
+        .thumbnail
+            img(src='http://placehold.it/242x200', alt='...')
+            .caption
+                h4 Thumbnail label
+                p Текст какой-то
+                p
+                    a.btn.btn-primary(href='#', role='button') Button
+                    a.btn.btn-default(href='#', role='button') Button
+    .col-sm-6.col-md-3
+        .thumbnail
+            img(src='http://placehold.it/242x200', alt='...')
+            .caption
+                h4 Thumbnail label
+                p Текст какой-то
+                p
+                    a.btn.btn-primary(href='#', role='button') Button
+                    a.btn.btn-default(href='#', role='button') Button

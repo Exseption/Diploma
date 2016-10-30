@@ -51,6 +51,42 @@ jQuery(function($) {
 
         })
     })
-    
-    
+
+    $('#nav-seminars').click(function (evt) {
+        evt.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url:'/seminars',
+            success:function (data) {
+                $('.index-main').html(data)
+
+            }
+        })
+    });
+
+    $('#nav-resources').click(function (evt) {
+        evt.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url:'/resources',
+            success:function (data) {
+                $('.index-main').html(data)
+
+            }
+        })
+    });
+
+    $('#nav-about').click(function (evt) {
+        evt.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url:'/about',
+            success:function (data) {
+                $('.index-main').html(data)
+
+            }
+        })
+    });
+
+
 });

@@ -99,7 +99,14 @@ module.exports = function (passport) {
             }); 
             console.log(res.statusCode);
         });
+        
     });
+
+    router.get('/index', function (req, res, next) {
+        res.render('main');
+
+    });
+
 
     router.get('/about', function(req, res, next) {
         res.render('about', {
@@ -124,7 +131,7 @@ module.exports = function (passport) {
     router.get('/seminars', function(req, res, next) {
         res.render('seminars', {
             user:req.user,
-            title: 'Семинары',
+            title: 'Семинары'
         });
     });
 
@@ -132,6 +139,8 @@ module.exports = function (passport) {
         res.render('resources', {
             title: 'Ресурсы',
             user: req.user
+            
+
         });
     });
 

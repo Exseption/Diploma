@@ -1,33 +1,70 @@
 extends layout
 block content
     body
-        //include standard/header-image
         include standard/nav
         .container
-            div
-                h3(style='text-align: center') #{longTitle}
-            .col-md-8.col-lg-6.col-sm-8
-                #carousel-example-generic.carousel.slide(data-ride='carousel')
-                    ol.carousel-indicators
-                        li.active(data-target='#carousel-example-generic', data-slide-to='0')
-                        li(data-target='#carousel-example-generic', data-slide-to='1')
-                        li(data-target='#carousel-example-generic', data-slide-to='2')
-                    .carousel-inner(role='listbox')
-                        .item.active
-                            img.img-responsive(src='./images/slider/slide-1.jpg', alt='...')
-                            .carousel-caption
-                        .item
-                            img.img-responsive(src='./images/slider/slide-2.jpg', alt='...')
-                            .carousel-caption
-                        .item
-                            img.img-responsive(src='./images/slider/slide-3.jpeg', alt='...')
-                            .carousel-caption
-                    a.left.carousel-control(href='#carousel-example-generic', role='button', data-slide='prev')
-                        span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
-                        span.sr-only Previous
-                    a.right.carousel-control(href='#carousel-example-generic', role='button', data-slide='next')
-                        span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
-                        span.sr-only Next
+
+            .row
+                .col-sm-8.index-main
+
+                    h2.text-center Длинный заголовок
+                    .pre
+                        | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
+                        | Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                        | Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+
+                    hr
+
+
+                    //.col-md-1
+                    //.col-md-10
+                    //    #carousel-example-generic.carousel.slide(data-ride='carousel')
+                    //        ol.carousel-indicators
+                    //            li.active(data-target='#carousel-example-generic', data-slide-to='0')
+                    //            li(data-target='#carousel-example-generic', data-slide-to='1')
+                    //            li(data-target='#carousel-example-generic', data-slide-to='2')
+                    //        .carousel-inner(role='listbox')
+                    //            .item.active
+                    //                img.img-responsive(src='./images/slider/slide-1.jpg', alt='...')
+                    //                .carousel-caption
+                    //            .item
+                    //                img.img-responsive(src='./images/slider/slide-2.jpg', alt='...')
+                    //                .carousel-caption
+                    //            .item
+                    //                img.img-responsive(src='./images/slider/slide-3.jpeg', alt='...')
+                    //                .carousel-caption
+                    //        a.left.carousel-control(href='#carousel-example-generic', role='button', data-slide='prev')
+                    //            span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
+                    //            span.sr-only Previous
+                    //        a.right.carousel-control(href='#carousel-example-generic', role='button', data-slide='next')
+                    //            span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
+                    //            span.sr-only Next
+                    //.col-md-1
+
+
+
+
+                .col-sm-3.col-sm-offset-1.index-sidebar
+                    .sidebar-auth(style='height:200px')
+                        .col-md-1
+                        .col-md-10.auth-form
+                            .text-center.login-title Авторизация
+                            form(class='form-signin', action='/login', method='POST')
+                                input(type='text', name='username' class='form-control', placeholder='Логин',required, autofocus)
+                                input(type='password', name='password' class='form-control', placeholder='Пароль', required)
+                                button(class='btn btn-primary btn-block', type='submit') Войти
+                                span.clearfix
+                            .text-center
+                                a(href='/signup', class='new-account') Создать аккаунт
+                            #message
+                            if message
+                                h6.text-center.error-message #{message}
+                        .com-md-1
+                    .sidebar-module(style='height:200px')
+                        | Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                    .sidebar-module(style='height:200px')
+                        | Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+        .container
             .col-md-3.col-lg-5.col-sm-4
                 h4#title-indexform Задайте свой вопрос
                 form#indexform(method='POST', action='/addapp')
@@ -40,6 +77,8 @@ block content
                     button.btn.btn-success#indexformsubmit(type='submit') Отправить
 
             .col-md-1.col-lg-1
+
+
         .container#answers-block
             .row.title-block-answers
                 h4 Последние опубликованные вопросы
@@ -60,4 +99,6 @@ block content
 
 
                 .col-md-1
+
+
         include standard/footer

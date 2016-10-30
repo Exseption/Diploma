@@ -15,12 +15,12 @@ nav.navbar.navbar-default.navbar-fixed-top
             #bs-example-navbar-collapse-1.collapse.navbar-collapse
                 ul.nav.navbar-nav
                     li
-                        a(href='/')
+                        a(id='nav-index' ,href='/')
                             | Главная
                     li
-                        a(href='/seminars') Семинары
+                        a(id='nav-seminars', href='/seminars') Семинары
                     li
-                        a(href='/resources') Ресурсы
+                        a(id='nav-resources', href='/resources') Ресурсы
                     li.dropdown
                         a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                             | Еще
@@ -44,7 +44,7 @@ nav.navbar.navbar-default.navbar-fixed-top
                     button.btn.btn-default(type='submit') Поиск
                 ul.nav.navbar-nav.navbar-right
                     li
-                        a(href='/about') О нас
+                        a(id='nav-about', href='/about') О нас
                     li.dropdown
                         a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                             if !user

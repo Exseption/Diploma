@@ -1,12 +1,19 @@
-extends layout
 
-block content
-    body
-        //include standard/header-image
-        include standard/nav
-        .container
-            .resources-div
-                ol
-                    li
-                        a(href='../downloads/Const_RF.pdf') Тест Конституция РФ
-        include standard/footer
+form
+    .form-group
+        label(for='InputFile') Загрузить файл
+        input#InputFile(type='file')
+        p.help-block Загрузит файл и ждите своей смерти.
+
+    button.btn.btn-default(type='submit') Загрузить
+
+hr
+.resources-div
+    ol
+        li
+            a(href='../downloads/Const_RF.pdf') Тест Конституция РФ
+
+
+//if user.userType==undefined
+//    h1 Ты не залогинен!
+
