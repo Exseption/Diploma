@@ -10,11 +10,4 @@ var Application = new Schema({
     author: { type: mongoose.Schema.Types.ObjectId, ref: user }
 });
 
-
-
-Application.methods.findNotModerated = function () {
-    return '$' + this.find({moderated: false})
-};
-
-
 module.exports = mongoose.model('Application',Application);

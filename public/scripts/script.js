@@ -32,7 +32,6 @@ jQuery(function($) {
             error: function (err) {
                 console.log(err);
             }
-
         })
     });
 
@@ -47,9 +46,8 @@ jQuery(function($) {
             error: function (err) {
                 console.log(err);
             }
-
         })
-    })
+    });
 
     $('#nav-seminars').click(function (evt) {
         evt.preventDefault();
@@ -62,7 +60,6 @@ jQuery(function($) {
             }
         })
     });
-
     $('#nav-resources').click(function (evt) {
         evt.preventDefault();
         $.ajax({
@@ -74,7 +71,6 @@ jQuery(function($) {
             }
         })
     });
-
     $('#nav-about').click(function (evt) {
         evt.preventDefault();
         $.ajax({
@@ -86,7 +82,6 @@ jQuery(function($) {
             }
         })
     });
-
     $('#link-test1').click(function (evt) {
         evt.preventDefault();
         $.ajax({
@@ -94,7 +89,6 @@ jQuery(function($) {
             url:'/test1',
             success:function (data) {
                 $('.index-main').html(data)
-
             }
         })
     });
