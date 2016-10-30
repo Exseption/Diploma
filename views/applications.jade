@@ -3,8 +3,8 @@
     form#indexform(method='POST', action='/addapp')
         input#applicationtitle.form-control(name='title', placeholder='Заголовок вопроса', required)
         textarea#applicationtext.form-control(rows='5', name='body', placeholder='Текст вопроса', required)
-        input#username.form-control(name='username', type='text', placeholder='Ваше имя', required)
-        input#email.form-control(name='email', type='email', placeholder='Почтовый ящик', required)
+        input#id.form-control(name='author', type='hidden', value=user._id)
+
         .row
             br
         button.btn.btn-success#indexformsubmit(type='submit') Отправить

@@ -51,6 +51,7 @@ module.exports = function (passport) {
         newApp.title = req.body.title;
         newApp.body = req.body.body;
         newApp.created = new Date();
+        newApp.author = req.body.author;
         
         newApp.save(function (err) {
             if (err){
@@ -102,7 +103,7 @@ module.exports = function (passport) {
         
     });
 
-    router.get('/index', function (req, res, next) {
+    router.get('/main', function (req, res, next) {
         res.render('main');
 
     });

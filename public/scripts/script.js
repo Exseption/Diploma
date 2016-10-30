@@ -1,5 +1,4 @@
 jQuery(function($) {
-
     $('#testbutton').click(function () {
 
         $.get('../downloads/data.txt',{}, function (data) {
@@ -28,7 +27,7 @@ jQuery(function($) {
             type: 'POST',
             url: '/home/profile',
             success: function (data) {
-                $('#profile').html(data)
+                $('#home-content').html(data)
             },
             error: function (err) {
                 console.log(err);
@@ -43,7 +42,7 @@ jQuery(function($) {
             type: 'POST',
             url: '/home/applications',
             success: function (data) {
-                $('#profile').html(data)
+                $('#home-content').html(data)
             },
             error: function (err) {
                 console.log(err);
@@ -101,17 +100,24 @@ jQuery(function($) {
     });
 
 
-    $('#index-form-auth').submit(function (evt) {
-        evt.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: '/login',
-            data: $(this).serialize(),
-            success:function (data) {
-            },
-            error:function (err) {
-                console.log(err);
-            }
-        });
-    });
+    // $('#index-form-auth').submit(function (evt) {
+    //     evt.preventDefault();
+    //     $.get('/index',{},function (data) {
+    //         console.log(data);
+    //     });
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: '/login',
+    //         data: $(this).serialize(),
+    //         success:function (data) {
+    //             $('.sidebar-auth').update();
+    //
+    //         },
+    //         error:function (err) {
+    //             console.log(err);
+    //         }
+    //     });
+    // });
+
+
 });
