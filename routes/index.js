@@ -28,8 +28,8 @@ module.exports = function (passport) {
        }) 
     });
 
-    router.post('/home/messages',isAuthenticated, function (req, res) {
-        res.render('messages', {
+    router.post('/home/applications',isAuthenticated, function (req, res) {
+        res.render('applications', {
             user: req.user
 
         })

@@ -1,0 +1,10 @@
+.col-md-3.col-lg-5.col-sm-4
+    h4#title-indexform Задайте свой вопрос
+    form#indexform(method='POST', action='/addapp')
+        input#applicationtitle.form-control(name='title', placeholder='Заголовок вопроса', required)
+        textarea#applicationtext.form-control(rows='5', name='body', placeholder='Текст вопроса', required)
+        input#username.form-control(name='username', type='text', placeholder='Ваше имя', required)
+        input#email.form-control(name='email', type='email', placeholder='Почтовый ящик', required)
+        .row
+            br
+        button.btn.btn-success#indexformsubmit(type='submit') Отправить

@@ -1,23 +1,14 @@
-extends layout
+.col-sm-6.col-md-4.col-md-offset-4
 
-block content
-    body
-        //include standard/header-image
-        include standard/nav
-        .container
-            .row
-                .col-sm-6.col-md-4.col-md-offset-4
-
-                    .text-center.account-wall
-                        .text-center.login-title Авторизация
-                        img(class='profile-img', src='https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120')
-                        form(class='form-signin', action='/login', method='POST')
-                            input(type='text', name='username' class='form-control', placeholder='Логин',required, autofocus)
-                            input(type='password', name='password' class='form-control', placeholder='Пароль', required)
-                            button(class='btn btn-lg btn-primary btn-block', type='submit') Войти
-                            span.clearfix
-                    a(href='/signup', class='text-center new-account') Создать аккаунт
-                    #message
-                    if message
-                        h1.text-center.error-message #{message}
-        include standard/footer
+    .text-center.account-wall
+        .text-center.login-title Авторизация
+        img(class='profile-img', src='https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120')
+        form(class='form-signin', action='/login', method='POST')
+            input(type='text', name='username' class='form-control', placeholder='Логин',required, autofocus)
+            input(type='password', name='password' class='form-control', placeholder='Пароль', required)
+            button(class='btn btn-lg btn-primary btn-block', type='submit') Войти
+            span.clearfix
+    a(href='/signup', class='text-center new-account') Создать аккаунт
+    #message
+    if message
+        h1.text-center.error-message #{message}

@@ -41,7 +41,7 @@ jQuery(function($) {
         evt.preventDefault();
         $.ajax({
             type: 'POST',
-            url: '/home/messages',
+            url: '/home/applications',
             success: function (data) {
                 $('#profile').html(data)
             },
@@ -88,5 +88,30 @@ jQuery(function($) {
         })
     });
 
+    $('#link-test1').click(function (evt) {
+        evt.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url:'/test1',
+            success:function (data) {
+                $('.index-main').html(data)
 
+            }
+        })
+    });
+
+
+    $('#index-form-auth').submit(function (evt) {
+        evt.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '/login',
+            data: $(this).serialize(),
+            success:function (data) {
+            },
+            error:function (err) {
+                console.log(err);
+            }
+        });
+    });
 });
