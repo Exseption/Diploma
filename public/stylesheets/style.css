@@ -10,7 +10,10 @@ html {
 .sidebar-module {
     margin: 10px 20px 0;
 }
-
+.bg-image {
+    background-image: url(../images/header-our-value.jpg) ;
+    height:150px;
+}
 
 .auth-form {
     margin-top: 10px;
