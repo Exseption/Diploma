@@ -1,4 +1,17 @@
 jQuery(function($) {
+
+    $('#btn-index-app').click(function (evt) {
+        evt.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: '/main-list',
+            success: function (data) {
+                $('.index-app').html(data);
+            }
+        });
+    });
+
+
     $('#testbutton').click(function () {
 
         $.get('../downloads/data.txt',{}, function (data) {
@@ -6,7 +19,7 @@ jQuery(function($) {
         });
     });
 
-    $('#indexform').on('submit', function (evt) {
+    $('#application-form').on('submit', function (evt) {
         evt.preventDefault();
         $.ajax({
             type: 'POST',

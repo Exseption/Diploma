@@ -1,0 +1,7 @@
+-for(var a in applications)
+    h3
+        |#{applications[a].title}
+    h5
+        |#{applications[a].created.toDateString()}
+    .content
+        |#{applications[a].body}
