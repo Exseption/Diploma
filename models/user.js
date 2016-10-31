@@ -9,7 +9,9 @@ var User = new Schema({
     firstName: { type: String },
     secondName: {type: String},
     lastName: { type: String },
-    userType: {type: String, enum: ['user', 'moder','lawyer'], default:'user'}
+    userType: { type: String, enum: ['user', 'moder','lawyer'], default:'user' },
+    purse: { type: String }
+
 
 });
 

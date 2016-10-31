@@ -9,6 +9,7 @@ var isAuthenticated = function (req, res, next) {
     res.redirect('/');
 };
 
+//работоспобность этой функции под большим вопросом
 var isModer = function (req, res, next) {
 
         if(req.user.userType == 'moder')
@@ -17,11 +18,12 @@ var isModer = function (req, res, next) {
 };
 
 module.exports = function (passport) {
-
-
-
+    //почему-то сортировка и условие запроса не работает чтоли
     router.get('/main-list', function (req, res) {
-        Application.find({}, function (err, results) {
+        Application
+            .find({moderated: false})
+            .sort('-created')
+            .exec(function (err, results) {
                 if (err)
                 throw err;
             res.render('main-list', {
@@ -62,7 +64,6 @@ module.exports = function (passport) {
             }
             console.log('Добавлен вопрос' + newApp);
             res.send({success: true});
-
         })
     });
 
