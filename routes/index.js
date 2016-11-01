@@ -23,6 +23,10 @@ var isModer = function (req, res, next) {
 
 
 module.exports = function (passport) {
+    
+    
+    
+    
 
     router.get('/applications/:id', function (req, res) {
        Application
@@ -184,5 +188,9 @@ module.exports = function (passport) {
             user: req.user
         });
     });
+
+
+
+    
     return router;
 };

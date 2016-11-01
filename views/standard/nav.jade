@@ -7,11 +7,8 @@ nav.navbar.navbar-inverse.navbar-fixed-top
                     span.icon-bar
                     span.icon-bar
                 a.navbar-brand(href='/')
-
                     img.img-responsive(src='http://localhost:3000/images/law-brand.png')
                     //| Название
-
-
             #bs-example-navbar-collapse-1.collapse.navbar-collapse
                 ul.nav.navbar-nav
                     li
@@ -38,32 +35,53 @@ nav.navbar.navbar-inverse.navbar-fixed-top
                             li.divider(role='separator')
                             li
                                 a(href='#') Хахах, это всё заглушки
+                    li
+                        a(id='nav-about', href='/about') О нас
                 form.navbar-form.navbar-left
                     .form-group
                         input.form-control(type='text', placeholder='Введите запрос')
                     button.btn.btn-default(type='submit') Поиск
                 ul.nav.navbar-nav.navbar-right
-                    li
-                        a(id='nav-about', href='/about') О нас
+
+
+                    li.dropdown
+                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                            if !user
+                                | Кабинет
+                                span.caret
+                            else
+                                | Вы вошли как #{user.username}
+                                span.caret
+                        ul.dropdown-menu
+                            if !user
+                                li
+                                    //a(href='/login') Войти
+                                    // Кнопка, вызывающее модальное окно
+                                    a.btn.btn-primary(href='#myModal', data-toggle='modal') Открыть модальное окно
+                                    // HTML-код модального окна
+                                    #myModal.modal.fade
+                                        .modal-dialog
+                                            .modal-content
+                                                // Заголовок модального окна
+                                                .modal-header
+                                                    button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                                                    h4.modal-title Заголовок модального окна
+                                                // Основное содержимое модального окна
+                                                .modal-body
+                                                    | Содержимое модального окна...
+                                                // Футер модального окна
+                                                .modal-footer
+                                                    button.btn.btn-default(type='button', data-dismiss='modal') Закрыть
+                                                    button.btn.btn-primary(type='button') Сохранить изменения
+
+
+                                li.divider(role='separator')
+                                li
+                                    a(href='/signup') Регистрация
+                            else
+                                li
+                                    a(href='/home') Кабинет
+                                li.divider(role='separator')
+                                li
+                                    a(href='/signout') Выйти
 include ../standard/header-image
-                    //li.dropdown
-                    //    a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                    //        if !user
-                    //            | Кабинет
-                    //            span.caret
-                    //        else
-                    //            | Вы вошли как #{user.username}
-                    //            span.caret
-                    //    ul.dropdown-menu
-                    //        if !user
-                    //            li
-                    //                a(href='/login') Войти
-                    //            li.divider(role='separator')
-                    //            li
-                    //                a(href='/signup') Регистрация
-                    //        else
-                    //            li
-                    //                a(href='/home') Кабинет
-                    //            li.divider(role='separator')
-                    //            li
-                    //                a(href='/signout') Выйти
