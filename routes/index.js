@@ -18,11 +18,38 @@ var isModer = function (req, res, next) {
 };
 
 module.exports = function (passport) {
+
+    //страница редактирования/удаления?
+    router.get('/test-del', function (req, res) {
+        Application
+            .find({ author: req.user._id })
+            .exec(function (err, results) {
+                res.render('edit-application', {
+                    applications: results,
+                    user: req.user
+                })
+            });
+    });
+
+    //запрос на удаление вопроса
+    router.post('/delete/:id', function (req, res) {
+        Application
+            .remove({ _id:req.params.id })
+            .exec(function (err, results) {
+            if (err)
+                throw err;
+            console.log(results);
+                res.redirect(301, '/');
+        })
+    });
+
+
+
     //почему-то сортировка и условие запроса не работает чтоли
     router.get('/main-list', function (req, res) {
         Application
             .find({moderated: false})
-            .sort('-created')
+            .sort({title: -1})
             .exec(function (err, results) {
                 if (err)
                 throw err;

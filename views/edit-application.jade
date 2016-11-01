@@ -1,0 +1,10 @@
+-for(var a in applications)
+    form#form-appl-del(method='POST', action='/delete/#{applications[a]._id}')
+        h4
+            |#{applications[a].title}
+        p
+            |#{applications[a].body}
+
+        button.btn.btn-primary Редактировать
+
+        button.btn.btn-danger#appl-del-btn(type='submit') Удалить

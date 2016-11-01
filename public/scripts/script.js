@@ -1,5 +1,19 @@
 jQuery(function($) {
 
+
+    //обработаем событие клика по ссылке "создать аккаунт"
+    $('.new-account').click(function (evt) {
+        evt.preventDefault();
+        $.ajax({
+            type:'GET',
+            url:'/signup',
+            success: function (data) {
+                $('.index-main')
+                    .html(data)
+            }
+        })
+    });
+
     $('#btn-index-app').click(function (evt) {
         evt.preventDefault();
         $.ajax({
@@ -39,6 +53,20 @@ jQuery(function($) {
         $.ajax({
             type: 'POST',
             url: '/home/profile',
+            success: function (data) {
+                $('#home-content').html(data)
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    });
+
+    $('#subnav-del').click(function (evt) {
+        evt.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: '/test-del',
             success: function (data) {
                 $('#home-content').html(data)
             },
@@ -107,24 +135,21 @@ jQuery(function($) {
     });
 
 
-    // $('#index-form-auth').submit(function (evt) {
-    //     evt.preventDefault();
-    //     $.get('/index',{},function (data) {
-    //         console.log(data);
-    //     });
-    //     $.ajax({
-    //         type: 'POST',
-    //         url: '/login',
-    //         data: $(this).serialize(),
-    //         success:function (data) {
-    //             $('.sidebar-auth').update();
-    //
-    //         },
-    //         error:function (err) {
-    //             console.log(err);
-    //         }
-    //     });
-    // });
+     $('#form-appl-del').submit(function (evt) {
+         evt.preventDefault();
+         $.ajax({
+             type: 'POST',
+             url: '/delete/:id',
+             data: $(this).serialize(),
+             success:function (data) {
+                 $('#home-content').update();
+
+             },
+             error:function (err) {
+                 console.log(err);
+             }
+         });
+     });
     
 
 });
