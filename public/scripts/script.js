@@ -1,6 +1,3 @@
-jQuery(function($) {
-
-
     //обработаем событие клика по ссылке "создать аккаунт"
     $('.new-account').click(function (evt) {
         evt.preventDefault();
@@ -135,21 +132,27 @@ jQuery(function($) {
     });
 
 
-     $('#form-appl-del').submit(function (evt) {
-         evt.preventDefault();
-         $.ajax({
-             type: 'POST',
-             url: '/delete/:id',
-             data: $(this).serialize(),
-             success:function (data) {
-                 $('#home-content').update();
-
-             },
-             error:function (err) {
-                 console.log(err);
-             }
-         });
-     });
     
+    // $('#form-appl-del').submit(function (evt) {
+    //      evt.preventDefault();
+    //      $.ajax({
+    //          type: 'POST',
+    //          url: '/delete/:id',
+    //          data: $(this).serialize(),
+    //          success:function (data) {
+    //              $('#home-content').update();
+    //
+    //          },
+    //          error:function (err) {
+    //              console.log(err);
+    //          }
+    //      });
+    //  });
 
-});
+
+
+        $('.btn-edit').click(function () {
+            var title = $('.title-edit').html();
+            alert(title);
+            $('.title-edit').remove();
+        });   

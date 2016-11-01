@@ -17,7 +17,24 @@ var isModer = function (req, res, next) {
         res.redirect('/');
 };
 
+
+
+
+
+
 module.exports = function (passport) {
+
+    router.get('/applications/:id', function (req, res) {
+       Application
+           .find({_id : req.params.id})
+           .exec(function (err, result) {
+              res.render('application',{
+                  application: result
+              });
+           });
+
+    });
+
 
     //страница редактирования/удаления?
     router.get('/test-del', function (req, res) {
@@ -39,7 +56,7 @@ module.exports = function (passport) {
             if (err)
                 throw err;
             console.log(results);
-                res.redirect(301, '/');
+                res.redirect(301,'/home');
         })
     });
 

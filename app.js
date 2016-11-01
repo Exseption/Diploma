@@ -10,6 +10,10 @@ passport = require('passport'),
 mongoose = require('mongoose'),
 dbConfig = require('./models/db'),
 app = express();
+
+app.locals.moment = require('moment');
+app.locals.moment.locale('ru');
+
 mongoose.connect(dbConfig.url);
 
 app.set('views', path.join(__dirname, 'views'));

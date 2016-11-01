@@ -1,17 +1,14 @@
-table.table.table-striped
-    thead
-        tr
-            th #
-            th First Name
-            th Last Name
-            th Username
-            th Usertype
-            th Email
-    tbody
-        tr
-            th(scope='row') 1
-            td #{user.firstName}
-            td #{user.lastName}
-            td #{user.username}
-            td #{user.userType}
-            td #{user.email}
+p
+    |#{user.firstName}
+p
+    |#{user.lastName}
+p
+    |#{user.username}
+p
+    |#{user.userType}
+p
+    |#{user.email}
+p
+    |#{user.purse}
+p
+    |#{moment(user.registrated).format('D MMMM YYYY H:mm')}
