@@ -49,7 +49,7 @@ module.exports = function (passport) {
     router.get('/main-list', function (req, res) {
         Application
             .find({moderated: false})
-            .sort({title: -1})
+            .sort({created: -1})
             .exec(function (err, results) {
                 if (err)
                 throw err;
