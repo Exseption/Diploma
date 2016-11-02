@@ -38,34 +38,34 @@ nav.navbar.navbar-inverse.navbar-fixed-top
                     li
                         a(id='nav-about', href='/about') О нас
                 form.navbar-form.navbar-left
-                    .form-group
-                        input.form-control(type='text', placeholder='Введите запрос')
-                    button.btn.btn-default(type='submit') Поиск
+                    //.form-group
+                    //    input.form-control(type='text', placeholder='Введите запрос')
+                    //button.btn.btn-default(type='submit') Поиск
                 ul.nav.navbar-nav.navbar-right
 
 
-                    li.dropdown
-                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                            if !user
-                                | Кабинет
-                                span.caret
-                            else
-                                | Вы вошли как #{user.username}
-                                span.caret
-                        ul.dropdown-menu
-                            if !user
-                                li
-                                    a(href='/login') Войти
-
-
-
-                                li.divider(role='separator')
-                                li
-                                    a(class='new-account' href='/signup') Регистрация
-                            else
-                                li
-                                    a(href='/home') Кабинет
-                                li.divider(role='separator')
-                                li
-                                    a(href='/signout') Выйти
+                    //li.dropdown
+                    //    a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                    //        if !user
+                    //            | Кабинет
+                    //            span.caret
+                    //        else
+                    //            | Вы вошли как #{user.username}
+                    //            span.caret
+                    //    ul.dropdown-menu
+                    //        if !user
+                    //            li
+                    //                a(href='/login') Войти
+                    //
+                    //
+                    //
+                    //            li.divider(role='separator')
+                    //            li
+                    //                a(class='new-account' href='/signup') Регистрация
+                    //        else
+                    //            li
+                    //                a(href='/home') Кабинет
+                    //            li.divider(role='separator')
+                    //            li
+                    //                a(href='/signout') Выйти
 include ../standard/header-image

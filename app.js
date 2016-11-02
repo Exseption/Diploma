@@ -26,10 +26,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+
+
 app.use(session({
-                  secret: 'mySecretKey',
-                  resave: true,
-                  saveUninitialized: true
+                  secret: '_secret$-#=key',
+                  resave: false,
+                  saveUninitialized: false
                 }));
 
 app.use(passport.initialize());

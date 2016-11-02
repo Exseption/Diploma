@@ -14,7 +14,7 @@ module.exports = function(passport){
                             return done(err);
                         if (!user){
                             console.log('Пользователь с таким логином не найден '+username);
-                            return done(null, false, req.flash('message', 'Юзер не найден'));
+                            return done(null, false, req.flash('message', 'Пользователь не найден'));
                         }
                         if (!isValidPassword(user, password)){
                             console.log('Invalid Password');

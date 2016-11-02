@@ -1,6 +1,7 @@
 var express = require('express'),
     Application = require('../models/application'),
     User = require('../models/user'),
+    Doc = require('../models/doc'),
     router = express.Router();
 
 var isAuthenticated = function (req, res, next) {
@@ -170,9 +171,16 @@ module.exports = function (passport) {
     });
 
     router.get('/register', function(req, res, next) {
-        res.render('register', {
-            title: 'Регистрация',
-        });
+            Doc
+            .find({})
+            .exec(function (err, results) {
+                if (err) 
+                   throw err;
+                res.render('register', {
+                   
+                    doc: results
+                });
+            });
     });
 
     router.get('/seminars', function(req, res, next) {
