@@ -55,29 +55,13 @@ nav.navbar.navbar-inverse.navbar-fixed-top
                         ul.dropdown-menu
                             if !user
                                 li
-                                    //a(href='/login') Войти
-                                    // Кнопка, вызывающее модальное окно
-                                    a.btn.btn-primary(href='#myModal', data-toggle='modal') Открыть модальное окно
-                                    // HTML-код модального окна
-                                    #myModal.modal.fade
-                                        .modal-dialog
-                                            .modal-content
-                                                // Заголовок модального окна
-                                                .modal-header
-                                                    button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
-                                                    h4.modal-title Заголовок модального окна
-                                                // Основное содержимое модального окна
-                                                .modal-body
-                                                    | Содержимое модального окна...
-                                                // Футер модального окна
-                                                .modal-footer
-                                                    button.btn.btn-default(type='button', data-dismiss='modal') Закрыть
-                                                    button.btn.btn-primary(type='button') Сохранить изменения
+                                    a(href='/login') Войти
+
 
 
                                 li.divider(role='separator')
                                 li
-                                    a(href='/signup') Регистрация
+                                    a(class='new-account' href='/signup') Регистрация
                             else
                                 li
                                     a(href='/home') Кабинет
