@@ -3,9 +3,7 @@
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$/app.js" libraries="{Diploma node_modules}" />
     <file url="file://$PROJECT_DIR$/models" libraries="{Diploma node_modules}" />
-    <file url="file://$PROJECT_DIR$/routes" libraries="{node-DefinitelyTyped}" />
     <file url="file://$PROJECT_DIR$/routes/index.js" libraries="{Diploma node_modules}" />
-    <file url="file://$PROJECT_DIR$/views" libraries="{jade-DefinitelyTyped}" />
     <excludedPredefinedLibrary name="HTML" />
     <excludedPredefinedLibrary name="HTML5 / EcmaScript 5" />
   </component>

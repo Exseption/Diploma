@@ -19,15 +19,7 @@ var isModer = function (req, res, next) {
 };
 
 
-
-
-
-
 module.exports = function (passport) {
-    
-    
-    
-    
 
     router.get('/applications/:id', function (req, res) {
        Application
@@ -35,10 +27,26 @@ module.exports = function (passport) {
            .exec(function (err, result) {
               res.render('application',{
                   application: result
+
               });
+        console.log('Результа: '+result);
            });
 
     });
+
+
+    router.post('/purse-inc', function(req, res){
+        User
+        .update({_id : req.user._id}, {$inc: { purse: parseInt(req.body.pursesum) }})
+            .exec(function(err, result){
+               if (err){
+                   throw err;
+               }
+                res.send({success: true});
+                console.log(result);
+            });
+
+   });
 
 
     //страница редактирования/удаления?
@@ -84,8 +92,8 @@ module.exports = function (passport) {
     router.post('/home/profile',isAuthenticated, function (req, res) {
        res.render('profile', {
            user: req.user
-           
-       }) 
+
+       })
     });
 
     router.post('/home/applications',isAuthenticated, function (req, res) {

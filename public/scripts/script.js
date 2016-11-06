@@ -1,3 +1,24 @@
+
+
+
+$('.form-inc-purse').on('submit',function(event){
+    $.ajax({
+        type: 'POST',
+        url: '/purse-inc',
+        data: $(this).serialize(),
+        success:function(data){
+            console.log(data);
+        }
+    });
+
+
+    event.preventDefault();
+
+});
+
+
+
+
     //обработаем событие клика по ссылке "создать аккаунт"
     $('.new-account').click(function (evt) {
         evt.preventDefault();
@@ -30,8 +51,8 @@
         });
     });
 
-    $('#application-form').on('submit', function (evt) {
-        evt.preventDefault();
+    //отпарвка формы заявки
+    $('#application-form').on('submit', function (event) {
         $.ajax({
             type: 'POST',
             url: '/addapp',
@@ -43,21 +64,22 @@
                 console.log(error)
             }
         });
+        event.preventDefault();
     });
     
-    $('#subnav-profile').click(function (evt) {
-        evt.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: '/home/profile',
-            success: function (data) {
-                $('#home-content').html(data)
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        })
-    });
+    //$('#subnav-profile').click(function (evt) {
+    //    evt.preventDefault();
+    //    $.ajax({
+    //        type: 'POST',
+    //        url: '/home/profile',
+    //        success: function (data) {
+    //            $('#home-content').html(data)
+    //        },
+    //        error: function (err) {
+    //            console.log(err);
+    //        }
+    //    })
+    //});
 
     $('#subnav-del').click(function (evt) {
         evt.preventDefault();
