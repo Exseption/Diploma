@@ -1,6 +1,3 @@
-//
-//
-//
 //$('.form-inc-purse').on('submit',function(event){
 //    $.ajax({
 //        type: 'POST',
@@ -10,15 +7,8 @@
 //            console.log(data);
 //        }
 //    });
-//
-//
 //    event.preventDefault();
-//
 //});
-//
-//
-//
-//
 //    //обработаем событие клика по ссылке "создать аккаунт"
 //    $('.new-account').click(function (evt) {
 //        evt.preventDefault();
@@ -31,7 +21,6 @@
 //            }
 //        })
 //    });
-//
 //    $('#btn-index-app').click(function (evt) {
 //        evt.preventDefault();
 //        $.ajax({
@@ -42,15 +31,12 @@
 //            }
 //        });
 //    });
-//
-//
 //    $('#testbutton').click(function () {
 //
 //        $.get('../downloads/data.txt',{}, function (data) {
 //            $('#results').append(data)
 //        });
 //    });
-//
 //    //отпарвка формы заявки
 //    $('#application-form').on('submit', function (event) {
 //        $.ajax({
@@ -66,8 +52,6 @@
 //        });
 //        event.preventDefault();
 //    });
-//
-//
 //    $('#subnav-del').click(function (evt) {
 //        evt.preventDefault();
 //        $.ajax({
@@ -81,7 +65,6 @@
 //            }
 //        })
 //    });
-//
 //    $('#subnav-messages').click(function (evt) {
 //        evt.preventDefault();
 //        $.ajax({
