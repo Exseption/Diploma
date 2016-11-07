@@ -1,12 +1,16 @@
--for(var a in applications)
-    form#form-appl-del(method='POST', action='/delete/#{applications[a]._id}')
-        h4.title-edit
-            |#{applications[a].title}
-        p.content-edit
-            |#{applications[a].body}
+extends layout
+block content
+    include standard/subnav
+    #home-content
+        -for(var a in applications)
+            form.form-horizontal#form-appl-del(method='POST', action='/delete/#{applications[a]._id}')
+                h4.title-edit
+                    |#{applications[a].title}
+                p.content-edit
+                    |#{applications[a].body}
 
-        button.btn.btn-danger#appl-del-btn(type='submit') Удалить
+                button.btn.btn-danger#appl-del-btn(type='submit') Удалить
 
 
-button.btn.btn-primary.btn-edit Редактировать
+        button.btn.btn-primary.btn-edit Редактировать
 

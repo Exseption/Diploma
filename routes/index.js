@@ -4,111 +4,45 @@ var express = require('express'),
     Doc = require('../models/doc'),
     router = express.Router();
 
-var isAuthenticated = function (req, res, next) {
+var isAuthenticated =  (req, res, next)=> {
     if(req.isAuthenticated())
         return next();
     res.redirect('/');
 };
 
-//работоспобность этой функции под большим вопросом
-var isModer = function (req, res, next) {
+module.exports =  (passport) => {
 
-        if(req.user.userType == 'moder')
-            return next();
-        res.redirect('/');
-};
+    //главная страница
+    router.get('/', (req, res, next) => {
+        Application.find({moderated:false}, (err, results) => {
+            res.render('index', {
+                title: 'Главная',
 
-
-module.exports = function (passport) {
-
-    router.get('/applications/:id', function (req, res) {
-       Application
-           .find({_id : req.params.id})
-           .exec(function (err, result) {
-              res.render('application',{
-                  application: result
-
-              });
-        console.log('Результа: '+result);
-           });
-
-    });
+                user: req.user,
 
 
-    router.post('/purse-inc', function(req, res){
-        User
-        .update({_id : req.user._id}, {$inc: { purse: parseInt(req.body.pursesum) }})
-            .exec(function(err, result){
-               if (err){
-                   throw err;
-               }
-                res.send({success: true});
-                console.log(result);
-            });
-
-   });
-
-
-    //страница редактирования/удаления?
-    router.get('/test-del', function (req, res) {
-        Application
-            .find({ author: req.user._id })
-            .exec(function (err, results) {
-                res.render('edit-application', {
-                    applications: results,
-                    user: req.user
-                })
-            });
-    });
-
-    //запрос на удаление вопроса
-    router.post('/delete/:id', function (req, res) {
-        Application
-            .remove({ _id:req.params.id })
-            .exec(function (err, results) {
-            if (err)
-                throw err;
-            console.log(results);
-                res.redirect(301,'/home');
-        })
-    });
-
-
-
-    //почему-то сортировка и условие запроса не работает чтоли
-    router.get('/main-list', function (req, res) {
-        Application
-            .find({moderated: false})
-            .sort({created: -1})
-            .exec(function (err, results) {
-                if (err)
-                throw err;
-            res.render('main-list', {
+                longTitle: 'Очень длинный заголовок',
                 applications: results
-            })
+            });
+            console.log(res.statusCode);
         });
     });
 
-    router.post('/home/profile',isAuthenticated, function (req, res) {
-       res.render('profile', {
-           user: req.user
 
-       })
+    //запрос на удаление вопроса
+    router.post('/delete/:id',  (req, res) => {
+        Application
+            .remove({ _id:req.params.id })
+            .exec(function (err, results) {
+                if (err)
+                    throw err;
+                console.log(results);
+                res.redirect(301,'/home');
+            })
     });
 
-    router.post('/home/applications',isAuthenticated, function (req, res) {
-        res.render('applications', {
-            user: req.user
-
-        })
-    });
-    //тестим работу ролевого доступа
-    router.get('/test1',isModer, function (req, res) {
-        res.render('test1',{ test1: 'Meeeee!',
-        user: req.user})
-    });
-    //добавил простое добавление статей
-    router.post('/addapp', function (req, res) {
+    //добавил простое добавление вопроса
+    router.post('/addapp',  (req, res) => {
         var newApp = new Application();
         newApp.title = req.body.title;
         newApp.body = req.body.body;
@@ -129,7 +63,7 @@ module.exports = function (passport) {
         failureRedirect: '/login',
         failureFlash : true
     }));
-    
+
     router.get('/signup', function(req, res){
         res.render('register',{message: req.flash('message')});
     });
@@ -140,31 +74,16 @@ module.exports = function (passport) {
         failureFlash : true
     }));
 
-    router.get('/home', isAuthenticated, function(req, res){
+    router.get('/home', isAuthenticated, (req, res) => {
         res.render('home', { user: req.user });
     });
 
-    router.get('/signout', function(req, res) {
+    router.get('/signout', (req, res) => {
         req.logout();
         res.redirect('/');
     });
 
-    router.get('/', function(req, res, next) {
-        Application.find({moderated:false},function (err, results) {
-            res.render('index', {
-                title: 'Главная',
-                
-                user: req.user,
-                longTitle: 'Очень длинный заголовок',
-                applications: results
-            }); 
-            console.log(res.statusCode);
-        });
-    });
-    router.get('/main', function (req, res, next) {
-        res.render('main');
-    });
-    router.get('/about', function(req, res, next) {
+    router.get('/about', (req, res, next)=> {
         res.render('about', {
             user: req.user,
             title: 'О нас'
@@ -172,33 +91,33 @@ module.exports = function (passport) {
         });
     });
 
-    router.get('/login', function(req, res, next) {
+    router.get('/login', (req, res, next) => {
         res.render('login', {
-            title: 'Войти',
+            title: 'Войти'
         });
     });
 
-    router.get('/register', function(req, res, next) {
-            Doc
+    router.get('/register', (req, res, next) => {
+        Doc
             .find({})
             .exec(function (err, results) {
-                if (err) 
-                   throw err;
+                if (err)
+                    throw err;
                 res.render('register', {
-                   
+
                     doc: results
                 });
             });
     });
 
-    router.get('/seminars', function(req, res, next) {
+    router.get('/seminars', (req, res, next) => {
         res.render('seminars', {
             user:req.user,
             title: 'Семинары'
         });
     });
 
-    router.get('/resources', function(req, res, next) {
+    router.get('/resources', (req, res, next) => {
         res.render('resources', {
             title: 'Ресурсы',
             user: req.user
@@ -207,6 +126,82 @@ module.exports = function (passport) {
 
 
 
-    
+
+
+
+
+    //получить отдельный вопрос
+    router.get('/applications/:id',  (req, res) => {
+       Application
+           .find({ _id : req.params.id })
+           .exec(function (err, result) {
+               if(err)
+               throw err;
+              res.render('application',{
+                  application: result
+              });
+           });
+    });
+
+
+
+
+    router.post('/purse-inc', (req, res) => {
+        User
+        .update({_id : req.user._id}, {$inc: { purse: parseInt(req.body.pursesum) }})
+            .exec(function(err, result){
+               if (err){
+                   throw err;
+               }
+                res.send({success: true});
+                console.log(result);
+            });
+
+   });
+
+
+    //страница редактирования/удаления?
+    router.get('/test-del', (req, res) => {
+        Application
+            .find({ author: req.user._id })
+            .exec(function (err, results) {
+                res.render('edit-application', {
+                    applications: results,
+                    user: req.user
+                })
+            });
+    });
+
+
+
+
+
+    //почему-то сортировка и условие запроса не работает чтоли
+    router.get('/main-list', (req, res) => {
+        Application
+            .find({moderated: false})
+            .sort({created: -1})
+            .exec(function (err, results) {
+                if (err)
+                throw err;
+            res.render('main-list', {
+                applications: results
+            })
+        });
+    });
+
+    router.post('/home/profile',isAuthenticated,  (req, res) => {
+       res.render('profile', {
+           user: req.user
+
+       })
+    });
+
+    router.get('/home/applications',isAuthenticated,  (req, res) => {
+        res.render('applications', {
+            user: req.user
+        })
+    });
+
     return router;
 };

@@ -1,46 +1,54 @@
-p
-    |Перед регистрацией внимательно ознакомьтесь с
-
-    a(href='#', data-toggle='modal', data-target='#myModal')
-        |&nbspсоглашением
-    ='.'
-
-
+extends layout
+block content
     p
-        #{doc}
+        |Перед регистрацией внимательно ознакомьтесь с
+
+        a(href='#', data-toggle='modal', data-target='#myModal')
+            |&nbspсоглашением
+        ='.'
 
 
-    // Модальное окно
-    #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-        .modal-dialog(role='document')
-            .modal-content
-                .modal-header
-                    button.close(type='button', data-dismiss='modal', aria-label='Закрыть')
-                        span(aria-hidden='true') ×
-                    h4#myModalLabel.modal-title
-                        | ЛС
-                .modal-body.text-justify
-                    p
-                        | Типа очень много текста, который никто не читает
-
-                .modal-footer
-                    button.btn.btn-default(type='button', data-dismiss='modal') Принять
-                    //button.btn.btn-primary(type='button') Сохранить ... выше было закрыть
+        p
+            #{doc}
 
 
-.col-sm-6.col-md-4.col-md-offset-4
+        // Модальное окно
+        #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        button.close(type='button', data-dismiss='modal', aria-label='Закрыть')
+                            span(aria-hidden='true') ×
+                        h4#myModalLabel.modal-title
+                            | Лицензионное соглашение
+                    .modal-body.text-justify
+                        p
+                            | Типа очень много текста, который никто не читает
+                            | Типа очень много текста, который никто не читает
+                            | Типа очень много текста, который никто не читает
+                            | Типа очень много текста, который никто не читает
+                            | Типа очень много текста, который никто не читает
+                            | Типа очень много текста, который никто не читает
+                            | Типа очень много текста, который никто не читает
 
-    h4.text-center.login-title Регистрация нового пользователя
-                                    hr
-        .reg
-            form(class='form-signin', action='/signup', method='POST')
-                input(type='text', name='username', class='form-control', placeholder='Логин',required, autofocus)
-                input(type='password', name='password', class='form-control nomargin', placeholder='Пароль', required)
-                input(type='email', name='email', class='form-control', placeholder='Почтовый ящик',required)
-                input(type='text', name='firstName', class='form-control', placeholder='Имя',required)
-                input(type='text', name='lastName', class='form-control', placeholder='Фамилия',required)
-                button(class='btn btn-lg btn-primary btn-block', type='submit') Зарегистрироваться
-                span.clearfix
-        #message
-            if message
-                h5.text-center.error-message #{message}
+                    .modal-footer
+                        button.btn.btn-default(type='button', data-dismiss='modal') Принять
+                        //button.btn.btn-primary(type='button') Сохранить ... выше было закрыть
+
+
+    .col-sm-6.col-md-4.col-md-offset-4
+
+        h4.text-center.login-title Регистрация нового пользователя
+                                        hr
+            .reg
+                form(class='form-signin', action='/signup', method='POST')
+                    input(type='text', name='username', class='form-control', placeholder='Логин',required, autofocus)
+                    input(type='password', name='password', class='form-control nomargin', placeholder='Пароль', required)
+                    input(type='email', name='email', class='form-control', placeholder='Почтовый ящик',required)
+                    input(type='text', name='firstName', class='form-control', placeholder='Имя',required)
+                    input(type='text', name='lastName', class='form-control', placeholder='Фамилия',required)
+                    button(class='btn btn-lg btn-primary btn-block', type='submit') Зарегистрироваться
+                    span.clearfix
+            #message
+                if message
+                    h5.text-center.error-message #{message}
