@@ -1,30 +1,30 @@
 // боковое меню
 .col-sm-3.col-sm-offset-1.index-sidebar
     //первое боковое меню - авторизация
-    .sidebar-auth(style='height:200px')
-        if !user
-            .col-md-1
-            .col-md-10.auth-form
-                #auth-menu
-                    .text-center.login-title Авторизация
-                    form(id='index-form-auth' ,class='form-signin', action='/login', method='POST')
-                        input(type='text', name='username' class='form-control', placeholder='Логин',required, autofocus)
-                        input(type='password', name='password' class='form-control', placeholder='Пароль', required)
-                        button(class='btn btn-primary btn-block', id='index-btn-auth', type='submit') Войти
-                        span.clearfix
-                    .text-center
-                        a(href='/signup', class='new-account') Создать аккаунт
-                    #message
-                    if message
-                        h6.text-center.error-message #{message}
-            .com-md-1
-        if user
-            | Вы вошли как #{user.username}
-            ul
-                li
-                    a(href='/home') Кабинет
-                li
-                    a(href='/signout') Выйти
+    //.sidebar-auth(style='height:200px')
+    //    if !user
+    //        .col-md-1
+    //        .col-md-10.auth-form
+    //            #auth-menu
+    //                .text-center.login-title Авторизация
+    //                form(id='index-form-auth' ,class='form-signin', action='/login', method='POST')
+    //                    input(type='text', name='username' class='form-control', placeholder='Логин',required, autofocus)
+    //                    input(type='password', name='password' class='form-control', placeholder='Пароль', required)
+    //                    button(class='btn btn-primary btn-block', id='index-btn-auth', type='submit') Войти
+    //                    span.clearfix
+    //                .text-center
+    //                    a(href='/signup', class='new-account') Создать аккаунт
+    //                #message
+    //                if message
+    //                    h6.text-center.error-message #{message}
+    //        .com-md-1
+    //    if user
+    //        | Вы вошли как #{user.username}
+    //        ul
+    //            li
+    //                a(href='/home') Кабинет
+    //            li
+    //                a(href='/signout') Выйти
      // второе боковое меню
     .sidebar-module(style='height:200px')
         | Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
