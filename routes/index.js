@@ -54,6 +54,18 @@ module.exports =  (passport) => {
         failureRedirect: '/login',
         failureFlash : true
     }));
+
+
+
+    router.get('/login', (req, res, next) => {
+        res.render('login', {
+            title: 'Войти',
+            message: req.flash('message')
+        });
+    });
+    
+    
+    
     router.get('/signup', (req, res) => {
         res.render('register',{
             message: req.flash('message')
@@ -61,7 +73,7 @@ module.exports =  (passport) => {
     });
     router.post('/signup', passport.authenticate('signup', {
         successRedirect: '/home',
-        failureRedirect: '/register',
+        failureRedirect: '/signup',
         failureFlash : true
     }));
     router.get('/home', isAuthenticated, (req, res) => {
@@ -80,11 +92,7 @@ module.exports =  (passport) => {
             aboutBody: 'Очень много текста'
         });
     });
-    router.get('/login', (req, res, next) => {
-        res.render('login', {
-            title: 'Войти'
-        });
-    });
+    
     router.get('/register', (req, res, next) => {
         Doc
         .find({})
