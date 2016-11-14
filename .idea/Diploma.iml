@@ -5,7 +5,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="node-DefinitelyTyped" level="project" />
-    <orderEntry type="library" name="Diploma node_modules" level="project" />
     <orderEntry type="library" name="jade-DefinitelyTyped" level="application" />
   </component>
 </module>
