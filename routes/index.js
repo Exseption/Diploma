@@ -115,14 +115,14 @@ module.exports =  (passport) => {
         });
     });
     //получить отдельный вопрос
-    router.get('/applications/:id',  (req, res) => {
+    router.get('/application/:id',  (req, res) => {
        Application
            .find({ _id : req.params.id })
            .exec((err, result) => {
                if(err) throw err;
               res.render('application',{
                   title :result.title,
-                  appl: result
+                  application: result
               });
            });
     });

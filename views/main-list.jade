@@ -1,6 +1,6 @@
 -for(var a in applications)
     h4
-        a(href='applications/#{applications[a]._id}') #{applications[a].title}
+        a(href='application/#{applications[a]._id}') #{applications[a].title}
 
     h6
         |#{moment(applications[a].created).format('D MMMM YYYY H:mm')}
