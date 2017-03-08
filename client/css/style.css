@@ -1,3 +1,6 @@
 html {
     overflow: scroll;
 }
+.quest {
+    padding: 5px 15px;
+}
