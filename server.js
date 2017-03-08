@@ -5,13 +5,12 @@ logger = require('morgan'),
 cookieParser = require('cookie-parser'),
 bodyParser = require('body-parser'),
 session = require('express-session'),
-dbConfig = require('./config/db'),
-app = express();
-const sequelize = require('sequelize');
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(logger('dev'));
 
+app = express();
+const Sequelize = require('sequelize');
+
+app.use(express.static(path.join(__dirname, 'client')));
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -20,33 +19,30 @@ app.use(session({
                   resave: false,
                   saveUninitialized: false
                 }));
-
 app.disable('x-powered-by');
+const sequelize = new Sequelize('postgres://postgres:qwerty@localhost:5432/legal');
 
-app.get('/', function (req, res,next) {
-   res.send('OK')
+app.get('/test/all', function (req, res, next) {
+    sequelize
+        .query('SELECT * FROM "user"', {type: sequelize.QueryTypes.SELECT})
+        .then(function (result) {
+            res.send(result);
+    })
 });
 
-
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
+    res.send(err);
   });
 }
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+  res.send(err);
 });
 module.exports = app;

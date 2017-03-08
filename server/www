@@ -1,10 +1,11 @@
 #!/usr/bin/env node
-var debug = require('debug')('law-portal');
-var app = require('../server');
+const debug = require('debug')('law-portal');
+const app = require('../server');
 
-app.set('port', process.env.PORT || 3000);
 
-var server = app.listen(app.get('port'), () =>{
+app.set('port', process.env.PORT || 3009);
+
+const server = app.listen(app.get('port'), () =>{
     debug('Express server listening on port ' + server.address().port);
     console.log('Сервер работает и доступен по адресу http://localhost:'+app.get('port'));
 });

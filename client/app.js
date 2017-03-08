@@ -16,7 +16,7 @@ angular.module('legal')
 angular.module('legal')
     .config(function(RestangularProvider){
         RestangularProvider
-            .setBaseUrl('http://localhost:3000/');
+            .setBaseUrl('http://localhost:3009/');
     });
 
 angular.module('legal')

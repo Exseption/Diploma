@@ -1,0 +1,8 @@
+div(layout='column')
+    div(layout='row')
+        div(flex='20', style='border: solid 1px')
+        div(flex='40', style='border: solid 1px')
+            div(ng-repeat='user in mc.users')
+               | {{user.name}}
+        div(flex='20', style='border: solid 1px')
+        div(flex='20', style='border: solid 1px')
