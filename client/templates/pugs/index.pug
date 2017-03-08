@@ -1,8 +1,20 @@
-div(layout='column')
+div(layout-align='center', layout='row')
+    md-button.md-primary Главная
+    md-button.md-primary Семинары
+    md-button.md-primary Библиотека
+div.md-body-1(layout='column')
     div(layout='row')
-        div(flex='20', style='border: solid 1px')
-        div(flex='40', style='border: solid 1px')
-            div(ng-repeat='user in mc.users')
-               | {{user.name}}
-        div(flex='20', style='border: solid 1px')
-        div(flex='20', style='border: solid 1px')
+        div(flex='10')
+        div(flex)
+            .md-subheader Последние вопросы
+            .md-content(ng-repeat='q in mc.questions')
+                p {{q.title}}
+                p {{q.content}}
+                p {{q.price}}
+                p {{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
+        div(flex='20')
+            div(layout='column')
+                md-button.md-primary.md-raised Регистрация
+                md-button.md-primary.md-raised Новости
+                md-button.md-primary.md-raised Актуальное
+        div(flex='10')

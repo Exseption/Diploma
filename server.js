@@ -1,11 +1,9 @@
 const express = require('express'),
 path = require('path'),
-favicon = require('serve-favicon'),
 logger = require('morgan'),
 cookieParser = require('cookie-parser'),
 bodyParser = require('body-parser'),
 session = require('express-session'),
-
 app = express();
 const Sequelize = require('sequelize');
 
@@ -24,7 +22,7 @@ const sequelize = new Sequelize('postgres://postgres:qwerty@localhost:5432/legal
 
 app.get('/test/all', function (req, res, next) {
     sequelize
-        .query('SELECT * FROM "user"', {type: sequelize.QueryTypes.SELECT})
+        .query('SELECT * FROM question', {type: sequelize.QueryTypes.SELECT})
         .then(function (result) {
             res.send(result);
     })

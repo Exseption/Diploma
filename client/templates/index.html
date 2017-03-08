@@ -1,11 +1,28 @@
 
-<div layout="column">
+<div layout-align="center" layout="row">
+  <md-button class="md-primary">Главная</md-button>
+  <md-button class="md-primary">Семинары</md-button>
+  <md-button class="md-primary">Библиотека</md-button>
+</div>
+<div class="md-body-1" layout="column">
   <div layout="row">
-    <div flex="20" style="border: solid 1px;"></div>
-    <div flex="40" style="border: solid 1px;">
-      <div ng-repeat="user in mc.users">{{user.name}}</div>
+    <div flex="10"></div>
+    <div flex="flex">
+      <div class="md-subheader">Последние вопросы</div>
+      <div class="md-content" ng-repeat="q in mc.questions">
+        <p>{{q.title}}</p>
+        <p>{{q.content}}</p>
+        <p>{{q.price}}</p>
+        <p>{{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</p>
+      </div>
     </div>
-    <div flex="20" style="border: solid 1px;"></div>
-    <div flex="20" style="border: solid 1px;"></div>
+    <div flex="20">
+      <div layout="column">
+        <md-button class="md-primary md-raised">Регистрация</md-button>
+        <md-button class="md-primary md-raised">Новости</md-button>
+        <md-button class="md-primary md-raised">Актуальное</md-button>
+      </div>
+    </div>
+    <div flex="10"></div>
   </div>
 </div>

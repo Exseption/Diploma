@@ -19,6 +19,17 @@ angular.module('legal')
             .setBaseUrl('http://localhost:3009/');
     });
 
+angular
+    .module('legal')
+    .config(function($mdThemingProvider) {
+        $mdThemingProvider.theme('default')
+            .primaryPalette('grey')
+            .accentPalette('orange')
+            .warnPalette('red');
+    });
+
+
+
 angular.module('legal')
     .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/index');
