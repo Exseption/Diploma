@@ -1,18 +1,13 @@
 const express = require('express'),
-
 path = require('path'),
 favicon = require('serve-favicon'),
 logger = require('morgan'),
 cookieParser = require('cookie-parser'),
 bodyParser = require('body-parser'),
 session = require('express-session'),
-
 dbConfig = require('./config/db'),
 app = express();
-
 const sequelize = require('sequelize');
-
-
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
@@ -20,7 +15,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
 app.use(session({
                   secret: '_secret$-#=key',
                   resave: false,
