@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c1234eee-7534-41c0-acfb-f07ad9388c1d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/style.css" afterPath="$PROJECT_DIR$/client/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/index.html" afterPath="$PROJECT_DIR$/client/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/pugs/index.pug" afterPath="$PROJECT_DIR$/client/templates/pugs/index.pug" />
-    </list>
+    <list default="true" id="c1234eee-7534-41c0-acfb-f07ad9388c1d" name="Default" comment="" />
     <manually-removed-from-ignored>
       <directory path="node_modules/" />
       <directory path=".idea/" />
@@ -46,8 +41,8 @@
           <file leaf-file-name="index.pug" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/client/templates/pugs/index.pug">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="202">
-                  <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+                <state relative-caret-position="425">
+                  <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -87,9 +82,9 @@
             <entry file="file://$PROJECT_DIR$/client/templates/index.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="272">
-                  <caret line="45" column="6" lean-forward="false" selection-start-line="45" selection-start-column="6" selection-end-line="45" selection-end-column="6" />
+                  <caret line="32" column="6" lean-forward="false" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
                   <folding>
-                    <marker date="1488972555101" expanded="true" signature="1467:1537" ph="..." />
+                    <marker date="1488972592632" expanded="true" signature="1108:1178" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -129,6 +124,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -536,7 +532,7 @@
       <workItem from="1488276756103" duration="1596000" />
       <workItem from="1488952281452" duration="6715000" />
       <workItem from="1488959711031" duration="51000" />
-      <workItem from="1488959768704" duration="12678000" />
+      <workItem from="1488959768704" duration="13421000" />
     </task>
     <task id="LOCAL-00001" summary="correct workspace?">
       <created>1479113527653</created>
@@ -556,7 +552,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43009000" />
+    <option name="totallyTimeSpent" value="43752000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -814,9 +810,9 @@
     <entry file="file://$PROJECT_DIR$/client/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="45" column="6" lean-forward="false" selection-start-line="45" selection-start-column="6" selection-end-line="45" selection-end-column="6" />
+          <caret line="32" column="6" lean-forward="false" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
           <folding>
-            <marker date="1488972555101" expanded="true" signature="1467:1537" ph="..." />
+            <marker date="1488972592632" expanded="true" signature="1108:1178" ph="..." />
           </folding>
         </state>
       </provider>
@@ -839,8 +835,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/templates/pugs/index.pug">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+        <state relative-caret-position="425">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
