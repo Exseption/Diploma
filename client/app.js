@@ -22,10 +22,10 @@ angular.module('legal')
 angular
     .module('legal')
     .config(function($mdThemingProvider) {
-        $mdThemingProvider.theme('default')
-            .primaryPalette('grey')
-            .accentPalette('orange')
-            .warnPalette('red');
+        // $mdThemingProvider.theme('default')
+        //     .primaryPalette('grey')
+        //     .accentPalette('orange')
+        //     .warnPalette('red');
     });
 
 
@@ -39,6 +39,18 @@ angular.module('legal')
                 controllerAs: 'mc',
                 url:'/index',
                 templateUrl:'../templates/index.html'
+            })
+            .state('news',{
+                controller: '',
+                controllerAs: '',
+                url:'/news',
+                templateUrl:'../templates/news.html'
+            })
+            .state('library',{
+                controller: '',
+                controllerAs: '',
+                url:'/library',
+                templateUrl:'../templates/library.html'
             })
 
 

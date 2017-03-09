@@ -1,11 +1,9 @@
-div(layout-align='center', layout='row')
-    md-button.md-primary Главная
-    md-button.md-primary Новости
-    md-button.md-primary Библиотека
 div.md-body-1(layout='column')
     div(layout='row')
         div(flex='10')
         div(flex)
+            //div
+            //    ui-view
             div(layout='row', layout-align='center')
                 .md-subheader Последние вопросы
             .md-content(ng-repeat='q in mc.questions')
@@ -19,7 +17,7 @@ div.md-body-1(layout='column')
 
         div(flex='20')
             div(layout='column')
-                md-button.md-primary.md-raised Регистрация
-                md-button.md-primary.md-raised Поддержка
-
-        div(flex='10')
+                md-card(flex, style='height: 100px')
+                    md-button.md-primary.md-raised Регистрация
+                md-card(flex, style='height: 100px')
+                    md-button.md-primary.md-raised Поддержка

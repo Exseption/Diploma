@@ -13,14 +13,29 @@
 <body ng-cloak>
 <md-toolbar class="md-hue-2">
     <div class="md-toolbar-tools">
-        <h2 flex>header</h2>
-        <div class="md-caption" md-no-ink layout-align="end end">2017 г.</div>
+        <h2 flex>Веб-сервис юридических услуг</h2>
     </div>
 </md-toolbar>
-<div layout="column">
-    <div ui-view>
+<div layout-align="center" layout="row">
+    <md-button class="md-primary" ui-sref="index">Главная</md-button>
+    <md-button class="md-primary" ui-sref="news">Новости</md-button>
+    <md-button class="md-primary" ui-sref="library">Библиотека</md-button>
+</div>
+<div class="md-body-1" layout="column">
+    <div layout="row">
+        <div flex="10"></div>
+        <div flex="flex">
+            <md-card class="card-ui-view">
+                <div ui-view>
+                </div>
+            </md-card>
+
+        </div>
+        <div flex="10"></div>
     </div>
 </div>
+
+
 <script src="scripts/vendor/angular.min.js"></script>
 <script src="scripts/vendor/angular-animate.min.js"></script>
 <script src="scripts/vendor/angular-aria.min.js"></script>

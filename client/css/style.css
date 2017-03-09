@@ -4,3 +4,7 @@ html {
 .quest {
     padding: 5px 15px;
 }
+
+.card-ui-view {
+    padding: 5px 25px;
+}

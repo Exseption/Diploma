@@ -1,13 +1,10 @@
 
-<div layout-align="center" layout="row">
-  <md-button class="md-primary">Главная</md-button>
-  <md-button class="md-primary">Новости</md-button>
-  <md-button class="md-primary">Библиотека</md-button>
-</div>
 <div class="md-body-1" layout="column">
   <div layout="row">
     <div flex="10"></div>
     <div flex="flex">
+      <!--div-->
+      <!--    ui-view-->
       <div layout="row" layout-align="center">
         <div class="md-subheader">Последние вопросы</div>
       </div>
@@ -24,10 +21,13 @@
     </div>
     <div flex="20">
       <div layout="column">
-        <md-button class="md-primary md-raised">Регистрация</md-button>
-        <md-button class="md-primary md-raised">Поддержка</md-button>
+        <md-card flex="flex" style="height: 100px;">
+          <md-button class="md-primary md-raised">Регистрация</md-button>
+        </md-card>
+        <md-card flex="flex" style="height: 100px;">
+          <md-button class="md-primary md-raised">Поддержка</md-button>
+        </md-card>
       </div>
     </div>
-    <div flex="10"></div>
   </div>
 </div>
