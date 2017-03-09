@@ -1,9 +1,4 @@
 
-<div layout-align="center" layout="row">
-  <md-button class="md-primary">Главная</md-button>
-  <md-button class="md-primary">Новости</md-button>
-  <md-button class="md-primary">Библиотека</md-button>
-</div>
 <div class="md-body-1" layout="column">
   <div layout="row">
     <div flex="10"></div>
@@ -13,21 +8,21 @@
       </div>
       <div class="md-content" ng-repeat="q in mc.questions">
         <md-card class="quest">
-          <div class="md-title">{{q.title}}</div>
+          <div class="md-title quest-title" ui-sref="question({id : q.id})">{{q.title}}</div>
           <div class="md-caption">Дата публикации: {{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
-          <div class="md-body-1">{{q.content}}</div>
+          <div class="md-body-1">{{q.content | limitTo: 90}}{{q.content.length > 90 ? '...' : ''}}</div>
           <div layout="row" layout-align="end">
             <div class="md-caption">Цена вопроса: {{q.price}}</div>
           </div>
         </md-card>
       </div>
     </div>
-    <div flex="20">
-      <div layout="column">
-        <md-button class="md-primary md-raised">Регистрация</md-button>
-        <md-button class="md-primary md-raised">Поддержка</md-button>
-      </div>
+    <div flex="10">
+      <!--div(layout='column')-->
+      <!--    md-card(flex, style='height: 100px')-->
+      <!--        md-button.md-primary.md-raised Регистрация-->
+      <!--    md-card(flex, style='height: 100px')-->
+      <!--        md-button.md-primary.md-raised Поддержка-->
     </div>
-    <div flex="10"></div>
   </div>
 </div>
