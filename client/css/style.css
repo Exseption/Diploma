@@ -2,7 +2,11 @@ html {
     overflow: scroll;
 }
 .quest {
-    padding: 5px 15px;
+    padding: 5px 25px;
+}
+
+.quest-title:hover {
+    cursor: pointer;
 }
 
 .card-ui-view {

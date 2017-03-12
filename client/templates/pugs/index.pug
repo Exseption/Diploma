@@ -2,22 +2,19 @@ div.md-body-1(layout='column')
     div(layout='row')
         div(flex='10')
         div(flex)
-            //div
-            //    ui-view
             div(layout='row', layout-align='center')
                 .md-subheader Последние вопросы
             .md-content(ng-repeat='q in mc.questions')
                 md-card.quest
-                    .md-title {{q.title}}
+                    .md-title.quest-title(ui-sref='question({id : q.id})') {{q.title}}
                     .md-caption Дата публикации: {{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
-                    .md-body-1 {{q.content}}
+                    .md-body-1 {{q.content | limitTo: 90}}{{q.content.length > 90 ? '...' : ''}}
 
                     div(layout='row', layout-align='end')
                         .md-caption Цена вопроса: {{q.price}}
-
-        div(flex='20')
-            div(layout='column')
-                md-card(flex, style='height: 100px')
-                    md-button.md-primary.md-raised Регистрация
-                md-card(flex, style='height: 100px')
-                    md-button.md-primary.md-raised Поддержка
+        div(flex='10')
+            //div(layout='column')
+            //    md-card(flex, style='height: 100px')
+            //        md-button.md-primary.md-raised Регистрация
+            //    md-card(flex, style='height: 100px')
+            //        md-button.md-primary.md-raised Поддержка

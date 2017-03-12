@@ -40,17 +40,19 @@ angular.module('legal')
                 url:'/index',
                 templateUrl:'../templates/index.html'
             })
-            .state('news',{
-                controller: '',
-                controllerAs: '',
-                url:'/news',
-                templateUrl:'../templates/news.html'
-            })
             .state('library',{
-                controller: '',
+                controller: 'LibraryController',
                 controllerAs: '',
                 url:'/library',
                 templateUrl:'../templates/library.html'
+            })
+            .state('question', {
+                controller: function ($scope, $stateParams) {
+                    $scope.id = $stateParams.id;
+                },
+
+                url: '/question/:id',
+                templateUrl: '../templates/question.html'
             })
 
 
