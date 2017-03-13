@@ -47,9 +47,8 @@ angular.module('legal')
                 templateUrl:'../templates/library.html'
             })
             .state('question', {
-                controller: function ($scope, $stateParams) {
-                    $scope.id = $stateParams.id;
-                },
+                controller: 'QuestionController',
+                controllerAs: 'qc',
 
                 url: '/question/:id',
                 templateUrl: '../templates/question.html'
