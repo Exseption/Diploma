@@ -6,17 +6,20 @@ bodyParser = require('body-parser'),
 session = require('express-session'),
 app = express();
 const Sequelize = require('sequelize');
+const methodOverride = require('method-override');
 
 app.use(express.static(path.join(__dirname, 'client')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(cookieParser());
 app.use(session({
                   secret: '_secret$-#=key',
                   resave: false,
                   saveUninitialized: false
                 }));
+
 app.disable('x-powered-by');
 const sequelize = new Sequelize('postgres://postgres:qwerty@localhost:5432/legal');
 
@@ -27,6 +30,31 @@ app.get('/test/all', function (req, res, next) {
             res.send(result);
     })
 });
+
+app.get('/test/question/:id', function (req, res, next) {
+   sequelize.query('SELECT * FROM question WHERE id = ' + req.params.id,
+       {type: sequelize.QueryTypes.SELECT})
+       .then(function (result) {
+           res.send(result[0]);
+       })
+});
+
+app.post('/test/question/:id', function (req, res, next) {
+    sequelize.query('UPDATE question SET title = \'ОТВЕЧЕНО\' WHERE id = ' + req.body.id,
+        {type: sequelize.QueryTypes.UPDATE}
+    ).then(function (result) {
+        res.send(result)
+    })
+});
+
+
+
+
+
+
+
+
+
 
 app.use(function(req, res, next) {
   const err = new Error('Not Found');

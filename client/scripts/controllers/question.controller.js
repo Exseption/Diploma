@@ -1,4 +1,10 @@
-angular.module('legal').controller('QuestionController', function ($stateParams) {
+angular.module('legal').controller('QuestionController', function ($stateParams, QueryService) {
    const self = this;
-   self.id = $stateParams.id
+   const id = $stateParams.id;
+   QueryService.getQuestion(id).then(function (response) {
+       self.question = response;
+   });
+   self.answer = function (id) {
+       QueryService.answer(id);
+   }
 });
