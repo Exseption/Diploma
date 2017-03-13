@@ -53,8 +53,7 @@ app.post('/test/question/create', function (req, res, next) {
     sequelize.query('SELECT COUNT(*) FROM question', {type: sequelize.QueryTypes.SELECT}).then(function (result) {
        newId = result + 1;
     });
-    sequelize.query('INSERT INTO question (id, title, content, author, date_of_create, price, closed) VALUES (' + newId +',' + req.body.title-question + ','
-        + req.body.body-question +','+''+','+''+','+''+','+''+')',
+    sequelize.query('INSERT INTO question (id, title, content, author, date_of_create, price, closed) VALUES ($1,$2,$3,$4,$5,$6,$7)', [newId, 'Название', 'Тело вопроса', 1, '',1000,''],
         {type: sequelize.QueryTypes.INSERT})
         .then(function (result) {
         res.send(result)

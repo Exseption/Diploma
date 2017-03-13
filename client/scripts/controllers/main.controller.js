@@ -6,13 +6,8 @@
         },function (error) {
             alert(error);
         });
-        self.makeQuestion = function (question) {
-            //доделать
-          Restangular.oneUrl('one','http://localhost:3009/test/question/create').post(undefined,
-              {
-                  'title-question':question.title,
-                  'body-question': question.body
-              })
+        self.makeQuestion = function () {
+         QueryService.makeQuestion();
         };
     });
 })();

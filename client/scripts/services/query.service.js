@@ -9,5 +9,10 @@ angular.module('legal').service('QueryService', function (Restangular) {
    self.answer = function (id) {
        return Restangular.oneUrl('one','http://localhost:3009/test/question/' + id).post(undefined,
            {id : id});
-   }
+   };
+    self.makeQuestion = function () {
+        return Restangular.oneUrl('one','http://localhost:3009/test/question/create').post(undefined,
+            {
+            })
+    };
 });
