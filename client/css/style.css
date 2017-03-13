@@ -12,3 +12,10 @@ html {
 .card-ui-view {
     padding: 5px 25px;
 }
+
+
+#tb-search {
+    border-radius:2px;
+    font-weight: bold;
+    font-size: medium;
+}

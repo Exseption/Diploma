@@ -18,12 +18,14 @@
       </div>
       <div class="md-body-1" layout="column">
         <md-input-container>
-          <input/>
+          <label>Название</label>
+          <input name="title-question"/>
         </md-input-container>
         <md-input-container>
-          <input/>
+          <label>Суть вопроса</label>
+          <input name="body-question"/>
         </md-input-container>
-        <md-button class="md-primary">Задать вопрос</md-button>
+        <md-button class="md-primary" ng-click="qc.makeQuestion()">Задать вопрос</md-button>
       </div>
     </div>
     <div flex="10">

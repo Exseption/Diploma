@@ -48,7 +48,18 @@ app.post('/test/question/:id', function (req, res, next) {
 });
 
 
-
+app.post('/test/question/create', function (req, res, next) {
+    var newId;
+    sequelize.query('SELECT COUNT(*) FROM question', {type: sequelize.QueryTypes.SELECT}).then(function (result) {
+       newId = result + 1;
+    });
+    sequelize.query('INSERT INTO question (id, title, content, author, date_of_create, price, closed) VALUES (' + newId +',' + req.body.title-question + ','
+        + req.body.body-question +','+''+','+''+','+''+','+''+')',
+        {type: sequelize.QueryTypes.INSERT})
+        .then(function (result) {
+        res.send(result)
+    })
+});
 
 
 

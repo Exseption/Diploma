@@ -49,7 +49,6 @@ angular.module('legal')
             .state('question', {
                 controller: 'QuestionController',
                 controllerAs: 'qc',
-
                 url: '/question/:id',
                 templateUrl: '../templates/question.html'
             })

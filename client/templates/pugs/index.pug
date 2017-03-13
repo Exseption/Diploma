@@ -15,10 +15,12 @@ div.md-body-1(layout='column')
 
             .md-body-1(layout='column')
                 md-input-container
-                    input
+                    label Название
+                    input(name='title-question')
                 md-input-container
-                    input
-                md-button.md-primary Задать вопрос
+                    label Суть вопроса
+                    input(name='body-question')
+                md-button.md-primary(ng-click='qc.makeQuestion()') Задать вопрос
 
         div(flex='10')
             //div(layout='column')
