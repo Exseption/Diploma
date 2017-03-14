@@ -1,12 +1,11 @@
 div.md-body-1(layout='column')
     div(layout='row')
-        div(flex='10')
         div(flex)
             div(layout='row', layout-align='center')
-                .md-subheader Последние вопросы
+                div.md-caption(flex) Последние вопросы
             .md-content(ng-repeat='q in mc.questions')
-                div
-                    .md-title.quest-title(ui-sref='question({id : q.id})') {{q.title}}
+                div.quest
+                    .md-headline.quest-title(ui-sref='question({id : q.id})') {{q.title}}
                     .md-caption Дата публикации: {{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
                     .md-body-1 {{q.content | limitTo: 90}}{{q.content.length > 90 ? '...' : ''}}
 
@@ -16,9 +15,14 @@ div.md-body-1(layout='column')
             //.md-body-1(layout='column')
             //    md-input-container
             //        label Название
-            //        input(name='title', ng-model='title')
+            //        input(name='title-question')
             //    md-input-container
             //        label Суть вопроса
-            //        input(name='body', ng-model='body')
-            //    md-button.md-primary(ng-click='mc.makeQuestion(title,body)') Задать вопрос
-        div(flex='10')
+            //        input(name='body-question')
+            //    md-button.md-primary(ng-click='mc.makeQuestion()') Задать вопрос
+
+        div(flex='25')
+            div(layout='column', layout-align='center', layout-fill)
+                div(flex) Топ специалистов
+                div(flex) Обсуждаемые
+                div(flex) Последние

@@ -1,15 +1,18 @@
 
 <div class="md-body-1" layout="column">
   <div layout="row">
-    <div flex="10"></div>
     <div flex="flex">
-      <div>
-        <div class="md-headline">{{qc.question.title}}</div>
+      <div class="quest">
+        <div class="md-title">{{qc.question.title}}</div>
         <div class="md-caption">Дата публикации: {{qc.question.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
         <div class="md-body-1">{{qc.question.content}}</div>
         <div layout="row" layout-align="end">
           <div class="md-caption">Цена вопроса: {{qc.question.price}}</div>
           <md-button class="md-raised" layout-align="end end" ng-click="qc.answer(qc.question.id)">Ответить</md-button>
+        </div>
+        <div layout="column">
+          <div class="md-subhead">Ответы</div>
+          <div ng-repeat="ans in qc.answers">{{ans.content}}</div>
         </div>
       </div>
     </div>
