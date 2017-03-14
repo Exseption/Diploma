@@ -7,12 +7,14 @@ angular.module('legal').service('QueryService', function (Restangular) {
        return Restangular.oneUrl('one','http://localhost:3009/test/question/' + id).get();
    };
    self.answer = function (id) {
-       return Restangular.oneUrl('one','http://localhost:3009/test/question/' + id).post(undefined,
+       return Restangular.oneUrl('two','http://localhost:3009/test/question/' + id).post(undefined,
            {id : id});
    };
-    self.makeQuestion = function () {
-        return Restangular.oneUrl('one','http://localhost:3009/test/question/create').post(undefined,
+    self.makeQuestion = function (title, body) {
+        return Restangular.oneUrl('three','http://localhost:3009/test/create').post(undefined,
             {
+                title: title,
+                body: body
             })
     };
 });

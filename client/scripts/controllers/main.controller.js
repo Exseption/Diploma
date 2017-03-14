@@ -6,8 +6,8 @@
         },function (error) {
             alert(error);
         });
-        self.makeQuestion = function () {
-         QueryService.makeQuestion();
+        self.makeQuestion = function (title, body) {
+          QueryService.makeQuestion(title, body);
         };
     });
 })();

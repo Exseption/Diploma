@@ -5,7 +5,7 @@ div.md-body-1(layout='column')
             div(layout='row', layout-align='center')
                 .md-subheader Последние вопросы
             .md-content(ng-repeat='q in mc.questions')
-                md-card.quest
+                div
                     .md-title.quest-title(ui-sref='question({id : q.id})') {{q.title}}
                     .md-caption Дата публикации: {{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
                     .md-body-1 {{q.content | limitTo: 90}}{{q.content.length > 90 ? '...' : ''}}
@@ -13,18 +13,12 @@ div.md-body-1(layout='column')
                     div(layout='row', layout-align='end')
                         .md-caption Цена вопроса: {{q.price}}
 
-            .md-body-1(layout='column')
-                md-input-container
-                    label Название
-                    input(name='title-question')
-                md-input-container
-                    label Суть вопроса
-                    input(name='body-question')
-                md-button.md-primary(ng-click='mc.makeQuestion()') Задать вопрос
-
+            //.md-body-1(layout='column')
+            //    md-input-container
+            //        label Название
+            //        input(name='title', ng-model='title')
+            //    md-input-container
+            //        label Суть вопроса
+            //        input(name='body', ng-model='body')
+            //    md-button.md-primary(ng-click='mc.makeQuestion(title,body)') Задать вопрос
         div(flex='10')
-            //div(layout='column')
-            //    md-card(flex, style='height: 100px')
-            //        md-button.md-primary.md-raised Регистрация
-            //    md-card(flex, style='height: 100px')
-            //        md-button.md-primary.md-raised Поддержка

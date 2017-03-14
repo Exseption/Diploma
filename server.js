@@ -23,7 +23,7 @@ app.use(session({
 app.disable('x-powered-by');
 const sequelize = new Sequelize('postgres://postgres:qwerty@localhost:5432/legal');
 
-app.get('/test/all', function (req, res, next) {
+app.get('/test/all', function (req, res) {
     sequelize
         .query('SELECT * FROM question', {type: sequelize.QueryTypes.SELECT})
         .then(function (result) {
@@ -31,7 +31,7 @@ app.get('/test/all', function (req, res, next) {
     })
 });
 
-app.get('/test/question/:id', function (req, res, next) {
+app.get('/test/question/:id', function (req, res) {
    sequelize.query('SELECT * FROM question WHERE id = ' + req.params.id,
        {type: sequelize.QueryTypes.SELECT})
        .then(function (result) {
@@ -39,7 +39,7 @@ app.get('/test/question/:id', function (req, res, next) {
        })
 });
 
-app.post('/test/question/:id', function (req, res, next) {
+app.post('/test/question/:id', function (req, res) {
     sequelize.query('UPDATE question SET title = \'ОТВЕЧЕНО\' WHERE id = ' + req.body.id,
         {type: sequelize.QueryTypes.UPDATE}
     ).then(function (result) {
@@ -48,12 +48,14 @@ app.post('/test/question/:id', function (req, res, next) {
 });
 
 
-app.post('/test/question/create', function (req, res, next) {
+app.post('/test/create', function (req, res) {
     var newId;
     sequelize.query('SELECT COUNT(*) FROM question', {type: sequelize.QueryTypes.SELECT}).then(function (result) {
        newId = result + 1;
     });
-    sequelize.query('INSERT INTO question (id, title, content, author, date_of_create, price, closed) VALUES ($1,$2,$3,$4,$5,$6,$7)', [newId, 'Название', 'Тело вопроса', 1, '',1000,''],
+    var title = req.body.title;
+    var body = req.body.body;
+    sequelize.query('INSERT INTO question (id, title, content, author, date_of_create, price, closed) VALUES ($1,$2,$3,$4,$5,$6,$7)', [newId, title, body, 1, '',1000,''],
         {type: sequelize.QueryTypes.INSERT})
         .then(function (result) {
         res.send(result)

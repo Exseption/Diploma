@@ -2,7 +2,7 @@ div.md-body-1(layout='column')
     div(layout='row')
         div(flex='10')
         div(flex)
-            md-card.quest
+            div
                 .md-headline {{qc.question.title}}
                 .md-caption Дата публикации: {{qc.question.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
                 .md-body-1 {{qc.question.content}}

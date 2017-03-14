@@ -7,33 +7,24 @@
         <div class="md-subheader">Последние вопросы</div>
       </div>
       <div class="md-content" ng-repeat="q in mc.questions">
-        <md-card class="quest">
+        <div>
           <div class="md-title quest-title" ui-sref="question({id : q.id})">{{q.title}}</div>
           <div class="md-caption">Дата публикации: {{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
           <div class="md-body-1">{{q.content | limitTo: 90}}{{q.content.length > 90 ? '...' : ''}}</div>
           <div layout="row" layout-align="end">
             <div class="md-caption">Цена вопроса: {{q.price}}</div>
           </div>
-        </md-card>
+        </div>
       </div>
-      <div class="md-body-1" layout="column">
-        <md-input-container>
-          <label>Название</label>
-          <input name="title-question"/>
-        </md-input-container>
-        <md-input-container>
-          <label>Суть вопроса</label>
-          <input name="body-question"/>
-        </md-input-container>
-        <md-button class="md-primary" ng-click="mc.makeQuestion()">Задать вопрос</md-button>
-      </div>
+      <!--.md-body-1(layout='column')-->
+      <!--    md-input-container-->
+      <!--        label Название-->
+      <!--        input(name='title', ng-model='title')-->
+      <!--    md-input-container-->
+      <!--        label Суть вопроса-->
+      <!--        input(name='body', ng-model='body')-->
+      <!--    md-button.md-primary(ng-click='mc.makeQuestion(title,body)') Задать вопрос-->
     </div>
-    <div flex="10">
-      <!--div(layout='column')-->
-      <!--    md-card(flex, style='height: 100px')-->
-      <!--        md-button.md-primary.md-raised Регистрация-->
-      <!--    md-card(flex, style='height: 100px')-->
-      <!--        md-button.md-primary.md-raised Поддержка-->
-    </div>
+    <div flex="10"></div>
   </div>
 </div>
