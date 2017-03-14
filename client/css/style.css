@@ -10,9 +10,12 @@ html {
 }
 
 .card-ui-view {
-    padding: 5px 25px;
+
 }
 
+footer {
+    background-color: #ccc;
+}
 
 #tb-search {
     border-radius:2px;

@@ -11,34 +11,52 @@
     <link rel="stylesheet" href="css/ng-animation.css">
 </head>
 <body ng-cloak>
-<md-toolbar class="md-hue-2">
-    <div class="md-toolbar-tools">
-        <md-button class="md-icon-button" aria-label="Главная">
-            <md-icon md-svg-icon="./img/ic_account_balance_48px.svg"></md-icon>
-        </md-button>
-        <h2 flex>AND JUSTICE FOR ALL...</h2>
-        <input placeholder="Поиск" id="tb-search">
-        <md-button>Войти</md-button>
-        <md-button>Регистрация</md-button>
-    </div>
-</md-toolbar>
-<div layout-align="center" layout="row">
-    <md-button class="md-primary" ui-sref="index">Главная</md-button>
-    <md-button class="md-primary" ui-sref="library">Библиотека</md-button>
-</div>
-<div class="md-body-1" layout="column">
-    <div layout="row">
-        <div flex="10"></div>
-        <div flex="flex">
-            <md-card class="card-ui-view">
-                <div ui-view>
-                </div>
-            </md-card>
-
+<header>
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Главная">
+                <md-icon md-svg-icon="./img/ic_account_balance_48px.svg"></md-icon>
+            </md-button>
+            <h2 flex>AND JUSTICE FOR ALL...</h2>
+            <md-button class="md-icon-button">
+                <md-icon md-svg-icon="./img/ic_search_24px.svg"></md-icon>
+            </md-button>
+            <md-button>Задать вопрос <md-icon md-svg-icon="./img/ic_help_outline_24px.svg"></md-icon></md-button>
+            <md-button>Личный кабинет <md-icon md-svg-icon="./img/ic_assignment_ind_48px.svg"></md-icon></md-button>
+            <!--<md-button>Войти</md-button>-->
+            <!--<md-button>Регистрация</md-button>-->
         </div>
-        <div flex="10"></div>
+    </md-toolbar>
+    <div layout-align="center" layout="row">
+        <md-content>
+            <div layout-align="center" layout="row">
+                <md-button class="md-primary" ui-sref="index">Главная</md-button>
+                <md-button class="md-primary" ui-sref="library">Библиотека</md-button>
+            </div>
+        </md-content>
     </div>
-</div>
+</header>
+<main flex layout-fill>
+    <div class="md-body-1" layout="column" layout-fill>
+        <div layout="row">
+            <div flex="10"></div>
+            <div flex="flex">
+                <div class="card-ui-view">
+                    <div ui-view>
+                    </div>
+                </div>
+            </div>
+            <div flex="10"></div>
+        </div>
+    </div>
+</main>
+<footer>
+    <md-toolbar class="md-scroll-shrink" >
+        <div layout="row" layout-align="center center" flex>
+            FOOTER INFO
+        </div>
+    </md-toolbar>
+</footer>
 <script src="scripts/vendor/angular.min.js"></script>
 <script src="scripts/vendor/angular-animate.min.js"></script>
 <script src="scripts/vendor/angular-aria.min.js"></script>

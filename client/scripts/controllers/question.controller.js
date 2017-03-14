@@ -6,5 +6,8 @@ angular.module('legal').controller('QuestionController', function ($stateParams,
    });
    self.answer = function (id) {
        QueryService.answer(id);
+   };
+   self.answers = function (id) {
+        QueryService.selectAnswersById(id);
    }
 });

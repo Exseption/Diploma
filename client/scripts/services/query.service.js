@@ -15,4 +15,7 @@ angular.module('legal').service('QueryService', function (Restangular) {
             {
             })
     };
+    self.selectAnswersById = function (id) {
+        return Restangular.oneUrl('test', 'http://localhost:3009/test/'+ id +'/answers').get();
+    };
 });

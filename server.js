@@ -38,6 +38,19 @@ app.get('/test/question/:id', function (req, res, next) {
            res.send(result[0]);
        })
 });
+app.get('/test/:id/answers', function (req, res) {
+    sequelize.query('SELECT * FROM question, answer WHERE question.id = $1 AND answer.to_application = $1',
+        {bind: [req.params.id], type: sequelize.QueryTypes.SELECT})
+        .then(function (result) {
+            res.send(result);
+
+        })
+});
+
+
+
+
+
 
 app.post('/test/question/:id', function (req, res, next) {
     sequelize.query('UPDATE question SET title = \'ОТВЕЧЕНО\' WHERE id = ' + req.body.id,
