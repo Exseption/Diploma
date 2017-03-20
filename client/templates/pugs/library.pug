@@ -1,9 +1,13 @@
 div.md-body-1(layout='column')
     div(layout='row')
         div.my_border(flex='25')
-            div(layout='column', layout-align='center')
-                div(layout='row', layout-align='center')
+            div(layout='column', layout-align='none')
+                .md-caption(layout='row', layout-align='center', style='background-color: #D7D7D7; border-radius: 3px 5px 0px 0px')
                     | Категории
+                md-button.cat_item Кодексы
+                md-button.cat_item Справочники
+                md-button.cat_item Сборники
+                md-button.cat_item Законодательства
         div.my_border_right(flex)
             div(layout='row', layout-align='center')
                 | Библиотека

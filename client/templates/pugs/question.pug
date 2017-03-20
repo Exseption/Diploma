@@ -9,7 +9,7 @@ div.md-body-1(layout='column')
                 div(layout='row', layout-align='end')
                     .md-caption.price_quest Цена вопроса: {{qc.question.price}}
                 div(layout='column')
-                    .md-subhead.ans_h
+                    .md-caption.ans_h
                         | Ответы
                     div(ng-repeat='ans in qc.answers')
                         div.ans_body
@@ -17,5 +17,5 @@ div.md-body-1(layout='column')
                                 | {{$index+1}}. {{ans.content}}
                             .md-caption(layout='row', layout-align='end') {{ans.date_of_answer | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}} {{ans.name | limitTo: 1}}. {{ans.patronym | limitTo: 1}}. {{ans.surname}}
                 div(layout='row', layout-align='end end')
-                    md-button.md-raised.ans_butt(layout-align='end end', ng-click='qc.answer(qc.question.id)') Дать свой ответ
+                    md-button.md-raised.md-primary.ans_butt(layout-align='end end', ng-click='qc.answer(qc.question.id)') Дать свой ответ
         div.my_border_left(flex='25')

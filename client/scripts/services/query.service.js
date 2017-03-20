@@ -16,6 +16,11 @@ angular.module('legal').service('QueryService', function (Restangular) {
             {
             })
     };
+
+    self.getUsers = function () {
+        return Restangular.oneUrl('six', 'http://localhost:3009/test/users').get();
+    };
+
     self.selectAnswersById = function (id) { //получаем ответы по айди вопроса
         return Restangular.oneUrl('five', 'http://localhost:3009/test/'+ id +'/answers').get();
     };

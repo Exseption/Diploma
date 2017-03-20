@@ -12,12 +12,21 @@ footer {
 }
 
 .my_border {
-    border: solid 1px #D7D7D7; border-radius: 5px
+    border: solid 1px #D7D7D7;
+    border-radius: 5px;
+
+
 }
 .my_border_left {
     border: solid 1px #D7D7D7;
     border-radius: 5px;
     margin-left: 2px;
+
+}
+.cat_item {
+    padding: 0;
+    margin: 0px;
+
 }
 
 .my_border_right {
@@ -52,7 +61,6 @@ footer {
     margin: 2px 5px;
     padding: 1px 5px;
 }
-
 .ans_h {
     /*background-color: #D7D7D7;*/
     border-radius: 3px;
@@ -62,17 +70,25 @@ footer {
     /*background-color: #9C9C9C;*/
     padding: 1px 10px;
 }
+
+.head_link {
+    cursor: pointer;
+}
+
+.head_link:hover {
+    background-color: #cfcfcf;
+}
+
 .date_under_head {
     /*background-color: #38D63B;*/
     padding: 1px 10px;
 }
-
 .quest_body {
  /*background-color: #EEEEEE;*/
     padding: 1px 10px;
+    text-indent: 20px;
+    text-align: justify;
 }
-
-
 .price_quest {
     padding: 1px 10px;
     margin-bottom: 10px;

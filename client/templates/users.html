@@ -2,7 +2,11 @@
 <div class="md-body-1" layout="column">
   <div layout="row">
     <div flex="flex">
-      <div class="quest my_border">{{uc.users}}</div>
+      <div class="quest my_border">
+        <div ng-repeat="u in uc.users">
+          <div ui-sref="user({id: u.id})">{{$index + 1}}.{{u.name}} {{u.patronym}} {{u.surname}}</div>
+        </div>
+      </div>
     </div>
     <div class="my_border_left" flex="25"></div>
   </div>

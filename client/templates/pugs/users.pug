@@ -2,5 +2,6 @@ div.md-body-1(layout='column')
     div(layout='row')
         div(flex)
             div.quest.my_border
-                | {{uc.users}}
+                div(ng-repeat='u in uc.users')
+                    div(ui-sref='user({id: u.id})') {{$index + 1}}.{{u.name}} {{u.patronym}} {{u.surname}}
         div.my_border_left(flex='25')
