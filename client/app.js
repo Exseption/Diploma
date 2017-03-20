@@ -52,8 +52,24 @@ angular.module('legal')
                 url: '/question/:id',
                 templateUrl: '../templates/question.html'
             })
-
-
+            .state('users', {
+                controller: 'UserController',
+                controllerAs: 'uc',
+                url: '/users',
+                templateUrl: '../templates/users.html'
+            })
+            .state('user', {
+                controller: 'UserController',
+                controllerAs: 'uc',
+                url: '/user/:id',
+                templateUrl: '../templates/user.html'
+            })
+            .state('cabinet', {
+                controller: 'CabinetController',
+                controllerAs: 'cc',
+                url: '/cabinet',
+                templateUrl: '../templates/cabinet.html'
+            })
     });
 
 angular.module('legal')

@@ -3,11 +3,8 @@ angular.module('legal').controller('QuestionController', function ($stateParams,
    const id = $stateParams.id;
    QueryService.getQuestion(id).then(function (response) {
        self.question = response;
+       QueryService.selectAnswersById(id).then(function (response) {
+           self.answers = response;
+       });
    });
-   self.answer = function (id) {
-       QueryService.answer(id);
-   };
-   self.answers = function (id) {
-        QueryService.selectAnswersById(id);
-   }
 });

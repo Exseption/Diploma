@@ -1,35 +1,19 @@
 
 <div class="md-body-1" layout="column">
   <div layout="row">
-    <div flex="flex">
+    <div class="my_border" flex="flex">
       <div layout="row" layout-align="center">
-        <div class="md-caption" flex="flex">Последние вопросы</div>
+        <div>Последние вопросы</div>
       </div>
-      <div class="md-content" ng-repeat="q in mc.questions">
-        <div class="quest">
-          <div class="md-headline quest-title" ui-sref="question({id : q.id})">{{q.title}}</div>
-          <div class="md-caption">Дата публикации: {{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
-          <div class="md-body-1">{{q.content | limitTo: 90}}{{q.content.length > 90 ? '...' : ''}}</div>
-          <div layout="row" layout-align="end">
-            <div class="md-caption">Цена вопроса: {{q.price}}</div>
-          </div>
+      <div class="md-body-1" ng-repeat="q in mc.questions">
+        <div class="quest head_link" layout="row" layout-align=" center">
+          <div ui-sref="question({id : q.id})">{{q.title}}</div>
+          <div class="ans_count">Ответов</div>
+          <div class="date_of_q">{{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
+          <div class="price_q">{{q.price}}</div>
         </div>
       </div>
-      <!--.md-body-1(layout='column')-->
-      <!--    md-input-container-->
-      <!--        label Название-->
-      <!--        input(name='title-question')-->
-      <!--    md-input-container-->
-      <!--        label Суть вопроса-->
-      <!--        input(name='body-question')-->
-      <!--    md-button.md-primary(ng-click='mc.makeQuestion()') Задать вопрос-->
     </div>
-    <div flex="25">
-      <div layout="column" layout-align="center" layout-fill="layout-fill">
-        <div flex="flex">Топ специалистов</div>
-        <div flex="flex">Обсуждаемые</div>
-        <div flex="flex">Последние</div>
-      </div>
-    </div>
+    <div class="my_border_left" flex="25"></div>
   </div>
 </div>
