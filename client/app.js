@@ -52,6 +52,12 @@ angular.module('legal')
                 url: '/question/:id',
                 templateUrl: '../templates/question.html'
             })
+            .state('users', {
+                controller: 'UserController',
+                controllerAs: 'uc',
+                url: '/users',
+                templateUrl: '../templates/users.html'
+            })
 
 
     });

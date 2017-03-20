@@ -1,2 +1,15 @@
-div.quest
-    | Библиотека
+div.md-body-1(layout='column')
+    div(layout='row')
+        div.my_border(flex='25')
+            div(layout='column', layout-align='center')
+                div(layout='row', layout-align='center')
+                    | Категории
+        div.my_border_right(flex)
+            div(layout='row', layout-align='center')
+                | Библиотека
+            .md-content(ng-repeat='q in mc.questions')
+                div.quest(layout='row', layout-align=' center')
+                    div(ui-sref='question({id : q.id})') {{q.title}}
+                    div.ans_count Ответов
+                    div.date_of_q {{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
+                    div.price_q {{q.price}}

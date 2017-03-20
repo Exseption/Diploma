@@ -1,15 +1,21 @@
 div.md-body-1(layout='column')
     div(layout='row')
         div(flex)
-            div.quest
-                .md-title {{qc.question.title}}
-                .md-caption Дата публикации: {{qc.question.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
-                .md-body-1 {{qc.question.content}}
+            div.quest.my_border
+                div.quest_container
+                    .md-subhead.quest_head {{qc.question.title}}
+                    .md-caption.date_under_head Дата публикации: {{qc.question.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
+                    .md-body-1.quest_body {{qc.question.content}}
                 div(layout='row', layout-align='end')
-                    .md-caption Цена вопроса: {{qc.question.price}}
-                    md-button.md-raised(layout-align='end end', ng-click='qc.answer(qc.question.id)') Ответить
+                    .md-caption.price_quest Цена вопроса: {{qc.question.price}}
                 div(layout='column')
-                    .md-subhead Ответы
+                    .md-subhead.ans_h
+                        | Ответы
                     div(ng-repeat='ans in qc.answers')
-                        | {{ans.content}}
-        div(flex='10')
+                        div.ans_body
+                            .md-body-1
+                                | {{$index+1}}. {{ans.content}}
+                            .md-caption(layout='row', layout-align='end') {{ans.date_of_answer | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}} {{ans.name | limitTo: 1}}. {{ans.patronym | limitTo: 1}}. {{ans.surname}}
+                div(layout='row', layout-align='end end')
+                    md-button.md-raised.ans_butt(layout-align='end end', ng-click='qc.answer(qc.question.id)') Дать свой ответ
+        div.my_border_left(flex='25')

@@ -17,8 +17,9 @@
             <md-button class="md-icon-button" aria-label="Главная">
                 <md-icon md-svg-icon="./img/ic_account_balance_48px.svg"></md-icon>
             </md-button>
-            <h2 flex>AND JUSTICE FOR ALL...</h2>
-            <md-button class="md-icon-button">
+            <h2 flex> ...AND JUSTICE FOR ALL</h2>
+            <md-button>
+                Поиск
                 <md-icon md-svg-icon="./img/ic_search_24px.svg"></md-icon>
             </md-button>
             <md-button>Задать вопрос <md-icon md-svg-icon="./img/ic_help_outline_24px.svg"></md-icon></md-button>
@@ -32,6 +33,7 @@
             <div layout-align="center" layout="row">
                 <md-button class="md-primary" ui-sref="index">Главная</md-button>
                 <md-button class="md-primary" ui-sref="library">Библиотека</md-button>
+                <md-button class="md-primary" ui-sref="users">Специалисты</md-button>
             </div>
         </md-content>
     </div>
@@ -52,8 +54,8 @@
 </main>
 <footer>
     <md-toolbar class="md-scroll-shrink" >
-        <div layout="row" layout-align="center center" flex>
-            FOOTER INFO
+        <div layout="row" layout-align="center center" flex class="md-body-1">
+            Сайт разработан в рамках дипломного проектирования в 2017 г.
         </div>
     </md-toolbar>
 </footer>
@@ -72,6 +74,8 @@
 <script src="app.js"></script>
 <script src="scripts/controllers/main.controller.js"></script>
 <script src="scripts/controllers/question.controller.js"></script>
+<script src="scripts/controllers/user.controller.js"></script>
+
 <script src="scripts/controllers/library.controller.js"></script>
 <script src="scripts/services/query.service.js"></script>
 </body>

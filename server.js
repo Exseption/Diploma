@@ -39,18 +39,13 @@ app.get('/test/question/:id', function (req, res, next) {
        })
 });
 app.get('/test/:id/answers', function (req, res) {
-    sequelize.query('SELECT * FROM question, answer WHERE question.id = $1 AND answer.to_application = $1',
+    sequelize.query('SELECT a.*, u.name, u.patronym, u.surname FROM question, answer AS a, "user" AS u  WHERE question.id = $1 AND a.to_application = $1 AND u.id = a.author',
         {bind: [req.params.id], type: sequelize.QueryTypes.SELECT})
         .then(function (result) {
             res.send(result);
 
         })
 });
-
-
-
-
-
 
 app.post('/test/question/:id', function (req, res, next) {
     sequelize.query('UPDATE question SET title = \'ОТВЕЧЕНО\' WHERE id = ' + req.body.id,
