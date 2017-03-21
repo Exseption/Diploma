@@ -102,3 +102,6 @@ footer {
 .ans_butt {
     font-size: smaller;
 }
+tbody > tr.md-row:hover {
+    background-color: #D6D6D6;
+}

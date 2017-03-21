@@ -23,9 +23,9 @@ angular
     .module('legal')
     .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
-            // .primaryPalette('grey')
-            // .accentPalette('orange')
-            // .warnPalette('red');
+             .primaryPalette('green')
+            .accentPalette('orange')
+            .warnPalette('red');
     });
 
 

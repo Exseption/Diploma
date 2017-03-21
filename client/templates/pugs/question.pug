@@ -4,7 +4,7 @@ div.md-body-1(layout='column')
             div.quest.my_border
                 div.quest_container
                     .md-subhead.quest_head {{qc.question.title}}
-                    .md-caption.date_under_head Дата публикации: {{qc.question.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
+                    .md-caption.date_under_head {{qc.question.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
                     .md-body-1.quest_body {{qc.question.content}}
                 div(layout='row', layout-align='end')
                     .md-caption.price_quest Цена вопроса: {{qc.question.price}}
@@ -16,6 +16,6 @@ div.md-body-1(layout='column')
                             .md-body-1
                                 | {{$index+1}}. {{ans.content}}
                             .md-caption(layout='row', layout-align='end') {{ans.date_of_answer | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}} {{ans.name | limitTo: 1}}. {{ans.patronym | limitTo: 1}}. {{ans.surname}}
-                div(layout='row', layout-align='end end')
-                    md-button.md-raised.md-primary.ans_butt(layout-align='end end', ng-click='qc.answer(qc.question.id)') Дать свой ответ
+                div(layout='column')
+                    md-button.md-raised.ans_butt(layout-align='end end', ng-click='qc.answer(qc.question.id)') Дать свой ответ
         div.my_border_left(flex='25')

@@ -23,7 +23,7 @@ app.use(session({
 app.disable('x-powered-by');
 const sequelize = new Sequelize('postgres://postgres:qwerty@localhost:5432/legal');
 
-app.get('/test/all', function (req, res) {
+app.get('/api/v1/questions', function (req, res) {
     sequelize
         .query('SELECT q.* FROM question AS q', {type: sequelize.QueryTypes.SELECT})
         .then(function (result) {
@@ -31,7 +31,7 @@ app.get('/test/all', function (req, res) {
     })
 });
 
-app.get('/test/question/:id', function (req, res) {
+app.get('/api/v1/question/:id', function (req, res) {
    sequelize.query('SELECT * FROM question WHERE id = ' + req.params.id,
        {type: sequelize.QueryTypes.SELECT})
        .then(function (result) {
@@ -39,7 +39,7 @@ app.get('/test/question/:id', function (req, res) {
        })
 });
 
-app.get('/test/users', function (req, res) {
+app.get('/api/v1/users', function (req, res) {
     sequelize.query('SELECT * FROM "user"',
         {type: sequelize.QueryTypes.SELECT})
         .then(function (result) {
@@ -47,7 +47,7 @@ app.get('/test/users', function (req, res) {
         })
 });
 
-app.get('/test/user/:id', function (req, res) {
+app.get('/api/v1/user/:id', function (req, res) {
     sequelize.query('SELECT * FROM "user" AS u WHERE u.id = $1',
         { bind: [req.params.id],
             type: sequelize.QueryTypes.SELECT})
@@ -56,21 +56,18 @@ app.get('/test/user/:id', function (req, res) {
         })
 });
 
-
-
-
-app.get('/test/:id/answers', function (req, res) {
-    sequelize.query('SELECT a.*, u.name, u.patronym, u.surname FROM question, ' +
-        'answer AS a, "user" AS u  WHERE question.id = $1 ' +
-        'AND a.to_application = $1 AND u.id = a.author',
+app.get('/api/v1/:id/answers', function (req, res) {
+    sequelize.query('SELECT a.*, u.name, u.patronym, u.surname FROM question AS q, ' +
+        'answer AS a, "user" AS u  WHERE q.id = $1 ' +
+        'AND a.question = $1 AND u.id = a.author',
         { bind: [req.params.id], type: sequelize.QueryTypes.SELECT})
         .then(function (result) {
             res.send(result);
-
+            console.log(result);
         })
 });
 
-app.post('/test/question/:id', function (req, res) {
+app.post('/api/v1/question/:id', function (req, res) {
     sequelize.query('UPDATE question SET title = \'ОТВЕЧЕНО\' WHERE id = ' + req.body.id,
         {type: sequelize.QueryTypes.UPDATE}
     ).then(function (result) {
@@ -79,7 +76,7 @@ app.post('/test/question/:id', function (req, res) {
 });
 
 
-app.post('/test/create', function (req, res) {
+app.post('/api/v1/create', function (req, res) {
     var newId;
     sequelize.query('SELECT COUNT(*) FROM question', {type: sequelize.QueryTypes.SELECT}).then(function (result) {
        newId = result + 1;

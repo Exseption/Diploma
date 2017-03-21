@@ -5,7 +5,7 @@
       <div class="quest my_border">
         <div class="quest_container">
           <div class="md-subhead quest_head">{{qc.question.title}}</div>
-          <div class="md-caption date_under_head">Дата публикации: {{qc.question.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
+          <div class="md-caption date_under_head">{{qc.question.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
           <div class="md-body-1 quest_body">{{qc.question.content}}</div>
         </div>
         <div layout="row" layout-align="end">
@@ -20,8 +20,8 @@
             </div>
           </div>
         </div>
-        <div layout="row" layout-align="end end">
-          <md-button class="md-raised md-primary ans_butt" layout-align="end end" ng-click="qc.answer(qc.question.id)">Дать свой ответ</md-button>
+        <div layout="column">
+          <md-button class="md-raised ans_butt" layout-align="end end" ng-click="qc.answer(qc.question.id)">Дать свой ответ</md-button>
         </div>
       </div>
     </div>

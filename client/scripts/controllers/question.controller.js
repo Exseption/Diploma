@@ -5,6 +5,8 @@ angular.module('legal').controller('QuestionController', function ($stateParams,
        self.question = response;
        QueryService.selectAnswersById(id).then(function (response) {
            self.answers = response;
+       }, function (error) {
+           throw error;
        });
    });
 });
