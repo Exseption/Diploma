@@ -22,10 +22,10 @@ angular.module('legal')
 angular
     .module('legal')
     .config(function($mdThemingProvider) {
-        // $mdThemingProvider.theme('default')
-        //     .primaryPalette('grey')
-        //     .accentPalette('orange')
-        //     .warnPalette('red');
+        $mdThemingProvider.theme('default')
+            // .primaryPalette('grey')
+            // .accentPalette('orange')
+            // .warnPalette('red');
     });
 
 
