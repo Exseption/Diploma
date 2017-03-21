@@ -105,3 +105,9 @@ footer {
 tbody > tr.md-row:hover {
     background-color: #D6D6D6;
 }
+
+a {
+
+    color: black;
+
+}
