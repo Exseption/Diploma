@@ -31,6 +31,16 @@ app.get('/api/v1/questions', function (req, res) {
     })
 });
 
+app.get('/api/v1/resources', function (req, res) {
+    sequelize
+        .query('SELECT r.* FROM resource AS r', {type: sequelize.QueryTypes.SELECT})
+        .then(function (result) {
+            res.send(result);
+        })
+});
+
+
+
 app.get('/api/v1/question/:id', function (req, res) {
    sequelize.query('SELECT * FROM question WHERE id = ' + req.params.id,
        {type: sequelize.QueryTypes.SELECT})
@@ -66,6 +76,7 @@ app.get('/api/v1/:id/answers', function (req, res) {
             console.log(result);
         })
 });
+
 
 app.post('/api/v1/question/:id', function (req, res) {
     sequelize.query('UPDATE question SET title = \'ОТВЕЧЕНО\' WHERE id = ' + req.body.id,

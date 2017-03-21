@@ -7,21 +7,25 @@ angular.module('legal').service('QueryService', function (Restangular) {
    self.getQuestion = function (id) { //получаем конкретный вопрос
        return Restangular.oneUrl('two','http://localhost:3009/api/v1/question/' + id).get();
    };
-   self.answer = function (id) {
+   self.getAnswer = function (id) {
        return Restangular.oneUrl('three','http://localhost:3009/api/v1/question/' + id).post(undefined,
            {id : id});
    };
-    self.makeQuestion = function () {
+    self.makeQuestion = function () { //доделать
         return Restangular.oneUrl('four','http://localhost:3009/api/v1/question/create').post(undefined,
             {
             })
     };
 
-    self.getUsers = function () {
+    self.getUsers = function () { //получаем
         return Restangular.oneUrl('six', 'http://localhost:3009/api/v1/users').get();
     };
 
     self.selectAnswersById = function (id) { //получаем ответы по айди вопроса
         return Restangular.oneUrl('five', 'http://localhost:3009/api/v1/'+ id +'/answers').get();
     };
+
+    self.getResources = function () {
+        return Restangular.oneUrl('seven', 'http://localhost:3009/api/v1/resources').get();
+    }
 });

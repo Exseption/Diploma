@@ -24,7 +24,7 @@
                       </thead>
                       <tbody md-body="">
                         <tr md-row="" ng-repeat="u in cc.users | orderBy: 'id'">
-                          <td md-cell="">{{u.id}}.</td>
+                          <td md-cell="">{{u.id}}</td>
                           <td md-cell="">{{u.name}}</td>
                           <td md-cell="">{{u.patronym}}</td>
                           <td md-cell="">{{u.surname}}</td>
@@ -53,13 +53,13 @@
                         <tr md-row="">
                           <th md-column="" md-numeric="">ID</th>
                           <th md-column="">Заголовок</th>
-                          <th md-column="" md-numeric="">Тело вопроса</th>
-                          <th md-column="" md-numeric="">Edit</th>
+                          <th md-column="">Тело вопроса</th>
+                          <th md-column="">Edit</th>
                         </tr>
                       </thead>
                       <tbody md-body="">
                         <tr md-row="" ng-repeat="q in cc.questions | orderBy: 'id'">
-                          <td md-cell="">{{q.id}}.</td>
+                          <td md-cell="">{{q.id}}</td>
                           <td md-cell="">{{q.title}}</td>
                           <td md-cell="">{{q.content }}</td>
                           <td md-cell="">
@@ -67,6 +67,34 @@
                               <md-icon md-svg-icon="./img/ic_edit_24px.svg"></md-icon>
                             </md-button>
                           </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </md-table-container>
+                </div>
+              </md-content>
+            </md-tab>
+            <md-tab label="Ресурсы">
+              <md-content>
+                <div class="md-body-1">
+                  <md-table-container>
+                    <table md-table="">
+                      <thead md-head="">
+                        <tr md-row="">
+                          <th md-column="" md-numeric="">ID</th>
+                          <th md-column="">Путь</th>
+                          <th md-column="">Тип</th>
+                          <th md-column="">Полное имя</th>
+                          <th md-column="">Дата создания</th>
+                        </tr>
+                      </thead>
+                      <tbody md-body="">
+                        <tr md-row="" ng-repeat="r in cc.resources | orderBy: 'id'">
+                          <td md-cell=""><a>http://localhost:3009{{r.id}}</a></td>
+                          <td md-cell="">{{r.src}}</td>
+                          <td md-cell="">{{r.type }}</td>
+                          <td md-cell="">{{r.fullname }}</td>
+                          <td md-cell="">{{r.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD hh:mm:ss'}}</td>
                         </tr>
                       </tbody>
                     </table>
