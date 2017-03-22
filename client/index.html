@@ -9,32 +9,46 @@
     <link rel="stylesheet" href="css/md-data-table.min.css">
     <link rel="stylesheet" href="css/ng-animation.css">
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body ng-cloak>
+<div ng-controller="SidenavController as snc">
+    <md-sidenav class="md-sidenav-left" md-component-id="left" >
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2>Меню пользователя</h2>
+            </div>
+        </md-toolbar>
+        <div layout-align="center" layout="column">
+            <md-button class="md-raised" ui-sref="index" ng-click="snc.toggleMenu()">Главная</md-button>
+            <md-button class="md-raised" ui-sref="library" ng-click="snc.toggleMenu()">Библиотека</md-button>
+            <md-button class="md-raised" ui-sref="users" ng-click="snc.toggleMenu()">Специалисты</md-button>
+        </div>
+
+    </md-sidenav>
+</div>
+
 <header>
     <md-toolbar class="md-hue-2">
-        <div class="md-toolbar-tools">
+        <div class="md-toolbar-tools" ng-controller="ToolbarController as tbc">
             <md-button class="md-icon-button" aria-label="Главная">
                 <md-icon md-svg-icon="./img/ic_account_balance_48px.svg"></md-icon>
             </md-button>
             <h2 flex>IWS</h2>
+            <md-button ng-click="tbc.toggleMenu()">Меню</md-button>
             <md-button>
                 Поиск
                 <md-icon md-svg-icon="./img/ic_search_24px.svg"></md-icon>
             </md-button>
             <md-button>Задать вопрос <md-icon md-svg-icon="./img/ic_help_outline_24px.svg"></md-icon></md-button>
             <md-button ui-sref="cabinet">Личный кабинет <md-icon md-svg-icon="./img/ic_assignment_ind_48px.svg"></md-icon></md-button>
-            <!--<md-button>Войти</md-button>-->
+            <md-button ng-click="tbc.auth()">Войти</md-button>
             <!--<md-button>Регистрация</md-button>-->
         </div>
     </md-toolbar>
     <div layout-align="center" layout="row">
         <md-content>
-            <div layout-align="center" layout="row">
-                <md-button class="md-primary" ui-sref="index">Главная</md-button>
-                <md-button class="md-primary" ui-sref="library">Библиотека</md-button>
-                <md-button class="md-primary" ui-sref="users">Специалисты</md-button>
-            </div>
+
         </md-content>
     </div>
 </header>
@@ -76,6 +90,8 @@
 <script src="scripts/controllers/question.controller.js"></script>
 <script src="scripts/controllers/user.controller.js"></script>
 <script src="scripts/controllers/cabinet.controller.js"></script>
+<script src="scripts/controllers/toolbar.controller.js"></script>
+<script src="scripts/controllers/sidenav.controller.js"></script>
 <script src="scripts/controllers/library.controller.js"></script>
 <script src="scripts/services/query.service.js"></script>
 </body>

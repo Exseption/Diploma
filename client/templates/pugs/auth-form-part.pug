@@ -1,0 +1,16 @@
+md-dialog
+    form(ng-cloak='')
+        md-toolbar
+            .md-toolbar-tools Авторизация пользователя
+        md-dialog-content
+            .md-body-1(layout-padding)
+                div(layout='column')
+                    md-input-container
+                        label Логин:
+                        input(ng-model='login', type='text')
+                    md-input-container
+                        label Пароль:
+                        input(ng-model='password', type='password')
+            md-dialog-actions(layout='row')
+                md-button.md-raised(ng-click='cc.cancelChanges()') Отмена
+                md-button.md-raised.md-primary(ng-click='cc.saveChanges()') Войти

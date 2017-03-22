@@ -1,5 +1,5 @@
 (function () {
-    angular.module('legal').controller('MainController', function (QueryService) {
+    angular.module('legal').controller('MainController', function (QueryService, $mdSidenav) {
         var self = this;
         QueryService.getQuestions().then(function (response) {
             self.questions = response;
@@ -9,5 +9,6 @@
         self.makeQuestion = function (title, body) {
           QueryService.makeQuestion(title, body);
         };
+
     });
 })();

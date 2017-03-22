@@ -1,0 +1,26 @@
+
+<md-dialog>
+  <form ng-cloak="">
+    <md-toolbar>
+      <div class="md-toolbar-tools">Авторизация пользователя</div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-body-1" layout-padding="layout-padding">
+        <div layout="column">
+          <md-input-container>
+            <label>Логин:</label>
+            <input ng-model="login" type="text"/>
+          </md-input-container>
+          <md-input-container>
+            <label>Пароль:</label>
+            <input ng-model="password" type="password"/>
+          </md-input-container>
+        </div>
+      </div>
+      <md-dialog-actions layout="row">
+        <md-button class="md-raised" ng-click="cc.cancelChanges()">Отмена</md-button>
+        <md-button class="md-raised md-primary" ng-click="cc.saveChanges()">Войти</md-button>
+      </md-dialog-actions>
+    </md-dialog-content>
+  </form>
+</md-dialog>
