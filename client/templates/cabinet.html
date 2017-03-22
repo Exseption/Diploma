@@ -33,7 +33,7 @@
                           </td>
                           <td md-cell="">{{u.rating}}</td>
                           <td md-cell="">
-                            <md-button class="md-icon-button" aria-label="Редактировать">
+                            <md-button class="md-icon-button" aria-label="Редактировать" ng-click="cc.editUser(u)">
                               <md-icon md-svg-icon="./img/ic_edit_24px.svg"></md-icon>
                             </md-button>
                           </td>
@@ -83,7 +83,7 @@
                         <tr md-row="">
                           <th md-column="" md-numeric="">ID</th>
                           <th md-column="">Полное имя</th>
-                          <th md-column="">Путь</th>
+                          <th md-column="">Тип</th>
                           <th md-column="">Дата создания</th>
                         </tr>
                       </thead>

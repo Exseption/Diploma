@@ -32,7 +32,7 @@ div.md-body-1(layout='column')
                                                         md-checkbox(ng-model='u.active', aria-label='Активен',ng-disabled='true')
                                                     td(md-cell='') {{u.rating}}
                                                     td(md-cell='')
-                                                        md-button.md-icon-button(aria-label='Редактировать')
+                                                        md-button.md-icon-button(aria-label='Редактировать', ng-click='cc.editUser(u)')
                                                             md-icon(md-svg-icon='./img/ic_edit_24px.svg')
                         md-tab(label="Вопросы")
                             md-content
@@ -62,7 +62,7 @@ div.md-body-1(layout='column')
                                                 tr(md-row='')
                                                     th(md-column='', md-numeric='') ID
                                                     th(md-column='') Полное имя
-                                                    th(md-column='') Путь
+                                                    th(md-column='') Тип
 
                                                     th(md-column='') Дата создания
                                             tbody(md-body='')
