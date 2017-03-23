@@ -41,6 +41,11 @@
           return Restangular.oneUrl('eight', url + 'messages').get();
         };
 
+        self.createAnswer = function (answer, id) {
+            return Restangular.oneUrl('nine', url + 'create/answer')
+                .post(undefined, {answer: answer, id: id});
+        };
+
 
     });
 })();

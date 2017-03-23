@@ -9,4 +9,10 @@ angular.module('legal').controller('QuestionController', function ($stateParams,
            throw error;
        });
    });
+   
+   
+   self.answer = function (answer, files) {
+       // alert(answer + ' ' + id);
+       QueryService.createAnswer(answer, id);
+   }
 });

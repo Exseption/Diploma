@@ -1,6 +1,6 @@
 div.md-body-1(layout='column')
     div(layout='row')
-        div(flex)
+        div(flex, style='margin-top: 10px')
             div.quest.my_border
                 div.quest_container
                     .md-subhead.quest_head {{qc.question.title}}
@@ -9,7 +9,7 @@ div.md-body-1(layout='column')
                 div(layout='row', layout-align='end')
                     .md-caption.price_quest Цена вопроса: {{qc.question.price}}
                 div(layout='column')
-                    .md-caption.ans_h
+                    .md-body-2
                         | Ответы
                     div(ng-repeat='ans in qc.answers')
                         div.ans_body
@@ -17,5 +17,13 @@ div.md-body-1(layout='column')
                                 | {{$index+1}}. {{ans.content}}
                             .md-caption(layout='row', layout-align='end') {{ans.date_of_answer | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}} {{ans.name | limitTo: 1}}. {{ans.patronym | limitTo: 1}}. {{ans.surname}}
                 div(layout='column')
-                    md-button.md-raised.ans_butt(layout-align='end end', ng-click='qc.answer(qc.question.id)') Дать свой ответ
-        div.my_border_left(flex='25')
+                    .md-body-2
+                        | Дать свой ответ
+                    textarea(rows=10, ng-model='answer_text')
+                    .md-body-1(layou='row')
+
+                    div(layout='row', layout-align='end end')
+                        //input#input-file-id.ng-hide(multiple='', type='file',ng-model='answer_files')
+                        //label.md-button.md-raised(for='input-file-id') Выбрать файлы
+                        md-button.md-raised.ans_butt(layout-align='end end', ng-click='qc.answer(answer_text, asnwer_files)') Отправить
+        div.my_border_left(flex='25', style='margin-top: 10px')

@@ -1,7 +1,7 @@
 
 <div class="md-body-1" layout="column">
   <div layout="row">
-    <div flex="flex">
+    <div flex="flex" style="margin-top: 10px;">
       <div class="quest my_border">
         <div class="quest_container">
           <div class="md-subhead quest_head">{{qc.question.title}}</div>
@@ -12,7 +12,7 @@
           <div class="md-caption price_quest">Цена вопроса: {{qc.question.price}}</div>
         </div>
         <div layout="column">
-          <div class="md-caption ans_h">Ответы</div>
+          <div class="md-body-2">Ответы</div>
           <div ng-repeat="ans in qc.answers">
             <div class="ans_body">
               <div class="md-body-1">{{$index+1}}. {{ans.content}}</div>
@@ -21,10 +21,17 @@
           </div>
         </div>
         <div layout="column">
-          <md-button class="md-raised ans_butt" layout-align="end end" ng-click="qc.answer(qc.question.id)">Дать свой ответ</md-button>
+          <div class="md-body-2">Дать свой ответ</div>
+          <textarea rows="10" ng-model="answer_text"></textarea>
+          <div class="md-body-1" layou="row"></div>
+          <div layout="row" layout-align="end end">
+            <!--input#input-file-id.ng-hide(multiple='', type='file',ng-model='answer_files')-->
+            <!--label.md-button.md-raised(for='input-file-id') Выбрать файлы-->
+            <md-button class="md-raised ans_butt" layout-align="end end" ng-click="qc.answer(answer_text, asnwer_files)">Отправить</md-button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="my_border_left" flex="25"></div>
+    <div class="my_border_left" flex="25" style="margin-top: 10px;"></div>
   </div>
 </div>

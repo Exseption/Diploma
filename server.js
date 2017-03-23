@@ -84,6 +84,21 @@ app.post('/api/v1/auth', function (req, res) {
     })
 });
 
+app.post('/api/v1/create/answer', function (req, res) {
+    var count = 0;
+    sequelize.query('SELECT COUNT(*) FROM answer', {type: sequelize.QueryTypes.SELECT}).then(function (result) {
+        count = result;
+        sequelize.query('INSERT INTO answer (id, question, content, date_of_create, ' +
+            'rating, author) VALUES ($1, $2, $3, $4, $5, $6);', {
+            //авторство установить
+            bind: [count + 1, req.body.id, req.body.answer, new Date(), 0, 1], type: sequelize.QueryTypes.INSERT}
+        ).then(function (results) {
+            res.send(results);
+        })
+    })
+});
+
+
 // app.post('/api/v1/question/:id', function (req, res) {
 //     sequelize.query('UPDATE question SET title = \'ОТВЕЧЕНО\' WHERE id = ' + req.body.id,
 //         {type: sequelize.QueryTypes.UPDATE}
