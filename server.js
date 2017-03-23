@@ -31,7 +31,7 @@ app.get('/api/v1/questions', function (req, res) {
     })
 });
 
-app.get('/api/v1/resources', function (req, res) {
+app.get('/api/v1/resources', function (req, res) { // получаем все ресурсы
     sequelize
         .query('SELECT r.* FROM resource AS r', {type: sequelize.QueryTypes.SELECT})
         .then(function (result) {
@@ -39,7 +39,7 @@ app.get('/api/v1/resources', function (req, res) {
         })
 });
 
-app.get('/api/v1/question/:id', function (req, res) {
+app.get('/api/v1/question/:id', function (req, res) { // получаем вопрос по id
    sequelize.query('SELECT * FROM question WHERE id = ' + req.params.id,
        {type: sequelize.QueryTypes.SELECT})
        .then(function (result) {
@@ -47,7 +47,7 @@ app.get('/api/v1/question/:id', function (req, res) {
        })
 });
 
-app.get('/api/v1/users', function (req, res) {
+app.get('/api/v1/users', function (req, res) { // получаем пользователей
     sequelize.query('SELECT * FROM "user"',
         {type: sequelize.QueryTypes.SELECT})
         .then(function (result) {
@@ -55,7 +55,7 @@ app.get('/api/v1/users', function (req, res) {
         })
 });
 
-app.get('/api/v1/user/:id', function (req, res) {
+app.get('/api/v1/user/:id', function (req, res) { // получаем пользователя по id
     sequelize.query('SELECT * FROM "user" AS u WHERE u.id = $1',
         { bind: [req.params.id],
             type: sequelize.QueryTypes.SELECT})
@@ -64,7 +64,7 @@ app.get('/api/v1/user/:id', function (req, res) {
         })
 });
 
-app.get('/api/v1/:id/answers', function (req, res) {
+app.get('/api/v1/:id/answers', function (req, res) { // получаем ответы к вопросу
     sequelize.query('SELECT a.*, u.name, u.patronym, u.surname FROM question AS q, ' +
         'answer AS a, "user" AS u  WHERE q.id = $1 ' +
         'AND a.question = $1 AND u.id = a.author',
@@ -76,7 +76,7 @@ app.get('/api/v1/:id/answers', function (req, res) {
 });
 
 
-app.post('/api/v1/auth', function (req, res) {
+app.post('/api/v1/auth', function (req, res) { // авторизация пользователя
     sequelize.query('SELECT * FROM "user" as u WHERE u.login = $1 AND u.password = $2',
         {bind: [req.body.login, req.body.pwd], type: sequelize.QueryTypes.SELECT}
     ).then(function (result) {
@@ -84,13 +84,11 @@ app.post('/api/v1/auth', function (req, res) {
     })
 });
 
-app.post('/api/v1/create/answer', function (req, res) {
-    console.log(req.body.answer);
-    console.log(req.body.id);
+app.post('/api/v1/create/answer', function (req, res) { // создание ответа к вопросу
     var count = 0;
-    sequelize.query('SELECT COUNT(a.*) FROM answer AS a WHERE a.question = 2',
+    sequelize.query('SELECT COUNT(a.*) FROM answer AS a WHERE a.question = $1',
         {
-            // bind: [req.body.id],
+            bind: [req.body.id],
             type: sequelize.QueryTypes.SELECT }).then(function (result) {
 
         count = result[0].count;
@@ -98,8 +96,7 @@ app.post('/api/v1/create/answer', function (req, res) {
             //авторство установить
             bind: [count + 1, req.body.id, req.body.answer, '2017-03-11', 0, 1], type: sequelize.QueryTypes.INSERT}
         ).then(function (results) {
-            res.send(req.body.answer);
-
+            res.send('OK');
         }, function (error) {
             console.log(error);
         })
