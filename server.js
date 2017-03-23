@@ -39,8 +39,6 @@ app.get('/api/v1/resources', function (req, res) {
         })
 });
 
-
-
 app.get('/api/v1/question/:id', function (req, res) {
    sequelize.query('SELECT * FROM question WHERE id = ' + req.params.id,
        {type: sequelize.QueryTypes.SELECT})
@@ -86,35 +84,26 @@ app.post('/api/v1/auth', function (req, res) {
     })
 });
 
-
-app.post('/api/v1/question/:id', function (req, res) {
-    sequelize.query('UPDATE question SET title = \'ОТВЕЧЕНО\' WHERE id = ' + req.body.id,
-        {type: sequelize.QueryTypes.UPDATE}
-    ).then(function (result) {
-        res.send(result)
-    })
-});
-
-
-app.post('/api/v1/create', function (req, res) {
-    var newId;
-    sequelize.query('SELECT COUNT(*) FROM question', {type: sequelize.QueryTypes.SELECT}).then(function (result) {
-       newId = result + 1;
-    });
-    var title = req.body.title;
-    var body = req.body.body;
-    sequelize.query('INSERT INTO question (id, title, content, author, date_of_create, price, closed) VALUES ($1,$2,$3,$4,$5,$6,$7)', [newId, title, body, 1, '',1000,''],
-        {type: sequelize.QueryTypes.INSERT})
-        .then(function (result) {
-        res.send(result)
-    })
-});
-
-
-
-
-
-
+// app.post('/api/v1/question/:id', function (req, res) {
+//     sequelize.query('UPDATE question SET title = \'ОТВЕЧЕНО\' WHERE id = ' + req.body.id,
+//         {type: sequelize.QueryTypes.UPDATE}
+//     ).then(function (result) {
+//         res.send(result)
+//     })
+// });
+// app.post('/api/v1/create', function (req, res) {
+//     var newId;
+//     sequelize.query('SELECT COUNT(*) FROM question', {type: sequelize.QueryTypes.SELECT}).then(function (result) {
+//        newId = result + 1;
+//     });
+//     var title = req.body.title;
+//     var body = req.body.body;
+//     sequelize.query('INSERT INTO question (id, title, content, author, date_of_create, price, closed) VALUES ($1,$2,$3,$4,$5,$6,$7)', [newId, title, body, 1, '',1000,''],
+//         {type: sequelize.QueryTypes.INSERT})
+//         .then(function (result) {
+//         res.send(result)
+//     })
+// });
 
 app.use(function(req, res, next) {
   const err = new Error('Not Found');
