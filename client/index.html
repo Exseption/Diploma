@@ -16,14 +16,32 @@
     <md-sidenav class="md-sidenav-left" md-component-id="left" >
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <h2>Меню пользователя</h2>
+                <div layout="column">
+                    <div class="md-body-2">{{snc.userInfo.name + ' '
+                        + snc.userInfo.patronym + ' '
+                        + snc.userInfo.surname}}
+                    </div>
+                    <div class="md-body-1">
+                        Баланс: {{snc.userInfo.balance}}
+                    </div>
+                </div>
+
+                <div>
+
+                </div>
+
+            </div>
+            <div layout-align="end end" layout="row">
+                <md-button ng-click="snc.logout()"> Выйти</md-button>
             </div>
         </md-toolbar>
         <div layout-align="center" layout="column">
-            <md-button class="md-raised" ui-sref="index" ng-click="snc.toggleMenu()">Главная</md-button>
-            <md-button class="md-raised" ui-sref="library" ng-click="snc.toggleMenu()">Библиотека</md-button>
-            <md-button class="md-raised" ui-sref="users" ng-click="snc.toggleMenu()">Специалисты</md-button>
+            <md-button  ui-sref="index" ng-click="snc.toggleMenu()">Главная</md-button>
+            <md-button  ui-sref="library" ng-click="snc.toggleMenu()">Библиотека</md-button>
+            <md-button ui-sref="users" ng-click="snc.toggleMenu()">Специалисты</md-button>
+
         </div>
+
 
     </md-sidenav>
 </div>
@@ -34,16 +52,19 @@
             <md-button class="md-icon-button" aria-label="Главная">
                 <md-icon md-svg-icon="./img/ic_account_balance_48px.svg"></md-icon>
             </md-button>
-            <h2 flex>IWS</h2>
+            <h2 flex>.iws</h2>
             <md-button ng-click="tbc.toggleMenu()">Меню</md-button>
             <md-button>
                 Поиск
                 <md-icon md-svg-icon="./img/ic_search_24px.svg"></md-icon>
             </md-button>
             <md-button>Задать вопрос <md-icon md-svg-icon="./img/ic_help_outline_24px.svg"></md-icon></md-button>
-            <md-button ui-sref="cabinet">Личный кабинет <md-icon md-svg-icon="./img/ic_assignment_ind_48px.svg"></md-icon></md-button>
-            <md-button ng-click="tbc.auth()">Войти</md-button>
-            <!--<md-button>Регистрация</md-button>-->
+            <!--<md-button ui-sref="cabinet">Личный кабинет </md-button>-->
+
+            <md-button ng-click="tbc.auth()">Войти
+                <md-icon md-svg-icon="./img/ic_assignment_ind_48px.svg">
+                </md-icon>
+            </md-button>
         </div>
     </md-toolbar>
     <div layout-align="center" layout="row">
@@ -93,6 +114,7 @@
 <script src="scripts/controllers/toolbar.controller.js"></script>
 <script src="scripts/controllers/sidenav.controller.js"></script>
 <script src="scripts/controllers/library.controller.js"></script>
+<script src="scripts/services/session.manager.js"></script>
 <script src="scripts/services/query.service.js"></script>
 </body>
 </html>

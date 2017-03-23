@@ -19,7 +19,7 @@ div.md-body-1(layout='column')
                                                     th(md-column='') Фамилия
                                                     th(md-column='') Активен
                                                     th(md-column='') Рейтинг
-                                                    th(md-column='') Edit
+                                                    th(md-column='') Редактировать
 
                                             tbody(md-body='')
                                                 tr(md-row='', ng-repeat="u in cc.users | orderBy: 'id'")
@@ -44,7 +44,7 @@ div.md-body-1(layout='column')
                                                     th(md-column='', md-numeric='') ID
                                                     th(md-column='') Заголовок
                                                     th(md-column='') Тело вопроса
-                                                    th(md-column='') Edit
+                                                    th(md-column='') Редактировать
                                             tbody(md-body='')
                                                 tr(md-row='', ng-repeat="q in cc.questions | orderBy: 'id'")
                                                     td(md-cell='') {{q.id}}

@@ -1,8 +1,9 @@
-angular.module('legal').controller('ToolbarController', function ($mdDialog, $mdSidenav) {
+angular.module('legal').controller('ToolbarController', function ($mdDialog, $mdSidenav, SessionManager) {
    var self = this;
     self.toggleMenu = function() {
         $mdSidenav('left').toggle();
     };
+
     self.auth = function() {
         $mdDialog.show({
             controller: 'CabinetController',
@@ -12,8 +13,15 @@ angular.module('legal').controller('ToolbarController', function ($mdDialog, $md
             clickOutsideToClose:true
         })
             .then(function() {
+
                 },
                 function() {
+
                 });
     };
+
+    self.logout = function () {
+        $cookies.remove('auth-user');
+    }
+
 });

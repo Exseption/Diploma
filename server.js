@@ -78,6 +78,15 @@ app.get('/api/v1/:id/answers', function (req, res) {
 });
 
 
+app.post('/api/v1/auth', function (req, res) {
+    sequelize.query('SELECT * FROM "user" as u WHERE u.login = $1 AND u.password = $2',
+        {bind: [req.body.login, req.body.pwd], type: sequelize.QueryTypes.SELECT}
+    ).then(function (result) {
+        res.send(result[0]);
+    })
+});
+
+
 app.post('/api/v1/question/:id', function (req, res) {
     sequelize.query('UPDATE question SET title = \'ОТВЕЧЕНО\' WHERE id = ' + req.body.id,
         {type: sequelize.QueryTypes.UPDATE}

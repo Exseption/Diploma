@@ -13,4 +13,4 @@ md-dialog
                         input(ng-model='password', type='password')
             md-dialog-actions(layout='row')
                 md-button.md-raised(ng-click='cc.cancelChanges()') Отмена
-                md-button.md-raised.md-primary(ng-click='cc.saveChanges()') Войти
+                md-button.md-raised.md-primary(ng-click='cc.auth(login, password)') Войти

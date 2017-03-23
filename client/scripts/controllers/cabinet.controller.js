@@ -1,4 +1,4 @@
-angular.module('legal').controller('CabinetController', function (QueryService, $mdDialog) {
+angular.module('legal').controller('CabinetController', function (QueryService, $mdDialog, SessionManager) {
    const self = this;
     QueryService.getQuestions().then(function (results) {
         self.questions = results;
@@ -15,7 +15,13 @@ angular.module('legal').controller('CabinetController', function (QueryService, 
     };
 
     self.saveChanges = function () {
-      // постом отправить данные полей
+
+    };
+
+
+    self.auth = function (login, password) {
+        SessionManager.auth(login, password);
+        $mdDialog.hide();
     };
 
     self.editUser = function (user) {
