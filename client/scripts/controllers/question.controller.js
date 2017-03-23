@@ -12,7 +12,10 @@ angular.module('legal').controller('QuestionController', function ($stateParams,
    
    
    self.answer = function (answer, files) {
-       // alert(answer + ' ' + id);
-       QueryService.createAnswer(answer, id);
+       QueryService.createAnswer(answer, id).then(function (results) {
+           QueryService.selectAnswersById(id).then(function (response) {
+               self.answers = response;
+           })
+       });
    }
 });

@@ -85,15 +85,23 @@ app.post('/api/v1/auth', function (req, res) {
 });
 
 app.post('/api/v1/create/answer', function (req, res) {
+    console.log(req.body.answer);
+    console.log(req.body.id);
     var count = 0;
-    sequelize.query('SELECT COUNT(*) FROM answer', {type: sequelize.QueryTypes.SELECT}).then(function (result) {
-        count = result;
-        sequelize.query('INSERT INTO answer (id, question, content, date_of_create, ' +
-            'rating, author) VALUES ($1, $2, $3, $4, $5, $6);', {
+    sequelize.query('SELECT COUNT(a.*) FROM answer AS a WHERE a.question = 2',
+        {
+            // bind: [req.body.id],
+            type: sequelize.QueryTypes.SELECT }).then(function (result) {
+
+        count = result[0].count;
+        sequelize.query('INSERT INTO answer (id, question, content, date_of_create, rating, author) VALUES ($1, $2, $3, $4, $5, $6);', {
             //авторство установить
-            bind: [count + 1, req.body.id, req.body.answer, new Date(), 0, 1], type: sequelize.QueryTypes.INSERT}
+            bind: [count + 1, req.body.id, req.body.answer, '2017-03-11', 0, 1], type: sequelize.QueryTypes.INSERT}
         ).then(function (results) {
-            res.send(results);
+            res.send(req.body.answer);
+
+        }, function (error) {
+            console.log(error);
         })
     })
 });
