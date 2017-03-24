@@ -16,6 +16,13 @@
           <div ng-repeat="ans in qc.answers">
             <div class="ans_body">
               <div class="md-body-1">{{$index+1}}. {{ans.content}}</div>
+              <div class="md-body-1">{{ans.rating}}</div>
+              <div layout-align="row">
+                <md-button class="md-icon-button">
+                  <md-icon md-svg-icon="./img/ic_add_black_24px.svg"></md-icon>
+                </md-button>
+                <md-button>-</md-button>
+              </div>
               <div class="md-caption" layout="row" layout-align="end">{{ans.date_of_answer | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}} {{ans.name | limitTo: 1}}. {{ans.patronym | limitTo: 1}}. {{ans.surname}}</div>
             </div>
           </div>

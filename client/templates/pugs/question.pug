@@ -15,7 +15,14 @@ div.md-body-1(layout='column')
                         div.ans_body
                             .md-body-1
                                 | {{$index+1}}. {{ans.content}}
+                            .md-body-1
+                                | {{ans.rating}}
+                            div(layout-align='row')
+                                md-button.md-icon-button
+                                    md-icon(md-svg-icon='./img/ic_add_black_24px.svg')
+                                md-button -
                             .md-caption(layout='row', layout-align='end') {{ans.date_of_answer | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}} {{ans.name | limitTo: 1}}. {{ans.patronym | limitTo: 1}}. {{ans.surname}}
+
                 div(layout='column')
                     .md-body-2
                         | Дать свой ответ
