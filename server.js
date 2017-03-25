@@ -102,6 +102,9 @@ app.post('/api/v1/create/answer', function (req, res) { // создание от
         })
     })
 });
+// выбрать сообщения пользователя
+// select * from message as m where m.dialog in (select m.dialog from message as m where m.author=1)
+
 
 
 // app.post('/api/v1/question/:id', function (req, res) {
