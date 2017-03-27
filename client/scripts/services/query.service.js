@@ -22,7 +22,7 @@
 
         // получаем пользователей
         self.getUsers = function () { //получаем пользователей
-            return Restangular.oneUrl('six', url + 'users').get();
+            return Restangular.oneUrl('six', url + 'persons').get();
         };
 
 // ============================================================================================================
@@ -33,9 +33,7 @@
 
 // ============================================================================================================
         // получаем ресурсы
-        self.getResources = function () { //получаем вопросы
-            return Restangular.oneUrl('seven', url + 'resources').get();
-        };
+
 
         self.getMessages = function () {
           return Restangular.oneUrl('eight', url + 'messages').get();

@@ -3,7 +3,7 @@ md-dialog
         md-toolbar
             .md-toolbar-tools Редактирование данных пользователя
         md-dialog-content
-            .md-body-1(layout-padding)
+            .md-body-1
                 div(layout='row')
                     md-input-container
                         label Имя:
@@ -37,4 +37,4 @@ md-dialog
                         .md-body-1 {{cc.user.rating}}
         md-dialog-actions(layout='row')
             md-button.md-raised(ng-click='cc.cancelChanges()') Отмена
-            md-button.md-raised.md-primary(ng-click='cc.saveChanges()') Сохранить
+            md-button.md-raised.md-primary(ng-click='cc.saveChanges(cc.user.name)') Сохранить

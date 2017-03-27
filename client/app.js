@@ -22,8 +22,8 @@ angular.module('legal')
 angular
     .module('legal')
     .config(function($mdThemingProvider) {
-        $mdThemingProvider.theme('default');
-            //  .primaryPalette('green')
+        $mdThemingProvider.theme('default')
+             .primaryPalette('green')
             // .accentPalette('orange')
             // .warnPalette('red');
     });

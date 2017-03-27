@@ -20,7 +20,7 @@ app.use(session({
                 }));
 app.disable('x-powered-by');
 const sequelize = new Sequelize('postgres://postgres:qwerty@localhost:5432/legal');
-app.get('/api/v1/questions', function (req, res) {
+app.get('/api/v1/questions', function (req, res) { // получаем вопросы
     sequelize
         .query('SELECT question.id, question.title, question.content, question.date_of_create, question.price, question.closed, question.payable, person.name, person.patronym, person.surname FROM public.person, public.question WHERE person.id = question.author ORDER BY question.date_of_create ASC;', {type: sequelize.QueryTypes.SELECT})
         .then(function (result) {
@@ -53,7 +53,7 @@ app.get('/api/v1/person/:id', function (req, res) { // получаем поль
         })
 });
 
-app.get('/api/v1/:id/answers', function (req, res) { // получаем ответы к вопросу
+app.get('/api/v1/:id/answers', function (req, res) { // получаем ответы к вопросу по id
     sequelize.query('SELECT a.*, p.name, p.patronym, p.surname FROM question AS q, ' +
         'answer AS a, person AS p  WHERE q.id = $1 ' +
         'AND a.question = $1 AND p.id = a.author',
@@ -63,8 +63,6 @@ app.get('/api/v1/:id/answers', function (req, res) { // получаем отв�
             console.log(result);
         })
 });
-
-
 app.post('/api/v1/auth', function (req, res) { // авторизация пользователя
     sequelize.query('SELECT * FROM person as p WHERE p.login = $1 AND p.password = $2',
         {bind: [req.body.login, req.body.pwd], type: sequelize.QueryTypes.SELECT}
@@ -72,12 +70,10 @@ app.post('/api/v1/auth', function (req, res) { // авторизация пол�
         res.send(result[0]);
     })
 });
-
 app.post('/api/v1/create/answer', function (req, res) { // создание ответа к вопросу
         sequelize.query('INSERT INTO answer ' +
             '(question, content, date_of_create, grade, author) ' +
             'VALUES ($1, $2, $3, $4, $5)', {
-            //авторство установить
             bind: [
                 req.body.id,
                 req.body.answer,
@@ -91,7 +87,6 @@ app.post('/api/v1/create/answer', function (req, res) { // создание от
             console.log(error);
         })
     });
-
 app.post('api/v1/vote/plus', function (req, res) { //голосуем за ответ в плюс
     sequelize.query('UPDATE public.answer SET grade=grade + 0.1 WHERE author=$1',
         { bind: [req.body.id],
@@ -99,7 +94,6 @@ app.post('api/v1/vote/plus', function (req, res) { //голосуем за от�
         res.send('OK');
     })
 });
-
 app.post('api/v1/vote/minus', function (req, res) { //голосуем за ответ в минус
     sequelize.query('UPDATE public.answer SET grade=grade - 0.1 WHERE author=$1',
         {bind: [req.body.id],
@@ -107,9 +101,8 @@ app.post('api/v1/vote/minus', function (req, res) { //голосуем за от
         res.send('OK');
     })
 });
-
-
-app.get('/api/v1/:id/messages', function (req, res) { // получить сообщения для пользователя, где он участвует как адресант или адресат
+app.get('/api/v1/:id/messages', function (req, res) { // получить сообщения
+// для пользователя, где он участвует как адресант или адресат
    sequelize.query('SELECT * FROM message as m WHERE m.dialog in ' +
        '(SELECT m.dialog FROM message as m WHERE m.sender = $1 OR m.destination = $1)',
        {bind: [req.params.id],
@@ -117,17 +110,45 @@ app.get('/api/v1/:id/messages', function (req, res) { // получить соо
        res.send(results);
    })
 });
-
 app.post('/api/v1/create/question', function (req, res) { //создаем вопрос
     sequelize.query('INSERT INTO public.question(title, ' +
         'content, author, date_of_create, price, closed, payable)    ' +
-        'VALUES ($1, $2, $3, now(), $4, false, $5);',
-        {bind: [req.body.title, req.body.body, 1, '',req.body.price,''], type: sequelize.QueryTypes.INSERT})
+        'VALUES ($1, $2, $3, now(), $4, false, $5)',
+        {
+            bind: [req.body.title, req.body.body, 1, '', req.body.price, ''],
+            type: sequelize.QueryTypes.INSERT
+        })
         .then(function (result) {
-        res.send(result)
+            res.send(result)
+        });
+app.post('/api/v1/create/person', function (req, res) { // создаем нового пользователя
+    // регистрация и из админки продумать
+    sequelize.query('INSERT INTO public.person(login, password, surname, name, patronym, birthday, date_of_registration, active, rating, usergroup, telephone, area, city, country, document) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)',
+        {bind: [
+                req.body.login,
+                req.body.password,
+                req.body.surname,
+                req.body.name,
+                req.body.patronym,
+                req.body.birthday,
+                now(),
+                true,
+                null,
+                user,
+                req.body.telephone,
+                req.body.area,
+                req.body.city,
+                req.body.country,
+                req.body.document
+            ],
+            type: sequelize.QueryTypes.INSERT
+        })
+        .then(function (result) {
+            res.send(result)
+        }).catch(function (error) {
+        res.send('Opps, error!');
     })
-});
-
+})});
 app.use(function(req, res, next) {
   const err = new Error('Not Found');
   err.status = 404;

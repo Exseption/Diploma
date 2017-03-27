@@ -5,7 +5,7 @@
       <div class="md-toolbar-tools">Редактирование данных пользователя</div>
     </md-toolbar>
     <md-dialog-content>
-      <div class="md-body-1" layout-padding="layout-padding">
+      <div class="md-body-1">
         <div layout="row">
           <md-input-container>
             <label>Имя:</label>
@@ -50,7 +50,7 @@
     </md-dialog-content>
     <md-dialog-actions layout="row">
       <md-button class="md-raised" ng-click="cc.cancelChanges()">Отмена</md-button>
-      <md-button class="md-raised md-primary" ng-click="cc.saveChanges()">Сохранить</md-button>
+      <md-button class="md-raised md-primary" ng-click="cc.saveChanges(cc.user.name)">Сохранить</md-button>
     </md-dialog-actions>
   </form>
 </md-dialog>

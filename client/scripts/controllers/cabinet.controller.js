@@ -6,16 +6,14 @@ angular.module('legal').controller('CabinetController', function (QueryService, 
     QueryService.getUsers().then(function (results) {
         self.users = results;
     });
-    QueryService.getResources().then(function (results) {
-       self.resources = results;
-    });
+
 
     self.cancelChanges = function () {
         $mdDialog.hide();
     };
 
-    self.saveChanges = function () {
-
+    self.saveChanges = function (name) {
+        alert(name)
     };
 
 

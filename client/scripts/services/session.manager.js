@@ -29,6 +29,5 @@
             $cookies.remove('auth-user');
             self.userInfo = undefined;
         };
-
     })
 })();
