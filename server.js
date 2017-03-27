@@ -7,7 +7,6 @@ session = require('express-session'),
 app = express();
 const Sequelize = require('sequelize');
 const methodOverride = require('method-override');
-
 app.use(express.static(path.join(__dirname, 'client')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -19,44 +18,34 @@ app.use(session({
                   resave: false,
                   saveUninitialized: false
                 }));
-
 app.disable('x-powered-by');
 const sequelize = new Sequelize('postgres://postgres:qwerty@localhost:5432/legal');
-
 app.get('/api/v1/questions', function (req, res) {
     sequelize
-        .query('SELECT q.* FROM question AS q', {type: sequelize.QueryTypes.SELECT})
+        .query('SELECT question.id, question.title, question.content, question.date_of_create, question.price, question.closed, question.payable, person.name, person.patronym, person.surname FROM public.person, public.question WHERE person.id = question.author ORDER BY question.date_of_create ASC;', {type: sequelize.QueryTypes.SELECT})
         .then(function (result) {
             res.send(result);
     })
 });
 
-app.get('/api/v1/resources', function (req, res) { // получаем все ресурсы
-    sequelize
-        .query('SELECT r.* FROM resource AS r', {type: sequelize.QueryTypes.SELECT})
-        .then(function (result) {
-            res.send(result);
-        })
-});
-
 app.get('/api/v1/question/:id', function (req, res) { // получаем вопрос по id
-   sequelize.query('SELECT * FROM question WHERE id = ' + req.params.id,
+   sequelize.query('SELECT question.id, question.title, question.content, question.date_of_create, question.price, question.closed, question.payable, person.name, person.patronym, person.surname FROM public.person, public.question WHERE person.id = question.author AND  question.id = ' + req.params.id,
        {type: sequelize.QueryTypes.SELECT})
        .then(function (result) {
            res.send(result[0]);
        })
 });
 
-app.get('/api/v1/users', function (req, res) { // получаем пользователей
-    sequelize.query('SELECT * FROM "user"',
+app.get('/api/v1/persons', function (req, res) { // получаем пользователей
+    sequelize.query('SELECT * FROM person',
         {type: sequelize.QueryTypes.SELECT})
         .then(function (result) {
             res.send(result);
         })
 });
 
-app.get('/api/v1/user/:id', function (req, res) { // получаем пользователя по id
-    sequelize.query('SELECT * FROM "user" AS u WHERE u.id = $1',
+app.get('/api/v1/person/:id', function (req, res) { // получаем пользователя по id
+    sequelize.query('SELECT * FROM person AS p WHERE p.id = $1',
         { bind: [req.params.id],
             type: sequelize.QueryTypes.SELECT})
         .then(function (result) {
@@ -65,9 +54,9 @@ app.get('/api/v1/user/:id', function (req, res) { // получаем польз
 });
 
 app.get('/api/v1/:id/answers', function (req, res) { // получаем ответы к вопросу
-    sequelize.query('SELECT a.*, u.name, u.patronym, u.surname FROM question AS q, ' +
-        'answer AS a, "user" AS u  WHERE q.id = $1 ' +
-        'AND a.question = $1 AND u.id = a.author',
+    sequelize.query('SELECT a.*, p.name, p.patronym, p.surname FROM question AS q, ' +
+        'answer AS a, person AS p  WHERE q.id = $1 ' +
+        'AND a.question = $1 AND p.id = a.author',
         { bind: [req.params.id], type: sequelize.QueryTypes.SELECT})
         .then(function (result) {
             res.send(result);
@@ -77,7 +66,7 @@ app.get('/api/v1/:id/answers', function (req, res) { // получаем отв�
 
 
 app.post('/api/v1/auth', function (req, res) { // авторизация пользователя
-    sequelize.query('SELECT * FROM "user" as u WHERE u.login = $1 AND u.password = $2',
+    sequelize.query('SELECT * FROM person as p WHERE p.login = $1 AND p.password = $2',
         {bind: [req.body.login, req.body.pwd], type: sequelize.QueryTypes.SELECT}
     ).then(function (result) {
         res.send(result[0]);
@@ -85,45 +74,55 @@ app.post('/api/v1/auth', function (req, res) { // авторизация пол�
 });
 
 app.post('/api/v1/create/answer', function (req, res) { // создание ответа к вопросу
-    var count = 0;
-    sequelize.query('SELECT COUNT(a.*) FROM answer AS a WHERE a.question = $1',
-        {
-            bind: [req.body.id],
-            type: sequelize.QueryTypes.SELECT }).then(function (result) {
-
-        count = result[0].count;
-        sequelize.query('INSERT INTO answer (id, question, content, date_of_create, grade, author) VALUES ($1, $2, $3, $4, $5, $6);', {
+        sequelize.query('INSERT INTO answer ' +
+            '(question, content, date_of_create, grade, author) ' +
+            'VALUES ($1, $2, $3, $4, $5)', {
             //авторство установить
-            bind: [count + 1, req.body.id, req.body.answer, '2017-03-11', 0, 1], type: sequelize.QueryTypes.INSERT}
+            bind: [
+                req.body.id,
+                req.body.answer,
+                now(), null,
+                req.body.author
+            ],
+            type: sequelize.QueryTypes.INSERT}
         ).then(function (results) {
             res.send('OK');
         }, function (error) {
             console.log(error);
         })
-    })
-});
+    });
 
-app.post('api/v1/vote', function (req, res) { //голосуем за ответ
-    sequelize.query('UPDATE public.answer SET grade=grade + 0.1 WHERE author=1',
-        {type: sequelize.QueryTypes.UPDATE}).then(function (res) {
+app.post('api/v1/vote/plus', function (req, res) { //голосуем за ответ в плюс
+    sequelize.query('UPDATE public.answer SET grade=grade + 0.1 WHERE author=$1',
+        { bind: [req.body.id],
+            type: sequelize.QueryTypes.UPDATE}).then(function (res) {
         res.send('OK');
     })
 });
 
-app.get('/api/v1/create/1/messages', function (req, res) { // получить сообщения
-   sequelize.query('SELECT * FROM message as m WHERE m.dialog in (SELECT m.dialog FROM message as m WHERE m.author=1',
-       {type: sequelize.QueryTypes.SELECT}).then(function (results) {
+app.post('api/v1/vote/minus', function (req, res) { //голосуем за ответ в минус
+    sequelize.query('UPDATE public.answer SET grade=grade - 0.1 WHERE author=$1',
+        {bind: [req.body.id],
+            type: sequelize.QueryTypes.UPDATE}).then(function (res) {
+        res.send('OK');
+    })
+});
+
+
+app.get('/api/v1/:id/messages', function (req, res) { // получить сообщения для пользователя, где он участвует как адресант или адресат
+   sequelize.query('SELECT * FROM message as m WHERE m.dialog in ' +
+       '(SELECT m.dialog FROM message as m WHERE m.sender = $1 OR m.destination = $1)',
+       {bind: [req.params.id],
+           type: sequelize.QueryTypes.SELECT}).then(function (results) {
        res.send(results);
    })
 });
 
 app.post('/api/v1/create/question', function (req, res) { //создаем вопрос
-    var title = req.body.title;
-    var body = req.body.body;
-    var payable = req.body.payable;
-    var price= req.body.price;
-    sequelize.query('INSERT INTO public.question(title, content, author, date_of_create, price, closed, payable)    VALUES ($1, $2, $3, now(), $4, false, $5);',
-        {bind: [title, body, 1, '',1000,''], type: sequelize.QueryTypes.INSERT})
+    sequelize.query('INSERT INTO public.question(title, ' +
+        'content, author, date_of_create, price, closed, payable)    ' +
+        'VALUES ($1, $2, $3, now(), $4, false, $5);',
+        {bind: [req.body.title, req.body.body, 1, '',req.body.price,''], type: sequelize.QueryTypes.INSERT})
         .then(function (result) {
         res.send(result)
     })
