@@ -92,7 +92,7 @@ app.post('/api/v1/create/answer', function (req, res) { // создание от
             type: sequelize.QueryTypes.SELECT }).then(function (result) {
 
         count = result[0].count;
-        sequelize.query('INSERT INTO answer (id, question, content, date_of_create, rating, author) VALUES ($1, $2, $3, $4, $5, $6);', {
+        sequelize.query('INSERT INTO answer (id, question, content, date_of_create, grade, author) VALUES ($1, $2, $3, $4, $5, $6);', {
             //авторство установить
             bind: [count + 1, req.body.id, req.body.answer, '2017-03-11', 0, 1], type: sequelize.QueryTypes.INSERT}
         ).then(function (results) {
@@ -102,31 +102,32 @@ app.post('/api/v1/create/answer', function (req, res) { // создание от
         })
     })
 });
-// выбрать сообщения пользователя
-// select * from message as m where m.dialog in (select m.dialog from message as m where m.author=1)
 
+app.post('api/v1/vote', function (req, res) { //голосуем за ответ
+    sequelize.query('UPDATE public.answer SET grade=grade + 0.1 WHERE author=1',
+        {type: sequelize.QueryTypes.UPDATE}).then(function (res) {
+        res.send('OK');
+    })
+});
 
+app.get('/api/v1/create/1/messages', function (req, res) { // получить сообщения
+   sequelize.query('SELECT * FROM message as m WHERE m.dialog in (SELECT m.dialog FROM message as m WHERE m.author=1',
+       {type: sequelize.QueryTypes.SELECT}).then(function (results) {
+       res.send(results);
+   })
+});
 
-// app.post('/api/v1/question/:id', function (req, res) {
-//     sequelize.query('UPDATE question SET title = \'ОТВЕЧЕНО\' WHERE id = ' + req.body.id,
-//         {type: sequelize.QueryTypes.UPDATE}
-//     ).then(function (result) {
-//         res.send(result)
-//     })
-// });
-// app.post('/api/v1/create', function (req, res) {
-//     var newId;
-//     sequelize.query('SELECT COUNT(*) FROM question', {type: sequelize.QueryTypes.SELECT}).then(function (result) {
-//        newId = result + 1;
-//     });
-//     var title = req.body.title;
-//     var body = req.body.body;
-//     sequelize.query('INSERT INTO question (id, title, content, author, date_of_create, price, closed) VALUES ($1,$2,$3,$4,$5,$6,$7)', [newId, title, body, 1, '',1000,''],
-//         {type: sequelize.QueryTypes.INSERT})
-//         .then(function (result) {
-//         res.send(result)
-//     })
-// });
+app.post('/api/v1/create/question', function (req, res) { //создаем вопрос
+    var title = req.body.title;
+    var body = req.body.body;
+    var payable = req.body.payable;
+    var price= req.body.price;
+    sequelize.query('INSERT INTO public.question(title, content, author, date_of_create, price, closed, payable)    VALUES ($1, $2, $3, now(), $4, false, $5);',
+        {bind: [title, body, 1, '',1000,''], type: sequelize.QueryTypes.INSERT})
+        .then(function (result) {
+        res.send(result)
+    })
+});
 
 app.use(function(req, res, next) {
   const err = new Error('Not Found');

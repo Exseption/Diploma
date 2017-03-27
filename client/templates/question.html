@@ -16,8 +16,8 @@
           <div ng-repeat="ans in qc.answers">
             <div class="ans_body">
               <div class="md-body-1">{{$index+1}}. {{ans.content}}</div>
-              <div class="md-body-1">{{ans.rating}}</div>
-              <div layout-align="row">
+              <div class="md-body-1">Оценка {{ans.rating}}</div>
+              <div layout-align="row">{{ans.grade}}
                 <md-button class="md-icon-button">
                   <md-icon md-svg-icon="./img/ic_add_black_24px.svg"></md-icon>
                 </md-button>

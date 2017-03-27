@@ -13,11 +13,13 @@ div.md-body-1(layout='column')
                         | Ответы
                     div(ng-repeat='ans in qc.answers')
                         div.ans_body
+
                             .md-body-1
                                 | {{$index+1}}. {{ans.content}}
                             .md-body-1
-                                | {{ans.rating}}
+                                | Оценка {{ans.rating}}
                             div(layout-align='row')
+                                | {{ans.grade}}
                                 md-button.md-icon-button
                                     md-icon(md-svg-icon='./img/ic_add_black_24px.svg')
                                 md-button -
