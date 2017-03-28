@@ -12,8 +12,8 @@ angular.module('legal').controller('CabinetController', function (QueryService, 
         $mdDialog.hide();
     };
 
-    self.saveChanges = function (name) {
-        alert(name)
+    self.saveChanges = function (birthday) {
+        alert(birthday);
     };
 
 

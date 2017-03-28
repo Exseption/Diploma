@@ -4,27 +4,33 @@ md-dialog(aria-label='Регистрация пользователя')
             .md-toolbar-tools Регистрация нового пользователя
         md-dialog-content
             .md-dialog-content
-                md-input-container
-                    label Логин
-                    input(ng-model='login')
-                md-input-container
-                    label Пароль
-                    input(ng-model='password')
-                md-input-container
-                    label Фамилия
-                    input(ng-model='surname')
-                md-input-container
-                    label Имя
-                    input(ng-model='name')
-                md-input-container
-                    label Отчество
-                    input(ng-model='patronym')
-                md-input-container
-                    label Дата рождения
-                    md-datepicker(ng-model='birthday')
+                div(layout='column')
+                    md-input-container.inp_cont_marg
+                        label Логин
+                        input(ng-model='login')
+                    md-input-container.inp_cont_marg
+                        label Пароль
+                        input(ng-model='password', type='password')
+
+                    md-input-container.inp_cont_marg
+                        label Фамилия
+                        input(ng-model='surname')
+                    md-input-container.inp_cont_marg
+                        label Имя
+                        input(ng-model='name')
+                    md-input-container.inp_cont_marg
+                        label Отчество
+                        input(ng-model='patronym')
+
+                    md-input-container.inp_cont_marg
+                        label Дата рождения
+                        md-datepicker(ng-model='birthday')
+                    md-input-container.inp_cont_marg
+
+                        input(ng-model='document', type='text')
         md-dialog-actions(layout='row')
                 md-button.md-raised(ng-click='cc.cancelChanges()') Отмена
-                md-button.md-raised.md-primary(ng-click='cc.regUser(name)') Зарегистрироваться
+                md-button.md-raised.md-primary(ng-click='cc.regUser(birthday)') Зарегистрироваться
 
 
 //md-dialog(aria-label='Mango (Fruit)')

@@ -6,35 +6,40 @@
     </md-toolbar>
     <md-dialog-content>
       <div class="md-dialog-content">
-        <md-input-container>
-          <label>Логин</label>
-          <input ng-model="login"/>
-        </md-input-container>
-        <md-input-container>
-          <label>Пароль</label>
-          <input ng-model="password"/>
-        </md-input-container>
-        <md-input-container>
-          <label>Фамилия</label>
-          <input ng-model="surname"/>
-        </md-input-container>
-        <md-input-container>
-          <label>Имя</label>
-          <input ng-model="name"/>
-        </md-input-container>
-        <md-input-container>
-          <label>Отчество</label>
-          <input ng-model="patronym"/>
-        </md-input-container>
-        <md-input-container>
-          <label>Дата рождения</label>
-          <md-datepicker ng-model="birthday"></md-datepicker>
-        </md-input-container>
+        <div layout="column">
+          <md-input-container class="inp_cont_marg">
+            <label>Логин</label>
+            <input ng-model="login"/>
+          </md-input-container>
+          <md-input-container class="inp_cont_marg">
+            <label>Пароль</label>
+            <input ng-model="password" type="password"/>
+          </md-input-container>
+          <md-input-container class="inp_cont_marg">
+            <label>Фамилия</label>
+            <input ng-model="surname"/>
+          </md-input-container>
+          <md-input-container class="inp_cont_marg">
+            <label>Имя</label>
+            <input ng-model="name"/>
+          </md-input-container>
+          <md-input-container class="inp_cont_marg">
+            <label>Отчество</label>
+            <input ng-model="patronym"/>
+          </md-input-container>
+          <md-input-container class="inp_cont_marg">
+            <label>Дата рождения</label>
+            <md-datepicker ng-model="birthday"></md-datepicker>
+          </md-input-container>
+          <md-input-container class="inp_cont_marg">
+            <input ng-model="document" type="text"/>
+          </md-input-container>
+        </div>
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
       <md-button class="md-raised" ng-click="cc.cancelChanges()">Отмена</md-button>
-      <md-button class="md-raised md-primary" ng-click="cc.regUser(name)">Зарегистрироваться</md-button>
+      <md-button class="md-raised md-primary" ng-click="cc.regUser(birthday)">Зарегистрироваться</md-button>
     </md-dialog-actions>
   </form>
 </md-dialog>
