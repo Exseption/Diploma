@@ -23,7 +23,7 @@ angular
     .module('legal')
     .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
-             .primaryPalette('green')
+             // .primaryPalette('green')
             // .accentPalette('orange')
             // .warnPalette('red');
     });

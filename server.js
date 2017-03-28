@@ -115,7 +115,7 @@ app.post('/api/v1/create/question', function (req, res) { //создаем во�
         'content, author, date_of_create, price, closed, payable)    ' +
         'VALUES ($1, $2, $3, now(), $4, false, $5)',
         {
-            bind: [req.body.title, req.body.body, 1, '', req.body.price, ''],
+            bind: [req.body.title, req.body.content, req.body.author, req.body.price, req.body.payable],
             type: sequelize.QueryTypes.INSERT
         })
         .then(function (result) {
@@ -134,7 +134,7 @@ app.post('/api/v1/create/person', function (req, res) { // создаем нов
                 now(),
                 true,
                 null,
-                user,
+                'user',
                 req.body.telephone,
                 req.body.area,
                 req.body.city,
@@ -149,6 +149,9 @@ app.post('/api/v1/create/person', function (req, res) { // создаем нов
         res.send('Opps, error!');
     })
 })});
+
+
+
 app.use(function(req, res, next) {
   const err = new Error('Not Found');
   err.status = 404;

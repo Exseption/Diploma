@@ -22,6 +22,10 @@ angular.module('legal').controller('CabinetController', function (QueryService, 
         $mdDialog.hide();
     };
 
+    self.regUser = function (name) {
+        alert(name)
+    };
+
     self.editUser = function (user) {
         $mdDialog.show({
             controller: function(){

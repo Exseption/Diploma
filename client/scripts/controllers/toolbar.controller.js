@@ -20,6 +20,25 @@ angular.module('legal').controller('ToolbarController', function ($mdDialog, $md
                 });
     };
 
+    self.register = function () {
+        $mdDialog.show({
+            controller: 'CabinetController',
+            controllerAs: 'cc',
+            templateUrl: '../../templates/create-user.html',
+            parent: angular.element(document.body),
+            clickOutsideToClose:true
+        })
+            .then(function() {
+
+                },
+                function() {
+
+                });
+    };
+
+
+
+
     self.logout = function () {
         $cookies.remove('auth-user');
     }
