@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>IWS</title>
+    <title>Центр правовых консультаций</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     <link rel="stylesheet" href="css/angular-material.min.css">
     <link rel="stylesheet" href="css/md-data-table.min.css">
     <link rel="stylesheet" href="css/ng-animation.css">
     <link rel="stylesheet" href="css/style.css">
-
 </head>
 <body ng-cloak>
+
 <div ng-controller="SidenavController as snc">
     <md-sidenav class="md-sidenav-left" md-component-id="left" >
         <md-toolbar class="md-hue-2">
@@ -35,57 +35,81 @@
             <md-button ui-sref="users" ng-click="snc.toggleMenu()">Специалисты</md-button>
         </div>
     </md-sidenav>
-
-
 </div>
-
-<header>
-    <md-toolbar class="md-hue-2">
-        <div class="md-toolbar-tools" ng-controller="ToolbarController as tbc">
-            <md-button class="md-icon-button" aria-label="Главная">
-                <md-icon md-svg-icon="./img/ic_account_balance_48px.svg"></md-icon>
-            </md-button>
-            <h2 flex>.iws</h2>
-            <md-button ng-click="tbc.toggleMenu()">Меню</md-button>
-            <md-button>
-                Поиск
-                <md-icon md-svg-icon="./img/ic_search_24px.svg"></md-icon>
-            </md-button>
-            <md-button>Задать вопрос <md-icon md-svg-icon="./img/ic_help_outline_24px.svg"></md-icon></md-button>
-            <!--<md-button ui-sref="cabinet">Личный кабинет </md-button>-->
-
-            <md-button ng-click="tbc.auth()">Войти
-                <md-icon md-svg-icon="./img/ic_assignment_ind_48px.svg">
-                </md-icon>
-            </md-button>
-            <md-button ng-click="tbc.register()">Регистрация
-                <md-icon md-svg-icon="./img/ic_assignment_ind_48px.svg">
-                </md-icon>
-            </md-button>
-
-
-        </div>
-    </md-toolbar>
-    <div layout-align="center" layout="row">
-        <md-content>
-
+<md-content layout="row">
+    <md-sidenav
+            class="md-sidenav-left"
+            md-component-id="left"
+            md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="1">
+        <md-content layout="column">
+            <md-toolbar class="md-hue-2">
+                <div class="md-toolbar-tools">
+                    <md-button class="md-icon-button" aria-label="Главная">
+                        <md-icon md-svg-icon="./img/ic_account_balance_48px.svg"></md-icon>
+                    </md-button>
+                    <h5 flex>Центр правовых консультаций</h5>
+                </div>
+            </md-toolbar>
+            <md-button ui-sref="index">Главная</md-button>
+            <md-button ui-sref="library">Библиотека</md-button>
+            <md-button ui-sref="users">Пользователи</md-button>
         </md-content>
-    </div>
-</header>
-<main flex layout-fill>
-    <div class="md-body-1" layout="column" layout-fill>
-        <div layout="row">
-            <div flex="5"></div>
-            <div flex="flex">
-                <div class="card-ui-view">
-                    <div ui-view>
+    </md-sidenav>
+    <div flex layout="column">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools" ng-controller="ToolbarController as tbc">
+                <md-button ng-click="tbc.toggleMenu()">Меню</md-button>
+                <md-button>
+                    Поиск
+                    <md-icon md-svg-icon="./img/ic_search_24px.svg"></md-icon>
+                </md-button>
+                <md-button>Задать вопрос <md-icon md-svg-icon="./img/ic_help_outline_24px.svg"></md-icon></md-button>
+                <!--<md-button ui-sref="cabinet">Личный кабинет </md-button>-->
+
+                <md-button ng-click="tbc.auth()">Войти
+                    <md-icon md-svg-icon="./img/ic_assignment_ind_48px.svg">
+                    </md-icon>
+                </md-button>
+                <md-button ng-click="tbc.register()">Регистрация
+                    <md-icon md-svg-icon="./img/ic_assignment_ind_48px.svg">
+                    </md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div layout-align="center" layout="row">
+            <md-content>
+            </md-content>
+        </div>
+        <div flex layout="row">
+            <main flex layout-fill md-whiteframe="1">
+            <div class="md-body-1" layout="column" layout-fill>
+                <div layout="row">
+
+                    <div flex="flex">
+                        <div>
+                            <div ui-view>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div flex="5"></div>
+        </main>
+
+            <md-sidenav
+                    class="md-sidenav-right"
+                    md-component-id="left"
+                    md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="1">
+                <md-content layout="column">
+
+                    <md-button ui-sref="index">Другие меню</md-button>
+
+                </md-content>
+            </md-sidenav>
+
         </div>
+
     </div>
-</main>
+</md-content>
 <!--<footer>-->
     <!--<md-toolbar class="md-scroll-shrink" >-->
         <!--<div layout="row" layout-align="center center" flex class="md-body-1">-->

@@ -11,29 +11,29 @@ footer {
     background-color: #ccc;
 }
 
-.my_border {
-    border: solid 1px #D7D7D7;
-    border-radius: 5px;
+/*.my_border {*/
+    /*border: solid 1px #D7D7D7;*/
+    /*border-radius: 5px;*/
 
 
-}
-.my_border_left {
-    border: solid 1px #D7D7D7;
-    border-radius: 5px;
-    margin-left: 2px;
+/*}*/
+/*.my_border_left {*/
+    /*border: solid 1px #D7D7D7;*/
+    /*border-radius: 5px;*/
+    /*margin-left: 2px;*/
 
-}
-.cat_item {
-    padding: 0;
-    margin: 0px;
+/*}*/
+/*.cat_item {*/
+    /*padding: 0;*/
+    /*margin: 0px;*/
 
-}
+/*}*/
 
-.my_border_right {
-    border: solid 1px #D7D7D7;
-    border-radius: 5px;
-    margin-left: 2px;
-}
+/*.my_border_right {*/
+    /*border: solid 1px #D7D7D7;*/
+    /*border-radius: 5px;*/
+    /*margin-left: 2px;*/
+/*}*/
 
 
 #tb-search {
