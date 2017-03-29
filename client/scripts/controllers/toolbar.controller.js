@@ -3,7 +3,6 @@ angular.module('legal').controller('ToolbarController', function ($mdDialog, $md
     self.toggleMenu = function() {
         $mdSidenav('left').toggle();
     };
-
     self.auth = function() {
         $mdDialog.show({
             controller: 'CabinetController',
@@ -19,7 +18,6 @@ angular.module('legal').controller('ToolbarController', function ($mdDialog, $md
 
                 });
     };
-
     self.register = function () {
         $mdDialog.show({
             controller: 'CabinetController',
@@ -35,10 +33,6 @@ angular.module('legal').controller('ToolbarController', function ($mdDialog, $md
 
                 });
     };
-
-
-
-
     self.logout = function () {
         $cookies.remove('auth-user');
     }

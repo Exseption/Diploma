@@ -10,8 +10,147 @@
     <link rel="stylesheet" href="css/ng-animation.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body ng-cloak>
+<body>
+<div ng-controller="ToolbarController as tbc">
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Главная" ng-click="tbc.toggleMenu()">
+                <md-icon md-svg-icon="./img/ic_menu_24px.svg"></md-icon>
+            </md-button>
+            <h5 flex>Центр правовых консультаций</h5>
+            <md-button ng-click="tbc.toggleMenu()">Меню</md-button>
+            <md-button>Поиск
+                <md-icon md-svg-icon="./img/ic_search_24px.svg"></md-icon>
+            </md-button>
+            <md-button>Задать вопрос <md-icon md-svg-icon="./img/ic_help_outline_24px.svg"></md-icon></md-button>
+            <md-button ng-click="tbc.auth()">Войти
+                <md-icon md-svg-icon="./img/ic_assignment_ind_48px.svg">
+                </md-icon>
+            </md-button>
+            <md-button ng-click="tbc.register()">Регистрация
+                <md-icon md-svg-icon="./img/ic_assignment_ind_48px.svg">
+                </md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
 
+    <md-toolbar class="md-menu-toolbar">
+        <div>
+            <md-menu-bar>
+                <md-menu>
+                    <button ui-sref="index">Главная</button>
+                    <md-menu-content>
+                    </md-menu-content>
+                </md-menu>
+                <md-menu>
+                    <button ng-click="$mdMenu.open()">
+                        Вопросы
+                    </button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-menu>
+                                <md-button ng-click="$mdMenu.open()">Новый</md-button>
+                                <md-menu-content>
+                                    <md-menu-item><md-button ng-click="ctrl.sampleAction('New Question', $event)">Вопрос</md-button></md-menu-item>
+                                    <md-menu-item><md-button ng-click="ctrl.sampleAction('New File', $event)">Загрузить файл</md-button></md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button>
+                                Правовая информация
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-menu>
+                                <md-button ng-click="$mdMenu.open()">Топ</md-button>
+                                <md-menu-content width="3">
+                                    <md-menu-item><md-button ng-click="ctrl.sampleAction('Bills', $event)">Все вопросы</md-button></md-menu-item>
+                                    <md-menu-item><md-button ng-click="ctrl.sampleAction('Practice', $event)">Последние</md-button></md-menu-item>
+                                    <md-menu-item><md-button ng-click="ctrl.sampleAction('Templates', $event)">Поиск</md-button></md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item type="checkbox" ng-model="ctrl.settings.fullScreen">О рейтингах...</md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                <md-menu>
+                    <button ng-click="$mdMenu.open()">
+                        Библиотека
+                    </button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button ui-sref="library">Перейти в библиотеку
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button>
+                                Поиск
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <md-menu>
+                                <md-button ng-click="$mdMenu.open()">Категории</md-button>
+                                <md-menu-content>
+                                    <md-menu-item><md-button ng-click="ctrl.sampleAction('Bills', $event)">Законодательства</md-button></md-menu-item>
+                                    <md-menu-item><md-button ng-click="ctrl.sampleAction('Practice', $event)">Судебная практика</md-button></md-menu-item>
+                                    <md-menu-item><md-button ng-click="ctrl.sampleAction('Templates', $event)">Образцы бланков, документов</md-button></md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                <md-menu>
+                    <button ng-click="$mdMenu.open()">
+                        Рейтинги
+                    </button>
+                    <md-menu-content>
+
+                        <md-menu-item class="md-indent">
+                            <md-menu>
+                                <md-button ng-click="$mdMenu.open()">Топ</md-button>
+                                <md-menu-content width="3">
+                                    <md-menu-item><md-button ng-click="ctrl.sampleAction('Bills', $event)">Отвечающих</md-button></md-menu-item>
+                                    <md-menu-item><md-button ng-click="ctrl.sampleAction('Practice', $event)">Вопросов</md-button></md-menu-item>
+                                    <md-menu-item><md-button ng-click="ctrl.sampleAction('Templates', $event)">Скачиваний ресурсов</md-button></md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item><md-button>О рейтингах...</md-button></md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                <md-menu>
+                    <button>Справка</button>
+                    <md-menu-content>
+                    </md-menu-content>
+                </md-menu>
+            </md-menu-bar>
+        </div>
+    </md-toolbar>
+
+
+
+
+</div>
+
+
+
+
+<main>
+    <div class="md-body-1" layout="column" layout-fill>
+        <div layout="row">
+            <div flex="flex">
+                <div>
+                    <div ui-view>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 <div ng-controller="SidenavController as snc">
     <md-sidenav class="md-sidenav-left" md-component-id="left" >
         <md-toolbar class="md-hue-2">
@@ -30,86 +169,27 @@
             </div>
         </md-toolbar>
         <div layout-align="center" layout="column">
-            <md-button  ui-sref="index" ng-click="snc.toggleMenu()">Главная</md-button>
-            <md-button  ui-sref="library" ng-click="snc.toggleMenu()">Библиотека</md-button>
-            <md-button ui-sref="users" ng-click="snc.toggleMenu()">Специалисты</md-button>
+            <md-button ng-click="snc.toggleMenu()">Мои вопросы</md-button>
+            <md-button ng-click="snc.toggleMenu()">Сообщения</md-button>
         </div>
     </md-sidenav>
 </div>
-<md-content layout="row">
-    <md-sidenav
-            class="md-sidenav-left"
-            md-component-id="left"
-            md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="1">
-        <md-content layout="column">
-            <md-toolbar class="md-hue-2">
-                <div class="md-toolbar-tools">
-                    <md-button class="md-icon-button" aria-label="Главная">
-                        <md-icon md-svg-icon="./img/ic_account_balance_48px.svg"></md-icon>
-                    </md-button>
-                    <h5 flex>Центр правовых консультаций</h5>
-                </div>
-            </md-toolbar>
-            <md-button ui-sref="index">Главная</md-button>
-            <md-button ui-sref="library">Библиотека</md-button>
-            <md-button ui-sref="users">Пользователи</md-button>
-        </md-content>
-    </md-sidenav>
-    <div flex layout="column">
-        <md-toolbar class="md-hue-2">
-            <div class="md-toolbar-tools" ng-controller="ToolbarController as tbc">
-                <md-button ng-click="tbc.toggleMenu()">Меню</md-button>
-                <md-button>
-                    Поиск
-                    <md-icon md-svg-icon="./img/ic_search_24px.svg"></md-icon>
-                </md-button>
-                <md-button>Задать вопрос <md-icon md-svg-icon="./img/ic_help_outline_24px.svg"></md-icon></md-button>
-                <!--<md-button ui-sref="cabinet">Личный кабинет </md-button>-->
 
-                <md-button ng-click="tbc.auth()">Войти
-                    <md-icon md-svg-icon="./img/ic_assignment_ind_48px.svg">
-                    </md-icon>
-                </md-button>
-                <md-button ng-click="tbc.register()">Регистрация
-                    <md-icon md-svg-icon="./img/ic_assignment_ind_48px.svg">
-                    </md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
-        <div layout-align="center" layout="row">
-            <md-content>
-            </md-content>
-        </div>
-        <div flex layout="row">
-            <main flex layout-fill md-whiteframe="1">
-            <div class="md-body-1" layout="column" layout-fill>
-                <div layout="row">
+    <!--<md-sidenav-->
+            <!--class="md-sidenav-left"-->
+            <!--md-component-id="left"-->
+            <!--md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="1">-->
+        <!--<md-content layout="column">-->
+            <!--<md-toolbar class="md-hue-2">-->
 
-                    <div flex="flex">
-                        <div>
-                            <div ui-view>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
+            <!--</md-toolbar>-->
+            <!--<md-button ui-sref="index">Главная</md-button>-->
+            <!--<md-button ui-sref="library">Библиотека</md-button>-->
+            <!--<md-button ui-sref="users">Пользователи</md-button>-->
+        <!--</md-content>-->
+    <!--</md-sidenav>-->
 
-            <md-sidenav
-                    class="md-sidenav-right"
-                    md-component-id="left"
-                    md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="1">
-                <md-content layout="column">
 
-                    <md-button ui-sref="index">Другие меню</md-button>
-
-                </md-content>
-            </md-sidenav>
-
-        </div>
-
-    </div>
-</md-content>
 <!--<footer>-->
     <!--<md-toolbar class="md-scroll-shrink" >-->
         <!--<div layout="row" layout-align="center center" flex class="md-body-1">-->
