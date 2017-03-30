@@ -1,25 +1,25 @@
 
 <div class="md-body-1" layout="column">
   <div layout="row">
-    <div class="my_border" flex="25">
-      <div layout="column" layout-align="none">
-        <div class="md-caption" layout="row" layout-align="center" style="background-color: #D7D7D7; border-radius: 3px 5px 0px 0px;">Категории</div>
-        <md-button class="cat_item">Кодексы</md-button>
-        <md-button class="cat_item">Справочники</md-button>
-        <md-button class="cat_item">Сборники</md-button>
-        <md-button class="cat_item">Законодательства</md-button>
-      </div>
-    </div>
-    <div class="my_border_right" flex="flex">
+    <div flex="flex">
       <div layout="row" layout-align="center">Библиотека</div>
       <div class="md-content" ng-repeat="q in mc.questions">
-        <div class="quest" layout="row" layout-align=" center">
+        <div layout="row" layout-align=" center">
           <div ui-sref="question({id : q.id})">{{q.title}}</div>
-          <div class="ans_count">Ответов</div>
-          <div class="date_of_q">{{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
-          <div class="price_q">{{q.price}}</div>
+          <div>Ответов</div>
+          <div>{{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
+          <div>{{q.price}}</div>
         </div>
       </div>
     </div>
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+      <md-content layout="column">
+        <md-toolbar class="md-hue-2">
+          <div class="md-toolbar-tools">
+            <div class="md-title">Категории</div>
+          </div>
+        </md-toolbar><a>Кодексы</a><a>Справочники</a><a>Сборники</a><a>Законодательства</a>
+      </md-content>
+    </md-sidenav>
   </div>
 </div>

@@ -32,7 +32,6 @@
         };
 
 // ============================================================================================================
-        // получаем ресурсы
 
 
         self.getMessages = function () {
@@ -44,7 +43,8 @@
                 .post(undefined, {answer: answer, id: id});
         };
 
-
-
+        self.getMessages = function (id) { // получить сообщения пользователя
+            return Restangular.oneUrl('ten', url + id + '/messages').get();
+        }
     });
 })();

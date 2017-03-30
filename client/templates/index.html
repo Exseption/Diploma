@@ -1,17 +1,32 @@
+
 <div class="md-body-1" layout="column">
-  <div layout="row">
-    <div class="my_border" flex="flex">
-      <md-content></md-content>
-      <div layout="row" layout-align="center">
-        <div class="md-title layout-padding">Последние вопросы</div>
-      </div>
-      <div class="md-body-1" ng-repeat="q in mc.questions">
-        <div class="quest head_link" layout="row" layout-align=" center">
-          <div ui-sref="question({id : q.id})">{{q.title}}</div>
-          <div>{{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
-          <div>{{q.price}}</div>
+  <md-toolbar style="background-color: #4AA02C;">
+    <div class="md-toolbar-tools">Последние вопросы</div>
+  </md-toolbar>
+  <md-content>
+    <md-list flex="flex">
+      <md-list-item class="md-3-line" ng-repeat="q in mc.questions" ng-click="null" ui-sref="question({id : q.id})">
+        <div class="md-list-item-text" layout="column">
+          <div class="md-title">{{q.title}}</div>
+          <div class="md-caption">{{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
+          <p>{{q.price}}</p>
+          <div class="md-body-1">{{q.content | limitTo: 170}}...</div>
         </div>
-      </div>
-    </div>
-  </div>
+      </md-list-item>
+    </md-list>
+  </md-content>
 </div>
+<!---->
+<!--div(flex='')-->
+<!--    md-toolbar.md-hue-3(layout='row')-->
+<!--        .md-toolbar-tools-->
+<!--            span Normal-->
+<!--    md-content-->
+<!--        md-list(flex='')-->
+<!--            md-subheader.md-no-sticky 3 line item (with hover)-->
+<!--            md-list-item.md-3-line(ng-repeat='item in todos', ng-click='null')-->
+<!--                .md-list-item-text(layout='column')-->
+<!--                    h3 {{ item.who }}-->
+<!--                    h4 {{ item.what }}-->
+<!--                    p {{ item.notes }}-->
+<!--            md-divider-->

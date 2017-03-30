@@ -10,6 +10,29 @@ html {
 footer {
     background-color: #ccc;
 }
+a:hover {
+    cursor: pointer;
+    background: #dddddd;
+}
+ a {
+    border-left:2px solid transparent;
+    color:#212121;
+    display:block;
+    font-weight:400;
+    letter-spacing:.1px;
+    padding:10px 10px 10px 46px;
+    text-overflow:ellipsis
+}
+a {
+    padding-top:10px;
+    padding-bottom:15px;
+    text-decoration: none;
+}
+
+
+.last-questions {
+    background-color: #4AA02C;
+}
 
 /*.my_border {*/
     /*border: solid 1px #D7D7D7;*/

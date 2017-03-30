@@ -1,14 +1,33 @@
 
 
 div.md-body-1(layout='column')
-    div(layout='row')
-        div.my_border(flex)
-            md-content
-            div(layout='row', layout-align='center')
-                div.md-title.layout-padding Последние вопросы
-            .md-body-1(ng-repeat='q in mc.questions')
-                div.quest.head_link(layout='row', layout-align=' center')
-                    div(ui-sref='question({id : q.id})') {{q.title}}
-                    div {{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
-                    div {{q.price}}
-        div.my_border_left(flex='25')
+
+        md-toolbar(style='background-color: #4AA02C;')
+            .md-toolbar-tools
+                | Последние вопросы
+        md-content
+            md-list(flex)
+                md-list-item.md-3-line(ng-repeat='q in mc.questions', ng-click='null', ui-sref='question({id : q.id})')
+                    .md-list-item-text(layout='column')
+                        .md-title {{q.title}}
+                        .md-caption {{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
+                        p {{q.price}}
+                        .md-body-1 {{q.content | limitTo: 170}}...
+
+
+
+
+//
+//div(flex='')
+//    md-toolbar.md-hue-3(layout='row')
+//        .md-toolbar-tools
+//            span Normal
+//    md-content
+//        md-list(flex='')
+//            md-subheader.md-no-sticky 3 line item (with hover)
+//            md-list-item.md-3-line(ng-repeat='item in todos', ng-click='null')
+//                .md-list-item-text(layout='column')
+//                    h3 {{ item.who }}
+//                    h4 {{ item.what }}
+//                    p {{ item.notes }}
+//            md-divider

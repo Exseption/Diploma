@@ -23,7 +23,7 @@ angular
     .module('legal')
     .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
-             .primaryPalette('teal')
+              // .primaryPalette('grey')
             // .accentPalette('orange')
             // .warnPalette('red');
     });
@@ -40,6 +40,13 @@ angular.module('legal')
                 url:'/index',
                 templateUrl:'../templates/index.html'
             })
+            .state('messages', {
+                controller:'MessageController',
+                controllerAs: 'mc',
+                url:'/:id/messages',
+                templateUrl: '../templates/messages.html'
+            })
+
             .state('library',{
                 controller: 'LibraryController',
                 controllerAs: '',
