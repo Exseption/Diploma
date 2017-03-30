@@ -103,9 +103,9 @@ app.post('api/v1/vote/minus', function (req, res) { //голосуем за от
 });
 app.get('/api/v1/:id/messages', function (req, res) { // получить сообщения
 // для пользователя, где он участвует как адресант или адресат
-   sequelize.query('SELECT * FROM message as m WHERE m.dialog in ' +
-       '(SELECT m.dialog FROM message as m WHERE m.sender = $1 OR m.destination = $1)',
-       {bind: [req.params.id],
+   sequelize.query('SELECT * FROM message',
+       {
+           // bind: [req.params.id],
            type: sequelize.QueryTypes.SELECT}).then(function (results) {
        res.send(results);
    })

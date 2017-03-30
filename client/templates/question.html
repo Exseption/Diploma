@@ -1,20 +1,18 @@
 
-<div class="md-body-1" layout="column">
+<div class="md-body-1" layout="column" style="background-color: white;">
   <div layout="row">
     <div flex="flex" style="margin-top: 10px;">
-      <div class="quest my_border">
-        <div class="quest_container">
-          <div class="md-subhead quest_head">{{qc.question.title}}</div>
-          <div class="md-caption date_under_head">{{qc.question.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
-          <div class="md-body-1 quest_body">{{qc.question.content}}</div>
-        </div>
-        <div layout="row" layout-align="end">
-          <div class="md-caption price_quest">Цена вопроса: {{qc.question.price}}</div>
+      <div>
+        <div>
+          <div class="md-subhead">{{qc.question.title}}</div>
+          <div class="md-caption">{{qc.question.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
+          <div class="md-body-1">{{qc.question.content}}</div>
+          <div class="md-caption">Цена вопроса: {{qc.question.price}}</div>
         </div>
         <div layout="column">
           <div class="md-body-2">Ответы</div>
           <div ng-repeat="ans in qc.answers">
-            <div class="ans_body">
+            <div>
               <div class="md-body-1">{{$index+1}}. {{ans.content}}</div>
               <div class="md-body-1">Оценка {{ans.rating}}</div>
               <div layout-align="row">{{ans.grade}}
@@ -39,6 +37,5 @@
         </div>
       </div>
     </div>
-    <div class="my_border_left" flex="25" style="margin-top: 10px;"></div>
   </div>
 </div>

@@ -1,19 +1,17 @@
-div.md-body-1(layout='column')
+div.md-body-1(layout='column', style='background-color: white')
     div(layout='row')
         div(flex, style='margin-top: 10px')
-            div.quest.my_border
-                div.quest_container
-                    .md-subhead.quest_head {{qc.question.title}}
-                    .md-caption.date_under_head {{qc.question.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
-                    .md-body-1.quest_body {{qc.question.content}}
-                div(layout='row', layout-align='end')
-                    .md-caption.price_quest Цена вопроса: {{qc.question.price}}
+            div
+                div
+                    .md-subhead {{qc.question.title}}
+                    .md-caption {{qc.question.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
+                    .md-body-1 {{qc.question.content}}
+                    .md-caption Цена вопроса: {{qc.question.price}}
                 div(layout='column')
                     .md-body-2
                         | Ответы
                     div(ng-repeat='ans in qc.answers')
-                        div.ans_body
-
+                        div
                             .md-body-1
                                 | {{$index+1}}. {{ans.content}}
                             .md-body-1
@@ -24,7 +22,6 @@ div.md-body-1(layout='column')
                                     md-icon(md-svg-icon='./img/ic_add_black_24px.svg')
                                 md-button -
                             .md-caption(layout='row', layout-align='end') {{ans.date_of_answer | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}} {{ans.name | limitTo: 1}}. {{ans.patronym | limitTo: 1}}. {{ans.surname}}
-
                 div(layout='column')
                     .md-body-2
                         | Дать свой ответ
@@ -35,4 +32,3 @@ div.md-body-1(layout='column')
                         //input#input-file-id.ng-hide(multiple='', type='file',ng-model='answer_files')
                         //label.md-button.md-raised(for='input-file-id') Выбрать файлы
                         md-button.md-raised.ans_butt(layout-align='end end', ng-click='qc.answer(answer_text, asnwer_files)') Отправить
-        div.my_border_left(flex='25', style='margin-top: 10px')

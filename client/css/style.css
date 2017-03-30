@@ -1,5 +1,9 @@
 html {
     overflow: scroll;
+
+}
+body {
+    background-color: whitesmoke;
 }
 .quest {
     padding: 5px 25px;
@@ -29,6 +33,17 @@ a {
     text-decoration: none;
 }
 
+.beeline-tb {
+    background-color: orange !important;
+    color: #000000 !important;
+}
+
+.light-tb {
+    background-color: white !important;
+    color: #000000 !important;
+
+
+}
 
 .last-questions {
     background-color: #4AA02C;
