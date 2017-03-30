@@ -8,8 +8,21 @@ html {
 .menu-but:hover {
     background-color: #eeeeee;
 }
+
 body {
     background-color: whitesmoke;
+}
+.mess-container {
+    padding:10px 15px;
+    margin: 8px;
+    background-color: white;
+}
+
+textarea {
+    resize: none;
+}
+.mess-field {
+    margin: 8px;
 }
 .quest {
     padding: 5px 25px;
@@ -47,37 +60,13 @@ a {
 .light-tb {
     background-color: white !important;
     color: #000000 !important;
-
-
 }
+
+
 
 .last-questions {
     background-color: #4AA02C;
 }
-
-/*.my_border {*/
-    /*border: solid 1px #D7D7D7;*/
-    /*border-radius: 5px;*/
-
-
-/*}*/
-/*.my_border_left {*/
-    /*border: solid 1px #D7D7D7;*/
-    /*border-radius: 5px;*/
-    /*margin-left: 2px;*/
-
-/*}*/
-/*.cat_item {*/
-    /*padding: 0;*/
-    /*margin: 0px;*/
-
-/*}*/
-
-/*.my_border_right {*/
-    /*border: solid 1px #D7D7D7;*/
-    /*border-radius: 5px;*/
-    /*margin-left: 2px;*/
-/*}*/
 
 
 #tb-search {

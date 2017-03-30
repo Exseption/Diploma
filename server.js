@@ -5,6 +5,7 @@ cookieParser = require('cookie-parser'),
 bodyParser = require('body-parser'),
 session = require('express-session'),
 app = express();
+
 const Sequelize = require('sequelize');
 const methodOverride = require('method-override');
 app.use(express.static(path.join(__dirname, 'client')));
@@ -103,9 +104,9 @@ app.post('api/v1/vote/minus', function (req, res) { //голосуем за от
 });
 app.get('/api/v1/:id/messages', function (req, res) { // получить сообщения
 // для пользователя, где он участвует как адресант или адресат
-   sequelize.query('SELECT * FROM message',
+   sequelize.query('SELECT person.surname, person.name, person.patronym, message.body, message.date_of_create FROM public.message, public.person WHERE person.id = message.sender AND dialog = $1',
        {
-           // bind: [req.params.id],
+           bind: [req.params.id],
            type: sequelize.QueryTypes.SELECT}).then(function (results) {
        res.send(results);
    })
@@ -121,6 +122,10 @@ app.post('/api/v1/create/question', function (req, res) { //создаем во�
         .then(function (result) {
             res.send(result)
         });
+
+
+
+
 app.post('/api/v1/create/person', function (req, res) { // создаем нового пользователя
     // регистрация и из админки продумать
     sequelize.query('INSERT INTO public.person(login, password, surname, name, patronym, birthday, date_of_registration, active, rating, usergroup, telephone, area, city, country, document) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)',
