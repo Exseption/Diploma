@@ -33,63 +33,57 @@
         </div>
     </md-toolbar>
     <div layout="row" layout-align="center center">
-
-
             <md-toolbar class="md-menu-toolbar beeline-tb" style="min-height: 0">
                 <div>
                     <md-menu-bar>
-                        <md-menu>
-                            <button ui-sref="index">Главная</button>
-                        </md-menu>
-                        <md-menu>
-                            <button ng-click="$mdMenu.open()">
+                        <!--<md-menu>-->
+                            <button ui-sref="index" class="menu-but">Главная</button>
+                        <!--</md-menu>-->
+                        <!--<md-menu>-->
+                            <button class="menu-but">
                                 Вопросы
                             </button>
-                            <md-menu-content>
-                                <md-menu-item>
-                                    <md-menu>
-                                        <md-button ng-click="$mdMenu.open()">Новый</md-button>
-                                        <md-menu-content>
-                                            <md-menu-item><md-button>Вопрос</md-button></md-menu-item>
-                                            <md-menu-item><md-button>Загрузить файл</md-button></md-menu-item>
-                                        </md-menu-content>
-                                    </md-menu>
-                                </md-menu-item>
-                                <md-menu-item>
-                                    <md-button>
-                                        Правовая информация
-                                    </md-button>
-                                </md-menu-item>
+                            <!--<md-menu-content>-->
+                                <!--<md-menu-item>-->
+                                    <!--<md-menu>-->
+                                        <!--<md-button ng-click="$mdMenu.open()">Новый</md-button>-->
+                                        <!--<md-menu-content>-->
+                                            <!--<md-menu-item><md-button>Вопрос</md-button></md-menu-item>-->
+                                            <!--<md-menu-item><md-button>Загрузить файл</md-button></md-menu-item>-->
+                                        <!--</md-menu-content>-->
+                                    <!--</md-menu>-->
+                                <!--</md-menu-item>-->
+                                <!--<md-menu-item>-->
+                                    <!--<md-button>-->
+                                        <!--Правовая информация-->
+                                    <!--</md-button>-->
+                                <!--</md-menu-item>-->
+                                <!--<md-menu-divider></md-menu-divider>-->
+                                <!--<md-menu-item><md-button>О рейтингах...</md-button></md-menu-item>-->
+                            <!--</md-menu-content>-->
+                        <!--</md-menu>-->
 
-                                <md-menu-divider></md-menu-divider>
-                                <md-menu-item><md-button>О рейтингах...</md-button></md-menu-item>
-                            </md-menu-content>
-                        </md-menu>
-                        <md-menu>
-                            <button ui-sref="library">
+                            <button ui-sref="library" class="menu-but">
                                 Библиотека
                             </button>
-                        </md-menu>
-                        <md-menu>
-                            <button ng-click="$mdMenu.open()">
+
+                        <!--<md-menu>-->
+                            <button class="menu-but">
                                 Рейтинги
                             </button>
-                            <md-menu-content>
-                                <md-menu-item><md-button>Отвечающих</md-button></md-menu-item>
-                                <md-menu-item><md-button>Вопросов</md-button></md-menu-item>
-                                <md-menu-item><md-button>Скачиваний ресурсов</md-button></md-menu-item>
-                                <md-menu-divider></md-menu-divider>
-                                <md-menu-item><md-button>О рейтингах...</md-button></md-menu-item>
-                            </md-menu-content>
-                        </md-menu>
-                        <md-menu>
-                            <button>Справка</button>
-                        </md-menu>
+                            <!--<md-menu-content>-->
+                                <!--<md-menu-item><md-button>Отвечающих</md-button></md-menu-item>-->
+                                <!--<md-menu-item><md-button>Вопросов</md-button></md-menu-item>-->
+                                <!--<md-menu-item><md-button>Скачиваний ресурсов</md-button></md-menu-item>-->
+                                <!--<md-menu-divider></md-menu-divider>-->
+                                <!--<md-menu-item><md-button>О рейтингах...</md-button></md-menu-item>-->
+                            <!--</md-menu-content>-->
+                        <!--</md-menu>-->
+                            <button class="menu-but">Справка</button>
                     </md-menu-bar>
                 </div>
             </md-toolbar>
     </div>
-
 </div>
 <main>
     <div class="md-body-1" layout-fill>
@@ -97,7 +91,7 @@
             <div flex="10"></div>
 
             <div flex>
-                    <div ui-view md-whiteframe="4">
+                    <div ui-view>
                     </div>
             </div>
             <div flex="10"></div>
