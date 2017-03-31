@@ -33,11 +33,18 @@ textarea {
 footer {
     background-color: #ccc;
 }
-a:hover {
+
+a.user-link {
+    text-decoration: none;
+    color: #212121;
+    font-weight: bolder;
+}
+
+a.like-button:hover {
     cursor: pointer;
     background: #dddddd;
 }
- a {
+ a.like-button {
     border-left:2px solid transparent;
     color:#212121;
     display:block;
@@ -45,8 +52,9 @@ a:hover {
     letter-spacing:.1px;
     padding:10px 10px 10px 46px;
     text-overflow:ellipsis
+
 }
-a {
+a.like-button {
     padding-top:10px;
     padding-bottom:15px;
     text-decoration: none;

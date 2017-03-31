@@ -2,12 +2,11 @@
 <div class="md-body-1" layout="column" style="background-color: white;">
   <div layout="row">
     <div flex="flex" style="margin-top: 10px;">
-      <div>
+      <div layout-margin="layout-margin">
         <div>
-          <div class="md-subhead">{{qc.question.title}}</div>
+          <div class="md-title">{{qc.question.title}}</div><a class="user-link md-caption" href="#">{{qc.question.name | limitTo: 1}}. {{qc.question.patronym | limitTo: 1}}. {{qc.question.surname}}</a>
           <div class="md-caption">{{qc.question.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
           <div class="md-body-1">{{qc.question.content}}</div>
-          <div class="md-caption">Цена вопроса: {{qc.question.price}}</div>
         </div>
         <div layout="column">
           <div class="md-body-2">Ответы</div>

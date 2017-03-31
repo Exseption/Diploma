@@ -1,12 +1,14 @@
 div.md-body-1(layout='column', style='background-color: white')
     div(layout='row')
         div(flex, style='margin-top: 10px')
-            div
+            div(layout-margin)
                 div
-                    .md-subhead {{qc.question.title}}
+                    .md-title {{qc.question.title}}
+                    a.user-link(href='#').md-caption {{qc.question.name | limitTo: 1}}. {{qc.question.patronym | limitTo: 1}}. {{qc.question.surname}}
                     .md-caption {{qc.question.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
                     .md-body-1 {{qc.question.content}}
-                    .md-caption Цена вопроса: {{qc.question.price}}
+
+
                 div(layout='column')
                     .md-body-2
                         | Ответы

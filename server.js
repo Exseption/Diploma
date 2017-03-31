@@ -23,14 +23,19 @@ app.disable('x-powered-by');
 const sequelize = new Sequelize('postgres://postgres:qwerty@localhost:5432/legal');
 app.get('/api/v1/questions', function (req, res) { // получаем вопросы
     sequelize
-        .query('SELECT question.id, question.title, question.content, question.date_of_create, question.price, question.closed, question.payable, person.name, person.patronym, person.surname FROM public.person, public.question WHERE person.id = question.author ORDER BY question.date_of_create ASC;', {type: sequelize.QueryTypes.SELECT})
+        .query('SELECT question.id, question.title, question.content, question.date_of_create, ' +
+            'question.price, question.closed, question.payable, person.name, person.patronym, ' +
+            'person.surname FROM public.person, public.question WHERE person.id = question.author ' +
+            'ORDER BY question.date_of_create ASC;', {type: sequelize.QueryTypes.SELECT})
         .then(function (result) {
             res.send(result);
     })
 });
 
 app.get('/api/v1/question/:id', function (req, res) { // получаем вопрос по id
-   sequelize.query('SELECT question.id, question.title, question.content, question.date_of_create, question.price, question.closed, question.payable, person.name, person.patronym, person.surname FROM public.person, public.question WHERE person.id = question.author AND  question.id = ' + req.params.id,
+   sequelize.query('SELECT question.id, question.title, question.content, question.date_of_create, ' +
+       'question.price, question.closed, question.payable, person.name, person.patronym,' +
+       ' person.surname FROM public.person, public.question WHERE person.id = question.author AND  question.id = ' + req.params.id,
        {type: sequelize.QueryTypes.SELECT})
        .then(function (result) {
            res.send(result[0]);
