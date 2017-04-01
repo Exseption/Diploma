@@ -38,44 +38,60 @@ angular.module('legal')
                 controller: 'MainController',
                 controllerAs: 'mc',
                 url:'/index',
-                templateUrl:'../templates/index.html'
+                templateUrl:'templates/index.html'
             })
             .state('messages', {
                 controller:'MessageController',
                 controllerAs: 'mc',
                 url:'/:id/messages',
-                templateUrl: '../templates/messages.html'
+                templateUrl: 'templates/messages.html'
             })
+            .state('dialogs', {
 
+                            controller: 'MessageController',
+                            controllerAs: 'mc',
+                            url: '/:id/dialog/:dialog/messages',
+                            templateUrl: 'templates/dialog.html'
+
+
+
+            })
+            .state('user/questions', {
+                // controller:'CabinetController',
+                // controllerAs: 'cc',
+                url:'user/:id/questions',
+                templateUrl: 'templates/my-questions.html'
+
+            })
             .state('library',{
                 controller: 'LibraryController',
                 controllerAs: '',
                 url:'/library',
-                templateUrl:'../templates/library.html'
+                templateUrl:'templates/library.html'
             })
             .state('question', {
                 controller: 'QuestionController',
                 controllerAs: 'qc',
                 url: '/question/:id',
-                templateUrl: '../templates/question.html'
+                templateUrl: 'templates/question.html'
             })
             .state('users', {
                 controller: 'UserController',
                 controllerAs: 'uc',
                 url: '/users',
-                templateUrl: '../templates/users.html'
+                templateUrl: 'templates/users.html'
             })
             .state('user', {
                 controller: 'UserController',
                 controllerAs: 'uc',
                 url: '/user/:id',
-                templateUrl: '../templates/user.html'
+                templateUrl: 'templates/user.html'
             })
             .state('cabinet', {
                 controller: 'CabinetController',
                 controllerAs: 'cc',
                 url: '/cabinet',
-                templateUrl: '../templates/cabinet.html'
+                templateUrl: 'templates/cabinet.html'
             })
     });
 

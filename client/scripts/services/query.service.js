@@ -43,8 +43,13 @@
                 .post(undefined, {answer: answer, id: id});
         };
 
-        self.getMessages = function (id) { // получить сообщения пользователя
-            return Restangular.oneUrl('ten', url + id + '/messages').get();
+        self.getMessages = function (id, dialog) { // получить сообщения пользователя
+            return Restangular.oneUrl('ten', url + id +'/dialog/' + dialog + '/messages').get();
         }
+
+        self.getDialogs = function (id) { // получить диалоги пользователя
+            return Restangular.oneUrl('eleven', url + id + '/dialogs').get();
+        }
+
     });
 })();

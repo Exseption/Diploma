@@ -26,17 +26,21 @@ front end by **angular 1.6...** + **angular material**
 
 #### Server API
 
-Запросы
+* GET /questions - получить все вопросы
+* GET /question/:id - получить вопрос по айди
+* POST /create/question - создать вопрос
+* GET /question/:id/answers - получить ответы к вопросу
 
-* GET /questions
-* GET /question/:id
-* POST /create/question
-* GET /question/:id/answers
+* GET /persons - получить пользователей
+* GET /person/:id - получить пользователя по айди
 
-* GET /persons
-* GET /person/:id
+Продумать чат и сообщения
+* GET /person/:id/messages
 
-* POST /auth
+
+* POST /auth - авторизация
+
+* POST /create/library - создать файл библиотеки
 
 
 

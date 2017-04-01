@@ -109,11 +109,25 @@ app.post(vapi + '/vote/minus', function (req, res) { //голосуем за о�
         res.send('OK');
     })
 });
-app.get(vapi + '/:id/messages', function (req, res) { // получить сообщения
-// для пользователя, где он участвует как адресант или адресат
-   sequelize.query('SELECT person.surname, person.name, person.patronym, message.body, message.date_of_create FROM public.message, public.person WHERE person.id = message.sender AND dialog = $1',
+
+//select id from dialog where user1 = 1 OR user2 = 1
+//select * from message where dialog = 1
+
+app.get(vapi + '/:id/dialogs', function (req, res) {
+    sequelize.query('select * from dialog where user1 = $1 OR user2 = $1',
+        {
+            bind: [req.params.id],
+            type: sequelize.QueryTypes.SELECT
+        }).then(function (results) {
+        res.send(results);
+    });
+});
+
+
+app.get(vapi + '/:id/dialog/:dialog/messages', function (req, res) {
+   sequelize.query('select * from message as m, person as p where p.id = m.sended_by and m.dialog = $1 AND m.dialog in (select id from dialog where user1 = $2 OR user2 = $2)',
        {
-           bind: [req.params.id],
+           bind: [req.params.dialog, req.params.id],
            type: sequelize.QueryTypes.SELECT}).then(function (results) {
        res.send(results);
    })
