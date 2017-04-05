@@ -11,87 +11,8 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div ng-controller="ToolbarController as tbc">
-    <md-toolbar class="md-hue-2" style="background-color: #4484CE">
-        <div class="md-toolbar-tools">
-            <md-button class="md-icon-button" aria-label="Главная" ng-click="tbc.toggleMenu()">
-                <md-icon md-svg-icon="./img/ic_menu_24px.svg"></md-icon>
-            </md-button>
-            <h5 flex>Центр правовых консультаций</h5>
-            <md-button>Поиск
-                <md-icon md-svg-icon="./img/ic_search_24px.svg"></md-icon>
-            </md-button>
-            <md-button>Задать вопрос <md-icon md-svg-icon="./img/ic_help_outline_24px.svg"></md-icon></md-button>
-            <md-button ng-click="tbc.auth()">Войти
-                <md-icon md-svg-icon="./img/ic_assignment_ind_48px.svg">
-                </md-icon>
-            </md-button>
-            <md-button ng-click="tbc.register()">Регистрация
-                <md-icon md-svg-icon="./img/ic_assignment_ind_48px.svg">
-                </md-icon>
-            </md-button>
-        </div>
-    </md-toolbar>
-    <div layout="row" layout-align="center center">
-            <md-toolbar class="md-menu-toolbar beeline-tb" style="min-height: 0">
-                <div>
-                    <md-menu-bar>
-                            <button ui-sref="index" class="menu-but">Главная</button>
-                            <button class="menu-but">
-                                Вопросы
-                            </button>
-                            <button ui-sref="library" class="menu-but">
-                                Библиотека
-                            </button>
-
-                            <button class="menu-but">
-                                Рейтинги
-                            </button>
-                            <button class="menu-but">Справка</button>
-                    </md-menu-bar>
-                </div>
-            </md-toolbar>
-    </div>
-</div>
-<main>
-    <div class="md-body-1" layout-fill>
-        <div layout="row">
-            <div flex="10"></div>
-
-            <div flex>
-                    <div ui-view>
-                    </div>
-            </div>
-            <div flex="10"></div>
-        </div>
-    </div>
-</main>
-<div ng-controller="SidenavController as snc">
-    <md-sidenav class="md-sidenav-left" md-component-id="left" >
-        <md-toolbar class="md-hue-2">
-            <div class="md-toolbar-tools">
-                <div layout="column">
-                    <div class="md-body-2">{{snc.userInfo.name + ' '
-                        + snc.userInfo.patronym + ' '
-                        + snc.userInfo.surname}}
-                    </div>
-                    <div class="md-caption">Тип аккаунта: {{snc.userInfo.usergroup}}</div>
-                </div>
-                <div>
-                </div>
-            </div>
-            <div layout-align="end end" layout="row">
-                <md-button ng-click="snc.logout()"> Выйти</md-button>
-            </div>
-        </md-toolbar>
-        <div layout-align="center" layout="column">
-            <a class="like-button" ng-click="snc.toggleMenu()" ui-sref="user/questions({id: snc.userInfo.id})">Мои вопросы</a>
-            <a class="like-button" ng-click="snc.toggleMenu()" ui-sref="messages({id: snc.userInfo.id})">Сообщения</a>
-            <md-divider></md-divider>
-            <a class="like-button" ng-click="snc.toggleMenu()">Настройки</a>
-        </div>
-    </md-sidenav>
-</div>
+<ws-main-comp>
+</ws-main-comp>
 <script src="scripts/vendor/angular.min.js"></script>
 <script src="scripts/vendor/angular-animate.min.js"></script>
 <script src="scripts/vendor/angular-aria.min.js"></script>

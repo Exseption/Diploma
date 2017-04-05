@@ -111,3 +111,43 @@ angular.module('legal')
             return $filter('currency')(item || 0, '', 2) + ' р.';
         };
     });
+
+angular.module('legal').component('wsToolbar',{
+   templateUrl:'templates/ws-toolbar.html',
+    controller: 'ToolbarController'
+});
+
+angular.module('legal').component('wsMenu',{
+    templateUrl:'templates/ws-menu.html',
+    controller: 'ToolbarController'
+});
+angular.module('legal').component('listOfQuestions',{
+
+});
+angular.module('legal').component('question',{
+
+});
+angular.module('legal').component('listOfAnswers',{
+
+});
+angular.module('legal').component('answer',{
+
+});
+angular.module('legal').component('listOfDialogs',{
+
+});
+angular.module('legal').component('dialog',{
+
+});
+angular.module('legal').component('message',{
+
+});
+
+angular.module('legal').component('wsSideNav',{
+    templateUrl:'templates/ws-sidenav.html',
+    controller:'SidenavController'
+});
+angular.module('legal').component('wsMainComp',{
+    templateUrl:'templates/ws-main.html',
+    transclude:true
+});
