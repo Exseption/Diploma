@@ -5,7 +5,7 @@
   </md-toolbar>
   <md-content>
     <md-list flex="flex">
-      <md-list-item class="md-3-line" ng-repeat="q in mc.questions" ng-click="null" ui-sref="question({id : q.id})">
+      <md-list-item class="md-3-line" style="background-color: white"  ng-repeat="q in mc.questions" ng-click="null" ui-sref="question({id : q.id})">
         <div class="md-list-item-text" layout="column">
           <div class="md-subhead">{{q.title}}</div>
           <div class="md-caption">{{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>

@@ -10,7 +10,7 @@ html {
 }
 
 body {
-    background-color: whitesmoke;
+    background-color: white;
 }
 .mess-container {
     padding:10px 15px;
@@ -61,7 +61,7 @@ a.like-button {
 }
 
 .beeline-tb {
-    background-color: orange !important;
+    background-color: white !important;
     color: #000000 !important;
 }
 

@@ -12,7 +12,7 @@
 </head>
 <body>
 <div ng-controller="ToolbarController as tbc">
-    <md-toolbar class="md-hue-2" style="background-color: black">
+    <md-toolbar class="md-hue-2" style="background-color: #4484CE">
         <div class="md-toolbar-tools">
             <md-button class="md-icon-button" aria-label="Главная" ng-click="tbc.toggleMenu()">
                 <md-icon md-svg-icon="./img/ic_menu_24px.svg"></md-icon>
@@ -36,49 +36,17 @@
             <md-toolbar class="md-menu-toolbar beeline-tb" style="min-height: 0">
                 <div>
                     <md-menu-bar>
-                        <!--<md-menu>-->
                             <button ui-sref="index" class="menu-but">Главная</button>
-                        <!--</md-menu>-->
-                        <!--<md-menu>-->
                             <button class="menu-but">
                                 Вопросы
                             </button>
-                            <!--<md-menu-content>-->
-                                <!--<md-menu-item>-->
-                                    <!--<md-menu>-->
-                                        <!--<md-button ng-click="$mdMenu.open()">Новый</md-button>-->
-                                        <!--<md-menu-content>-->
-                                            <!--<md-menu-item><md-button>Вопрос</md-button></md-menu-item>-->
-                                            <!--<md-menu-item><md-button>Загрузить файл</md-button></md-menu-item>-->
-                                        <!--</md-menu-content>-->
-                                    <!--</md-menu>-->
-                                <!--</md-menu-item>-->
-                                <!--<md-menu-item>-->
-                                    <!--<md-button>-->
-                                        <!--Правовая информация-->
-                                    <!--</md-button>-->
-                                <!--</md-menu-item>-->
-                                <!--<md-menu-divider></md-menu-divider>-->
-                                <!--<md-menu-item><md-button>О рейтингах...</md-button></md-menu-item>-->
-                            <!--</md-menu-content>-->
-                        <!--</md-menu>-->
-
                             <button ui-sref="library" class="menu-but">
                                 Библиотека
                             </button>
 
-                        <!--<md-menu>-->
                             <button class="menu-but">
                                 Рейтинги
                             </button>
-                            <!--<md-menu-content>-->
-                                <!--<md-menu-item><md-button>Отвечающих</md-button></md-menu-item>-->
-                                <!--<md-menu-item><md-button>Вопросов</md-button></md-menu-item>-->
-                                <!--<md-menu-item><md-button>Скачиваний ресурсов</md-button></md-menu-item>-->
-                                <!--<md-menu-divider></md-menu-divider>-->
-                                <!--<md-menu-item><md-button>О рейтингах...</md-button></md-menu-item>-->
-                            <!--</md-menu-content>-->
-                        <!--</md-menu>-->
                             <button class="menu-but">Справка</button>
                     </md-menu-bar>
                 </div>
@@ -124,14 +92,6 @@
         </div>
     </md-sidenav>
 </div>
-<!--<footer>-->
-    <!--<md-toolbar class="md-scroll-shrink" >-->
-        <!--<div layout="row" layout-align="center center" flex class="md-body-1">-->
-            <!--Сайт разработан в рамках дипломного проектирования в 2017 г.-->
-        <!--</div>-->
-    <!--</md-toolbar>-->
-<!--</footer>-->
-
 <script src="scripts/vendor/angular.min.js"></script>
 <script src="scripts/vendor/angular-animate.min.js"></script>
 <script src="scripts/vendor/angular-aria.min.js"></script>
