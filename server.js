@@ -5,7 +5,6 @@ cookieParser = require('cookie-parser'),
 bodyParser = require('body-parser'),
 session = require('express-session'),
 app = express();
-
 const Sequelize = require('sequelize');
 const methodOverride = require('method-override');
 app.use(express.static(path.join(__dirname, 'client')));
@@ -22,12 +21,12 @@ app.use(session({
 app.disable('x-powered-by');
 const vapi = '/api/v1';
 
-
-
-
-
 const sequelize = new Sequelize('postgres://postgres:qwerty@localhost:5432/legal');
 
+// const Person = sequelize.import(__dirname + '/client/models/person');
+// Person.findAll().then(function (res) {
+//    console.log(res);
+// });
 
 
 app.get(vapi + '/questions', function (req, res) { // получаем вопросы
