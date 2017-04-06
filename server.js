@@ -22,7 +22,14 @@ app.use(session({
 app.disable('x-powered-by');
 const vapi = '/api/v1';
 
+
+
+
+
 const sequelize = new Sequelize('postgres://postgres:qwerty@localhost:5432/legal');
+
+
+
 app.get(vapi + '/questions', function (req, res) { // получаем вопросы
     sequelize
         .query('SELECT question.id, question.title, question.content, question.date_of_create, ' +
@@ -109,9 +116,6 @@ app.post(vapi + '/vote/minus', function (req, res) { //голосуем за о�
         res.send('OK');
     })
 });
-
-//select id from dialog where user1 = 1 OR user2 = 1
-//select * from message where dialog = 1
 
 app.get(vapi + '/:id/dialogs', function (req, res) {
     sequelize.query('select * from dialog where user1 = $1 OR user2 = $1',
