@@ -23,10 +23,15 @@ const vapi = '/api/v1';
 
 const sequelize = new Sequelize('postgres://postgres:qwerty@localhost:5432/legal');
 
+// const Person = require('models');
+
 // const Person = sequelize.import(__dirname + '/client/models/person');
 // Person.findAll().then(function (res) {
 //    console.log(res);
 // });
+
+// проверить работает ли
+const Person = sequelize.import(__dirname + '/client/models/person');
 
 
 app.get(vapi + '/questions', function (req, res) { // получаем вопросы
