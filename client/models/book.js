@@ -1,17 +1,19 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
+
+
     return sequelize.define("book", {
         title: {
-            type: Sequelize.STRING
+            type: DataTypes.STRING
         },
         author: {
-            type: Sequelize.STRING
+            type: DataTypes.STRING
         },
         category: {
-            type: Sequelize.STRING
+            type: DataTypes.STRING
         },
         path: {
-            type: Sequelize.STRING
+            type: DataTypes.STRING
         }
     })
 };

@@ -1,5 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
+    const Person = require('./person');
     return sequelize.define("dialog", {
         sender: {
             type: DataTypes.INTEGER,

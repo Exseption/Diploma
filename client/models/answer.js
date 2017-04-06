@@ -1,5 +1,7 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
+    const Person = require('./person');
+    const Question = require('./question');
     return sequelize.define("answer", {
         body: {
             type: DataTypes.STRING
