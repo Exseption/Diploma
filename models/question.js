@@ -20,14 +20,6 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: false
         }
     }
-    // ,
-    //     {
-    //         classMethods: {
-    //             associate: function(models) {
-    //                 Question.belongsTo(models.Person, {foreignKey: 'author'});
-    //             }
-    //         }
-    //     }
         );
     return Question
 };

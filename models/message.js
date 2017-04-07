@@ -9,20 +9,21 @@ module.exports = function(sequelize, DataTypes) {
         created: {
             type: DataTypes.DATE,
             defaultValue: DataTypes.NOW
-        },
-        dialog: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: Dialog,
-                key: 'id'
-            }
-        },
-        sended_by: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: Person,
-                key: 'id'
-            }
         }
+        // ,
+        // dialog: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: Dialog,
+        //         key: 'id'
+        //     }
+        // },
+        // sended_by: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: Person,
+        //         key: 'id'
+        //     }
+        // }
     })
 };
