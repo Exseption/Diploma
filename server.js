@@ -35,7 +35,7 @@ const sequelize = new Sequelize('postgres://postgres:qwerty@localhost:5432/webse
 // const Question = sequelize.import(__dirname + '/client/models/question');
 // const Person = sequelize.import(__dirname + '/client/models/person');
 
-const models = require(__dirname + '/client/models');
+const models = require('./client/models');
 
 app.get(vapi + '/questions', function (req, res) { // получаем вопросы
     Question.findAll({
