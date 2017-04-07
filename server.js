@@ -23,28 +23,92 @@ const vapi = '/api/v1';
 
 const sequelize = new Sequelize('postgres://postgres:qwerty@localhost:5432/webservice');
 
-// const Person = require('models');
+const Person = sequelize.define("person", {
+        login: {         type: Sequelize.STRING        },
+        password: {            type: Sequelize.STRING        },
+        name: {            type: Sequelize.STRING        },
+        surname: {            type: Sequelize.STRING        },
+        telephone: {            type: Sequelize.BIGINT        },
+        birthday: {            type: Sequelize.DATE        },
+        registrated: {            type: Sequelize.DATE,            defaultValue: Sequelize.NOW        },
+        rating: {            type: Sequelize.DOUBLE        },
+        active: {            type: Sequelize.BOOLEAN,            defaultValue: true        },
+        usergroup: {            type:Sequelize.ENUM('admin','user'),            defaultValue: 'user'        },
+        country: {            type: Sequelize.STRING        },
+        area: {            type: Sequelize.STRING        },
+        city: {            type: Sequelize.STRING        }
+    }
+    ,
+    {
+        classMethods: {
+            associate: function() {
+                Person.hasMany(Question);
+            }
+        }
+    }
 
-// const Person = sequelize.import(__dirname + '/client/models/person');
-// Person.findAll().then(function (res) {
-//    console.log(res);
+);
+
+var Question = sequelize.define("question", {
+        title: {
+            type: Sequelize.STRING
+        },
+        body: {
+            type: Sequelize.STRING
+        },
+        // author: {
+        //     type: Sequelize.INTEGER,
+        //     references: {
+        //         model: Person,
+        //         key: 'id'
+        //     }
+        // },
+        created: {
+            type: Sequelize.DATE,
+            defaultValue: Sequelize.NOW
+        },
+        payable: {
+            type: Sequelize.BOOLEAN
+        },
+        price: Sequelize.DOUBLE,
+        closed: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false
+        }
+    }
+    ,
+        {
+            classMethods: {
+                associate: function() {
+                    Question.belongsTo(Person);
+                }
+            }
+        }
+
+);
+// sequelize.sync().then(function () {
+//
 // });
 
-// проверить работает ли
+Person.hasMany(Question);
+Question.belongsTo(Person);
 
-// const Question = sequelize.import(__dirname + '/client/models/question');
-// const Person = sequelize.import(__dirname + '/client/models/person');
-
-const models = require(__dirname + '/client/models');
-
+// const models = require('./models');
 app.get(vapi + '/questions', function (req, res) { // получаем вопросы
-    Question.findAll({
+    Question.findAll(
+        {
         include: [
             {
-                model: Person, require: true
+                model: Person,
+
+                    attributes: ['name', 'surname']
+                    // where: {completed: true}
+
+// ,                require: true
             }
         ]
-    })
+    }
+    )
     // sequelize
     //     .query('SELECT question.id, question.title, question.content, question.date_of_create, ' +
     //         'question.price, question.closed, question.payable, person.name, person.patronym, ' +
@@ -52,9 +116,12 @@ app.get(vapi + '/questions', function (req, res) { // получаем вопр�
     //         'ORDER BY question.date_of_create ASC;', {type: sequelize.QueryTypes.SELECT})
 
         .then(function (result) {
-            res.send(result);
+            res.json(result);
     })
 });
+
+
+
 
 app.get(vapi + '/question/:id', function (req, res) { // получаем вопрос по id
 

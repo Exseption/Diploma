@@ -67,13 +67,13 @@ var Question = sequelize.define('question', {
     body: {
         type: Sequelize.STRING
     },
-    author: {
-        type: Sequelize.INTEGER,
-        references: {
-            model: Person,
-            key: 'id'
-        }
-    },
+    // author: {
+    //     type: Sequelize.INTEGER,
+    //     references: {
+    //         model: Person,
+    //         key: 'id'
+    //     }
+    // },
     created: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW
@@ -87,6 +87,9 @@ var Question = sequelize.define('question', {
         defaultValue: false
     }
 });
+
+Person.hasMany(Question);
+Question.belongsTo(Person);
 
 var Dialog = sequelize.define('dialog', {
     sender: {
@@ -233,43 +236,43 @@ sequelize.sync(
         Question.create({
             title:'Помогите отсудить деньги за митинг',
             body:'Как это сделать?',
-            author: 1,
+            personId: 1,
             payable: false
         });
         Question.create({
             title:'Как составить договор дарственной на квартиру',
             body:'Как это сделать?',
-            author: 2,
+            personId: 2,
             payable: false
         });
         Question.create({
             title:'Как оформить доверенность на машину?',
             body:'Как это сделать?',
-            author: 2,
+            personId: 2,
             payable: false
         });
         Question.create({
             title:'Как откосить от армии?',
             body:'Как это сделать?',
-            author: 3,
+            personId: 3,
             payable: false
         });
         Question.create({
             title:'Помогите отсудить деньги за митинг',
             body:'Как это сделать?',
-            author: 3,
+            personId: 3,
             payable: false
         });
         Question.create({
             title:'Как развестить без согласия жены?',
             body:'Как это сделать?',
-            author: 3,
+            personId: 3,
             payable: false
         });
         Question.create({
             title:'Помогите отсудить деньги за митинг',
             body:'Как это сделать?',
-            author: 4,
+            personId: 4,
             payable: false
         });
 
