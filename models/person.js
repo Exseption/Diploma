@@ -15,14 +15,6 @@ module.exports = function(sequelize, DataTypes) {
         area: {            type: DataTypes.STRING        },
         city: {            type: DataTypes.STRING        }
     }
-    // ,
-    //     {
-    //         classMethods: {
-    //             associate: function(models) {
-    //                 Person.hasMany(models.Question);
-    //             }
-    //         }
-    //     }
         );
     return Person
 };

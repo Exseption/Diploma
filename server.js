@@ -5,7 +5,7 @@ cookieParser = require('cookie-parser'),
 bodyParser = require('body-parser'),
 session = require('express-session'),
 app = express();
-const Sequelize = require('sequelize');
+// const Sequelize = require('sequelize');
 const methodOverride = require('method-override');
 app.use(express.static(path.join(__dirname, 'client')));
 app.use(logger('dev'));
@@ -21,209 +21,218 @@ app.use(session({
 app.disable('x-powered-by');
 const vapi = '/api/v1';
 
-const sequelize = new Sequelize('postgres://postgres:qwerty@localhost:5432/webservice');
+// const sequelize = new Sequelize('postgres://postgres:qwerty@localhost:5432/webservice');
 
-const Person = sequelize.define("person", {
-        login: {         type: Sequelize.STRING        },
-        password: {            type: Sequelize.STRING        },
-        name: {            type: Sequelize.STRING        },
-        surname: {            type: Sequelize.STRING        },
-        telephone: {            type: Sequelize.BIGINT        },
-        birthday: {            type: Sequelize.DATE        },
-        registrated: {            type: Sequelize.DATE,            defaultValue: Sequelize.NOW        },
-        rating: {            type: Sequelize.DOUBLE        },
-        active: {            type: Sequelize.BOOLEAN,            defaultValue: true        },
-        usergroup: {            type:Sequelize.ENUM('admin','user'),            defaultValue: 'user'        },
-        country: {            type: Sequelize.STRING        },
-        area: {            type: Sequelize.STRING        },
-        city: {            type: Sequelize.STRING        }
-    }
-    ,
-    {
-        classMethods: {
-            associate: function() {
-                Person.hasMany(Question);
-            }
-        }
-    }
-
-);
-
-var Question = sequelize.define("question", {
-        title: {
-            type: Sequelize.STRING
-        },
-        body: {
-            type: Sequelize.STRING
-        },
-        // author: {
-        //     type: Sequelize.INTEGER,
-        //     references: {
-        //         model: Person,
-        //         key: 'id'
-        //     }
-        // },
-        created: {
-            type: Sequelize.DATE,
-            defaultValue: Sequelize.NOW
-        },
-        payable: {
-            type: Sequelize.BOOLEAN
-        },
-        price: Sequelize.DOUBLE,
-        closed: {
-            type: Sequelize.BOOLEAN,
-            defaultValue: false
-        }
-    }
-    ,
-        {
-            classMethods: {
-                associate: function() {
-                    Question.belongsTo(Person);
-                }
-            }
-        }
-
-);
+// const Person = sequelize.define("person", {
+//         login: {         type: Sequelize.STRING        },
+//         password: {            type: Sequelize.STRING        },
+//         name: {            type: Sequelize.STRING        },
+//         surname: {            type: Sequelize.STRING        },
+//         telephone: {            type: Sequelize.BIGINT        },
+//         birthday: {            type: Sequelize.DATE        },
+//         registrated: {            type: Sequelize.DATE,            defaultValue: Sequelize.NOW        },
+//         rating: {            type: Sequelize.DOUBLE        },
+//         active: {            type: Sequelize.BOOLEAN,            defaultValue: true        },
+//         usergroup: {            type:Sequelize.ENUM('admin','user'),            defaultValue: 'user'        },
+//         country: {            type: Sequelize.STRING        },
+//         area: {            type: Sequelize.STRING        },
+//         city: {            type: Sequelize.STRING        }
+//     }
+//     ,
+//     {
+//         classMethods: {
+//             associate: function() {
+//                 Person.hasMany(Question);
+//             }
+//         }
+//     }
+//
+// );
+//
+// var Question = sequelize.define("question", {
+//         title: {
+//             type: Sequelize.STRING
+//         },
+//         body: {
+//             type: Sequelize.STRING
+//         },
+//         // author: {
+//         //     type: Sequelize.INTEGER,
+//         //     references: {
+//         //         model: Person,
+//         //         key: 'id'
+//         //     }
+//         // },
+//         created: {
+//             type: Sequelize.DATE,
+//             defaultValue: Sequelize.NOW
+//         },
+//         payable: {
+//             type: Sequelize.BOOLEAN
+//         },
+//         price: Sequelize.DOUBLE,
+//         closed: {
+//             type: Sequelize.BOOLEAN,
+//             defaultValue: false
+//         }
+//     }
+//     ,
+//         {
+//             classMethods: {
+//                 associate: function() {
+//                     Question.belongsTo(Person);
+//                 }
+//             }
+//         }
+//
+// );
 // sequelize.sync().then(function () {
 //
 // });
 
-Person.hasMany(Question);
-Question.belongsTo(Person);
+// Person.hasMany(Question);
+// Question.belongsTo(Person);
+
+const Sequelize = require('sequelize');
+const config = require('./config/config.json');
+const sequelize = new Sequelize(config.database, config.username, config.password, config);
+
+
+
+const Person = sequelize.import(__dirname + '/models/person');
+const Question = sequelize.import(__dirname + '/models/question');
+const Answer = sequelize.import(__dirname + '/models/answer');
+const Dialog = sequelize.import(__dirname + '/models/dialog');
+const Message = sequelize.import(__dirname + '/models/message');
+const Book = sequelize.import(__dirname + '/models/book');
+const Attachment = sequelize.import(__dirname + '/models/attachment');
+
+Question.belongsTo(Person, {foreignKey: 'author'});
+Answer.belongsTo(Question, {foreignKey: 'to_question'});
+Answer.belongsTo(Person, {foreignKey: 'author'});
+Message.belongsTo(Dialog, {foreignKey: 'of_dialog'});
+Message.belongsTo(Person, {foreignKey: 'sended_by'});
+Dialog.belongsTo(Person,{foreignKey: 'sender'});
+Dialog.belongsTo(Person,{foreignKey: 'destination'});
+Attachment.belongsTo(Message, {foreignKey: 'to_message'});
 
 // const models = require('./models');
 app.get(vapi + '/questions', function (req, res) { // получаем вопросы
     Question.findAll(
         {
-        include: [
+            include: [
             {
                 model: Person,
-
                     attributes: ['name', 'surname']
-                    // where: {completed: true}
-
-// ,                require: true
             }
         ]
-    }
-    )
-    // sequelize
-    //     .query('SELECT question.id, question.title, question.content, question.date_of_create, ' +
-    //         'question.price, question.closed, question.payable, person.name, person.patronym, ' +
-    //         'person.surname FROM public.person, public.question WHERE person.id = question.author ' +
-    //         'ORDER BY question.date_of_create ASC;', {type: sequelize.QueryTypes.SELECT})
-
-        .then(function (result) {
-            res.json(result);
+    }).then(function (results) {
+            res.json(results);
     })
 });
 
 
-
-
 app.get(vapi + '/question/:id', function (req, res) { // получаем вопрос по id
-
-
-   // sequelize.query('SELECT question.id, question.title, question.content, question.date_of_create, ' +
-   //     'question.price, question.closed, question.payable, person.name, person.patronym,' +
-   //     ' person.surname FROM public.person, public.question WHERE person.id = question.author AND  question.id = ' + req.params.id,
-   //     {type: sequelize.QueryTypes.SELECT})
-
-       // .then(function (result) {
-       //     res.send(result[0]);
-       // })
+    Question.findAll({
+        where: {
+            id: req.params.id
+        }}).then(function (result) {
+        res.json(result)
+    })
 });
 
 app.get(vapi + '/persons', function (req, res) { // получаем пользователей
-    // sequelize.query('SELECT * FROM person',
-    //     {type: sequelize.QueryTypes.SELECT})
-
-    // .then(function (result) {
-    //         res.send(result);
-    //     })
+    Person.findAll()
+    .then(function (results) {
+            res.json(results);
+        })
 });
 
 app.get(vapi + '/person/:id', function (req, res) { // получаем пользователя по id
-    // sequelize.query('SELECT * FROM person AS p WHERE p.id = $1',
-    //     { bind: [req.params.id],
-    //         type: sequelize.QueryTypes.SELECT})
-
-    // .then(function (result) {
-    //         res.send(result);
-    //     })
+    Person.findAll({
+        where: {
+            id: req.params.id
+        }}).then(function (result) {
+        res.json(result)
+    })
 });
 //чет подозрительна
-app.get(vapi + '/:id/answers', function (req, res) { // получаем ответы к вопросу по id
-    // sequelize.query('SELECT a.*, p.name, p.patronym, p.surname FROM question AS q, ' +
-    //     'answer AS a, person AS p  WHERE q.id = $1 ' +
-    //     'AND a.question = $1 AND p.id = a.author',
-    //     { bind: [req.params.id], type: sequelize.QueryTypes.SELECT})
-    //
-    //     .then(function (result) {
-    //         res.send(result);
-    //         console.log(result);
-    //     })
+app.get(vapi + '/question/:id/answers', function (req, res) { // получаем ответы к вопросу по id
+    Answer.findAll({
+        where:{
+            to_question: req.params.id
+        }
+    })
+        .then(function (result) {
+            res.json(result);
+        })
 });
 app.post(vapi + '/auth', function (req, res) { // авторизация пользователя
-    // sequelize.query('SELECT * FROM person as p WHERE p.login = $1 AND p.password = $2',
-    //     {bind: [req.body.login, req.body.pwd], type: sequelize.QueryTypes.SELECT}
-    // )
-    //
-    //     .then(function (result) {
-    //     res.send(result[0]);
-    // })
+    Person.findAll({
+        where: {
+            login: req.body.login,
+            password: req.body.pwd
+        }
+    }).then(function (result) {
+        res.json(result);
+    })
 });
 app.post(vapi + '/create/answer', function (req, res) { // создание ответа к вопросу
-        // sequelize.query('INSERT INTO answer ' +
-        //     '(question, content, date_of_create, grade, author) ' +
-        //     'VALUES ($1, $2, $3, $4, $5)', {
-        //     bind: [
-        //         req.body.id,
-        //         req.body.answer,
-        //         now(), null,
-        //         req.body.author
-        //     ],
-        //     type: sequelize.QueryTypes.INSERT}
-        // )
-        //
-        //     .then(function (results) {
-        //     res.send('OK');
-        // }, function (error) {
-        //     console.log(error);
-        // })
+    Answer.create({
+        body:req.body.body,
+        author:req.body.author,
+        to_question: req.body.question,
+        mark: 0
+    }).then(function (results) {
+            res.send('OK');
+        }, function (error) {
+            console.log(error);
+        })
     });
 app.post(vapi + '/vote/plus', function (req, res) { //голосуем за ответ в плюс
-    // sequelize.query('UPDATE public.answer SET grade=grade + 0.1 WHERE author=$1',
-    //     { bind: [req.body.id],
-    //         type: sequelize.QueryTypes.UPDATE})
-    //     .then(function (res) {
-    //     res.send('OK');
-    // })
+    Answer.update({
+        mark: sequelize.literal("mark + 0.1")
+    },
+        {
+        where:{
+            id: req.body.id
+        }
+    }).then(function (res) {
+        res.send('OK');
+    })
 });
 app.post(vapi + '/vote/minus', function (req, res) { //голосуем за ответ в минус
-    // sequelize.query('UPDATE public.answer SET grade=grade - 0.1 WHERE author=$1',
-    //     {bind: [req.body.id],
-    //         type: sequelize.QueryTypes.UPDATE})
-    //     .then(function (res) {
-    //     res.send('OK');
-    // })
+    Answer.update({
+            mark: sequelize.literal("mark - 0.1")
+        },
+        {
+            where:{
+                id: req.body.id
+            }
+        }).then(function (res) {
+        res.send('OK');
+    })
 });
 
-app.get(vapi + '/:id/dialogs', function (req, res) {
-    // sequelize.query('select * from dialog where user1 = $1 OR user2 = $1',
-    //     {
-    //         bind: [req.params.id],
-    //         type: sequelize.QueryTypes.SELECT
-    //     })
-    //     .then(function (results) {
-    //     res.send(results);
-    // });
+app.get(vapi + '/person/:id/dialogs', function (req, res) {
+    Dialog.findAll({
+        where:{
+            $or: {
+                sender: req.params.id,
+                destination: req.params.id
+            }
+        }
+    }).then(function (results) {
+        res.json(results);
+    });
 });
 
 
-app.get(vapi + '/:id/dialog/:dialog/messages', function (req, res) {
+app.get(vapi + 'person/:id/dialog/:dialog/messages', function (req, res) {
+    Message.findAll({
+        where:null
+    })
+
    // sequelize.query('select * from message as m, person as p where p.id = m.sended_by and m.dialog = $1 AND m.dialog in (select id from dialog where user1 = $2 OR user2 = $2)',
    //     {
    //         bind: [req.params.dialog, req.params.id],
