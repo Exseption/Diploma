@@ -1,19 +1,11 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-    const Person = require('./person');
     var Question = sequelize.define("question", {
         title: {
             type: DataTypes.STRING
         },
         body: {
             type: DataTypes.STRING
-        },
-        author: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: Person,
-                key: 'id'
-            }
         },
         created: {
             type: DataTypes.DATE,
@@ -32,23 +24,10 @@ module.exports = function(sequelize, DataTypes) {
     //     {
     //         classMethods: {
     //             associate: function(models) {
-    //                 Question.belongsTo(models.Person);
+    //                 Question.belongsTo(models.Person, {foreignKey: 'author'});
     //             }
     //         }
     //     }
         );
     return Question
 };
-//
-// module.exports = function(sequelize, DataTypes) {
-//     var User = sequelize.define('User', {
-//         email: DataTypes.STRING
-//     }, {
-//         classMethods: {
-//             associate: function(models) {
-//                 User.hasMany(models.Todo);
-//             }
-//         }
-//     });
-//     return User;
-// };

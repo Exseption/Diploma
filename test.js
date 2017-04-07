@@ -1,9 +1,13 @@
 const Sequelize = require('sequelize');
+const sequelize = new Sequelize('postgres://postgres:qwerty@localhost:5432/webservice2');
 
-const sequelize = new Sequelize('postgres://postgres:qwerty@localhost:5432/webservice');
+const Person = sequelize.import(__dirname + '/models/person');
+const Question = sequelize.import(__dirname + '/models/question');
+const Answer = sequelize.import(__dirname + '/models/answer');
 
-const Person = sequelize.import(__dirname + '/client/models/person');
-Person.findById(1).then(function (people) {
+Question.belongsTo(Person, {foreignKey: 'author'});
+Answer.belongsTo(Question, {foreignKey: 'author'});
+Answer.belongsTo(Person, {foreignKey: 'answer'});
 
-    console.log(people.dataValues);
-});
+sequelize.sync({force: true});
+console.log('OK');
