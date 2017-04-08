@@ -8,8 +8,6 @@
         'ngCookies',
         'md.data.table'
     ]);
-})();
-
 angular.module('legal')
     .constant('_', window._);
 
@@ -151,3 +149,4 @@ angular.module('legal').component('wsMainComp',{
     templateUrl:'templates/ws-main.html',
     transclude:true
 });
+})();
