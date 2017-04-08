@@ -14,7 +14,7 @@ angular.module('legal')
 angular.module('legal')
     .config(function(RestangularProvider){
         RestangularProvider
-            .setBaseUrl('http://localhost:3009/');
+            .setBaseUrl('http://localhost:3009/api/v1');
     });
 
 angular

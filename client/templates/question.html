@@ -4,9 +4,10 @@
     <div flex="flex" style="margin-top: 10px;">
       <div layout-margin="layout-margin">
         <div>
-          <div class="md-title">{{qc.question.title}}</div><a class="user-link md-caption" href="#">{{qc.question.name | limitTo: 1}}. {{qc.question.patronym | limitTo: 1}}. {{qc.question.surname}}</a>
-          <div class="md-caption">{{qc.question.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
-          <div class="md-body-1">{{qc.question.content}}</div>
+          <div class="md-title">{{qc.question.title}}</div>
+          <!--a.user-link(href='#').md-caption {{qc.question.name}} {{qc.question.surname}}-->
+          <div class="md-caption">{{qc.question.created | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
+          <div class="md-body-1 ws-body">{{qc.question.body}}</div>
         </div>
         <div layout="column">
           <div class="md-body-2">Ответы</div>

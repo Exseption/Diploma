@@ -2,6 +2,13 @@ html {
     overflow: scroll;
 
 }
+.ws-item-list {
+    padding: 10px 15px;
+}
+.ws-body {
+    text-indent: 1.5em;
+    text-align: justify;
+}
 .menu-but {
     outline: none;
 }

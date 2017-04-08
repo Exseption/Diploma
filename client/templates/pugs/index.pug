@@ -1,12 +1,9 @@
-div.md-body-1(layout='column')
-        md-toolbar.light-tb
-            .md-toolbar-tools
-                | Последние вопросы
+.md-body-1(layout='column')
         md-content
-            md-list(flex)
-                md-list-item.md-3-line(ng-repeat='q in mc.questions', ng-click='null', ui-sref='question({id : q.id})')
-                    .md-list-item-text(layout='column')
-                        .md-subhead {{q.title}}
-                        .md-caption {{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
-                        p {{q.price}}
-                        .md-body-1 {{q.content | limitTo: 170}}...
+            div(flex)
+                div(ng-repeat='q in mc.questions', ui-sref='question({id : q.id})')
+                    div.ws-item-list(layout='column')
+                        .md-subhead  {{q.title}}
+                        .md-caption {{q.person.name}} {{q.person.surname}} {{q.created | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
+                        .md-body-1.ws-body {{q.body}}
+

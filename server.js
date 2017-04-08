@@ -71,7 +71,7 @@ app.get(api_version + '/library', function (req, res) { // получаем во
 
 app.get(api_version + '/questions', function (req, res) { // получаем вопросы
     Question.findAll(
-        {
+        {order: [['created', 'DESC']],
             include: [
             {
                 model: Person,
@@ -123,7 +123,7 @@ app.get(api_version + '/ratings/people', function (req, res) { // получае
 
 
 app.get(api_version + '/question/:id', function (req, res) { // получаем вопрос по id с ответами
-    Question.findAll({
+    Question.findOne({
         where: {
             id: req.params.id
         },include:[{

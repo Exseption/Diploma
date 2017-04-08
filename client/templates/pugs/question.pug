@@ -4,9 +4,9 @@ div.md-body-1(layout='column', style='background-color: white')
             div(layout-margin)
                 div
                     .md-title {{qc.question.title}}
-                    a.user-link(href='#').md-caption {{qc.question.name | limitTo: 1}}. {{qc.question.patronym | limitTo: 1}}. {{qc.question.surname}}
-                    .md-caption {{qc.question.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
-                    .md-body-1 {{qc.question.content}}
+                    //a.user-link(href='#').md-caption {{qc.question.name}} {{qc.question.surname}}
+                    .md-caption {{qc.question.created | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
+                    .md-body-1.ws-body {{qc.question.body}}
 
 
                 div(layout='column')

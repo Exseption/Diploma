@@ -1,18 +1,14 @@
 
 <div class="md-body-1" layout="column">
-  <md-toolbar class="light-tb">
-    <div class="md-toolbar-tools">Последние вопросы</div>
-  </md-toolbar>
   <md-content>
-    <md-list flex="flex">
-      <md-list-item class="md-3-line" style="background-color: white"  ng-repeat="q in mc.questions" ng-click="null" ui-sref="question({id : q.id})">
-        <div class="md-list-item-text" layout="column">
-          <div class="md-subhead">{{q.title}}</div>
-          <div class="md-caption">{{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
-          <p>{{q.price}}</p>
-          <div class="md-body-1">{{q.content | limitTo: 170}}...</div>
+    <div flex="flex">
+      <div ng-repeat="q in mc.questions" ui-sref="question({id : q.id})">
+        <div class="ws-item-list" layout="column">
+          <div class="md-subhead"> {{q.title}}</div>
+          <div class="md-caption">{{q.person.name}} {{q.person.surname}} {{q.created | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
+          <div class="md-body-1 ws-body">{{q.body}}</div>
         </div>
-      </md-list-item>
-    </md-list>
+      </div>
+    </div>
   </md-content>
 </div>
