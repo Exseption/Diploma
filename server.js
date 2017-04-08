@@ -60,14 +60,22 @@ Person.hasMany(Dialog,{foreignKey: 'destination'});
 Attachment.belongsTo(Message, {foreignKey: 'to_message'});
 Message.hasMany(Attachment, {foreignKey: 'to_message'});
 
-// const models = require('./models');
+
+app.get(api_version + '/library', function (req, res) { // получаем вопросы
+    Book.findAll(
+        {
+        }).then(function (results) {
+        res.json(results);
+    })
+});
+
 app.get(api_version + '/questions', function (req, res) { // получаем вопросы
     Question.findAll(
         {
             include: [
             {
                 model: Person,
-                    attributes: ['name', 'surname']
+                    attributes: ['id', 'name', 'surname']
             }
         ]
     }).then(function (results) {
@@ -75,21 +83,71 @@ app.get(api_version + '/questions', function (req, res) { // получаем в
     })
 });
 
+app.get(api_version + '/ratings/answers', function (req, res) { // получаем рейтинги ответов по убыванию
+    Answer.findAll(
+        {
+            order: [['mark', 'DESC']],
+            include: [{
+              model: Question,
+                attributes: ['id','title']
+            },
+                {
+                    model: Person,
+                    attributes: ['id', 'name', 'surname']
+                }
+            ]
+        }).then(function (results) {
+        res.json(results);
+    })
+});
 
-app.get(api_version + '/question/:id', function (req, res) { // получаем вопрос по id
+app.get(api_version + '/ratings/people', function (req, res) { // получаем рейтинги пользователей по убыванию
+    Person.findAll(
+        {
+            order: [['rating', 'DESC']],
+            attributes:['id', 'name', 'surname', 'rating'],
+            include: [{
+                model: Question,
+                attributes: ['id','title']
+            },
+                {
+                    model: Answer,
+                    include: {
+                        model: Question,
+                        attributes: ['id','title']
+                    }}]
+        }).then(function (results) {
+        res.json(results);
+    })
+});
+
+
+app.get(api_version + '/question/:id', function (req, res) { // получаем вопрос по id с ответами
     Question.findAll({
         where: {
             id: req.params.id
         },include:[{
             model: Person,
-            attributes: ['name', 'surname']
-        }]}).then(function (result) {
+            attributes: ['id', 'name', 'surname']
+        },
+            {
+                model: Answer,
+                include: {
+                    model:Person,
+                    attributes:['id', 'name','surname']
+                }
+            }]}).then(function (result) {
         res.json(result)
     })
 });
 
-app.get(api_version + '/persons', function (req, res) { // получаем пользователей
+app.get(api_version + '/people', function (req, res) { // получаем пользователей c вопросами и ответами
     Person.findAll({
+        include:[{
+            model:Question
+        },{
+            model:Answer
+        }]
 
     })
     .then(function (results) {
@@ -105,23 +163,26 @@ app.get(api_version + '/person/:id', function (req, res) { // получаем �
         },
         include:[{
             model: Question
-        }]
+        },
+            {
+                model: Answer
+            }]
     }).then(function (result) {
         res.json(result)
     })
 });
 
 //чет подозрительна подумать чтобы сразу с вопросом запрашивать ответы
-app.get(api_version + '/question/:id/answers', function (req, res) { // получаем ответы к вопросу по id
-    Answer.findAll({
-        where:{
-            to_question: req.params.id
-        }
-    })
-        .then(function (result) {
-            res.json(result);
-        })
-});
+// app.get(api_version + '/question/:id/answers', function (req, res) { // получаем ответы к вопросу по id
+//     Answer.findAll({
+//         where:{
+//             to_question: req.params.id
+//         }
+//     })
+//         .then(function (result) {
+//             res.json(result);
+//         })
+// });
 app.post(api_version + '/auth', function (req, res) { // авторизация пользователя
     Person.findAll({
         where: {
@@ -234,10 +295,6 @@ app.post(api_version + '/create/person', function (req, res) { // создаем
     }).then(function (result) {
             res.send(result)
 })
-
-
-
-
 });
 
 

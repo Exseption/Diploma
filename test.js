@@ -20,7 +20,42 @@ const Attachment = sequelize.import(__dirname + '/models/attachment');
 // Dialog.belongsTo(Person,{foreignKey: 'sender'});
 // Dialog.belongsTo(Person,{foreignKey: 'destination'});
 // Attachment.belongsTo(Message, {foreignKey: 'to_message'});
-// sequelize.sync({force: true}).then(function () {
+
+sequelize.sync(
+    // {force: true}
+    ).then(function () {
+        Book.create({
+            title: 'Конституция РФ',
+            author: null,
+            category: 'Законодательства',
+            path: '/library/laws/const.pdf'
+        });
+    Book.create({
+        title: 'Уголовный кодекс',
+        author: null,
+        category: 'Законодательства РФ',
+        path: '/library/laws/uk.pdf'
+    });
+    Book.create({
+        title: 'Семейный кодекс РФ',
+        author: null,
+        category: 'Законодательства',
+        path: '/library/laws/sem.pdf'
+    });
+    Book.create({
+        title: 'Кодекс об административных правонарушениях',
+        author: null,
+        category: 'Законодательства',
+        path: '/library/laws/adm.pdf'
+    });
+    Book.create({
+        title: 'Гражданский кодекс',
+        author: null,
+        category: 'Законодательства',
+        path: '/library/laws/gc.pdf'
+    });
+
+});
 //     Person.create({
 //         login: 'admin',
 //         password: 'qwerty',
