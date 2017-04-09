@@ -1,5 +1,5 @@
 <div class="box-container md-body-1">
-    <div>Меню</div>
+    <div style="text-transform: uppercase" class="md-body-2">Меню</div>
     <div>
         <a class="like-button">Мои вопросы</a>
         <a class="like-button">Мои диалоги</a>
@@ -8,15 +8,15 @@
     </div>
 </div>
 <div class="box-container md-body-1">
-    <div class="md-subhead">Рейтинг пользователей</div>
+    <div class="md-body-2" style="text-transform: uppercase">Рейтинг пользователей</div>
     <ol>
-        <li ng-repeat="rating in $ctrl.ratings | limitTo: 5">
-            {{rating.name}} {{rating.surname}} : {{rating.rating}}
+        <li ng-repeat="person in $ctrl.ratings | limitTo: 5" ui-sref="person({id: person.id})" class="rating-person">
+            {{person.name}} {{person.surname}} : {{person.rating}}
         </li>
     </ol>
 </div>
 <div class="box-container md-body-1">
-    <div class="md-subhead">Рейтинг ответов</div>
+    <div class="md-body-2" style="text-transform: uppercase">Рейтинг ответов</div>
     <ol>
         <li ng-repeat="rating in $ctrl.answers | limitTo: 5">
             <div>

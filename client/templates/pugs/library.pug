@@ -1,22 +1,6 @@
 div.md-body-1(layout='column')
-    div(layout='row')
-        div(flex)
-            div(layout='row', layout-align='center')
-                | Библиотека
-            .md-content(ng-repeat='q in mc.questions')
-                div(layout='row', layout-align=' center')
-                    div(ui-sref='question({id : q.id})') {{q.title}}
-                    div Ответов
-                    div {{q.date_of_create | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
-                    div {{q.price}}
-
-
-        md-sidenav.md-sidenav-left(md-component-id='left', md-is-locked-open="$mdMedia('gt-md')")
-            md-content(layout='column')
-                md-toolbar.light-tb
-                    .md-toolbar-tools
-                        .md-body-2 Категории
-                a Кодексы
-                a Справочники
-                a Сборники
-                a Законодательства
+    md-content
+        article
+            div(ng-repeat="book in lc.books")
+                a.md-body-1.ws-book(ng-href="{{book.path}}") {{book.title}}
+                .md-caption {{book.category}}

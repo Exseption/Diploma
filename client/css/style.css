@@ -5,17 +5,40 @@ html {
     background-color: #eeeeee;
     min-height: 5px;
 }
+.ws-q-title:hover {
+    color: brown;
+    cursor: pointer;
+}
 
+
+.rating-person:hover {
+    cursor: pointer;
+    color: #5F82D9;
+}
+.ws-person-card {
+    padding: 5px 10px;
+}
+.ws-author:hover {
+    color: #5F82D9;
+    cursor: pointer;
+}
 .box-container {
     padding: 5px 10px;
     margin: 5px;
-
-    /*border: 0.25em solid #eeeeee;*/
     background-color: white;
 }
 .main-body {
     background-color: #eeeeee;
 }
+
+a {
+    text-decoration: none;
+}
+.ws-book:hover {
+    color: #FF9933;
+    cursor: pointer;
+}
+
 .tb-btn-huh {
     padding:0px 5px;
     background-color: white !important;
@@ -30,6 +53,7 @@ html {
 
 .ws-item-list {
     padding: 10px 15px;
+    background-color: white;
 }
 .ws-body {
     text-indent: 1.5em;

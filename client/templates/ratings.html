@@ -1,0 +1,6 @@
+
+<div class="md-body-1">
+  <div ng-repeat="person in mc.ratings">
+    <div class="md-body-1 rating-person" ui-sref="person({id:person.id})">{{person.name}} {{person.surname}} {{person.rating}}</div>
+  </div>
+</div>

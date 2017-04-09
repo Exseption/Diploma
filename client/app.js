@@ -22,9 +22,6 @@ angular
     .module('legal')
     .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
-              // .primaryPalette('grey')
-            // .accentPalette('orange')
-            // .warnPalette('red');
     });
 
 
@@ -58,11 +55,11 @@ angular.module('legal')
                 templateUrl: 'templates/my-questions.html'
 
             })
-            .state('library',{
+            .state('library', {
                 controller: 'LibraryController',
-                controllerAs: '',
-                url:'/library',
-                templateUrl:'templates/library.html'
+                controllerAs: 'lc',
+                url: '/library',
+                templateUrl: 'templates/library.html'
             })
             .state('question', {
                 controller: 'QuestionController',
@@ -70,18 +67,23 @@ angular.module('legal')
                 url: '/question/:id',
                 templateUrl: 'templates/question.html'
             })
-            .state('users', {
-                controller: 'UserController',
-                controllerAs: 'uc',
-                url: '/users',
-                templateUrl: 'templates/users.html'
+            .state('people', {
+                controller: 'PersonController',
+                controllerAs: 'pc',
+                url: '/people',
+                templateUrl: 'templates/people.html'
             })
-            .state('user', {
-                controller: 'UserController',
-                controllerAs: 'uc',
-                url: '/user/:id',
-                templateUrl: 'templates/user.html'
+            .state('person', {
+                url: '/person/:id',
+                template: '<person></person>'
             })
+            .state('ratings', {
+                url: '/ratings',
+                templateUrl:'templates/ratings.html',
+                controller:'MainCompCtrl',
+                controllerAs: 'mc'
+            })
+
             .state('cabinet', {
                 controller: 'CabinetController',
                 controllerAs: 'cc',
@@ -137,6 +139,11 @@ angular.module('legal').component('wsQuestion',{
     angular.module('legal').component('wsRatings',{
         controller: 'MainCompCtrl',
         templateUrl:'templates/ws-ratings.html'
+    });
+
+    angular.module('legal').component('person', {
+        controller: 'PersonController',
+        templateUrl:'templates/ws-person.html'
     });
 
 angular.module('legal').component('listOfAnswers',{

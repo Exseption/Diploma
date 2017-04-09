@@ -126,7 +126,8 @@ app.get(api_version + '/question/:id', function (req, res) { // получаем
     Question.findOne({
         where: {
             id: req.params.id
-        },include:[{
+        },
+        include:[{
             model: Person,
             attributes: ['id', 'name', 'surname']
         },
@@ -143,6 +144,7 @@ app.get(api_version + '/question/:id', function (req, res) { // получаем
 
 app.get(api_version + '/people', function (req, res) { // получаем пользователей c вопросами и ответами
     Person.findAll({
+        attributes:{ exclude: ['login', 'password']},
         include:[{
             model:Question
         },{
@@ -156,11 +158,12 @@ app.get(api_version + '/people', function (req, res) { // получаем по�
 });
 
 app.get(api_version + '/person/:id', function (req, res) { // получаем пользователя по id
-    Person.findAll({
+    Person.findOne({
         // attributes: ['name', 'surname'],
         where: {
             id: req.params.id
         },
+        attributes:{ exclude: ['login', 'password']},
         include:[{
             model: Question
         },

@@ -6,7 +6,7 @@ div.md-body-1(layout='column', style='background-color: white')
                     .md-title {{qc.question.title}}
                     | {{qc.question.person.name}} {{qc.question.person.surname}}
                     .md-caption {{qc.question.created | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
-                    .md-body-1.ws-body {{qc.question.body}}
+                    .md-body-1.ws-body(ng-bind-html="qc.question.body")
                 div(layout='column')
                     .md-body-2
                         | Ответы
