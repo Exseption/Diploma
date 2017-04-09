@@ -137,7 +137,7 @@ app.get(api_version + '/question/:id', function (req, res) { // получаем
                     attributes:['id', 'name','surname']
                 }
             }]}).then(function (result) {
-        res.json(result)
+                res.json(result)
     })
 });
 

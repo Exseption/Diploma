@@ -4,13 +4,15 @@
     <ws-side-nav></ws-side-nav>
     <div class="md-body-1" layout-fill>
         <div layout="row">
-            <div flex="10"></div>
-
-            <div flex>
+            <div flex="5"></div>
+            <div flex md-whiteframe="1">
                 <div ui-view>
                 </div>
             </div>
-            <div flex="10"></div>
+            <div flex="20" layout-fill>
+                <ws-ratings></ws-ratings>
+            </div>
+            <div flex="5"></div>
         </div>
     </div>
 </main>

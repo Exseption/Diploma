@@ -1,9 +1,5 @@
 .md-body-1(layout='column')
         md-content
             div(flex)
-                div(ng-repeat='q in mc.questions', ui-sref='question({id : q.id})')
-                    div.ws-item-list(layout='column')
-                        .md-subhead  {{q.title}}
-                        .md-caption {{q.person.name}} {{q.person.surname}} {{q.created | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}
-                        .md-body-1.ws-body {{q.body}}
-
+                div(ng-repeat='question in mc.questions', ui-sref='question({id : question.id})')
+                    ws-question(question='question')

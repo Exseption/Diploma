@@ -45,14 +45,10 @@ angular.module('legal')
                 templateUrl: 'templates/messages.html'
             })
             .state('dialogs', {
-
-                            controller: 'MessageController',
-                            controllerAs: 'mc',
-                            url: '/:id/dialog/:dialog/messages',
-                            templateUrl: 'templates/dialog.html'
-
-
-
+                controller: 'MessageController',
+                controllerAs: 'mc',
+                url: '/:id/dialog/:dialog/messages',
+                templateUrl: 'templates/dialog.html'
             })
             .state('user/questions', {
                 // controller:'CabinetController',
@@ -122,9 +118,19 @@ angular.module('legal').component('wsMenu',{
 angular.module('legal').component('listOfQuestions',{
 
 });
-angular.module('legal').component('question',{
-
+angular.module('legal').component('wsQuestion',{
+    // controller:'MainController',
+    bindings:{
+      question: '<'
+    },
+    templateUrl:'templates/ws-question.html'
 });
+
+    angular.module('legal').component('wsRatings',{
+        controller: 'MainCompCtrl',
+        templateUrl:'templates/ws-ratings.html'
+    });
+
 angular.module('legal').component('listOfAnswers',{
 
 });

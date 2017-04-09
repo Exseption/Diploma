@@ -1,0 +1,28 @@
+<div md-whiteframe="1" style="padding: 5px 10px; margin: 5px">
+    <div>Меню</div>
+    <div>
+        <a class="like-button">Мои вопросы</a>
+        <a class="like-button">Мои диалоги</a>
+        <md-divider></md-divider>
+        <a class="like-button">Мои настройки</a>
+    </div>
+</div>
+<div md-whiteframe="1" style="padding: 5px 10px; margin: 5px">
+    <div class="md-subhead">Рейтинг пользователей</div>
+    <ul ng-repeat="rating in $ctrl.ratings | limitTo: 5">
+        <li>{{rating.name}} {{rating.surname}} : {{rating.rating}}</li>
+    </ul>
+</div>
+<div md-whiteframe="1" style="padding: 5px 10px; margin: 5px">
+    <div class="md-subhead">Рейтинг ответов</div>
+    <ul ng-repeat="rating in $ctrl.answers | limitTo: 5">
+        <li>
+            <div>
+                {{rating.body | limitTo: 50}}
+            </div>
+            <div class="md-caption">
+                к вопросу {{rating.question.title}} {{rating.mark}}
+            </div>
+           </li>
+    </ul>
+</div>

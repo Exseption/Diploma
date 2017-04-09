@@ -4,24 +4,23 @@
     <div flex="flex" style="margin-top: 10px;">
       <div layout-margin="layout-margin">
         <div>
-          <div class="md-title">{{qc.question.title}}</div>
-          <!--a.user-link(href='#').md-caption {{qc.question.name}} {{qc.question.surname}}-->
+          <div class="md-title">{{qc.question.title}}</div>{{qc.question.person.name}} {{qc.question.person.surname}}
           <div class="md-caption">{{qc.question.created | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
           <div class="md-body-1 ws-body">{{qc.question.body}}</div>
         </div>
         <div layout="column">
           <div class="md-body-2">Ответы</div>
-          <div ng-repeat="ans in qc.answers">
+          <div ng-repeat="ans in qc.question.answers">
             <div>
-              <div class="md-body-1">{{$index+1}}. {{ans.content}}</div>
-              <div class="md-body-1">Оценка {{ans.rating}}</div>
-              <div layout-align="row">{{ans.grade}}
+              <div class="md-body-1">{{$index+1}}. {{ans.body}}</div>
+              <div class="md-body-1">Оценка {{ans.mark}}</div>
+              <div layout-align="row">
                 <md-button class="md-icon-button">
                   <md-icon md-svg-icon="./img/ic_add_black_24px.svg"></md-icon>
                 </md-button>
                 <md-button>-</md-button>
               </div>
-              <div class="md-caption" layout="row" layout-align="end">{{ans.date_of_answer | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}} {{ans.name | limitTo: 1}}. {{ans.patronym | limitTo: 1}}. {{ans.surname}}</div>
+              <div class="md-caption" layout="row" layout-align="end">{{ans.created | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}} {{ans.person.name }} {{ans.person.surname}}</div>
             </div>
           </div>
         </div>
@@ -30,9 +29,7 @@
           <textarea rows="10" ng-model="answer_text"></textarea>
           <div class="md-body-1" layou="row"></div>
           <div layout="row" layout-align="end end">
-            <!--input#input-file-id.ng-hide(multiple='', type='file',ng-model='answer_files')-->
-            <!--label.md-button.md-raised(for='input-file-id') Выбрать файлы-->
-            <md-button class="md-raised ans_butt" layout-align="end end" ng-click="qc.answer(answer_text, asnwer_files)">Отправить</md-button>
+            <md-button class="md-raised" layout-align="end end" ng-click="qc.answer(answer_text, asnwer_files)">Дать ответ</md-button>
           </div>
         </div>
       </div>
