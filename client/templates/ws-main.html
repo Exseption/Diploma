@@ -2,17 +2,18 @@
     <ws-toolbar></ws-toolbar>
     <ws-menu></ws-menu>
     <ws-side-nav></ws-side-nav>
-    <div class="md-body-1" layout-fill>
+    <section class="simple-streak"></section>
+    <section class="main-body">
         <div layout="row">
             <div flex="5"></div>
-            <div flex md-whiteframe="1">
+            <div class="box-container">
                 <div ui-view>
                 </div>
             </div>
-            <div flex="20" layout-fill>
+            <div flex="20">
                 <ws-ratings></ws-ratings>
             </div>
             <div flex="5"></div>
         </div>
-    </div>
+    </section>
 </main>

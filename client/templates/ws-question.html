@@ -1,5 +1,10 @@
-<div class="ws-item-list" layout="column">
-    <div class="md-subhead"> {{$ctrl.question.title}}</div>
-    <div class="md-caption">{{$ctrl.question.person.name}} {{$ctrl.question.person.surname}} {{$ctrl.question.created | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
-    <div class="md-body-1 ws-body">{{$ctrl.question.body}}</div>
-</div>
+<article class="ws-item-list" layout="column">
+    <header class="md-subhead"> {{$ctrl.question.title}}</header>
+    <div class="md-caption">
+        {{$ctrl.question.person.name}}
+        {{$ctrl.question.person.surname}}
+        {{$ctrl.question.created | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
+    <div class="md-body-1 ws-body" ng-bind-html="$ctrl.question.body">
+        <!--{{$ctrl.question.body}}-->
+    </div>
+</article>

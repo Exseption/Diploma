@@ -1,4 +1,4 @@
-<div md-whiteframe="1" style="padding: 5px 10px; margin: 5px">
+<div class="box-container">
     <div>Меню</div>
     <div>
         <a class="like-button">Мои вопросы</a>
@@ -7,13 +7,13 @@
         <a class="like-button">Мои настройки</a>
     </div>
 </div>
-<div md-whiteframe="1" style="padding: 5px 10px; margin: 5px">
+<div class="box-container">
     <div class="md-subhead">Рейтинг пользователей</div>
     <ul ng-repeat="rating in $ctrl.ratings | limitTo: 5">
         <li>{{rating.name}} {{rating.surname}} : {{rating.rating}}</li>
     </ul>
 </div>
-<div md-whiteframe="1" style="padding: 5px 10px; margin: 5px">
+<div class="box-container">
     <div class="md-subhead">Рейтинг ответов</div>
     <ul ng-repeat="rating in $ctrl.answers | limitTo: 5">
         <li>

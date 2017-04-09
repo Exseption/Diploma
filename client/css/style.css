@@ -1,7 +1,33 @@
 html {
     overflow: scroll;
-
 }
+.simple-streak {
+    background-color: #cccccc;
+    min-height: 10px;
+}
+
+.box-container {
+    padding: 5px 10px;
+    margin: 5px;
+
+    /*border: 0.25em solid #eeeeee;*/
+    background-color: white;
+}
+.main-body {
+    background-color: #cccccc;
+}
+.tb-btn-huh {
+    padding:0px 5px;
+    background-color: white !important;
+    border-radius: 6px ;
+}
+
+.tb-my-styles {
+    background-color: white !important;
+    color: black !important;
+    min-height: 100px;
+}
+
 .ws-item-list {
     padding: 10px 15px;
 }
@@ -70,6 +96,7 @@ a.like-button {
 .beeline-tb {
     background-color: white !important;
     color: #000000 !important;
+    margin-bottom:5px;
 }
 
 .light-tb {
@@ -157,9 +184,6 @@ tbody > tr.md-row:hover {
 a {
     color: black;
 }
-
-
-
 .inp_cont_marg {
     margin: 0;
 }

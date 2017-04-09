@@ -6,7 +6,8 @@
         'ui.router',
         'angularMoment',
         'ngCookies',
-        'md.data.table'
+        'md.data.table',
+        'ngSanitize'
     ]);
 angular.module('legal')
     .constant('_', window._);
