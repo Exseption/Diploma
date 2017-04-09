@@ -4,7 +4,6 @@
         {{$ctrl.question.person.name}}
         {{$ctrl.question.person.surname}}
         {{$ctrl.question.created | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
-    <div class="md-body-1 ws-body" ng-bind-html="$ctrl.question.body">
-        <!--{{$ctrl.question.body}}-->
+    <div class="md-body-1 ws-body" ng-bind-html="$ctrl.question.body | limitTo: 350 | fpreview">
     </div>
 </article>

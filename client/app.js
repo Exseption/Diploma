@@ -107,6 +107,13 @@ angular.module('legal')
         };
     });
 
+
+angular.module('legal').filter('fpreview', function () {
+   return function (input) {
+       return input + ' ...';
+   }
+});
+
 angular.module('legal').component('wsToolbar',{
    templateUrl:'templates/ws-toolbar.html',
     controller: 'ToolbarController'

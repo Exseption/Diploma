@@ -2,8 +2,8 @@ html {
     overflow: scroll;
 }
 .simple-streak {
-    background-color: #cccccc;
-    min-height: 10px;
+    background-color: #eeeeee;
+    min-height: 5px;
 }
 
 .box-container {
@@ -14,7 +14,7 @@ html {
     background-color: white;
 }
 .main-body {
-    background-color: #cccccc;
+    background-color: #eeeeee;
 }
 .tb-btn-huh {
     padding:0px 5px;
@@ -25,7 +25,7 @@ html {
 .tb-my-styles {
     background-color: white !important;
     color: black !important;
-    min-height: 100px;
+    min-height: 90px;
 }
 
 .ws-item-list {
@@ -37,6 +37,7 @@ html {
 }
 .menu-but {
     outline: none;
+    /*border: solid 1px #eeeeee;*/
 }
 .menu-but:hover {
     background-color: #eeeeee;
@@ -83,14 +84,15 @@ a.like-button:hover {
     display:block;
     font-weight:400;
     letter-spacing:.1px;
-    padding:10px 10px 10px 46px;
-    text-overflow:ellipsis
+    /*padding:10px 10px 10px 46px;*/
+    text-overflow:ellipsis;
+     padding-top:10px;
+     padding-bottom:15px;
+     text-decoration: none;
 
 }
 a.like-button {
-    padding-top:10px;
-    padding-bottom:15px;
-    text-decoration: none;
+
 }
 
 .beeline-tb {
@@ -107,7 +109,7 @@ a.like-button {
 
 
 .last-questions {
-    background-color: #4AA02C;
+    /*background-color: #4AA02C;*/
 }
 
 
