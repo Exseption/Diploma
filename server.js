@@ -286,6 +286,18 @@ app.post(api_version + '/create/question', function (req, res) { //создае�
         });
 });
 
+app.post(api_version + '/create/answer', function (req, res) { //создаем ответ
+    Answer.create({
+        body: req.body.body,
+        author: req.body.author,
+        to_question: req.body.to_question,
+        mark: 0.0
+    }).then(function (result) {
+        res.send(result)
+
+    });
+});
+
 app.post(api_version + '/create/person', function (req, res) { // создаем нового пользователя
     Person.create({
         login:req.body.login,
