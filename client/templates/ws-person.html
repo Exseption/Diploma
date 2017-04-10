@@ -1,19 +1,20 @@
 <div class="md-body-1 ws-person-card">
-    <div>
         <div class="md-title">
             {{$ctrl.person.name}} {{$ctrl.person.surname}}
         </div>
+    <div style="padding-left: 15px">
         <div class="md-caption">
             Зарегистрирован: {{$ctrl.person.registrated | amUtc | amLocal | amDateFormat:'LLL'}}
         </div>
+        <div>
+            <span class="md-body-2">Дата рождения:</span>
+            {{$ctrl.person.birthday | amUtc | amLocal | amDateFormat:'LL'}}
+        </div>
+        <div>
+            <span class="md-body-2">Рейтинг:</span> {{$ctrl.person.rating}}
+        </div>
     </div>
-    <div>
-        <span class="md-body-2">Дата рождения:</span>
-        {{$ctrl.person.birthday | amUtc | amLocal | amDateFormat:'LL'}}
-    </div>
-    <div>
-        <span class="md-body-2">Рейтинг:</span> {{$ctrl.person.rating}}
-    </div>
+
     <md-divider></md-divider>
     <div style="padding-top: 15px">
         <div class="md-subhead">Вопросы пользователя</div>

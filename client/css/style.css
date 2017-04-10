@@ -10,6 +10,21 @@ html {
     cursor: pointer;
 }
 
+.fix-but {
+
+}
+
+.answer-button {
+    margin-top: 3px;
+    background-color: white;
+    border-radius: 1px;
+    border: solid 1px #999999;
+    box-sizing: border-box;
+    height: 30px;
+}
+.answer-button:hover {
+    background-color: #D6D6D6;
+}
 
 .rating-person:hover {
     cursor: pointer;
@@ -24,6 +39,7 @@ html {
 }
 .box-container {
     padding: 5px 10px;
+    border-radius: 3px;
     margin: 5px;
     background-color: white;
 }
@@ -102,20 +118,19 @@ a.like-button:hover {
     cursor: pointer;
     background: #dddddd;
 }
+
+.list-rating {
+    margin-top: 0px;
+}
  a.like-button {
-    border-left:2px solid transparent;
+
+    border-left:15px solid transparent;
     color:#212121;
     display:block;
     font-weight:400;
-    letter-spacing:.1px;
-    /*padding:10px 10px 10px 46px;*/
-    text-overflow:ellipsis;
-     padding-top:10px;
-     padding-bottom:15px;
+     padding-top:2px;
+     padding-bottom:2px;
      text-decoration: none;
-
-}
-a.like-button {
 
 }
 

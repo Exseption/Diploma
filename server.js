@@ -211,13 +211,15 @@ app.post(api_version + '/create/answer', function (req, res) { // создани
 app.post(api_version + '/vote/plus', function (req, res) { //голосуем за ответ в плюс
     Answer.update({
         mark: sequelize.literal("mark + 0.1")
-    },
+    }
+    ,
         {
         where:{
             id: req.body.id
         }
-    }).then(function (res) {
-        res.send('OK');
+    }
+    ).then(function (result) {
+        res.send(result);
     })
 });
 app.post(api_version + '/vote/minus', function (req, res) { //голосуем за ответ в минус
@@ -228,8 +230,8 @@ app.post(api_version + '/vote/minus', function (req, res) { //голосуем �
             where:{
                 id: req.body.id
             }
-        }).then(function (res) {
-        res.send('OK');
+        }).then(function (result) {
+        res.send(result);
     })
 });
 
