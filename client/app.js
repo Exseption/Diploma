@@ -49,11 +49,17 @@ angular.module('legal')
                 templateUrl: 'templates/dialog.html'
             })
             .state('user/questions', {
-                // controller:'CabinetController',
-                // controllerAs: 'cc',
                 url:'user/:id/questions',
                 templateUrl: 'templates/my-questions.html'
 
+            })
+            .state('ask',{
+                url:'/ask',
+                template:'<create-question></create-question>'
+            })
+            .state('search',{
+                url:'/search',
+                template:'<div>Поиск</div>'
             })
             .state('library', {
                 controller: 'LibraryController',

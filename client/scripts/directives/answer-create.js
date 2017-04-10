@@ -11,7 +11,7 @@ angular.module('legal').directive('answerCreate', function (AnswerService) {
             "</div>"].join(""),
         link: function (scope, elem, attrs) {
             scope.answer = function (to_question, answer_text) {
-                // alert(to_question+' '+ answer_text)
+                //TODO сделать зависимость авторства от сессии пользователя
                 AnswerService.createAnswer(to_question, answer_text, 1).then(function (res) {
                     console.log(res);
                 })

@@ -7,6 +7,15 @@
         };
         self.getQuestion = function (id) {
             return Restangular.one('question',id).get();
+        };
+        self.createQuestion = function (title, body, author, payable, price) {
+            return Restangular.all('create/question').post({
+                author: author,
+                body: body,
+                title: title,
+                payable: payable,
+                price: price
+            })
         }
 
 

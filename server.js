@@ -200,7 +200,7 @@ app.post(api_version + '/create/answer', function (req, res) { // создани
     Answer.create({
         body:req.body.body,
         author:req.body.author,
-        to_question: req.body.question,
+        to_question: req.body.to_question,
         mark: 0
     }).then(function (results) {
             res.send('OK');
@@ -290,7 +290,7 @@ app.post(api_version + '/create/answer', function (req, res) { //создаем 
     Answer.create({
         body: req.body.body,
         author: req.body.author,
-        to_question: req.body.to_question,
+        toQuestion: req.body.to_question,
         mark: 0.0
     }).then(function (result) {
         res.send(result)

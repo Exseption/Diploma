@@ -1,1 +1,11 @@
-.md-body-1(layout='column')
+div.create-question
+    .md-body-1(layout='column')
+        .md-subhead(flex) Задать вопрос сообществу пользователей
+        input.input-question(ng-model="title", placeholder='Заголовок')
+        textarea.input-question(ng-model="body", rows='10', placeholder='Тело вопроса')
+        md-radio-group(ng-model="payable")
+            md-radio-button(value='true') Платный
+            md-radio-button(value='false') Бесплатный
+        input.input-question(ng-model="price", placeholder='Цена вопроса')
+    div(layout='row', layout-align='end end')
+        button.answer-button(type='button', ng-click='$ctrl.createQuestion(title, body, author, payable, price)') Отправить

@@ -10,8 +10,11 @@ html {
     cursor: pointer;
 }
 
-.fix-but {
-
+.create-question {
+    margin: 10px 15px;
+}
+.input-question {
+   margin: 2px 0px;
 }
 
 .answer-button {

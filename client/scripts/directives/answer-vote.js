@@ -16,7 +16,7 @@ angular.module('legal').directive('answerVote', function (RatingService) {
             scope.votePlus = function(id){
                 RatingService.votePlus(id).then(function (result) {
                     elem.html("<div class='md-caption'>Спасибо за ваш голос!</div>")
-                    elem.append("<h3>Агааа!!!</h3>")
+                    // elem.append("<h3>Агааа!!!</h3>")
                     return result;
                 });
             };
