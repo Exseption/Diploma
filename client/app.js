@@ -104,11 +104,11 @@
    }
 })
         .component('wsToolbar',{
-            templateUrl:'templates/ws-toolbar.html',
+            templateUrl:'templates/components/ws-toolbar.html',
             controller: 'ToolbarController'
 })
         .component('wsMenu',{
-            templateUrl:'templates/ws-menu.html',
+            templateUrl:'templates/components/ws-menu.html',
             controller: 'ToolbarController'
 })
         .component('wsQuestion',{
@@ -116,22 +116,22 @@
     bindings:{
       question: '<'
     },
-    templateUrl:'templates/ws-question.html'
+    templateUrl:'templates/components/ws-question.html'
 })
         .component('wsRatings',{
         controller: 'MainCompCtrl',
-        templateUrl:'templates/ws-ratings.html'
+        templateUrl:'templates/components/ws-ratings.html'
     })
         .component('person', {
         controller: 'PersonController',
-        templateUrl:'templates/ws-person.html'
+        templateUrl:'templates/components/ws-person.html'
     })
         .component('wsSideNav',{
-            templateUrl:'templates/ws-sidenav.html',
+            templateUrl:'templates/components/ws-sidenav.html',
             controller:'SidenavController'
 })
         .component('wsMainComp',{
-            templateUrl:'templates/ws-main.html',
+            templateUrl:'templates/components/ws-main.html',
             transclude:true
 });
 })();

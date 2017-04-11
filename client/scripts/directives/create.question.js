@@ -1,6 +1,6 @@
 angular.module('legal').directive('createQuestion', function (QuestionService) {
 return {
-    templateUrl: '../../templates/create-question.html',
+    templateUrl: '../../templates/directives/create-question.html',
     link: function (scope, elem, attrs) {
         scope.createQuestion = function (title, body, author, payable, price ) {
             //TODO также сдедалть авторство от сессии

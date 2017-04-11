@@ -5,7 +5,6 @@ cookieParser = require('cookie-parser'),
 bodyParser = require('body-parser'),
 session = require('express-session'),
 app = express();
-// const Sequelize = require('sequelize');
 const methodOverride = require('method-override');
 app.use(express.static(path.join(__dirname, 'client')));
 app.use(logger('dev'));
@@ -175,17 +174,6 @@ app.get(api_version + '/person/:id', function (req, res) { // получаем �
     })
 });
 
-//чет подозрительна подумать чтобы сразу с вопросом запрашивать ответы
-// app.get(api_version + '/question/:id/answers', function (req, res) { // получаем ответы к вопросу по id
-//     Answer.findAll({
-//         where:{
-//             to_question: req.params.id
-//         }
-//     })
-//         .then(function (result) {
-//             res.json(result);
-//         })
-// });
 app.post(api_version + '/auth', function (req, res) { // авторизация пользователя
     Person.findAll({
         where: {

@@ -9,11 +9,13 @@ angular.module('legal').directive('answerCreate', function (AnswerService) {
             "ng-click='answer(qc.question.id, answer_text)'>Ответить</button>",
             "</div>",
             "</div>"].join(""),
+
         link: function (scope, elem, attrs) {
             scope.answer = function (to_question, answer_text) {
                 //TODO сделать зависимость авторства от сессии пользователя
                 AnswerService.createAnswer(to_question, answer_text, 1).then(function (res) {
                     console.log(res);
+                    elem.html("<h3>Спасибо за ваш ответ!</h3>")
                 })
 
             }
