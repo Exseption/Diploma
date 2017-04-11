@@ -54,17 +54,17 @@
                           <th md-column="" md-numeric="">ID</th>
                           <th md-column="">Заголовок</th>
                           <th md-column="">Тело вопроса</th>
-                          <th md-column="">Редактировать</th>
+                          <th md-column="">Удалить</th>
                         </tr>
                       </thead>
                       <tbody md-body="">
                         <tr md-row="" ng-repeat="q in cc.questions | orderBy: 'id'">
                           <td md-cell="">{{q.id}}</td>
                           <td md-cell="">{{q.title}}</td>
-                          <td md-cell="">{{q.content }}</td>
+                          <td md-cell="">{{q.body | limitTo: 100}}</td>
                           <td md-cell="">
-                            <md-button class="md-icon-button" aria-label="...">
-                              <md-icon md-svg-icon="./img/ic_edit_24px.svg"></md-icon>
+                            <md-button class="md-icon-button" aria-label="Удалить" ng-click="cc.deleteQuestion(q)">
+                              <md-icon md-svg-icon="./img/clear.svg"></md-icon>
                             </md-button>
                           </td>
                         </tr>

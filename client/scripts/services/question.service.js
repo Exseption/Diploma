@@ -16,8 +16,9 @@
                 payable: payable,
                 price: price
             })
+        };
+        self.deleteQuestion = function (id) {
+            return Restangular.one('delete/question',id).remove();
         }
-
-
     });
 })();

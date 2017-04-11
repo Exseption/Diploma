@@ -41,15 +41,15 @@ div.md-body-1(layout='column')
                                                     th(md-column='', md-numeric='') ID
                                                     th(md-column='') Заголовок
                                                     th(md-column='') Тело вопроса
-                                                    th(md-column='') Редактировать
+                                                    th(md-column='') Удалить
                                             tbody(md-body='')
                                                 tr(md-row='', ng-repeat="q in cc.questions | orderBy: 'id'")
                                                     td(md-cell='') {{q.id}}
                                                     td(md-cell='') {{q.title}}
-                                                    td(md-cell='') {{q.content }}
+                                                    td(md-cell='') {{q.body | limitTo: 100}}
                                                     td(md-cell='')
-                                                        md-button.md-icon-button(aria-label='...')
-                                                            md-icon(md-svg-icon='./img/ic_edit_24px.svg')
+                                                        md-button.md-icon-button(aria-label='Удалить', ng-click="cc.deleteQuestion(q)")
+                                                            md-icon(md-svg-icon='./img/clear.svg')
         //div.my_border_left(flex='25')
         //    div(layout='column')
         //        md-button Добавить

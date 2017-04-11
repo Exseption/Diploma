@@ -1,6 +1,5 @@
 angular.module('legal').directive('answerVote', function (RatingService) {
     return {
-
         template:["<div layout='row' layout-align='end end'>",
                     "<div flex='flex'></div>",
                     "<div flex='flex'>",
@@ -15,13 +14,14 @@ angular.module('legal').directive('answerVote', function (RatingService) {
         link: function (scope, elem, attrs) {
             scope.votePlus = function(id){
                 RatingService.votePlus(id).then(function (result) {
-                    elem.html("<div class='md-caption'>Спасибо за ваш голос!</div>")
+                    elem.html("<div class='md-caption'>Спасибо за ваш голос!</div>");
                     // elem.append("<h3>Агааа!!!</h3>")
                     return result;
                 });
             };
             scope.voteMinus = function(id){
                 RatingService.voteMinus(id).then(function (result) {
+                    elem.html("<div class='md-caption'>Спасибо за ваш голос!</div>");
                     return result;
                 });
             };

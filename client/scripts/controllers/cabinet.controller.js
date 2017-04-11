@@ -1,12 +1,29 @@
-angular.module('legal').controller('CabinetController', function (QueryService, $mdDialog, SessionManager) {
+angular.module('legal').controller('CabinetController', function (PeopleService, $mdDialog, SessionManager, QuestionService) {
    const self = this;
-    QueryService.getQuestions().then(function (results) {
+    QuestionService.getQuestions().then(function (results) {
         self.questions = results;
     });
-    QueryService.getUsers().then(function (results) {
+    PeopleService.getPeople().then(function (results) {
         self.users = results;
     });
 
+    self.deleteQuestion = function(q) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                .title('Вы действительно хотите удалить вопрос?')
+                .textContent('Вопрос будет удален безвозвратно!')
+                .ariaLabel('Удаление вопроса')
+                // .targetEvent(ev)
+                .ok('Подтвердить!')
+                .cancel('Отмена');
+
+            $mdDialog.show(confirm).then(function() {
+                QuestionService.deleteQuestion(q.id).then(function (result) {
+                    _.pull(self.questions, q);
+                });
+            }, function() {
+            });
+        };
 
     self.cancelChanges = function () {
         $mdDialog.hide();

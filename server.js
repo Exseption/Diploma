@@ -286,6 +286,16 @@ app.post(api_version + '/create/question', function (req, res) { //создае�
         });
 });
 
+app.delete(api_version + '/delete/question/:id', function (req, res) {
+    Question.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(function (result) {
+        res.json(result);
+    })
+});
+
 app.post(api_version + '/create/answer', function (req, res) { //создаем ответ
     Answer.create({
         body: req.body.body,

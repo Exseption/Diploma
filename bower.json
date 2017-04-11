@@ -1,0 +1,22 @@
+{
+  "name": "law-portal",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "https://github.com/Exseption/diploma",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.3",
+    "angular-material": "^1.1.3",
+    "restangular": "^1.6.1",
+    "angular-ui-router": "^0.4.2",
+    "angular-moment": "^1.0.1",
+    "angular-sanitize": "^1.6.4"
+  }
+}

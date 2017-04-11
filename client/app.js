@@ -8,26 +8,16 @@
         'ngCookies',
         'md.data.table',
         'ngSanitize'
-    ]);
-angular.module('legal')
-    .constant('_', window._);
-
-angular.module('legal')
-    .config(function(RestangularProvider){
+    ])
+        .constant('_', window._)
+        .config(function(RestangularProvider){
         RestangularProvider
             .setBaseUrl('http://localhost:3009/api/v1');
-    });
-
-angular
-    .module('legal')
-    .config(function($mdThemingProvider) {
+    })
+        .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
-    });
-
-
-
-angular.module('legal')
-    .config(function ($stateProvider, $urlRouterProvider) {
+    })
+        .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/index');
         $stateProvider
             .state('index',{
@@ -96,84 +86,52 @@ angular.module('legal')
                 url: '/cabinet',
                 templateUrl: 'templates/cabinet.html'
             })
-    });
-
-angular.module('legal')
-    .config(function($mdThemingProvider) {
+    })
+        .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
-    });
-
-angular.module('legal')
-    .run(function(amMoment) {
+    })
+        .run(function(amMoment) {
         amMoment.changeLocale('ru');
-    });
-
-angular.module('legal')
-    .filter('currencyRub', function ($filter) {
+    })
+        .filter('currencyRub', function ($filter) {
         return function (item) {
             return $filter('currency')(item || 0, '', 2) + ' р.';
         };
-    });
-
-
-angular.module('legal').filter('fpreview', function () {
+    })
+        .filter('fpreview', function () {
    return function (input) {
        return input + ' ...';
    }
-});
-
-angular.module('legal').component('wsToolbar',{
-   templateUrl:'templates/ws-toolbar.html',
-    controller: 'ToolbarController'
-});
-
-angular.module('legal').component('wsMenu',{
-    templateUrl:'templates/ws-menu.html',
-    controller: 'ToolbarController'
-});
-angular.module('legal').component('listOfQuestions',{
-
-});
-angular.module('legal').component('wsQuestion',{
+})
+        .component('wsToolbar',{
+            templateUrl:'templates/ws-toolbar.html',
+            controller: 'ToolbarController'
+})
+        .component('wsMenu',{
+            templateUrl:'templates/ws-menu.html',
+            controller: 'ToolbarController'
+})
+        .component('wsQuestion',{
     // controller:'MainController',
     bindings:{
       question: '<'
     },
     templateUrl:'templates/ws-question.html'
-});
-
-    angular.module('legal').component('wsRatings',{
+})
+        .component('wsRatings',{
         controller: 'MainCompCtrl',
         templateUrl:'templates/ws-ratings.html'
-    });
-
-    angular.module('legal').component('person', {
+    })
+        .component('person', {
         controller: 'PersonController',
         templateUrl:'templates/ws-person.html'
-    });
-
-angular.module('legal').component('listOfAnswers',{
-
-});
-angular.module('legal').component('answer',{
-
-});
-angular.module('legal').component('listOfDialogs',{
-
-});
-angular.module('legal').component('dialog',{
-
-});
-angular.module('legal').component('message',{
-
-});
-
-angular.module('legal').component('wsSideNav',{
-    templateUrl:'templates/ws-sidenav.html',
-    controller:'SidenavController'
-});
-angular.module('legal').component('wsMainComp',{
-    templateUrl:'templates/ws-main.html',
-    transclude:true
+    })
+        .component('wsSideNav',{
+            templateUrl:'templates/ws-sidenav.html',
+            controller:'SidenavController'
+})
+        .component('wsMainComp',{
+            templateUrl:'templates/ws-main.html',
+            transclude:true
 });
 })();

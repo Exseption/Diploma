@@ -8,4 +8,4 @@ div.create-question
             md-radio-button(value='false') Бесплатный
         input.input-question(ng-model="price", placeholder='Цена вопроса')
     div(layout='row', layout-align='end end')
-        button.answer-button(type='button', ng-click='$ctrl.createQuestion(title, body, author, payable, price)') Отправить
+        button.answer-button(type='button', ng-click='createQuestion(title, body, author, payable, price)') Отправить
