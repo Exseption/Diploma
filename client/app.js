@@ -67,17 +67,23 @@
 
 
             //  над этими тремя подумать хорошенько
-            .state('messages', {
-                controller:'MessageController',
-                controllerAs: 'mc',
-                url:'/:id/messages',
-                templateUrl: 'templates/messages.html'
-            })
+            // .state('messages', {
+            //     controller:'MessageController',
+            //     controllerAs: 'mc',
+            //     url:'/:id/messages',
+            //     templateUrl: 'templates/messages.html',
+            //     data: {
+            //         auth: true
+            //     }
+            // })
             .state('dialogs', {
                 controller: 'MessageController',
                 controllerAs: 'mc',
                 url: '/:id/dialog/:dialog/messages',
-                templateUrl: 'templates/dialog.html'
+                templateUrl: 'templates/dialog.html',
+                data: {
+                    needAuth: true
+                }
             })
 
             .state('user/questions', {
@@ -132,10 +138,9 @@
             .state('ratings', {
                 url: '/ratings',
                 templateUrl:'templates/ratings.html',
-                controller:'MainCompCtrl',
+                controller:'RatingController',
                 controllerAs: 'mc'
             })
-
 
             // личный кабинет. ага
             .state('cabinet', {
@@ -145,6 +150,16 @@
                 templateUrl: 'templates/cabinet.html'
             })
     })
+        .run(function ($rootScope) {
+            $rootScope.$on('$stateChangeStart',
+                function(event, toState, toParams, fromState, fromParams, error) {
+                    console.log(event);
+                    console.log(toState);
+                    console.log(toParams);
+                }
+            );
+        })
+
         .run(function(amMoment) {
         amMoment.changeLocale('ru');
     })
@@ -175,7 +190,7 @@
             templateUrl:'templates/components/ws-question.html'
 })
         .component('wsRatings',{
-            controller: 'MainCompCtrl',
+            controller: 'RatingController',
             templateUrl:'templates/components/ws-ratings.html'
         })
         .component('person', {
