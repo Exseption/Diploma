@@ -246,22 +246,27 @@ app.get(api_version + '/person/:id/dialog/:dialog/messages', function (req, res)
             id: req.params.dialog
         }},
         include: [{
-                model: Message
+                model: Message,
+                include: {
+                    model: Person,
+                    attributes: ['name', 'surname']
+
+            }
         }]
     }).then(function (results) {
         res.json(results);
     });
 });
 
-app.get(api_version + 'person/:id/dialogs/:dialog/messages', function (req, res) {
-    Message.findAll({
-        include:[{
-            model: Person
-        }]
-    }).then(function (results) {
-       res.send(results);
-   })
-});
+// app.get(api_version + 'person/:id/dialogs/:dialog/messages', function (req, res) {
+//     Message.findAll({
+//         include:[{
+//             model: Person
+//         }]
+//     }).then(function (results) {
+//        res.send(results);
+//    })
+// });
 app.post(api_version + '/create/question', function (req, res) { //создаем вопрос
     Question.create({
         title: req.body.title,
