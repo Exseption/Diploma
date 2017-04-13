@@ -1,8 +1,8 @@
-<div class="md-body-1" layout="column">
-  <md-content>
-    <div flex="flex">
+<div class="md-body-1 main-view" layout="column">
+  <md-content class="main-view-here">
+    <div flex="flex" layout-margin >
       <div ng-repeat="question in mc.questions" ui-sref="question({id : question.id})">
-        <article class="ws-item-list" layout="column">
+        <article layout="column" >
           <header class="md-title ws-q-title" ui-sref="question({id : $ctrl.question.id})">{{question.title}}</header>
           <div class="md-caption">
             <div class="ws-author" ui-sref="person({id: mc.question.person.id})">
@@ -13,7 +13,6 @@
           <div class="md-body-1 ws-body" ng-bind-html="question.body | limitTo: 350 | fpreview">
           </div>
         </article>
-
       </div>
     </div>
   </md-content>

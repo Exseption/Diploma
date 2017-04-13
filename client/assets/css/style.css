@@ -1,6 +1,11 @@
 html {
     overflow: scroll;
 }
+.main-viewport {
+    padding: 5px 5px;
+
+}
+
 .simple-button {
     background-color: white;
     text-transform: none;
@@ -57,13 +62,32 @@ a {
     font-family: "Baskerville Old Face";
     font-size: xx-large;
     /*min-height: 50px;*/
-
-
 }
 .main-view {
-    background-color: #FF9933;
+    /*background-color: #FF9933;*/
+    /*padding: 5px 15px;*/
 }
 
+.sidebar-container-title {
+    text-transform: uppercase;
+
+}
+
+.main-view-here {
+    background-color: white;
+
+}
+.sidebar-container {
+    border-radius: 3px;
+    background-color: #F6F6F6;
+    min-height: 200px;
+    /*border:solid 1px;*/
+    padding: 5px 10px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+
+
+}
 .ws-body {
     text-indent: 1.5em;
     text-align: justify;
@@ -78,216 +102,3 @@ a {
 body {
     background-color: white;
 }
-/*.ws-q-title:hover {*/
-    /*color: brown;*/
-    /*cursor: pointer;*/
-/*}*/
-
-/*.create-question {*/
-    /*margin: 10px 15px;*/
-/*}*/
-/*.input-question {*/
-   /*margin: 2px 0;*/
-/*}*/
-
-/*.answer-button {*/
-    /*margin-top: 3px;*/
-    /*background-color: white;*/
-    /*border-radius: 1px;*/
-    /*border: solid 1px #999999;*/
-    /*box-sizing: border-box;*/
-    /*height: 30px;*/
-/*}*/
-/*.answer-button:hover {*/
-    /*background-color: #D6D6D6;*/
-/*}*/
-
-/*.rating-person:hover {*/
-    /*cursor: pointer;*/
-    /*color: #5F82D9;*/
-/*}*/
-/*.ws-person-card {*/
-    /*padding: 5px 10px;*/
-/*}*/
-/*.ws-author:hover {*/
-    /*color: #5F82D9;*/
-    /*cursor: pointer;*/
-/*}*/
-/*.box-container {*/
-    /*padding: 5px 10px;*/
-    /*!*border-radius: 3px;*!*/
-    /*margin: 5px;*/
-    /*background-color: white;*/
-/*}*/
-/*.main-body {*/
-    /*background-color: #eeeeee;*/
-/*}*/
-
-
-/*.ws-book:hover {*/
-    /*color: #FF9933;*/
-    /*cursor: pointer;*/
-/*}*/
-
-/*.tb-btn-huh {*/
-    /*padding:0 5px;*/
-    /*background-color: white !important;*/
-    /*border-radius: 6px ;*/
-/*}*/
-
-
-
-/*.ws-item-list {*/
-    /*padding: 10px 15px;*/
-    /*background-color: white;*/
-/*}*/
-
-
-
-
-/*.menu-but:hover {*/
-    /*background-color: #eeeeee;*/
-/*}*/
-
-
-/*.mess-container {*/
-    /*padding:10px 15px;*/
-    /*margin: 8px;*/
-    /*background-color: white;*/
-/*}*/
-
-/*textarea {*/
-    /*resize: none;*/
-/*}*/
-/*.mess-field {*/
-    /*margin: 8px;*/
-/*}*/
-/*.quest {*/
-    /*padding: 5px 25px;*/
-/*}*/
-/*.quest-title:hover {*/
-    /*cursor: pointer;*/
-/*}*/
-/*footer {*/
-    /*background-color: #ccc;*/
-/*}*/
-
-/*a.user-link {*/
-    /*text-decoration: none;*/
-    /*color: #212121;*/
-    /*font-weight: bolder;*/
-/*}*/
-
-/*a.like-button:hover {*/
-    /*cursor: pointer;*/
-    /*background: #dddddd;*/
-/*}*/
-
-/*.list-rating {*/
-    /*margin-top: 0;*/
-/*}*/
- /*a.like-button {*/
-
-    /*border-left:15px solid transparent;*/
-    /*color:#212121;*/
-    /*display:block;*/
-    /*font-weight:400;*/
-     /*padding-top:2px;*/
-     /*padding-bottom:2px;*/
-     /*text-decoration: none;*/
-
-/*}*/
-
-/*.beeline-tb {*/
-    /*background-color: white !important;*/
-    /*color: #000000 !important;*/
-    /*margin-bottom:5px;*/
-/*}*/
-
-/*.light-tb {*/
-    /*background-color: white !important;*/
-    /*color: #000000 !important;*/
-/*}*/
-
-
-
-/*.last-questions {*/
-    /*!*background-color: #4AA02C;*!*/
-/*}*/
-
-
-/*#tb-search {*/
-    /*border-radius:2px;*/
-    /*font-weight: bold;*/
-    /*font-size: medium;*/
-/*}*/
-
-/*.ans_count {*/
-    /*border:solid 1px blue;*/
-    /*border-radius: 3px;*/
-    /*padding: 1px 5px;*/
-    /*margin: 3px 5px;*/
-/*}*/
-
-/*.date_of_q {*/
-    /*border: solid 1px grey;*/
-    /*border-radius: 3px;*/
-    /*margin: 2px 5px;*/
-    /*padding: 1px 5px;*/
-/*}*/
-/*.price_q {*/
-    /*border: solid 1px red;*/
-    /*border-radius: 3px;*/
-    /*margin: 2px 5px;*/
-    /*padding: 1px 5px;*/
-/*}*/
-/*.ans_h {*/
-    /*!*background-color: #D7D7D7;*!*/
-    /*border-radius: 3px;*/
-    /*padding: 1px 10px;*/
-/*}*/
-/*.quest_head {*/
-    /*!*background-color: #9C9C9C;*!*/
-    /*padding: 1px 10px;*/
-/*}*/
-
-/*.head_link {*/
-    /*cursor: pointer;*/
-/*}*/
-
-/*.head_link:hover {*/
-    /*background-color: #cfcfcf;*/
-/*}*/
-
-/*.date_under_head {*/
-    /*!*background-color: #38D63B;*!*/
-    /*padding: 1px 10px;*/
-/*}*/
-/*.quest_body {*/
- /*!*background-color: #EEEEEE;*!*/
-    /*padding: 1px 10px;*/
-    /*text-indent: 20px;*/
-    /*text-align: justify;*/
-/*}*/
-/*.price_quest {*/
-    /*padding: 1px 10px;*/
-    /*margin-bottom: 10px;*/
-/*}*/
-/*.ans_body {*/
-    /*!*background-color: #EFEFEF;*!*/
-    /*padding: 3px 25px;*/
-    /*margin: 5px;*/
-    /*border-radius: 5px;*/
-/*}*/
-/*.ans_butt {*/
-    /*font-size: smaller;*/
-/*}*/
-/*tbody > tr.md-row:hover {*/
-    /*background-color: #D6D6D6;*/
-/*}*/
-
-
-
-/*.inp_cont_marg {*/
-    /*margin: 0;*/
-/*}*/
