@@ -17,18 +17,9 @@
         .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
     })
-        // .config(function ($rootScope) {
-        //     $rootScope.on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, options) {
-        //         console.log('!!!!!!!!!!!!!!!!!!!!!!!!!')
-        //     })
-        // })
-
         .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/index');
         $stateProvider
-
-
-
             .state('public', {
                 url: '/public',
                 abstract: true,
@@ -171,38 +162,8 @@
 
         // фильтр превью вопроса на главной странице
         .filter('fpreview', function () {
-   return function (input) {
-       return input + ' ...';
+            return function (input) {
+            return input + ' ...';
    }
 })
-        .component('wsToolbar',{
-            templateUrl:'templates/components/ws-toolbar.html',
-            controller: 'ToolbarController'
-})
-        .component('wsMenu',{
-            templateUrl:'templates/components/ws-menu.html',
-            controller: 'ToolbarController'
-})
-        .component('wsQuestion',{
-            bindings:{
-              question: '<'
-            },
-            templateUrl:'templates/components/ws-question.html'
-})
-        .component('wsRatings',{
-            controller: 'RatingController',
-            templateUrl:'templates/components/ws-ratings.html'
-        })
-        .component('person', {
-            controller: 'PersonController',
-            templateUrl:'templates/components/ws-person.html'
-        })
-        .component('wsSideNav',{
-            templateUrl:'templates/components/ws-sidenav.html',
-            controller:'SidenavController'
-})
-        .component('wsMainComp',{
-            templateUrl:'templates/components/ws-main.html',
-            transclude:true
-});
 })();
