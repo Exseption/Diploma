@@ -5,75 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Центр правовых консультаций</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
-    <link rel="stylesheet" href="css/angular-material.min.css">
-    <link rel="stylesheet" href="css/md-data-table.min.css">
-    <link rel="stylesheet" href="css/ng-animation.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/angular-material.min.css">
+    <link rel="stylesheet" href="assets/css/md-data-table.min.css">
+    <link rel="stylesheet" href="assets/css/ng-animation.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 <body>
 <ws-toolbar></ws-toolbar>
 <ws-menu></ws-menu>
-
-<ui-view></ui-view>
-
-
-
-
-
-
-
-
-
-
-<script src="scripts/vendor/angular.min.js"></script>
-<script src="scripts/vendor/angular-animate.min.js"></script>
-<script src="scripts/vendor/angular-aria.min.js"></script>
-<script src="scripts/vendor/angular-material.min.js"></script>
-<script src="scripts/vendor/lodash.min.js"></script>
-<script src="scripts/vendor/restangular.min.js"></script>
-<script src="scripts/vendor/angular-cookies.min.js"></script>
-<script src="scripts/vendor/moment.min.js"></script>
-<script src="scripts/vendor/ru.js"></script>
-<script src="scripts/vendor/angular-moment.min.js"></script>
-<script src="scripts/vendor/angular-ui-router.min.js"></script>
-<script src="scripts/vendor/md-data-table.min.js"></script>
-<script src="scripts/vendor/angular-sanitize.js"></script>
+<main>
+    <section class="simple-streak"></section>
+    <section class="main-body">
+        <div layout="row">
+            <div flex="15"></div>
+            <div flex class="box-container">
+                <div ui-view>
+                </div>
+            </div>
+            <div flex="20">
+                <ws-ratings></ws-ratings>
+            </div>
+            <div flex="15"></div>
+        </div>
+    </section>
+</main>
 
 
 
 
-
-<script src="app.js"></script>
-<script src="scripts/controllers/main.controller.js"></script>
-<script src="scripts/controllers/question.controller.js"></script>
-<script src="scripts/controllers/person.controller.js"></script>
-<script src="scripts/controllers/cabinet.controller.js"></script>
-<script src="scripts/controllers/toolbar.controller.js"></script>
-
-<script src="scripts/controllers/library.controller.js"></script>
-<script src="scripts/controllers/message.controller.js"></script>
-
-<script src="scripts/services/session.manager.js"></script>
-
-<script src="scripts/services/question.service.js"></script>
-<script src="scripts/services/rating.service.js"></script>
-<script src="scripts/services/people.service.js"></script>
-<script src="scripts/services/library.service.js"></script>
-<script src="scripts/services/answers.service.js"></script>
-
-<script src="scripts/directives/answer-vote.js"></script>
-<script src="scripts/directives/answer-create.js"></script>
-
-<script src="scripts/controllers/rating.controller.js"></script>
+<script src="assets/libs/angular.min.js"></script>
+<script src="assets/libs/angular-animate.min.js"></script>
+<script src="assets/libs/angular-aria.min.js"></script>
+<script src="assets/libs/angular-material.min.js"></script>
+<script src="assets/libs/lodash.min.js"></script>
+<script src="assets/libs/restangular.min.js"></script>
+<script src="assets/libs/angular-cookies.min.js"></script>
+<script src="assets/libs/moment.min.js"></script>
+<script src="assets/libs/ru.js"></script>
+<script src="assets/libs/angular-moment.min.js"></script>
+<script src="assets/libs/angular-ui-router.min.js"></script>
+<script src="assets/libs/md-data-table.min.js"></script>
+<script src="assets/libs/angular-sanitize.js"></script>
 
 
-<script src="scripts/directives/create.question.js"></script>
-<script src="scripts/directives/ws-toolbar.js"></script>
-<script src="scripts/directives/ws-question.js"></script>
 
-<script src="scripts/directives/ws-person.js"></script>
-<script src="scripts/directives/ws-ratings.js"></script>
-<script src="scripts/directives/ws-question.js"></script>
+
+
+<script src="app.module.js"></script>
+<script src="components/home/main.controller.js"></script>
+<script src="components/question/question.controller.js"></script>
+<script src="components/person/person.controller.js"></script>
+<script src="components/private/cabinet.controller.js"></script>
+<script src="shared/ws-toolbar/toolbar.controller.js"></script>
+
+<script src="components/library/library.controller.js"></script>
+<script src="components/private/message.controller.js"></script>
+
+<script src="components/session.manager.js"></script>
+
+<script src="components/question/question.service.js"></script>
+<script src="components/ratings/rating.service.js"></script>
+<script src="components/person/people.service.js"></script>
+<script src="components/library/library.service.js"></script>
+<script src="components/answer/answers.service.js"></script>
+
+<script src="components/answer/answer-vote.js"></script>
+<script src="components/answer/answer-create.js"></script>
+
+<script src="shared/sidebar/rating.controller.js"></script>
+
+
+<script src="components/question/create.question.js"></script>
+<script src="shared/ws-toolbar/ws-toolbar.js"></script>
+<script src="components/question/ws-question.js"></script>
+
+<script src="components/person/ws-person.js"></script>
+<script src="shared/sidebar/ws-ratings.js"></script>
+<script src="components/question/ws-question.js"></script>
 
 
 </body>
