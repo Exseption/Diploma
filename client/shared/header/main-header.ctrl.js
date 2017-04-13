@@ -1,4 +1,4 @@
-angular.module('legal').controller('ToolbarController', function ($scope, $mdDialog) {
+angular.module('legal').controller('main-header.ctrl', function ($scope, $mdDialog) {
    // var self = this;
 
     $scope.auth = function() {

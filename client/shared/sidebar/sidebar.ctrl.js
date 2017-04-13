@@ -1,5 +1,5 @@
 (function () {
-    angular.module('legal').controller('RatingController', function (RatingService) {
+    angular.module('legal').controller('sidebar.ctrl', function (RatingService) {
         var self = this;
         RatingService.getRatings().then(function (ratings) {
             self.ratings = ratings;

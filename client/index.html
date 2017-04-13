@@ -9,31 +9,15 @@
     <link rel="stylesheet" href="assets/css/md-data-table.min.css">
     <link rel="stylesheet" href="assets/css/ng-animation.css">
     <link rel="stylesheet" href="assets/css/style.css">
-
 </head>
 <body>
-<ws-toolbar></ws-toolbar>
-<ws-menu></ws-menu>
-<main>
-    <section class="simple-streak"></section>
-    <section class="main-body">
+<main-header></main-header>
         <div layout="row">
-            <div flex="15"></div>
-            <div flex class="box-container">
-                <div ui-view>
-                </div>
+            <div flex-offset="20" flex="50">
+                <ui-view><ui-view/>
             </div>
-            <div flex="20">
-                <ws-ratings></ws-ratings>
-            </div>
-            <div flex="15"></div>
+            <sidebar></sidebar>
         </div>
-    </section>
-</main>
-
-
-
-
 <script src="assets/libs/angular.min.js"></script>
 <script src="assets/libs/angular-animate.min.js"></script>
 <script src="assets/libs/angular-aria.min.js"></script>
@@ -57,7 +41,7 @@
 <script src="components/question/question.controller.js"></script>
 <script src="components/person/person.controller.js"></script>
 <script src="components/private/cabinet.controller.js"></script>
-<script src="shared/ws-toolbar/toolbar.controller.js"></script>
+<script src="shared/header/main-header.ctrl.js"></script>
 
 <script src="components/library/library.controller.js"></script>
 <script src="components/private/message.controller.js"></script>
@@ -73,15 +57,24 @@
 <script src="components/answer/answer-vote.js"></script>
 <script src="components/answer/answer-create.js"></script>
 
-<script src="shared/sidebar/rating.controller.js"></script>
+<script src="shared/sidebar/sidebar.ctrl.js"></script>
 
 
 <script src="components/question/create.question.js"></script>
-<script src="shared/ws-toolbar/ws-toolbar.js"></script>
+
+
+
+
+<script src="shared/header/main-header.js"></script>
+
+
+
+
 <script src="components/question/ws-question.js"></script>
 
+
 <script src="components/person/ws-person.js"></script>
-<script src="shared/sidebar/ws-ratings.js"></script>
+<script src="shared/sidebar/sidebar.js"></script>
 <script src="components/question/ws-question.js"></script>
 
 

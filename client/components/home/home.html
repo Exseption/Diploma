@@ -1,9 +1,19 @@
-
 <div class="md-body-1" layout="column">
   <md-content>
     <div flex="flex">
       <div ng-repeat="question in mc.questions" ui-sref="question({id : question.id})">
-        <ws-question question="question"></ws-question>
+        <article class="ws-item-list" layout="column">
+          <header class="md-title ws-q-title" ui-sref="question({id : $ctrl.question.id})">{{question.title}}</header>
+          <div class="md-caption">
+            <div class="ws-author" ui-sref="person({id: mc.question.person.id})">
+              {{question.person.name}}
+              {{question.person.surname}}
+            </div>
+            {{question.created | amUtc | amLocal | amDateFormat:'LLL'}}</div>
+          <div class="md-body-1 ws-body" ng-bind-html="question.body | limitTo: 350 | fpreview">
+          </div>
+        </article>
+
       </div>
     </div>
   </md-content>

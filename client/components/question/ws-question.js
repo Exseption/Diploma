@@ -1,7 +1,11 @@
-angular.module('legal').directive('wsQuestion',function () {
+angular.module('legal').directive('wsQuestion', function () {
     return {
-        bindings:{
+        scope: {
             question: '<'
         },
-        templateUrl:'templates/directives/ws-question.html'
+        controller: function () {
+
+        },
+        controllerAs: 'qc',
+        templateUrl:'components/question/ws-question.html'
     }});
