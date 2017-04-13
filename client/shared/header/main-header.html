@@ -1,16 +1,11 @@
+<div>
     <div class="header" layout="row">
-        <div class="header-title" flex flex-offset="20">
-            Центр правовых консультаций
-        </div>
-        <md-button ng-click="auth()" class="simple-button">Войти
-            </md-icon>
-        </md-button>
-        <md-button ng-click="register()" class="simple-button-primary">Регистрация
-            </md-icon>
-        </md-button>
+        <div class="header-title" flex flex-offset="15"><div style="padding-left: 15px">Центр правовых консультаций</div></div>
+        <md-button ng-click="auth()" class="simple-button">Войти</md-icon></md-button>
+        <md-button ng-click="register()" class="simple-button-primary">Регистрация</md-icon></md-button>
     </div>
-    <div layout="row" layout-align="center center">
-        <div class="nav">
+    <div layout="row">
+        <div class="nav" flex-offset="15">
                 <a ui-sref="index" class="nav-but">Главная</a>
                 <a ui-sref="people" class="nav-but">Участники</a>
                 <a ui-sref="library" class="nav-but">Библиотека</a>
@@ -18,3 +13,4 @@
                 <a class="nav-but">Справка</a>
         </div>
     </div>
+</div>

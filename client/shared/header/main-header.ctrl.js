@@ -3,8 +3,7 @@ angular.module('legal').controller('main-header.ctrl', function ($scope, $mdDial
 
     $scope.auth = function() {
         $mdDialog.show({
-            controller: 'CabinetController',
-            // controllerAs: 'cc',
+            controller: 'auth.form.ctrl',
             templateUrl: 'shared/forms/auth/auth-form.html',
             parent: angular.element(document.body),
             clickOutsideToClose:true
@@ -18,8 +17,7 @@ angular.module('legal').controller('main-header.ctrl', function ($scope, $mdDial
     };
     $scope.register = function () {
         $mdDialog.show({
-            controller: 'CabinetController',
-            controllerAs: 'cc',
+            controller: '',
             templateUrl: '../../components/person/create-user.html',
             parent: angular.element(document.body),
             clickOutsideToClose:true
@@ -31,9 +29,4 @@ angular.module('legal').controller('main-header.ctrl', function ($scope, $mdDial
 
                 });
     };
-
-    // $scope.logout = function () {
-    //     $cookies.remove('auth-user');
-    // }
-
 });

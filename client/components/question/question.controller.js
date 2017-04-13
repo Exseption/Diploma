@@ -1,8 +1,7 @@
-angular.module('legal').controller('QuestionController', function ($stateParams, QuestionService,RatingService) {
-   const self = this;
+angular.module('legal').controller('QuestionController', function ($scope, $stateParams, QuestionService) {
    const id = $stateParams.id;
     QuestionService.getQuestion(id).then(function (question) {
-        self.question = question;
+        $scope.question = question;
     });
 
 });

@@ -1,16 +1,24 @@
 html {
     overflow: scroll;
 }
-.main-viewport {
-    padding: 5px 5px;
-
+.question-title {
+    color: #316AC5
 }
 
+.question-title:hover {
+    color: #FF9933;
+    cursor: pointer;
+}
+
+
+.main-viewport {
+    padding: 5px 5px;
+}
 .simple-button {
     background-color: white;
     text-transform: none;
-    padding: 0em 1.2em;
-    border: solid 1px #cccccc;
+    padding: 0 1.2em;
+    /*border: solid 1px #cccccc;*/
     color: grey;
     border-radius: 5px;
 }
@@ -20,7 +28,7 @@ html {
 .simple-button-primary {
     text-transform: none;
     padding: 0 1.2em;
-    border: solid 1px #cccccc;
+    /*border: solid 1px #cccccc;*/
     color: white;
     background-color: #316AC5;
     border-radius: 5px;
@@ -47,30 +55,23 @@ a {
 }
 
 .nav-but {
-    /*border: 1px solid #333; !* Рамка *!*/
     display: inline-block;
     padding: 5px 15px; /* Поля */
-    /*text-decoration: none; !* Убираем подчёркивание *!*/
     color: #000; /* Цвет текста */
 }
 .nav-but:hover {
     box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Тень */
-    /*border: solid 1px #bdbdbd;*/
     color: #a00;
 }
 .header-title {
     font-family: "Baskerville Old Face";
     font-size: xx-large;
-    /*min-height: 50px;*/
 }
 .main-view {
-    /*background-color: #FF9933;*/
-    /*padding: 5px 15px;*/
 }
 
 .sidebar-container-title {
     text-transform: uppercase;
-
 }
 
 .main-view-here {
@@ -81,24 +82,19 @@ a {
     border-radius: 3px;
     background-color: #F6F6F6;
     min-height: 200px;
-    /*border:solid 1px;*/
     padding: 5px 10px;
     margin-left: 5px;
     margin-bottom: 10px;
-
-
 }
 .ws-body {
     text-indent: 1.5em;
     text-align: justify;
 }
-
 .header {
-    background-color: #D6D6D6;
+    background-color: #444444;
     color: black;
-    padding: 1em 0em;
+    padding: 1em 0;
 }
-
 body {
     background-color: white;
 }
