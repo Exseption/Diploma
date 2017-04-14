@@ -1,13 +1,14 @@
 angular.module('legal').directive('answerVote', function (RatingService) {
     return {
-        template:["<div layout='row' layout-align='end end'>",
-                    "<div flex='flex'></div>",
+        template:["<div layout='row'>",
+
                     "<div flex='flex'>",
                     "<md-button class='md-icon-button fix-but' id='plus-vote' ng-click='votePlus(ans.id)'>",
-                    "<md-icon md-svg-icon='./img/add.svg'></md-icon>",
-                    "</md-button><span class='md-body-2'>{{ans.mark}}</span>",
+                    "<md-icon md-svg-icon='../assets/img/add.svg'></md-icon>",
+                    "</md-button>" +
+                    "<span class='md-body-2'>{{ans.mark}}</span>",
                     "<md-button class='md-icon-button fix-but' id='minus-vote' ng-click='voteMinus(ans.id)'>",
-                    "<md-icon md-svg-icon='./img/remove.svg'></md-icon>",
+                    "<md-icon md-svg-icon='../assets/img/remove.svg'></md-icon>",
                     "</md-button>",
                     "</div>",
                     "</div>"].join(""),

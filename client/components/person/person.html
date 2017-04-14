@@ -1,25 +1,25 @@
 <div class="md-body-1 ws-person-card">
         <div class="md-title">
-            {{$ctrl.person.name}} {{$ctrl.person.surname}}
+            {{person.name}} {{person.surname}}
         </div>
     <div style="padding-left: 15px">
         <div class="md-caption">
-            Зарегистрирован: {{$ctrl.person.registrated | amUtc | amLocal | amDateFormat:'LLL'}}
+            Зарегистрирован: {{person.registrated | amUtc | amLocal | amDateFormat:'LLL'}}
         </div>
         <div>
             <span class="md-body-2">Дата рождения:</span>
-            {{$ctrl.person.birthday | amUtc | amLocal | amDateFormat:'LL'}}
+            {{person.birthday | amUtc | amLocal | amDateFormat:'LL'}}
         </div>
         <div>
-            <span class="md-body-2">Рейтинг:</span> {{$ctrl.person.rating}}
+            <span class="md-body-2">Рейтинг:</span> {{person.rating}}
         </div>
     </div>
 
     <md-divider></md-divider>
     <div style="padding-top: 15px">
         <div class="md-subhead">Вопросы пользователя</div>
-            <div ng-repeat="question in $ctrl.person.questions">
-               <ws-question question="question"></ws-question>
+            <div ng-repeat="question in person.questions">
+               <question question="question"></question>
             </div>
     </div>
 </div>

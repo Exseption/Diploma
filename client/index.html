@@ -13,10 +13,10 @@
 <body>
 <main-header></main-header>
         <div layout="row">
-            <div flex-offset="15" flex="50">
+            <div flex-offset="20" flex="45">
                 <div ui-view></div>
             </div>
-            <div flex="20">
+            <div flex="15">
                 <sidebar></sidebar>
             </div>
         </div>
@@ -36,9 +36,18 @@
 
 <script src="app.module.js"></script>
 
-<script src="components/home/main.controller.js"></script>
-<script src="components/question/question.controller.js"></script>
-<script src="components/person/person.controller.js"></script>
+
+<script src="components/home/home.js"></script>
+<script src="components/home/home.ctrl.js"></script>
+
+<script src="components/question/question-list/question-list.js"></script>
+<script src="components/question/question-list/question-list-item/question-list-item.js"></script>
+
+
+<script src="components/question/question.js"></script>
+<script src="components/question/question.ctrl.js"></script>
+
+<script src="components/person/person.ctrl.js"></script>
 <script src="components/private/cabinet.controller.js"></script>
 <script src="components/library/library.controller.js"></script>
 <script src="components/private/message.controller.js"></script>
@@ -52,13 +61,14 @@
 <script src="components/answer/answer-create.js"></script>
 <script src="components/question/create.question.js"></script>
 <script src="components/person/person.js"></script>
+<script src="components/answer/answer.js"></script>
 
-<script src="components/question/question.js"></script>
+
 
 <script src="shared/header/main-header.ctrl.js"></script>
 <script src="shared/sidebar/sidebar.ctrl.js"></script>
 <script src="shared/header/main-header.js"></script>
 <script src="shared/sidebar/sidebar.js"></script>
-<script src="shared/forms/auth/auth.form.controller.js"></script>
+<script src="shared/forms/auth/auth.form.ctrl.js"></script>
 </body>
 </html>

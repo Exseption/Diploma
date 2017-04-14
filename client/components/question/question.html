@@ -3,7 +3,7 @@
     <div flex="flex" class="main-view-here">
       <div layout-margin >
         <article>
-          <div class="md-title question-title">{{question.title}}</div>
+          <div class="md-title">{{question.title}}</div>
           <div class="md-caption ws-author" style="padding-left:10px;" ui-sref="person({id: question.person.id})">{{question.person.name}} {{question.person.surname}}</div>
           <div class="md-caption" style="padding-left:10px;">{{question.created | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
           <div class="md-body-1 ws-body" ng-bind-html="question.body"></div>
@@ -13,24 +13,9 @@
             <md-divider></md-divider>Ответы
           </div>
           <div ng-repeat="ans in question.answers">
-            <article class="answer-in-question">
-              <div class="md-body-1">{{$index+1}}. {{ans.body}}</div>
-              <answer-vote></answer-vote>
-              <div layout="column">
-                <div flex="flex">
-                  <div class="md-caption" layout="row" layout-align="end">{{ans.created | amUtc | amLocal | amDateFormat:'LLL'}}, {{ans.person.name }} {{ans.person.surname}}</div>
-                </div>
-              </div>
-            </article>
+            <answer ans="ans"></answer>
           </div>
           <answer-create></answer-create>
-          <!--div(layout='column')-->
-          <!--    .md-body-2-->
-          <!--        | Дать свой ответ-->
-          <!--    textarea(rows=10, ng-model='answer_text')-->
-          <!--    .md-body-1(layou='row')-->
-          <!--    div(layout='row', layout-align='end end')-->
-          <!--        button.answer-button(layout-align='end end', ng-click='answer(question.id, answer_text)') Ответить-->
         </div>
       </div>
     </div>

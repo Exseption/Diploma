@@ -17,38 +17,34 @@
         .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/index');
         $stateProvider
-            // главная страница
             .state('index',{
-                controller: 'MainController',
-                controllerAs: 'mc',
                 url:'/index',
-                templateUrl:'components/home/home.html'
+                template:'<question-list></question-list>'
             })
-
-            .state('dialogs', {
-                controller: 'MessageController',
-                controllerAs: 'mc',
-                url: '/:id/dialog/:dialog/messages',
-                templateUrl: 'components/dialog/dialog.html',
-                data: {
-                    needAuth: true
-                }
-            })
-            .state('user/questions', {
-                url:'user/:id/questions',
-                templateUrl: 'templates/my-questions.html'
-
-            })
+            // .state('dialogs', {
+            //     controller: 'MessageController',
+            //     controllerAs: 'mc',
+            //     url: '/:id/dialog/:dialog/messages',
+            //     templateUrl: 'components/dialog/dialog.html',
+            //     data: {
+            //         needAuth: true
+            //     }
+            // })
+            // .state('user/questions', {
+            //     url:'user/:id/questions',
+            //     templateUrl: 'templates/my-questions.html'
+            //
+            // })
             // вопрос
-            .state('ask',{
-                url:'/ask',
-                template:'<create-question></create-question>'
-            })
+            // .state('ask',{
+            //     url:'/ask',
+            //     template:'<create-question></create-question>'
+            // })
             // поиск
-            .state('search',{
-                url:'/search',
-                template:'<div>Поиск</div>'
-            })
+            // .state('search',{
+            //     url:'/search',
+            //     template:'<div>Поиск</div>'
+            // })
             // библиотека
             .state('library', {
                 controller: 'LibraryController',
@@ -58,17 +54,15 @@
             })
             // страница вопроса
             .state('question', {
-                // controller: 'QuestionController',
-                // controllerAs: 'qc',
                 url: '/question/:id',
                 template: '<question></question>'
             })
-            .state('people', {
-                controller: 'PersonController',
-                controllerAs: 'pc',
-                url: '/people',
-                templateUrl: 'components/ratings/people.html'
-            })
+            // .state('people', {
+            //     controller: 'PersonController',
+            //     controllerAs: 'pc',
+            //     url: '/people',
+            //     templateUrl: 'components/ratings/people.html'
+            // })
             // страница пользователя
             .state('person', {
                 url: '/person/:id',

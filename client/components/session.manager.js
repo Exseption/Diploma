@@ -1,8 +1,7 @@
 (function () {
-    angular.module('legal').service('SessionManager', function ($cookies, $http, $mdDialog) {
+    angular.module('legal').service('SessionManager', function ($cookies, $http, $mdDialog, $rootScope) {
         const self = this;
         const url ='http://localhost:3009/api/v1/';
-
         self.auth = function(login, password) {
             return $http.post(url + 'auth', 'login=' + login + '&pwd=' + password, {
                 headers: {
@@ -12,7 +11,8 @@
                         alert('Неправильный логин или пароль!!!');
                         return;
                     }
-                self.person = response.data[0];
+                    $rootScope.$emit('authenticated', 'success!');
+                    self.person = response.data[0];
                     $mdDialog.hide();
             }, function (error) {
                 console.log(error);
