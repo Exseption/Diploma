@@ -2,7 +2,7 @@ angular.module('legal').controller('auth.form.ctrl', function ($scope, SessionMa
     $scope.cancel = function () {
         $mdDialog.hide();
     };
-    $scope.auth = function (login, password) {
-        SessionManager.auth(login, password);
+    $scope.auth = function (login, password, cb) {
+        SessionManager.auth(login, password, cb);
     }
 });

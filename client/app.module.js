@@ -35,7 +35,7 @@
             })
             .state('private', {
                 url:'/private',
-                template:"<h3>{{$resolve.data.name}}</h3>",
+                template:"<h3>Приватная зона</h3>",
                 data: {
                     needAdmin: true
                 }
@@ -46,6 +46,10 @@
                 //     }
                 // }
             })
+            .state('create', {
+                url: '/create-question',
+                template: '<create-question></create-question>'
+            });
             // .state('dialogs', {
             //     controller: 'MessageController',
             //     controllerAs: 'mc',
@@ -94,9 +98,9 @@
         .run(function ($rootScope, SessionManager, $state) {
             $rootScope.$on('$stateChangeStart',
                 function(event, to) {
-                    if(!to.data.needAdmin){
+                    if(to.data && to.data.needAdmin){
                         event.preventDefault();
-                        alert('Нужен доступ админа!')
+                        alert('Нужен доступ админа!');
                         $state.go('index');
                     }
                 }

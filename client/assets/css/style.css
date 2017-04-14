@@ -13,6 +13,10 @@ html {
     cursor: pointer;
 }
 
+.inp_cont_marg {
+    margin: 0;
+}
+
 .question-title:hover {
     color: #FF9933;
     cursor: pointer;

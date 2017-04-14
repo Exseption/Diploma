@@ -13,7 +13,7 @@
             <md-divider></md-divider>Ответы
           </div>
           <div ng-repeat="ans in question.answers">
-            <answer ans="ans"></answer>
+            <answer ans="ans">{{$index+1}}.</answer>
           </div>
           <answer-create></answer-create>
         </div>

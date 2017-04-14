@@ -14,11 +14,14 @@
             <label>Пароль:</label>
             <input ng-model="password" type="password"/>
           </md-input-container>
+          <md-checkbox ng-model="cb" area="Куки">
+            Запомнить меня
+          </md-checkbox>
         </div>
       </div>
       <md-dialog-actions layout="row">
         <md-button class="simple-button" ng-click="cancel()">Отмена</md-button>
-        <md-button class="simple-button" ng-click="auth(login, password)">Войти</md-button>
+        <md-button class="simple-button" ng-click="auth(login, password, cb)">Войти</md-button>
       </md-dialog-actions>
     </md-dialog-content>
   </form>

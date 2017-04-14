@@ -1,8 +1,10 @@
 <div>
     <div class="header" layout="row">
         <div class="header-title" flex flex-offset="15"><div style="padding-left: 20px">Центр правовых консультаций</div></div>
+        <md-button ui-sref="create">Задать вопрос</md-button>
         <md-button ng-click="auth()" class="simple-button">Войти</md-icon></md-button>
         <md-button ng-click="register()" class="simple-button-primary">Регистрация</md-icon></md-button>
+        <exit-button></exit-button>
     </div>
     <div layout="row">
         <div class="nav" flex-offset="20">
@@ -10,7 +12,7 @@
                 <a ui-sref="people" class="nav-but">Участники</a>
                 <a ui-sref="library" class="nav-but">Библиотека</a>
                 <a ui-sref="ratings" class="nav-but">Рейтинги</a>
-                <a class="nav-but" ui-sref="private">Справка</a>
+                <a class="nav-but" ui-sref="private">Админка</a>
         </div>
     </div>
 </div>
