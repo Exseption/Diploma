@@ -2,7 +2,7 @@
   <article layout="column">
     <header class="md-title question-title" ui-sref="question({id : item.id})">{{item.title}}</header>
     <div class="md-caption">
-      <div class="ws-author" ui-sref="person({id: question.person.id})">
+      <div class="ws-author" ui-sref="person({id: item.person.id})">
         {{item.person.name}}
         {{item.person.surname}}
       </div>

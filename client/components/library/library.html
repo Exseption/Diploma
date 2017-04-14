@@ -2,7 +2,7 @@
 <div class="md-body-1" layout="column">
   <md-content>
     <article>
-      <div ng-repeat="book in lc.books"><a class="md-body-1 ws-book" ng-href="{{book.path}}">{{book.title}}</a>
+      <div ng-repeat="book in books"><a class="md-body-1 ws-book" ng-href="{{book.path}}">{{book.title}}</a>
         <div class="md-caption">{{book.category}}</div>
       </div>
     </article>

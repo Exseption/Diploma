@@ -5,6 +5,14 @@ html {
     color: #316AC5
 }
 
+.ws-author {
+    color: black;
+}
+.ws-author:hover {
+    color: #4AA02C;
+    cursor: pointer;
+}
+
 .question-title:hover {
     color: #FF9933;
     cursor: pointer;
