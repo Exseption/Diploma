@@ -11,7 +11,9 @@ angular.module('legal').directive('mainHeader',function (SessionManager, $rootSc
                     // }
                 },
                 post: function (scope, elem) {
-                    // $rootScope.$on('authenticated', function (event, data) {
+                    $rootScope.$on('authenticated', function (event, data) {
+                        console.log(data)
+                    })
                     //     angular.element(document.querySelector('.simple-button-primary')).remove();
                     //     angular.element(document.querySelector('.simple-button')).remove();
                     //     angular.element(document.querySelector('.header')).append(

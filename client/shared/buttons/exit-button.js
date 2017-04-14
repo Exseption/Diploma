@@ -1,4 +1,4 @@
-angular.module('legal').directive('exitButton', function (SessionManager, $cookies) {
+angular.module('legal').directive('exitButton', function (SessionManager, $cookies, $state, $rootScope) {
     return {
         template:"<button class='simple-button-primary md-button md-ink-ripple' " +
         "type='button'  ng-click='exit()'>Выход</button>",
@@ -10,10 +10,15 @@ angular.module('legal').directive('exitButton', function (SessionManager, $cooki
                     }
                 },
                 post: function (scope, elem) {
+                    $rootScope.$on('authenticated', function (e, data) {
+                        //TODO настроить появление
+                        // elem.append("<button class='simple-button-primary md-button md-ink-ripple' " +
+                        //     "type='button'  ng-click='exit()'>Выход</button>");
+                    });
+
                     scope.exit = function () {
-                        $cookies.remove('person');
-                        delete SessionManager.person;
-                        console.log(SessionManager.person)
+                        SessionManager.logout();
+                       //TODO window reload
                     }
                 }
             }

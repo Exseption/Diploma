@@ -30,6 +30,7 @@
         };
         self.logout = function () {
             delete self.person;
+            $cookies.remove('person');
         };
     })
 })();

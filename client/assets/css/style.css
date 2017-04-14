@@ -60,10 +60,10 @@ html {
 .md-button.simple-button-primary:hover {
     background-color: #5F82D9;
 }
-#auth-form {
-    background-color: white;
-    color: black;
-    font-family: sans-serif;
+.shared_form {
+    background-color: white !important;
+    color: black !important;
+    font-family: sans-serif !important;
 }
 a {
     text-decoration: none;

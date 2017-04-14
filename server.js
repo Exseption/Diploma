@@ -311,7 +311,8 @@ app.post(api_version + '/create/person', function (req, res) { // создаем
         birthday:req.body.birthday,
         country:req.body.country,
         area:req.body.area,
-        city:req.body.city
+        city:req.body.city,
+        rating: 0.0
     }).then(function (result) {
             res.send(result)
 })

@@ -15,18 +15,4 @@ angular.module('legal').controller('main-header.ctrl', function ($scope, $mdDial
 
                 });
     };
-    $scope.register = function () {
-        $mdDialog.show({
-            controller: '',
-            templateUrl: '../../components/person/create-user.html',
-            parent: angular.element(document.body),
-            clickOutsideToClose:true
-        })
-            .then(function() {
-
-                },
-                function() {
-
-                });
-    };
 });
