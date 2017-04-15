@@ -6,7 +6,7 @@ angular.module('legal').directive('exitButton', function (SessionManager, $cooki
             return {
                 pre: function (scope, elem) {
                     if(!angular.isDefined(SessionManager.person)){
-                        elem.remove();
+                        elem.css('display', 'none');
                     }
                 },
                 post: function (scope, elem) {
@@ -14,6 +14,7 @@ angular.module('legal').directive('exitButton', function (SessionManager, $cooki
                         //TODO настроить появление
                         // elem.append("<button class='simple-button-primary md-button md-ink-ripple' " +
                         //     "type='button'  ng-click='exit()'>Выход</button>");
+                        elem.css('display', 'block');
                     });
 
                     scope.exit = function () {

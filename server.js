@@ -60,7 +60,7 @@ Attachment.belongsTo(Message, {foreignKey: 'to_message'});
 Message.hasMany(Attachment, {foreignKey: 'to_message'});
 
 
-app.get(api_version + '/library', function (req, res) { // получаем вопросы
+app.get(api_version + '/library', function (req, res) { // получаем библиотеку
     Book.findAll(
         {
         }).then(function (results) {
@@ -307,6 +307,7 @@ app.post(api_version + '/create/person', function (req, res) { // создаем
         password:req.body.password,
         name:req.body.name,
         surname:req.body.surname,
+        email: req.body.email,
         telephone:req.body.telephone,
         birthday:req.body.birthday,
         country:req.body.country,

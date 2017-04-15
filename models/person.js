@@ -3,6 +3,7 @@ module.exports = function(sequelize, DataTypes) {
     const Person = sequelize.define("person", {
         login: {         type: DataTypes.STRING        },
         password: {            type: DataTypes.STRING        },
+        email:                 {type: DataTypes.STRING     },
         name: {            type: DataTypes.STRING        },
         surname: {            type: DataTypes.STRING        },
         telephone: {            type: DataTypes.BIGINT        },

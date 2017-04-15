@@ -4,13 +4,13 @@ angular.module('legal').directive('login', function (SessionManager, $rootScope)
         compile: function () {
             return {
                 pre: function (scope, elem) {
-                    if(angular.isDefined(SessionManager.person)){
-                        elem.remove();
+                    if(!angular.isDefined(SessionManager.person)){
+                        elem.css('display', 'block');
                     }
                 },
                 post: function (scope, elem) {
                     $rootScope.$on('authenticated', function (e, data) {
-                        elem.remove();
+                        elem.css('display', 'none');
                     })
                 }
             }

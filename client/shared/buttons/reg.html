@@ -1,53 +1,59 @@
 <md-dialog aria-label="Регистрация пользователя" style="border-radius: 0">
-  <form ng-cloak="">
+  <form ng-cloak="" name="FormReg">
     <md-toolbar class="shared_form">
       <div class="md-toolbar-tools">Регистрация нового пользователя</div>
     </md-toolbar>
-    <md-dialog-content >
+    <md-dialog-content>
       <div class="md-dialog-content">
         <div layout="column">
           <md-input-container class="inp_cont_marg">
             <label>Логин</label>
-            <input ng-model="login"/>
+            <input ng-model="login" required/>
           </md-input-container>
           <md-input-container class="inp_cont_marg">
             <label>Пароль</label>
-            <input ng-model="password" type="password"/>
+            <input ng-model="password" type="password" required/>
           </md-input-container>
           <md-input-container class="inp_cont_marg">
             <label>Фамилия</label>
-            <input ng-model="surname"/>
+            <input ng-model="surname" required/>
           </md-input-container>
+
+          <md-input-container class="inp_cont_marg">
+            <label>Email</label>
+            <input ng-model="email" type="email" required/>
+          </md-input-container>
+
           <md-input-container class="inp_cont_marg">
             <label>Имя</label>
-            <input ng-model="name"/>
+            <input ng-model="name" required/>
           </md-input-container>
           <md-input-container class="inp_cont_marg">
             <label>Страна</label>
-            <input ng-model="country"/>
+            <input ng-model="country" required/>
           </md-input-container>
           <md-input-container class="inp_cont_marg">
             <label>Область, край и тд</label>
-            <input ng-model="area"/>
+            <input ng-model="area" required/>
           </md-input-container>
           <md-input-container class="inp_cont_marg">
             <label>Город, поселок и тд.</label>
-            <input ng-model="city"/>
+            <input ng-model="city" required/>
           </md-input-container>
           <md-input-container class="inp_cont_marg">
             <label>Телефон</label>
-            <input ng-model="telephone"/>
+            <input ng-model="telephone" required/>
           </md-input-container>
           <div flex class="inp_cont_marg">
             <h4>Дата рождения</h4>
-            <md-datepicker ng-model="birthday" md-current-view="year"></md-datepicker>
+            <md-datepicker ng-model="birthday" md-current-view="year" required></md-datepicker>
           </div>
         </div>
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
       <md-button class="simple-button" ng-click="cancel()">Отмена</md-button>
-      <md-button class="simple-button" ng-click="register(login, password, name, surname, birthday, country, area, city, telephone)">Зарегистрироваться</md-button>
+      <input class="md-button simple-button" ng-disabled="FormReg.$invalid" ng-click="register(login, password, name, surname, email, birthday, country, area, city, telephone)" value="Зарегистрироваться" type="submit"/>
     </md-dialog-actions>
   </form>
 </md-dialog>

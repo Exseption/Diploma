@@ -9,9 +9,9 @@ angular.module('legal').directive('reg', function ($mdDialog, SessionManager, Pe
                         $scope.cancel = function () {
                             $mdDialog.hide();
                         };
-                        $scope.register = function (login, password, name, surname,
+                        $scope.register = function (login, password, name, surname, email,
                                                     birthday, country, area, city, telephone) {
-                            PeopleService.registerPerson(login, password, name, surname,
+                            PeopleService.registerPerson(login, password, name, surname, email,
                                 birthday, country, area, city, telephone)
                                 .then(function (success) {
                                     $mdDialog.hide();
@@ -20,7 +20,7 @@ angular.module('legal').directive('reg', function ($mdDialog, SessionManager, Pe
                             })
                         }
                     },
-                    templateUrl: '../../../shared/forms/reg/reg.html',
+                    templateUrl: 'shared/buttons/reg.html',
                     parent: angular.element(document.body),
                     clickOutsideToClose:true
                 })

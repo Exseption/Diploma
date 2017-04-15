@@ -8,12 +8,13 @@
         self.getPeople = function () { //получаем все вопросы
             return Restangular.all('people').getList();
         };
-        self.registerPerson = function (login, password, name, surname, birthday, country, area, city, telephone) {
+        self.registerPerson = function (login, password, name, surname, email, birthday, country, area, city, telephone) {
             return Restangular.all('create/person').post({
                 login: login,
                 password: password,
                 name: name,
                 surname: surname,
+                email: email,
                 birthday: birthday,
                 country: country,
                 area: area,

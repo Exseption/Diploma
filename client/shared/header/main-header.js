@@ -1,7 +1,20 @@
 angular.module('legal').directive('mainHeader',function (SessionManager, $rootScope) {
     return {
         templateUrl:'shared/header/main-header.html',
-        controller: 'main-header.ctrl',
+        controller: function ($scope, $mdDialog) {
+            $scope.auth = function() {
+                $mdDialog.show({
+                    controller: 'auth.form.ctrl',
+                    templateUrl: 'shared/forms/auth/auth-form.html',
+                    parent: angular.element(document.body),
+                    clickOutsideToClose:true
+                })
+                    .then(function() {
+                        },
+                        function() {
+                        });
+            }
+        },
         compile: function (element, attr) {
             return {
                 pre: function () {
