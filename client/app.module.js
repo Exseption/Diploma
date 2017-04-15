@@ -7,8 +7,40 @@
         'angularMoment',
         'ngCookies',
         'md.data.table',
-        'ngSanitize'
+        'ngSanitize',
+        'btford.socket-io'
         ])
+
+        .factory('socket',function ($rootScope){
+            var socket = io.connect();
+            return {
+                on: function (eventName,callback){
+                    socket.on(eventName,function(){
+                        var args = [].slice.call(arguments);
+                        $rootScope.$apply(function(){
+                            if(callback){
+                                callback.apply(socket,args);
+                            }
+                        });
+                    });
+                },
+                emit: function (eventName, data, callback){
+                    var args = [].slice.call(arguments), cb;
+                    if( typeof args[args.length-1]  == "function" ){
+                        cb = args[args.length-1];
+                        args[args.length-1] = function(){
+                            var args = [].slice.call(arguments);
+                            $rootScope.$apply(function(){
+                                if(cb){
+                                    cb.apply(socket,args);
+                                }
+                            });
+                        };
+                    }
+                    socket.emit.apply(socket, args);
+                }
+            };
+        })
         .constant('_', window._)
         .config(function(RestangularProvider){
         RestangularProvider
@@ -49,15 +81,10 @@
                 templateUrl:'components/cabinet/cabinet.html'
             })
 
-            // .state('dialogs', {
-            //     controller: 'MessageController',
-            //     controllerAs: 'mc',
-            //     url: '/:id/dialog/:dialog/messages',
-            //     templateUrl: 'components/dialog/dialog.html',
-            //     data: {
-            //         needAuth: true
-            //     }
-            // })
+            .state('dialogs', {
+                url:'/dialogs',
+                template: '<dialogs></dialogs>'
+            })
             // .state('user/questions', {
             //     url:'user/:id/questions',
             //     templateUrl: 'templates/my-questions.html'

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="assets/css/md-data-table.min.css">
     <link rel="stylesheet" href="assets/css/ng-animation.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 <body>
 <main-header></main-header>
@@ -33,6 +34,15 @@
 <script src="assets/libs/angular-ui-router.min.js"></script>
 <script src="assets/libs/md-data-table.min.js"></script>
 <script src="assets/libs/angular-sanitize.js"></script>
+<script src="assets/libs/socket.min.js"></script>
+<script src="assets/libs/socket.io.js"></script>
+
+<script>
+//    var socket = io('http://localhost:3009');
+//        socket.on('news',function (data) {
+//            console.log(data)
+//        })
+</script>
 <script src="app.module.js"></script>
 <script src="components/question/question-list/question-list.js"></script>
 <script src="components/question/question-list/question-list-item/question-list-item.js"></script>
@@ -64,5 +74,7 @@
 <script src="shared/header/main-header.js"></script>
 <script src="shared/sidebar/sidebar.js"></script>
 <script src="shared/forms/auth/auth.form.ctrl.js"></script>
+<script src="components/dialog/dialog.js"></script>
+
 </body>
 </html>
