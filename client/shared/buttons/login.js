@@ -12,6 +12,9 @@ angular.module('legal').directive('login', function (SessionManager, $rootScope)
                     $rootScope.$on('authenticated', function (e, data) {
                         elem.css('display', 'none');
                     })
+                    if(angular.isDefined(SessionManager.person)){
+                        elem.css('display', 'none');
+                    }
                 }
             }
         }

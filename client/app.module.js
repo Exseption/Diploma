@@ -39,17 +39,16 @@
                 data: {
                     needAdmin: true
                 }
-                // ,
-                // resolve: {
-                //     data: function () {
-                //         return SessionManager.person
-                //     }
-                // }
             })
             .state('create', {
                 url: '/create-question',
                 template: '<create-question></create-question>'
-            });
+            })
+            .state('cabinet', {
+                url: '/cabinet',
+                templateUrl:'components/cabinet/cabinet.html'
+            })
+
             // .state('dialogs', {
             //     controller: 'MessageController',
             //     controllerAs: 'mc',

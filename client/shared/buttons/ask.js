@@ -1,6 +1,6 @@
 angular.module('legal').directive('ask', function (SessionManager, $rootScope) {
     return {
-        template: '<button class="simple-button-primary md-button md-ink-ripple type="button" ui-sref="create">Задать вопрос</button>',
+        template: '<button class="simple-button-primary md-button md-ink-ripple" ui-sref="create">Задать вопрос</button>',
         compile: function () {
             return {
                 pre: function (scope, elem) {
