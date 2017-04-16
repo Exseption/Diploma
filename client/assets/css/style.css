@@ -46,6 +46,17 @@ html {
     color: grey;
     border-radius: 5px;
 }
+
+.simple-button-alert {
+    background-color: #4AA02C;
+    text-transform: none;
+    color: black;
+    border-radius: 5px;
+}
+.simple-button-alert:hover {
+    background-color: #025E2A !important;
+}
+
 .md-button.simple-button:hover {
     background-color: #eeeeee;
 }
@@ -80,12 +91,16 @@ a {
 
 .nav-but {
     display: inline-block;
-    padding: 5px 15px; /* Поля */
+    /*width: 6em;*/
+    /*text-align: center;*/
+    padding: 5px 5px; /* Поля */
     color: #000; /* Цвет текста */
+    /*border: solid 2px #eeeeee;*/
+    font-weight: 800;
 }
 .nav-but:hover {
     /*box-shadow: 0 0 5px rgba(0,0,0,0.3); !* Тень *!*/
-    color: #a00;
+    color: #4AA02C;
 }
 .header-title {
     font-family: "Baskerville Old Face";

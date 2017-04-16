@@ -1,17 +1,29 @@
-<div layout-padding>
-  <div class="create-question">
-    <div class="md-body-1" layout="column">
-      <div class="md-subhead" flex="flex">Задать вопрос сообществу пользователей</div>
-      <input class="input-question" ng-model="title" placeholder="Заголовок" style="margin-bottom: 5px"/>
-      <textarea class="input-question" ng-model="body" rows="10" placeholder="Тело вопроса"></textarea>
-      <md-radio-group ng-model="payable" style="margin: 10px 0px">
-        <md-radio-button value="true">Платный</md-radio-button>
-        <md-radio-button value="false">Бесплатный</md-radio-button>
-      </md-radio-group>
-      <input class="input-question" ng-model="price" placeholder="Цена вопроса"/>
-    </div>
-    <div layout="row" layout-align="end end">
-      <button class="answer-button" type="button" ng-click="createQuestion(title, body, author, payable, price)">Отправить</button>
-    </div>
-  </div>
-</div>
+<md-dialog>
+  <form ng-cloak name="FormCreateQuestion">
+    <md-toolbar class="shared_form">
+      <div class="md-toolbar-tools">Задать вопрос сообществу пользователей</div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div layout="column" layout-padding>
+          <input ng-model="title" placeholder="Заголовок" required style="margin-bottom: 5px"/>
+        <textarea ng-model="body" rows="10" required ></textarea>
+        <div layout="row">
+          <div flex="50" style="margin-top: 2px"><md-radio-group ng-model="payable" required >
+            <md-radio-button value="payme" class="md-primary">Платный</md-radio-button>
+            <md-radio-button value="free" class="md-primary">Бесплатный</md-radio-button>
+          </md-radio-group></div>
+          <div ng-show="payable === 'payme'">
+            <input class="input-question" id="pay-him" ng-model="price" placeholder="Цена вопроса, руб."/>
+          </div>
+
+        </div>
+
+
+        <div layout="row" layout-align="end end">
+          <md-button ng-click="hide()" class="answer-button">Отмена</md-button>
+          <input class="md-button answer-button" type="submit" ng-click="createQuestion(title, body, author, payable, price)" ng-disabled="FormCreateQuestion.$invalid" value="Отправить"/>
+        </div>
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

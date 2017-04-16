@@ -3,7 +3,7 @@
   "version": "0.9.8",
   "private": true,
   "scripts": {
-    "start": "node ./server/www"
+    "start": "node ./app"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -11,7 +11,7 @@
     "bower": "^1.8.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
-    "express": "~4.13.4",
+    "express": "~4.15.2",
     "express-session": "^1.14.1",
     "method-override": "^2.3.7",
     "morgan": "~1.7.0",

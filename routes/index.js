@@ -1,93 +1,58 @@
-const express = require('express'),
-path = require('path'),
-logger = require('morgan'),
-cookieParser = require('cookie-parser'),
-bodyParser = require('body-parser'),
-session = require('express-session'),
-app = express();
-const methodOverride = require('method-override');
-app.use(express.static(path.join(__dirname, 'client')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(methodOverride('X-HTTP-Method-Override'));
-app.use(cookieParser());
-app.use(session({
-                  secret: '_secret$-#=key',
-                  resave: false,
-                  saveUninitialized: false
-                }));
-app.disable('x-powered-by');
-const api_version = '/api/v1';
 const Sequelize = require('sequelize');
-const config = require('./config/config.json');
+const config = require('../config/config.json');
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
-
-
-
-const Person = sequelize.import(__dirname + '/models/person');
-const Question = sequelize.import(__dirname + '/models/question');
-const Answer = sequelize.import(__dirname + '/models/answer');
-const Dialog = sequelize.import(__dirname + '/models/dialog');
-const Message = sequelize.import(__dirname + '/models/message');
-const Book = sequelize.import(__dirname + '/models/book');
-const Attachment = sequelize.import(__dirname + '/models/attachment');
-
+const Person = sequelize.import('../models/person');
+const Question = sequelize.import('../models/question');
+const Answer = sequelize.import('../models/answer');
+const Dialog = sequelize.import('../models/dialog');
+const Message = sequelize.import('../models/message');
+const Book = sequelize.import('../models/book');
+const Attachment = sequelize.import('../models/attachment');
 Question.belongsTo(Person, {foreignKey: 'author'});
 Person.hasMany(Question, {foreignKey: 'author'}); //чет падазрительна
-
 Answer.belongsTo(Question, {foreignKey: 'to_question'});
 Question.hasMany(Answer, {foreignKey: 'to_question'});
-
 Answer.belongsTo(Person, {foreignKey: 'author'});
 Person.hasMany(Answer, {foreignKey: 'author'});
-
 Message.belongsTo(Dialog, {foreignKey: 'of_dialog'});
 Dialog.hasMany(Message, {foreignKey: 'of_dialog'});
-
-// Dialog.hasMany(Message);
 Message.belongsTo(Person, {foreignKey: 'sended_by'});
 Person.hasMany(Message, {foreignKey: 'sended_by'});
-
 Dialog.belongsTo(Person,{foreignKey: 'sender'});
 Person.hasMany(Dialog,{foreignKey: 'sender'});
-
 Dialog.belongsTo(Person,{foreignKey: 'destination'});
 Person.hasMany(Dialog,{foreignKey: 'destination'});
-
-
 Attachment.belongsTo(Message, {foreignKey: 'to_message'});
 Message.hasMany(Attachment, {foreignKey: 'to_message'});
 
-
-app.get(api_version + '/library', function (req, res) { // получаем библиотеку
+exports.library = function (req, res) { // получаем библиотеку
     Book.findAll(
         {
         }).then(function (results) {
         res.json(results);
     })
-});
+};
 
-app.get(api_version + '/questions', function (req, res) { // получаем вопросы
+exports.questions = function (req, res) { // получаем вопросы
     Question.findAll(
         {order: [['created', 'DESC']],
             include: [
-            {
-                model: Person,
+                {
+                    model: Person,
                     attributes: ['id', 'name', 'surname']
-            }
-        ]
-    }).then(function (results) {
-            res.json(results);
+                }
+            ]
+        }).then(function (results) {
+        res.json(results);
     })
-});
+};
 
-app.get(api_version + '/ratings/answers', function (req, res) { // получаем рейтинги ответов по убыванию
+exports.ratingsAnswers = function (req, res) { // получаем рейтинги ответов по убыванию
     Answer.findAll(
         {
             order: [['mark', 'DESC']],
             include: [{
-              model: Question,
+                model: Question,
                 attributes: ['id','title']
             },
                 {
@@ -98,9 +63,9 @@ app.get(api_version + '/ratings/answers', function (req, res) { // получа�
         }).then(function (results) {
         res.json(results);
     })
-});
+};
 
-app.get(api_version + '/ratings/people', function (req, res) { // получаем рейтинги пользователей по убыванию
+exports.ratingsPeople = function (req, res) { // получаем рейтинги пользователей по убыванию
     Person.findAll(
         {
             order: [['rating', 'DESC']],
@@ -118,10 +83,10 @@ app.get(api_version + '/ratings/people', function (req, res) { // получае
         }).then(function (results) {
         res.json(results);
     })
-});
+};
 
 
-app.get(api_version + '/question/:id', function (req, res) { // получаем вопрос по id с ответами
+exports.questionById = function (req, res) { // получаем вопрос по id с ответами
     Question.findOne({
         where: {
             id: req.params.id
@@ -137,11 +102,11 @@ app.get(api_version + '/question/:id', function (req, res) { // получаем
                     attributes:['id', 'name','surname']
                 }
             }]}).then(function (result) {
-                res.json(result)
+        res.json(result)
     })
-});
+};
 
-app.get(api_version + '/people', function (req, res) { // получаем пользователей c вопросами и ответами
+exports.people = function (req, res) { // получаем пользователей c вопросами и ответами
     Person.findAll({
         attributes:{ exclude: ['login', 'password']},
         include:[{
@@ -151,12 +116,12 @@ app.get(api_version + '/people', function (req, res) { // получаем по�
         }]
 
     })
-    .then(function (results) {
+        .then(function (results) {
             res.json(results);
         })
-});
+};
 
-app.get(api_version + '/person/:id', function (req, res) { // получаем пользователя по id
+exports.personById = function (req, res) { // получаем пользователя по id
     Person.findOne({
         // attributes: ['name', 'surname'],
         where: {
@@ -172,9 +137,9 @@ app.get(api_version + '/person/:id', function (req, res) { // получаем �
     }).then(function (result) {
         res.json(result)
     })
-});
+};
 
-app.post(api_version + '/auth', function (req, res) { // авторизация пользователя
+exports.auth =function (req, res) { // авторизация пользователя
     Person.findAll({
         where: {
             login: req.body.login,
@@ -183,34 +148,36 @@ app.post(api_version + '/auth', function (req, res) { // авторизация 
     }).then(function (result) {
         res.json(result);
     })
-});
-app.post(api_version + '/create/answer', function (req, res) { // создание ответа к вопросу
+};
+
+exports.createAnswer = function (req, res) { // создание ответа к вопросу
     Answer.create({
         body:req.body.body,
         author:req.body.author,
         to_question: req.body.to_question,
         mark: 0
     }).then(function (results) {
-            res.send('OK');
-        }, function (error) {
-            console.log(error);
-        })
-    });
-app.post(api_version + '/vote/plus', function (req, res) { //голосуем за ответ в плюс
+        res.send('OK');
+    }, function (error) {
+        console.log(error);
+    })
+};
+exports.votePlus = function (req, res) { //голосуем за ответ в плюс
     Answer.update({
-        mark: sequelize.literal("mark + 0.1")
-    }
-    ,
-        {
-        where:{
-            id: req.body.id
+            mark: sequelize.literal("mark + 0.1")
         }
-    }
+        ,
+        {
+            where:{
+                id: req.body.id
+            }
+        }
     ).then(function (result) {
         res.send(result);
     })
-});
-app.post(api_version + '/vote/minus', function (req, res) { //голосуем за ответ в минус
+};
+
+exports.voteMinus = function (req, res) { //голосуем за ответ в минус
     Answer.update({
             mark: Sequelize.literal("mark - 0.1")
         },
@@ -221,9 +188,9 @@ app.post(api_version + '/vote/minus', function (req, res) { //голосуем �
         }).then(function (result) {
         res.send(result);
     })
-});
+};
 
-app.get(api_version + '/person/:id/dialogs', function (req, res) {
+exports.personByIdDialogs =function (req, res) {
     Dialog.findAll({
         where:{
             $or: {
@@ -234,9 +201,9 @@ app.get(api_version + '/person/:id/dialogs', function (req, res) {
     }).then(function (results) {
         res.json(results);
     });
-});
+};
 
-app.get(api_version + '/person/:id/dialog/:dialog/messages', function (req, res) {
+exports.personByIdDialogDialogIdMessages = function (req, res) {
     Dialog.findAll({
         where:{ $and: {
             $or: {
@@ -246,17 +213,17 @@ app.get(api_version + '/person/:id/dialog/:dialog/messages', function (req, res)
             id: req.params.dialog
         }},
         include: [{
-                model: Message,
-                include: {
-                    model: Person,
-                    attributes: ['name', 'surname']
+            model: Message,
+            include: {
+                model: Person,
+                attributes: ['name', 'surname']
 
             }
         }]
     }).then(function (results) {
         res.json(results);
     });
-});
+};
 
 // app.get(api_version + 'person/:id/dialogs/:dialog/messages', function (req, res) {
 //     Message.findAll({
@@ -267,7 +234,7 @@ app.get(api_version + '/person/:id/dialog/:dialog/messages', function (req, res)
 //        res.send(results);
 //    })
 // });
-app.post(api_version + '/create/question', function (req, res) { //создаем вопрос
+exports.createQuestion = function (req, res) { //создаем вопрос
     Question.create({
         title: req.body.title,
         body: req.body.body,
@@ -275,11 +242,11 @@ app.post(api_version + '/create/question', function (req, res) { //создае�
         price:req.body.price,
         payable: req.body.payable
     }).then(function (result) {
-            res.send(result)
-        });
-});
+        res.send(result)
+    });
+};
 
-app.delete(api_version + '/delete/question/:id', function (req, res) {
+exports.deleteQuestionById = function (req, res) {
     Question.destroy({
         where: {
             id: req.params.id
@@ -287,9 +254,9 @@ app.delete(api_version + '/delete/question/:id', function (req, res) {
     }).then(function (result) {
         res.json(result);
     })
-});
+};
 
-app.delete(api_version + '/delete/person/:id', function (req, res) {
+exports.deletePersonById = function (req, res) {
     Person.destroy({
         where: {
             id: req.params.id
@@ -297,13 +264,9 @@ app.delete(api_version + '/delete/person/:id', function (req, res) {
     }).then(function (result) {
         res.json(result);
     })
-});
+};
 
-
-
-
-
-app.post(api_version + '/create/answer', function (req, res) { //создаем ответ
+exports.createAnswer = function (req, res) { //создаем ответ
     Answer.create({
         body: req.body.body,
         author: req.body.author,
@@ -313,9 +276,9 @@ app.post(api_version + '/create/answer', function (req, res) { //создаем 
         res.send(result)
 
     });
-});
+};
 
-app.post(api_version + '/create/person', function (req, res) { // создаем нового пользователя
+exports.createPerson = function (req, res) { // создаем нового пользователя
     Person.create({
         login:req.body.login,
         password:req.body.password,
@@ -329,25 +292,6 @@ app.post(api_version + '/create/person', function (req, res) { // создаем
         city:req.body.city,
         rating: 0.0
     }).then(function (result) {
-            res.send(result)
-})
-});
-
-
-
-app.use(function(req, res, next) {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.send(err);
-  });
-}
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.send(err);
-});
-module.exports = app;
+        res.send(result)
+    })
+};

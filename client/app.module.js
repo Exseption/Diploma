@@ -7,12 +7,10 @@
         'angularMoment',
         'ngCookies',
         'md.data.table',
-        'ngSanitize',
-        'btford.socket-io'
+        'ngSanitize'
         ])
-
         .factory('socket',function ($rootScope){
-            var socket = io.connect();
+            var socket = io('http://localhost:3009');
             return {
                 on: function (eventName,callback){
                     socket.on(eventName,function(){
@@ -41,6 +39,8 @@
                 }
             };
         })
+
+
         .constant('_', window._)
         .config(function(RestangularProvider){
         RestangularProvider
@@ -72,10 +72,6 @@
                     needAdmin: true
                 }
             })
-            .state('create', {
-                url: '/create-question',
-                template: '<create-question></create-question>'
-            })
             .state('cabinet', {
                 url: '/cabinet',
                 templateUrl:'components/cabinet/cabinet.html'
@@ -85,46 +81,11 @@
                 url:'/dialogs',
                 template: '<dialogs></dialogs>'
             })
-            // .state('user/questions', {
-            //     url:'user/:id/questions',
-            //     templateUrl: 'templates/my-questions.html'
-            //
-            // })
-            // вопрос
-            // .state('ask',{
-            //     url:'/ask',
-            //     template:'<create-question></create-question>'
-            // })
-            // поиск
-            // .state('search',{
-            //     url:'/search',
-            //     template:'<div>Поиск</div>'
-            // })
-            // библиотека
-
-            // страница вопроса
-
-            // .state('people', {
-            //     controller: 'PersonController',
-            //     controllerAs: 'pc',
-            //     url: '/people',
-            //     templateUrl: 'components/ratings/people.html'
-            // })
-            // страница пользователя
-
-            //страница рейтингов
-            // .state('ratings', {
-            //     url: '/ratings',
-            //     templateUrl:'components/ratings/ratings.html',
-            //     controller:'RatingController',
-            //     controllerAs: 'mc'
-            // }
-            // )
         })
         .run(function ($rootScope, SessionManager, $state) {
             $rootScope.$on('$stateChangeStart',
                 function(event, to) {
-                    if(to.data && to.data.needAdmin){
+                    if(to.data && to.data.needAdmin && SessionManager.person.usergroup !== 'admin'){
                         event.preventDefault();
                         alert('Нужен доступ админа!');
                         $state.go('index');

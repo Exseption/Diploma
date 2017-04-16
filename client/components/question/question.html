@@ -5,7 +5,7 @@
         <article>
           <div class="md-title">{{question.title}}</div>
           <div class="md-caption ws-author" style="padding-left:10px;" ui-sref="person({id: question.person.id})">{{question.person.name}} {{question.person.surname}}</div>
-          <div class="md-caption" style="padding-left:10px;">{{question.created | amUtc | amLocal | amDateFormat:'YYYY-MM-DD'}}</div>
+          <span am-time-ago="question.created" class="md-caption" style="padding-left:10px;"></span>
           <div class="md-body-1 ws-body" ng-bind-html="question.body"></div>
         </article>
         <div layout="column" layout-padding="50px">

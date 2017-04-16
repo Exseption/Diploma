@@ -13,4 +13,12 @@ angular.module('legal')
     '<div flex><button ng-click="null">Редактировать</button></div>' +
     '<div flex><button ng-click="$ctrl.deletePerson($ctrl.pers.id)">Удалить</button></div>' +
     '</div><div layout="column"><div flex ng-repeat="q in $ctrl.pers.questions">{{q.title}}</div> </div>'
+})
+.component('answerLite', {
+    bindings: {
+        a : '<'
+    },
+    templateUrl: 'components/answer/answer-lite.html'
 });
+
+
