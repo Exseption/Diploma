@@ -65,10 +65,15 @@ const server = app.listen(app.get('port'), function () {
 
 // подключаем сокет
 const io = require('socket.io').listen(server);
-io.on('connection', function(socket){
-    console.log('A user connected');
-    socket.emit('news', { hello: 'Вы подключились!!!' });
-    socket.on('disconnect', function () {
-        io.emit('user:disconnected');
+io.on('connection', function (socket) {
+    console.log('Кто-то подключился к основному каналу!')
+    socket.on('message', function (data) {
+        console.log(data);
     });
+    socket.on('mess', function (data) {
+        console.log("Сообщение от "+ data.nick + " " + data.data);
+        socket.json.send({nick: 'Вы', data: data.data});
+        socket.broadcast.emit('s:mess', {data: data.data, nick: data.nick})
+
+    })
 });

@@ -1,4 +1,4 @@
-angular.module('legal').directive('answerCreate', function (AnswerService, SessionManager) {
+angular.module('legal').directive('answerCreate', function (AnswerService, SessionManager, $stateParams) {
     return {
         template:["<div layout='column'>",
         "<div class='md-body-2'>Дать свой ответ</div>",
@@ -6,7 +6,7 @@ angular.module('legal').directive('answerCreate', function (AnswerService, Sessi
             "<div class='md-body-1' layou='row'></div>",
         "<div layout='row' layout-align='end end'>",
             "<button class='answer-button' layout-align='end end' " +
-            "ng-click='answer(question.id, answer_text)'>Ответить</button>",
+            "ng-click='answer(answer_text)'>Ответить</button>",
             "</div>",
             "</div>"].join(""),
         compile: function (elem, attrs) {
@@ -17,14 +17,14 @@ angular.module('legal').directive('answerCreate', function (AnswerService, Sessi
                     }
                 },
                 post: function (scope, elem, attrs) {
-                    scope.answer = function (to_question, answer_text) {
-                        //TODO сделать зависимость авторства от сессии пользователя
+                    scope.answer = function (answer_text) {
                         const personId = SessionManager.person.id;
-                        AnswerService.createAnswer(to_question, answer_text, personId).then(function (res) {
-                            console.log(res);
+                        const question = $stateParams.id;
+                        // alert(question+' '+ personId+' '+ answer_text)
+                        AnswerService.createAnswer(question, answer_text, personId).then(function (res) {
+                            // console.log(res);
                             elem.html("<h3>Спасибо за ваш ответ!</h3>")
                         })
-
                     }
                 }
             }

@@ -9,9 +9,62 @@
         'md.data.table',
         'ngSanitize'
         ])
-        .factory('socket',function ($rootScope){
-            var socket = io('http://localhost:3009');
+
+
+        .directive('chat', function (SessionManager, $rootScope) {
             return {
+                controller: function ($scope, socket) {
+                    socket.init('http://localhost:8000');
+
+                    $scope.messages = [];
+                    $scope.announces = [];
+                    socket.on('s:mess', function (data) {
+                        $scope.messages.push(data)
+                    });
+                    socket.on('message',function (data) {
+
+                        if(data.type == 'announce'){
+                            $scope.announces.push(data)
+                        }
+                        $scope.messages.push(data);
+                    });
+
+                    $scope.test = function (mess) {
+                        const nick = SessionManager.person.name;
+                        socket.emit('mess', { nick: nick, data: mess });
+                        $scope.i_message = '';
+                    }
+                },
+                template: "<form name='f'><label>Сообщение:</label><input ng-model='i_message' required id='mbody'><input type='submit' ng-click='test(i_message)' value='>' ng-disabled='f.$invalid'/></form><hr/>" +
+                "<md-content><div ng-repeat='m in messages'>" +
+                "<div class='md-caption'><b>{{m.nick}}</b><b>:</b> {{m.data}}</div>" +
+                "<div ng-repeat='a in announces'>" +
+                "<div>{{a.data}}</div>" +
+                "</div>" +
+                "</div></md-content>",
+                compile: function () {
+                    return {
+                        pre: function (scope, elem) {
+                            if(!angular.isDefined(SessionManager.person)){
+                                elem.css('display', 'none');
+                            }
+                        },
+                        post: function (scope, elem) {
+                            $rootScope.$on('authenticated', function (e, data) {
+                                elem.css('display', 'block')
+                            })
+                        }
+                    }
+                }
+            }
+        })
+
+        .factory('socket',function ($rootScope){
+            var socket;
+            return {
+                init: function (url) {
+                    socket = io(url);
+                },
                 on: function (eventName,callback){
                     socket.on(eventName,function(){
                         var args = [].slice.call(arguments);
@@ -71,6 +124,10 @@
                 data: {
                     needAdmin: true
                 }
+            })
+            .state('create', {
+                url: '/create-question',
+                template: '<create-question></create-question>'
             })
             .state('cabinet', {
                 url: '/cabinet',

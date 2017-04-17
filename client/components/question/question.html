@@ -15,7 +15,7 @@
           <div ng-repeat="ans in question.answers">
             <answer ans="ans">{{$index+1}}.</answer>
           </div>
-          <answer-create></answer-create>
+          <answer-create to="question.id"></answer-create>
         </div>
       </div>
     </div>

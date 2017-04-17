@@ -154,7 +154,7 @@ exports.createAnswer = function (req, res) { // создание ответа к
     Answer.create({
         body:req.body.body,
         author:req.body.author,
-        to_question: req.body.to_question,
+        to_question: req.body.toquestion,
         mark: 0
     }).then(function (results) {
         res.send('OK');
