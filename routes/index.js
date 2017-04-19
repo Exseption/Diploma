@@ -8,6 +8,7 @@ const Dialog = sequelize.import('../models/dialog');
 const Message = sequelize.import('../models/message');
 const Book = sequelize.import('../models/book');
 const Attachment = sequelize.import('../models/attachment');
+
 Question.belongsTo(Person, {foreignKey: 'author'});
 Person.hasMany(Question, {foreignKey: 'author'}); //чет падазрительна
 Answer.belongsTo(Question, {foreignKey: 'to_question'});

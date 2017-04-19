@@ -2,7 +2,7 @@ html {
     overflow: scroll;
 }
 .question-title {
-    color: #316AC5
+    color: #222222;
 }
 
 .ws-author {
@@ -18,7 +18,7 @@ html {
 }
 
 .question-title:hover {
-    color: #FF9933;
+    color: #9e9e9e;
     cursor: pointer;
 }
 
@@ -131,7 +131,7 @@ a {
     text-align: justify;
 }
 .header {
-    background-color: #444444;
+    background-color: #eeeeee;
     color: black;
     padding: 1em 0;
 }

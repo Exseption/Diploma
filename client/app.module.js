@@ -14,7 +14,7 @@
         .directive('chat', function (SessionManager, $rootScope) {
             return {
                 controller: function ($scope, socket) {
-                    socket.init('http://localhost:8000');
+                    socket.init('http://localhost:3009');
 
                     $scope.messages = [];
                     $scope.announces = [];
