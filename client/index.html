@@ -2,29 +2,81 @@
 <html lang="en" ng-app="legal">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Центр правовых консультаций</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/angular-material.min.css">
-    <link rel="stylesheet" href="assets/css/md-data-table.min.css">
+    <!--<link rel="stylesheet" href="assets/css/md-data-table.min.css">-->
     <link rel="stylesheet" href="assets/css/ng-animation.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="stylesheet" href="assets/libs/materialize.min.css" media="screen,projection">
+
+    <link rel="stylesheet" href="assets/css/style.css" >
+
 
 </head>
 <body>
 <main-header></main-header>
-        <div layout="row">
-            <div flex-offset="10" flex="60">
-                <div ui-view></div>
+<main>
+    <div class="row">
+        <div class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
+            <div ui-view></div>
+    </div>
+        <div class="col s12 m4 l3"> <!-- Note that "m4 l3" was added -->
+            <sidebar></sidebar>
+        </div>
+    </div>
+
+
+
+
+
+    <div layout="row">
+        <div flex-offset="10" flex="60">
+
+        </div>
+        <div flex="20">
+
+        </div>
+    </div>
+</main>
+<footer class="page-footer teal lighten-2">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Центр правовых консультаций</h5>
+                <p class="grey-text text-lighten-4">Продукт разработан в рамках дипломного проектирования.</p>
             </div>
-            <div flex="20">
-                <sidebar></sidebar>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Ссылки</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">NodeJS</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">AngularJS</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Sequelize</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Materialize</a></li>
+                </ul>
             </div>
         </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2017 Все права защищены
+            <!--<a class="grey-text text-lighten-4 right" href="#!">More Links</a>-->
+        </div>
+    </div>
+</footer>
+
 <script src="assets/libs/angular.min.js"></script>
 <script src="assets/libs/angular-animate.min.js"></script>
 <script src="assets/libs/angular-aria.min.js"></script>
 <script src="assets/libs/angular-material.min.js"></script>
+
+
+<script src="assets/libs/jquery.min.js"></script>
+<script src="assets/libs/materialize.min.js"></script>
+<!--<script src="assets/libs/angular-materialize.js"></script>-->
+
+
 <script src="assets/libs/lodash.min.js"></script>
 <script src="assets/libs/restangular.min.js"></script>
 <script src="assets/libs/angular-cookies.min.js"></script>
@@ -75,6 +127,7 @@
 <script src="shared/sidebar/sidebar.js"></script>
 <script src="shared/forms/auth/auth.form.ctrl.js"></script>
 <script src="components/dialog/dialog.js"></script>
+<script src="components/dialog/dialog.service.js"></script>
 
 </body>
 </html>

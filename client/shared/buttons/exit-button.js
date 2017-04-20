@@ -1,7 +1,6 @@
 angular.module('legal').directive('exitButton', function (SessionManager, $cookies, $state, $rootScope) {
     return {
-        template:"<button class='simple-button-primary md-button md-ink-ripple' " +
-        "type='button'  ng-click='exit()'>Выход</button>",
+        template:"<a ng-click='exit()'>Выход</a>",
         compile: function (elem, attrs, linker) {
             return {
                 pre: function (scope, elem) {

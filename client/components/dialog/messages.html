@@ -1,4 +1,3 @@
-
 <div layout="row">
   <div flex="70">
     <div>
@@ -9,6 +8,8 @@
     <div layout="column">
       <div class="md-title">Диалоги</div>
     </div>
-    <div ng-repeat="d in mc.dialogs"><a class="like-button" ui-sref="dialogs({id: mc.id, dialog: d.id})">{{d.caption}}</a></div>
+    <div ng-repeat="d in dialogs">
+      <a class="like-button">{{d.started}}</a>
+    </div>
   </div>
 </div>

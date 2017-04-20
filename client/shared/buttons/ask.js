@@ -1,6 +1,6 @@
 angular.module('legal').directive('ask', function (SessionManager, $rootScope, $mdDialog, QuestionService, $mdToast) {
     return {
-        template: '<button class="simple-button-primary md-button md-ink-ripple" ng-click="openQuestionDialog()">Задать вопрос</button>',
+        template: '<a ng-click="openQuestionDialog()">Задать вопрос</a>',
         controller: function ($scope) {
             $scope.openQuestionDialog = function(ev) {
                 $mdDialog.show({
@@ -41,7 +41,6 @@ angular.module('legal').directive('ask', function (SessionManager, $rootScope, $
                 }
                 },
                 post: function (scope, elem) {
-                    //TODO настроить появление
                     $rootScope.$on('authenticated', function (e, data) {
                         elem.css('display', 'block')
                     })

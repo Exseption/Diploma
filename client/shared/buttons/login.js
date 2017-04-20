@@ -1,6 +1,6 @@
 angular.module('legal').directive('login', function (SessionManager, $rootScope) {
     return {
-        template:'<md-button ng-click="auth()" class="simple-button">Войти</md-icon></md-button>',
+        template:'<a ng-click="auth()">Войти</a>',
         compile: function () {
             return {
                 pre: function (scope, elem) {

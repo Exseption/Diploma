@@ -3,7 +3,7 @@
  */
 angular.module('legal').directive('cabinetButton', function (SessionManager) {
     return {
-        template:'<button class="simple-button-primary md-button md-ink-ripple" ui-sref="cabinet">Кабинет</button>',
+        template:'<a ui-sref="cabinet">Кабинет</button>',
         controller: function ($scope) {
 
         },

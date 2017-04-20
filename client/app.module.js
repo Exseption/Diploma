@@ -1,5 +1,7 @@
 (function () {
     'use strict';
+
+
     angular.module('legal', [
         'ngMaterial',
         'restangular',
@@ -8,8 +10,8 @@
         'ngCookies',
         'md.data.table',
         'ngSanitize'
-        ])
 
+        ])
 
         .directive('chat', function (SessionManager, $rootScope) {
             return {
@@ -135,7 +137,7 @@
             })
 
             .state('dialogs', {
-                url:'/dialogs',
+                url:'person/:id/dialogs',
                 template: '<dialogs></dialogs>'
             })
         })

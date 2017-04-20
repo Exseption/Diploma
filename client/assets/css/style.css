@@ -1,140 +1,184 @@
-html {
-    overflow: scroll;
-}
-.question-title {
-    color: #222222;
-}
-
-.ws-author {
-    color: black;
-}
-.ws-author:hover {
-    color: #4AA02C;
-    cursor: pointer;
-}
-
-.inp_cont_marg {
-    margin: 0;
-}
-
-.question-title:hover {
-    color: #9e9e9e;
-    cursor: pointer;
-}
-
-.answer-button {
-    background-color: white;
-    text-transform: none;
-    padding: 0 1.2em;
-    border: solid 1px #cccccc;
-    color: grey;
-    height: 30px;
-    margin-top: 5px;
-}
-.answer-button:hover {
-    border: solid 1px #9e9e9e ;
-}
-
-.main-viewport {
-    padding: 5px 5px;
-}
-.simple-button {
-    background-color: white;
-    text-transform: none;
-    padding: 0 1.2em;
-    /*border: solid 1px #cccccc;*/
-    color: grey;
-    border-radius: 5px;
-}
-
-.simple-button-alert {
-    background-color: #4AA02C;
-    text-transform: none;
-    color: black;
-    border-radius: 5px;
-}
-.simple-button-alert:hover {
-    background-color: #025E2A !important;
-}
-
-.md-button.simple-button:hover {
-    background-color: #eeeeee;
-}
-.simple-button-primary {
-    text-transform: none;
-    padding: 0 1.2em;
-    /*border: solid 1px #cccccc;*/
-    color: white;
-    background-color: #316AC5;
-    border-radius: 5px;
-}
-.md-button.simple-button-primary:hover {
-    background-color: #5F82D9;
-}
-.shared_form {
-    background-color: white !important;
-    color: black !important;
-    font-family: sans-serif !important;
-}
-a {
-    text-decoration: none;
-    color: black;
-}
-.nav {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    outline: none;
-    text-transform: uppercase;
-    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
-    font-size: large;
-}
-
-.nav-but {
-    display: inline-block;
-    /*width: 6em;*/
-    /*text-align: center;*/
-    padding: 5px 5px; /* Поля */
-    color: #000; /* Цвет текста */
-    /*border: solid 2px #eeeeee;*/
-    font-weight: 800;
-}
-.nav-but:hover {
-    /*box-shadow: 0 0 5px rgba(0,0,0,0.3); !* Тень *!*/
-    color: #4AA02C;
-}
-.header-title {
-    font-family: "Baskerville Old Face";
-    font-size: xx-large;
-}
-.main-view {
-}
-
-.sidebar-container-title {
-    text-transform: uppercase;
-}
-
-.main-view-here {
-    background-color: white;
-
-}
-.sidebar-container {
-    border-radius: 3px;
-    background-color: #F6F6F6;
-    min-height: 300px;
-    max-height: 300px;
-    padding: 5px 10px;
-    margin-left: 5px;
-    margin-bottom: 10px;
-}
-.ws-body {
-    text-indent: 1.5em;
-    text-align: justify;
-}
-.header {
-    background-color: #eeeeee;
-    color: black;
-    padding: 1em 0;
-}
 body {
-    background-color: white;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
+main {
+    flex: 1 0 auto;
+}
+.page-menu {
+    padding: 10px 15px;
+}
+
+.page-menu-link {
+    padding: 10px 15px;
+}
+
+.page-menu-link:hover {
+    background-color: #4db6ac;
+}
+
+.brand-logo {
+    margin-left: 1rem;
+}
+
+.sidebar-container {
+margin-top: 10px;
+}
+
+.sb-title, .sb-body {
+    padding: 10px 17px;
+}
+
+.sb-body {
+    min-height: 600px;
+}
+
+
+
+
+
+
+
+
+
+/*html {*/
+    /*overflow: scroll;*/
+/*}*/
+/*.question-title {*/
+    /*color: #222222;*/
+/*}*/
+
+/*.ws-author {*/
+    /*color: black;*/
+/*}*/
+/*.ws-author:hover {*/
+    /*color: #4AA02C;*/
+    /*cursor: pointer;*/
+/*}*/
+
+/*.inp_cont_marg {*/
+    /*margin: 0;*/
+/*}*/
+
+/*.question-title:hover {*/
+    /*color: #9e9e9e;*/
+    /*cursor: pointer;*/
+/*}*/
+
+/*.answer-button {*/
+    /*background-color: white;*/
+    /*text-transform: none;*/
+    /*padding: 0 1.2em;*/
+    /*border: solid 1px #cccccc;*/
+    /*color: grey;*/
+    /*height: 30px;*/
+    /*margin-top: 5px;*/
+/*}*/
+/*.answer-button:hover {*/
+    /*border: solid 1px #9e9e9e ;*/
+/*}*/
+
+/*.main-viewport {*/
+    /*padding: 5px 5px;*/
+/*}*/
+/*.simple-button {*/
+    /*background-color: white;*/
+    /*text-transform: none;*/
+    /*padding: 0 1.2em;*/
+    /*!*border: solid 1px #cccccc;*!*/
+    /*color: grey;*/
+    /*border-radius: 5px;*/
+/*}*/
+
+/*.simple-button-alert {*/
+    /*background-color: #4AA02C;*/
+    /*text-transform: none;*/
+    /*color: black;*/
+    /*border-radius: 5px;*/
+/*}*/
+/*.simple-button-alert:hover {*/
+    /*background-color: #025E2A !important;*/
+/*}*/
+
+/*.md-button.simple-button:hover {*/
+    /*background-color: #eeeeee;*/
+/*}*/
+/*.simple-button-primary {*/
+    /*text-transform: none;*/
+    /*padding: 0 1.2em;*/
+    /*!*border: solid 1px #cccccc;*!*/
+    /*color: white;*/
+    /*background-color: #316AC5;*/
+    /*border-radius: 5px;*/
+/*}*/
+/*.md-button.simple-button-primary:hover {*/
+    /*background-color: #5F82D9;*/
+/*}*/
+/*.shared_form {*/
+    /*background-color: white !important;*/
+    /*color: black !important;*/
+    /*font-family: sans-serif !important;*/
+/*}*/
+/*a {*/
+    /*text-decoration: none;*/
+    /*color: black;*/
+/*}*/
+/*.nav {*/
+    /*margin-top: 5px;*/
+    /*margin-bottom: 5px;*/
+    /*outline: none;*/
+    /*text-transform: uppercase;*/
+    /*font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;*/
+    /*font-size: large;*/
+/*}*/
+
+/*.nav-but {*/
+    /*display: inline-block;*/
+    /*!*width: 6em;*!*/
+    /*!*text-align: center;*!*/
+    /*padding: 5px 5px; !* Поля *!*/
+    /*color: #000; !* Цвет текста *!*/
+    /*!*border: solid 2px #eeeeee;*!*/
+    /*font-weight: 800;*/
+/*}*/
+/*.nav-but:hover {*/
+    /*!*box-shadow: 0 0 5px rgba(0,0,0,0.3); !* Тень *!*!*/
+    /*color: #4AA02C;*/
+/*}*/
+/*.header-title {*/
+    /*font-family: "Baskerville Old Face";*/
+    /*font-size: xx-large;*/
+/*}*/
+/*.main-view {*/
+/*}*/
+
+/*.sidebar-container-title {*/
+    /*text-transform: uppercase;*/
+/*}*/
+
+/*.main-view-here {*/
+    /*background-color: white;*/
+
+/*}*/
+/*.sidebar-container {*/
+    /*border-radius: 3px;*/
+    /*background-color: #F6F6F6;*/
+    /*min-height: 300px;*/
+    /*max-height: 300px;*/
+    /*padding: 5px 10px;*/
+    /*margin-left: 5px;*/
+    /*margin-bottom: 10px;*/
+/*}*/
+/*.ws-body {*/
+    /*text-indent: 1.5em;*/
+    /*text-align: justify;*/
+/*}*/
+/*.header {*/
+    /*background-color: #eeeeee;*/
+    /*color: black;*/
+    /*padding: 1em 0;*/
+/*}*/
+/*body {*/
+    /*background-color: white;*/
+/*}*/

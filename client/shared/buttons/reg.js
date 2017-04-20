@@ -1,7 +1,6 @@
 angular.module('legal').directive('reg', function ($mdDialog, SessionManager, PeopleService, $rootScope) {
     return {
-        template:"<button class='simple-button-primary md-button md-ink-ripple' " +
-        "type='button'  ng-click='register()'>Регистрация</button>",
+        template:"<a ng-click='register()'>Регистрация</a>",
         controller: function ($scope) {
             $scope.register = function () {
                 $mdDialog.show({

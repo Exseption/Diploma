@@ -1,14 +1,16 @@
-angular.module('legal').directive('dialogs', function () {
+angular.module('legal').directive('dialogs', function (DialogService, SessionManager) {
     return {
-        controller: function ($scope, socket) {
-
-            $scope.sendMessage = function (message) {
-                console.log('Отправлено сообщение', message);
-                socket.emit('message', { data: message })
+        controller: function ($scope) {
+            const id = SessionManager.person.id;
+            console.log(id)
+            if(id){
+                DialogService.getDialogs(id).then(function (data) {
+                    $scope.dialogs = data;
+                })
             }
+
         },
-        template: '<h4>Диалоги</h4>' +
-        '<div><input ng-model="message"></div>' +
-        '<button ng-click="sendMessage(message)">Отправить!</button> '
+
+        templateUrl: '../../components/dialog/messages.html'
     }
 });
