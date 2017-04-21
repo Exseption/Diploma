@@ -1,28 +1,25 @@
-<md-dialog style="border-radius: 0">
-  <form ng-cloak>
-    <md-toolbar class="shared_form">
-      <div class="md-toolbar-tools">Авторизация пользователя</div>
-    </md-toolbar>
-    <md-dialog-content>
-      <div class="md-body-1" layout-padding="layout-padding">
-        <div layout="column">
-          <md-input-container class="inp_cont_marg">
-            <label>Логин:</label>
-            <input ng-model="login" type="text"/>
-          </md-input-container>
-          <md-input-container class="inp_cont_marg">
-            <label>Пароль:</label>
-            <input ng-model="password" type="password"/>
-          </md-input-container>
-          <md-checkbox ng-model="cb" area="Куки">
-            Запомнить меня
-          </md-checkbox>
-        </div>
+<div class="section center-align teal lighten-2">
+  <span style="text-transform: uppercase">Авторизация пользователя</span>
+</div>
+<div class="row">
+  <form class="col">
+    <div class="row">
+      <div class="input-field">
+        <input id="login" ng-model="login" type="text" class="validate"/>
+        <label for="login">Логин:</label>
       </div>
-      <md-dialog-actions layout="row">
-        <md-button class="simple-button" ng-click="cancel()">Отмена</md-button>
-        <md-button class="simple-button" ng-click="auth(login, password, cb)">Войти</md-button>
-      </md-dialog-actions>
-    </md-dialog-content>
+    </div>
+    <div class="row">
+      <div class="input-field">
+        <input id="password" ng-model="password" type="password" class="validate"/>
+        <label for="password">Пароль:</label>
+      </div>
+    </div>
+    <p>
+      <input type="checkbox" ng-model="cb" id="chkbx"/>
+      <label for="chkbx">Запомнить меня</label>
+    </p>
+    <a class="waves-effect waves-light btn" ng-click="cancel()">Отмена</a>
+    <a class="waves-effect waves-light btn" ng-click="auth(login, password, cb)">Войти</a>
   </form>
-</md-dialog>
+</div>

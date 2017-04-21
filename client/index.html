@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="assets/css/angular-material.min.css">
     <!--<link rel="stylesheet" href="assets/css/md-data-table.min.css">-->
     <link rel="stylesheet" href="assets/css/ng-animation.css">
-
     <link rel="stylesheet" href="assets/libs/materialize.min.css" media="screen,projection">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css" >
 
 
@@ -18,27 +17,18 @@
 <body>
 <main-header></main-header>
 <main>
-    <div class="row">
-        <div class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
-            <div ui-view></div>
-    </div>
-        <div class="col s12 m4 l3"> <!-- Note that "m4 l3" was added -->
-            <sidebar></sidebar>
+    <div class="container">
+
+        <div class="row">
+            <!--<div class="col s12 m8 l9">-->
+            <ui-view></ui-view>
+            <!--</div>-->
+            <!--<div class="col s12 m4 l3">-->
+            <!--<sidebar></sidebar>-->
+            <!--</div>-->
         </div>
     </div>
 
-
-
-
-
-    <div layout="row">
-        <div flex-offset="10" flex="60">
-
-        </div>
-        <div flex="20">
-
-        </div>
-    </div>
 </main>
 <footer class="page-footer teal lighten-2">
     <div class="container">
