@@ -1,53 +1,15 @@
 <div class="sidebar-container z-depth-1">
-
-        <div class="sb-title teal lighten-2">
-            ТОП-5 УЧАСТНИКОВ
+        <div class="sb-title blue lighten-3">
+            ТОП-5 ОТВЕЧАЮЩИХ
         </div>
         <div class="sb-body">
-            <div class="section">
-<pre>
-1. Фамилия Имя;
-зарегистрирован: 12.12.2017
-ответов: 99 / рейтинг: 99
-</pre>
-
-</div>
-<div class="divider"></div>
-<div class="section">
-<pre>
-2. Фамилия Имя;
-зарегистрирован: 12.12.2017
-ответов: 99 / рейтинг: 99
-</pre>
-
-</div>
-<div class="divider"></div>
-<div class="section">
-<pre>
-3. Фамилия Имя;
-зарегистрирован: 12.12.2017
-ответов: 99 / рейтинг: 99
-</pre>
-
-</div> <div class="divider"></div>
-<div class="section">
-<pre>
-4. Фамилия Имя;
-зарегистрирован: 12.12.2017
-ответов: 99 / рейтинг: 99
-</pre>
-
-</div> <div class="divider"></div>
-<div class="section">
-<pre>
-5. Фамилия Имя;
-зарегистрирован: 12.12.2017
-ответов: 99 / рейтинг: 99
-</pre>
-
+            <div class="row">
+                <div ng-repeat="r in ratings" class="section">
+                    <div ui-sref="person({id: r.id})"><span>{{$index + 1}}. {{r.name}}</span><span> {{r.surname}}</span></div>
+                    <!--<div style="margin-left: 16px">{{r.birthday | amUtc | amLocal | amDateFormat:'l'}}</div>-->
+                    <div style="margin-left: 16px"><span>Ответов: 3 / </span><span>Рейтинг: {{r.rating}}</span></div>
+                    <div class="divider"></div>
+                </div>
             </div>
-
-
         </div>
-
 </div>

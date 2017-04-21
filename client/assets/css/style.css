@@ -2,23 +2,25 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    overflow-x: scroll;
 }
 main {
     flex: 1 0 auto;
+
 }
 .page-menu {
     padding: 10px 15px;
 }
-
 .page-menu-link {
     padding: 10px 15px;
 }
-
 .page-menu-link:hover {
-    background-color: #4db6ac;
+    background-color: #424242;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: initial;
+    transition-delay: initial;
 }
-
-
 .sidebar-container {
 margin-top: 10px;
 }
@@ -28,9 +30,13 @@ margin-top: 10px;
 }
 
 .sb-body {
-    min-height: 600px;
+    /*min-height: 600px;*/
 }
 
+.form-title {
+    text-transform: uppercase;
+    font-weight: bolder;
+}
 
 
 

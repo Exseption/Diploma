@@ -6,7 +6,6 @@
     <title>Центр правовых консультаций</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/angular-material.min.css">
-    <!--<link rel="stylesheet" href="assets/css/md-data-table.min.css">-->
     <link rel="stylesheet" href="assets/css/ng-animation.css">
     <link rel="stylesheet" href="assets/libs/materialize.min.css" media="screen,projection">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -18,19 +17,20 @@
 <main-header></main-header>
 <main>
     <div class="container">
-
         <div class="row">
-            <!--<div class="col s12 m8 l9">-->
-            <ui-view></ui-view>
-            <!--</div>-->
-            <!--<div class="col s12 m4 l3">-->
-            <!--<sidebar></sidebar>-->
-            <!--</div>-->
+            <div class="col s9">
+                <ui-view></ui-view>
+            </div>
+
+            <div class="col s3">
+                <sidebar></sidebar>
+            </div>
+
         </div>
     </div>
 
-</main>
-<footer class="page-footer teal lighten-2">
+    </main>
+<footer class="page-footer grey darken-1">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
@@ -104,7 +104,7 @@
 <script src="components/private/message.controller.js"></script>
 <script src="components/session.manager.js"></script>
 <script src="components/question/question.service.js"></script>
-<script src="components/ratings/rating.service.js"></script>
+<script src="components/ratings/vote-service.js"></script>
 <script src="components/person/people.service.js"></script>
 <script src="components/library/library.service.js"></script>
 <script src="components/answer/answers.service.js"></script>

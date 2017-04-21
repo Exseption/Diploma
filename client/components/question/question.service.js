@@ -20,5 +20,10 @@
         self.deleteQuestion = function (id) {
             return Restangular.one('delete/question',id).remove();
         }
+
+        self.getRatingAnswers = function () {
+            return Restangular.one('ratings','answers').getList();
+        };
+
     });
 })();

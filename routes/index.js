@@ -70,17 +70,12 @@ exports.ratingsPeople = function (req, res) { // получаем рейтинг
     Person.findAll(
         {
             order: [['rating', 'DESC']],
-            attributes:['id', 'name', 'surname', 'rating'],
-            include: [{
-                model: Question,
-                attributes: ['id','title']
-            },
+            attributes:['id', 'name', 'surname', 'rating', 'birthday'],
+            include: [
                 {
                     model: Answer,
-                    include: {
-                        model: Question,
-                        attributes: ['id','title']
-                    }}]
+                    attributes: []
+                    }]
         }).then(function (results) {
         res.json(results);
     })

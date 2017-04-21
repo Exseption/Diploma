@@ -6,6 +6,10 @@
             return Restangular.one('delete/person',id).remove();
         };
 
+        self.getRatings = function () {
+            return Restangular.one('ratings','people').getList();
+        };
+
         self.getPerson = function (id) {
           return Restangular.one('person', id).get();
         };

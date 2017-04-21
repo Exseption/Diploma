@@ -1,16 +1,12 @@
 (function () {
     'use strict';
-
-
     angular.module('legal', [
         'ngMaterial',
         'restangular',
         'ui.router',
         'angularMoment',
         'ngCookies',
-        'md.data.table',
         'ngSanitize'
-
         ])
 
         .directive('chat', function (SessionManager, $rootScope) {

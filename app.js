@@ -5,7 +5,6 @@ cookieParser = require('cookie-parser'),
 bodyParser = require('body-parser'),
 session = require('express-session'),
 routes = require('./routes/index'),
-socket = require('./routes/socket'),
 app = express();
 const methodOverride = require('method-override');
 app.use(express.static(path.join(__dirname, 'client')));
@@ -54,26 +53,14 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.send(err);
 });
-
-// заводим наш сервер
 const debug = require('debug')('law-portal');
 app.set('port', process.env.PORT || 3009);
 const server = app.listen(app.get('port'), function () {
     debug('Express server listening on port ' + server.address().port);
     console.log('Сервер работает и доступен по адресу http://localhost:'+ app.get('port'));
 });
-
-// подключаем сокет
 const io = require('socket.io').listen(server);
 io.on('connection', function (socket) {
-    console.log('Кто-то подключился к основному каналу!')
-    socket.on('message', function (data) {
-        console.log(data);
-    });
-    socket.on('mess', function (data) {
-        console.log("Сообщение от "+ data.nick + " " + data.data);
-        socket.json.send({nick: 'Вы', data: data.data});
-        socket.broadcast.emit('s:mess', {data: data.data, nick: data.nick})
+    console.log('Кто-то подключился к основному каналу!');
 
-    })
 });
