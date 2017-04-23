@@ -117,6 +117,7 @@
                 template: '<library></library>'
             })
 
+            //private cabinet
             .state('my_questions',{
                 url:'/my_questions',
                 templateUrl:'components/user/my_questions/my_questions.html'
@@ -133,6 +134,37 @@
                 url:'/my_settings',
                 templateUrl:'components/user/my_settings/my_settings.html'
             })
+
+            //supervisors
+            .state('sv_users',{
+                url:'/supervisor/users',
+                templateUrl:'components/supervisor/users/users.html'
+            })
+            .state('sv_answers',{
+                url:'/supervisor/answers',
+                templateUrl:'components/supervisor/answers/answers.html'
+            })
+            .state('sv_dialogs',{
+                url:'/supervisor/dialogs',
+                templateUrl:'components/supervisor/dialogs/dialogs.html'
+            })
+            .state('sv_questions',{
+                url:'/supervisor/questions',
+                templateUrl:'components/supervisor/questions/questions.html'
+            })
+            .state('sv_settings',{
+                url:'/supervisor/settings',
+                templateUrl:'components/supervisor/settings/settings.html'
+            })
+            .state('sv_pages',{
+                url:'/supervisor/pages',
+                templateUrl:'components/supervisor/pages/pages.html'
+            })
+            .state('sv_library',{
+                url:'/supervisor/library',
+                templateUrl:'components/supervisor/library/library.html'
+            })
+
 
             // .state('private', {
             //     url:'/private',

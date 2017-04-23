@@ -1,5 +1,5 @@
 <div layout-margin style="margin-bottom: 20px">
-  <article >
+  <article>
     <header class="md-title question-title" ui-sref="question({id : item.id})">{{item.title}}</header>
     <div class="md-caption" layout="row" style="padding-bottom: 10px">
       <div class="ws-author" ui-sref="person({id: item.person.id})" style="padding-left: 20px">
@@ -11,5 +11,4 @@
     <div class="md-body-1 ws-body" ng-bind-html="item.body | limitTo: 350 | fpreview">
     </div>
   </article>
-
 </div>
