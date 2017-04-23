@@ -1,15 +1,31 @@
 <div class="sidebar-container z-depth-1">
-        <div class="sb-title blue lighten-3">
-            ТОП-5 ОТВЕЧАЮЩИХ
+    <div class="sb-title blue darken-2">
+        МЕНЮ ПОЛЬЗОВАТЕЛЯ
+    </div>
+    <div class="sb-body">
+        <div class="row" style="margin-bottom: 0">
+            <a class="valign-wrapper menu-btn" ui-sref="my_questions"><i class="material-icons i-menu">live_help</i>Мои вопросы</a>
+            <a class="valign-wrapper menu-btn" ui-sref="my_messages"><i class="material-icons i-menu">chat_bubble_outline</i> Мои сообщения</a>
+            <a class="valign-wrapper menu-btn" ui-sref="my_files"><i class="material-icons i-menu">perm_media</i>Мои файлы</a>
+            <div class="divider"></div>
+            <a class="valign-wrapper menu-btn" ui-sref="my_settings"><i class="material-icons i-menu">settings</i>Настройки</a>
         </div>
-        <div class="sb-body">
-            <div class="row">
-                <div ng-repeat="r in ratings" class="section">
-                    <div ui-sref="person({id: r.id})"><span>{{$index + 1}}. {{r.name}}</span><span> {{r.surname}}</span></div>
-                    <!--<div style="margin-left: 16px">{{r.birthday | amUtc | amLocal | amDateFormat:'l'}}</div>-->
-                    <div style="margin-left: 16px"><span>Ответов: 3 / </span><span>Рейтинг: {{r.rating}}</span></div>
-                    <div class="divider"></div>
-                </div>
-            </div>
+    </div>
+</div>
+<div class="sidebar-container z-depth-1">
+    <div class="sb-title blue darken-2">
+        МЕНЮ АДМИНИСТРАТОРА
+    </div>
+    <div class="sb-body">
+        <div class="row" style="margin-bottom: 0">
+            <a class="valign-wrapper menu-btn"><i class="material-icons i-menu">supervisor_account</i>Пользователи</a>
+            <a class="valign-wrapper menu-btn"><i class="material-icons i-menu">chat_bubble_outline</i>Вопросы</a>
+            <a class="valign-wrapper menu-btn"><i class="material-icons i-menu">message</i>Ответы</a>
+            <a class="valign-wrapper menu-btn"><i class="material-icons i-menu">library_books</i>Библиотека</a>
+            <a class="valign-wrapper menu-btn"><i class="material-icons i-menu">view_headline</i>Страницы</a>
+            <a class="valign-wrapper menu-btn"><i class="material-icons i-menu">speaker_notes</i>Диалоги</a>
+            <div class="divider"></div>
+            <a class="valign-wrapper menu-btn"><i class="material-icons i-menu">settings</i>Настройки</a>
         </div>
+    </div>
 </div>

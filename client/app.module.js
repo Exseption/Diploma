@@ -102,7 +102,7 @@
         $stateProvider
             .state('index',{
                 url:'/index',
-                template:'<question-list></question-list>'
+                templateUrl:'components/index_page/index.html'
             })
             .state('question', {
             url: '/question/:id',
@@ -116,13 +116,31 @@
                 url: '/library',
                 template: '<library></library>'
             })
-            .state('private', {
-                url:'/private',
-                template:"<h3>Приватная зона</h3>",
-                data: {
-                    needAdmin: true
-                }
+
+            .state('my_questions',{
+                url:'/my_questions',
+                templateUrl:'components/user/my_questions/my_questions.html'
             })
+            .state('my_files',{
+                url:'/my_files',
+                templateUrl:'components/user/my_files/my_files.html'
+            })
+            .state('my_messages',{
+                url:'/my_messages',
+                templateUrl:'components/user/my_messages/my_messages.html'
+            })
+            .state('my_settings',{
+                url:'/my_settings',
+                templateUrl:'components/user/my_settings/my_settings.html'
+            })
+
+            // .state('private', {
+            //     url:'/private',
+            //     template:"<h3>Приватная зона</h3>",
+            //     data: {
+            //         needAdmin: true
+            //     }
+            // })
             .state('create', {
                 url: '/create-question',
                 template: '<create-question></create-question>'

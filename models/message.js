@@ -7,6 +7,10 @@ module.exports = function(sequelize, DataTypes) {
         created: {
             type: DataTypes.DATE,
             defaultValue: DataTypes.NOW
+        },
+        viewed: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
     })
 };
