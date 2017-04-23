@@ -117,7 +117,8 @@
                 template: '<library></library>'
             })
 
-            //private cabinet
+
+            //private
             .state('my_questions',{
                 url:'/my_questions',
                 templateUrl:'components/user/my_questions/my_questions.html'
@@ -135,7 +136,8 @@
                 templateUrl:'components/user/my_settings/my_settings.html'
             })
 
-            //supervisors
+
+            //supervisor
             .state('sv_users',{
                 url:'/supervisor/users',
                 templateUrl:'components/supervisor/users/users.html'
@@ -166,26 +168,11 @@
             })
 
 
-            // .state('private', {
-            //     url:'/private',
-            //     template:"<h3>Приватная зона</h3>",
-            //     data: {
-            //         needAdmin: true
-            //     }
-            // })
             .state('create', {
                 url: '/create-question',
                 template: '<create-question></create-question>'
             })
-            .state('cabinet', {
-                url: '/cabinet',
-                templateUrl:'components/cabinet/cabinet.html'
-            })
 
-            .state('dialogs', {
-                url:'person/:id/dialogs',
-                template: '<dialogs></dialogs>'
-            })
         })
         .run(function ($rootScope, SessionManager, $state) {
             $rootScope.$on('$stateChangeStart',
