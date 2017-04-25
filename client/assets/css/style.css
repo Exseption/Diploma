@@ -45,6 +45,7 @@ margin-top: 10px;
     cursor: pointer;
     color: #37474f;
 }
+
 .engine-links:hover {
     color: #03a9f4 !important;
 }
@@ -73,7 +74,9 @@ margin-top: 10px;
     cursor: pointer;
 }
 
-
+.view-cntr {
+    padding: 5px 10px;
+}
 
 
 

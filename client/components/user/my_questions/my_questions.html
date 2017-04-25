@@ -1,1 +1,20 @@
-Мои вопросы
+<div class="z-depth-1 view-cntr">
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Заголовок вопроса</th>
+            <th>Дата публикации</th>
+            <th>Редактировать</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="mq in my_questions">
+            <td>{{$index + 1}}.</td>
+            <td ng-bind="mq.title"></td>
+            <td ng-bind="mq.created | amUtc | amLocal | amDateFormat:'LLL'"></td>
+            <td><a><i class="material-icons">description</i></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

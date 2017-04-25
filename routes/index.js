@@ -34,6 +34,16 @@ exports.library = function (req, res) { // получаем библиотеку
     })
 };
 
+exports.myQuestions = function (req, res) {
+    Question.findAll({
+        where: {
+            author: req.params.id
+        }
+    }).then(function (results) {
+        res.send(results);
+    })
+};
+
 exports.questions = function (req, res) { // получаем вопросы
     Question.findAll(
         {order: [['created', 'DESC']],

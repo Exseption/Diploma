@@ -71,7 +71,7 @@
             //private
             .state('my_questions',{
                 url:'/my_questions',
-                templateUrl:'components/user/my_questions/my_questions.html'
+                template: '<my-questions></my-questions>'
             })
             .state('my_files',{
                 url:'/my_files',
@@ -368,6 +368,9 @@
 
         .service('QuestionService', function (Restangular) {
             const self = this;
+            self.getMyQuestions = function (id) { // получить вопросы в кабинете
+                return Restangular.one('questions/author', id).getList();
+            };
             self.getQuestions = function () { //получаем все вопросы
                 return Restangular.all('questions').getList();
             };
@@ -385,14 +388,26 @@
             };
             self.deleteQuestion = function (id) {
                 return Restangular.one('delete/question',id).remove();
-            }
+            };
 
             self.getRatingAnswers = function () {
                 return Restangular.one('ratings','answers').getList();
             };
-
         })
 
+
+        .directive('myQuestions', function (QuestionService, SessionManager) {
+            return {
+                templateUrl:'components/user/my_questions/my_questions.html',
+                link: function (scope) {
+                    var id = SessionManager.person.id;
+                    QuestionService.getMyQuestions(id).then(function (my_questions) {
+                        scope.my_questions = my_questions;
+                    })
+                }
+
+            }
+        })
 
         .component('personComponent',{
             bindings:{

@@ -21,7 +21,7 @@ app.use(session({
 app.disable('x-powered-by');
 const api_version = '/api/v1';
 
-
+app.get(api_version + '/questions/author/:id', routes.myQuestions);
 app.get(api_version + '/library', routes.library);
 app.get(api_version + '/questions', routes.questions);
 app.get(api_version + '/ratings/answers', routes.ratingsAnswers);
