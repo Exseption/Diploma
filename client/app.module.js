@@ -267,14 +267,24 @@
             }
         })
 
-        .directive('svUsers', function (PeopleService) {
+        .directive('svUsers', function (PeopleService, $mdDialog) {
             return {
                 templateUrl:'components/supervisor/users/users.html',
                 link: function (scope) {
                     PeopleService.getPeople().then(function (people) {
                         scope.people = people;
                     });
-
+                    scope.edit_user = function (user) {
+                        $mdDialog.show({
+                            controller: function ($scope) {
+                                $scope.user = user;
+                            },
+                            templateUrl: 'components/supervisor/users/resume.html',
+                            parent: angular.element(document.body),
+                            clickOutsideToClose:true
+                        });
+                        // alert(user);
+                    }
                 }
             }
         })
