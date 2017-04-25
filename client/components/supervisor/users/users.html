@@ -1,1 +1,52 @@
-Пользователи
+<table class="highlight">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Зарегистрирован</th>
+        <th>E-mail</th>
+        <th>Активен</th>
+        <th>Резюме</th>
+        <!--<th>Телефон</th>-->
+        <!--<th>Дата рождения</th>-->
+        <!--<th>Рейтинг</th>-->
+        <!--<th>Группа</th>-->
+        <!--<th>Страна</th>-->
+        <!--<th>Регион</th>-->
+        <!--<th>Город</th>-->
+
+
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat="p in people">
+        <td>{{$index + 1}}.</td>
+        <td ng-bind="p.name"></td>
+        <td ng-bind="p.surname"></td>
+        <td ng-bind="p.registrated | amUtc | amLocal | amDateFormat:'LLL'"></td>
+        <td ng-bind="p.email"></td>
+        <td>
+            <input type="checkbox" ng-checked="p.active"/>
+            <label></label>
+        </td>
+        <td class="person_data_edit"><a><i class="material-icons">assignment_ind</i></a></td>
+
+        <!---->
+        <!--<td ng-bind="p.telephone"></td>-->
+        <!--<td ng-bind="p.birthday"></td>-->
+
+        <!--<td ng-bind="p.rating"></td>-->
+
+        <!--<td ng-bind="p.usergroup"></td>-->
+        <!--<td ng-bind="p.country"></td>-->
+        <!--<td ng-bind="p.area"></td>-->
+        <!--<td ng-bind="p.city"></td>-->
+
+
+
+    </tr>
+    </tbody>
+</table>

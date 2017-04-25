@@ -20,6 +20,8 @@ app.use(session({
                 }));
 app.disable('x-powered-by');
 const api_version = '/api/v1';
+
+
 app.get(api_version + '/library', routes.library);
 app.get(api_version + '/questions', routes.questions);
 app.get(api_version + '/ratings/answers', routes.ratingsAnswers);
@@ -38,6 +40,8 @@ app.delete(api_version + '/delete/question/:id', routes.deleteQuestionById);
 app.delete(api_version + '/delete/person/:id', routes.deletePersonById);
 app.post(api_version + '/create/answer', routes.createAnswer);
 app.post(api_version + '/create/person', routes.createPerson);
+
+
 app.use(function(req, res, next) {
   const err = new Error('Not Found');
   err.status = 404;

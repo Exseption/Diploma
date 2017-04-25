@@ -68,6 +68,10 @@ margin-top: 10px;
     background-color: #e3f2fd;
 }
 
+.person_data_edit {}
+.person_data_edit:hover {
+    cursor: pointer;
+}
 
 
 

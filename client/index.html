@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="legal">
+<html lang="en" ng-app="ws">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -9,20 +9,18 @@
     <link rel="stylesheet" href="assets/css/angular-material.min.css">
     <link rel="stylesheet" href="assets/css/ng-animation.css">
     <link rel="stylesheet" href="assets/libs/materialize.min.css" media="screen,projection">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css" >
-
-
 </head>
 <body>
 <main-header></main-header>
 <main>
     <div class="container">
         <div class="row">
-            <div class="col s9 z-depth-1" style="margin-top: 10px">
+            <div class="col s9" style="margin-top: 10px">
                 <ui-view></ui-view>
             </div>
-
             <div class="col s3">
                 <sidebar></sidebar>
             </div>
@@ -62,11 +60,8 @@
 <script src="assets/libs/angular-aria.min.js"></script>
 <script src="assets/libs/angular-material.min.js"></script>
 
-
 <script src="assets/libs/jquery.min.js"></script>
 <script src="assets/libs/materialize.min.js"></script>
-<!--<script src="assets/libs/angular-materialize.js"></script>-->
-
 
 <script src="assets/libs/lodash.min.js"></script>
 <script src="assets/libs/restangular.min.js"></script>
@@ -77,43 +72,11 @@
 <script src="assets/libs/angular-ui-router.min.js"></script>
 <script src="assets/libs/md-data-table.min.js"></script>
 <script src="assets/libs/angular-sanitize.js"></script>
-<!--<script src="assets/libs/socket.min.js"></script>-->
 <script src="assets/libs/socket.io.js"></script>
-
-<!--<script>-->
-    <!--var socket = io('http://localhost:3009');-->
-        <!--socket.on('news',function (data) {-->
-            <!--console.log(data)-->
-        <!--})-->
-<!--</script>-->
 <script src="app.module.js"></script>
-<script src="components/question/question-list/question-list.js"></script>
-<script src="components/question/question-list/question-list-item/question-list-item.js"></script>
-<script src="shared/buttons/cabinet-button.js"></script>
-<script src="components/components.js"></script>
-<script src="shared/buttons/reg.js"></script>
-<script src="shared/buttons/ask.js"></script>
-<script src="shared/buttons/login.js"></script>
-<script src="components/question/question.js"></script>
-<script src="components/question/question.ctrl.js"></script>
-<script src="shared/buttons/exit-button.js"></script>
-<script src="components/library/library.js"></script>
-<script src="components/session.manager.js"></script>
-<script src="components/question/question.service.js"></script>
-<script src="components/ratings/vote-service.js"></script>
-<script src="components/person/people.service.js"></script>
-<script src="components/library/library.service.js"></script>
-<script src="components/answer/answers.service.js"></script>
-<script src="shared/vote/answer-vote.js"></script>
-<script src="components/answer/answer-create.js"></script>
-<script src="components/question/creating/create.question.js"></script>
-<script src="components/person/person.js"></script>
-<script src="components/answer/answer.js"></script>
-<script src="shared/header/main-header.js"></script>
-<script src="shared/sidebar/sidebar.js"></script>
-<script src="shared/forms/auth/auth.form.ctrl.js"></script>
-<script src="components/dialog/dialog.js"></script>
-<script src="components/dialog/dialog.service.js"></script>
+
+
+
 
 </body>
 </html>

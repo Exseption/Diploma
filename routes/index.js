@@ -113,7 +113,7 @@ exports.people = function (req, res) { // получаем пользовате�
 
     })
         .then(function (results) {
-            res.json(results);
+            res.send(results);
         })
 };
 
@@ -221,15 +221,6 @@ exports.personByIdDialogDialogIdMessages = function (req, res) {
     });
 };
 
-// app.get(api_version + 'person/:id/dialogs/:dialog/messages', function (req, res) {
-//     Message.findAll({
-//         include:[{
-//             model: Person
-//         }]
-//     }).then(function (results) {
-//        res.send(results);
-//    })
-// });
 exports.createQuestion = function (req, res) { //создаем вопрос
     Question.create({
         title: req.body.title,

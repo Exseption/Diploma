@@ -1,29 +1,36 @@
-<md-dialog>
-  <form ng-cloak name="FormCreateQuestion">
-    <md-toolbar class="shared_form">
-      <div class="md-toolbar-tools">Задать вопрос сообществу пользователей</div>
-    </md-toolbar>
-    <md-dialog-content>
-      <div layout="column" layout-padding>
-          <input ng-model="title" placeholder="Заголовок" required style="margin-bottom: 5px"/>
-        <textarea ng-model="body" rows="10" required ></textarea>
-        <div layout="row">
-          <div flex="50" style="margin-top: 2px"><md-radio-group ng-model="payable" required >
-            <md-radio-button value="payme" class="md-primary">Платный</md-radio-button>
-            <md-radio-button value="free" class="md-primary">Бесплатный</md-radio-button>
-          </md-radio-group></div>
-          <div ng-show="payable === 'payme'">
-            <input class="input-question" id="pay-him" ng-model="price" placeholder="Цена вопроса, руб."/>
-          </div>
-
-        </div>
-
-
-        <div layout="row" layout-align="end end">
-          <md-button ng-click="hide()" class="answer-button">Отмена</md-button>
-          <input class="md-button answer-button" type="submit" ng-click="createQuestion(title, body, author, payable, price)" ng-disabled="FormCreateQuestion.$invalid" value="Отправить"/>
-        </div>
+<form ng-cloak name="FormCreateQuestion">
+      <div class="section center-align form-title">
+      <div>Задать вопрос сообществу пользователей</div>
       </div>
-    </md-dialog-content>
+      <div class="row">
+          <div class="col s12">
+              <div class="input-field col s12">
+                  <input ng-model="title" type="text" id="q_title"
+                         required class="validate"/>
+                  <label for="q_title">Заголовок</label>
+              </div>
+
+              <div class="input-field col s12">
+                  <textarea id="mtarea" ng-model="body" required class="validate materialize-textarea"></textarea>
+                  <label for="mtarea">Тело вопроса</label>
+              </div>
+              <div class="input-field col s6">
+                  <md-radio-group ng-model="payable" required >
+                      <md-radio-button value="payme">Платный</md-radio-button>
+                      <md-radio-button value="free">Бесплатный</md-radio-button>
+                  </md-radio-group>
+              </div>
+              <div class="input-field col s6">
+                  <input id="pay-him" class="validate" ng-model="price" type="text" ng-disabled="payable !== 'payme'"/>
+                  <label for="pay-him">Цена вопроса, руб.</label>
+              </div>
+          </div>
+          <div class="modal-footer right-align">
+              <div class="col s12">
+                  <a ng-click="hide()" class="modal-action waves-effect waves-green btn-flat">Отмена</a>
+                  <input type="submit" class="modal-action waves-effect waves-green btn-flat" ng-click="createQuestion(title, body, author, payable, price)" ng-disabled="FormCreateQuestion.$invalid" value="Отправить"/>
+              </div>
+
+          </div>
+      </div>
   </form>
-</md-dialog>
