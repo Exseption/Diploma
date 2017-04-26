@@ -23,17 +23,18 @@ main {
     /*transition-delay: initial;*/
 }
 .sidebar-container {
-margin-top: 10px;
+
     background-color: white;
 }
 
+.mb {
+    margin-bottom: 12px;
+}
 .sb-title, .sb-body {
     padding: 10px 17px;
     color: white;
     font-weight: bolder;
 }
-
-
 .question-title:hover {
     color: #0d47a1;
     cursor: pointer;
@@ -68,6 +69,9 @@ margin-top: 10px;
 }
 .menu-btn:hover {
     cursor: pointer;
+    background-color: #e3f2fd;
+}
+.menu-btn.active {
     background-color: #e3f2fd;
 }
 

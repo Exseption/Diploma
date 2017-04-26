@@ -1,72 +1,71 @@
-<form ng-cloak name="FormReg">
-    <div class="section center-align form-title">
-        <span>Регистрация нового пользователя</span>
-    </div>
-    <div class="row">
-        <div class="col s12">
-            <div class="row">
-                <div class="input-field col s6">
-                    <input id="login" ng-model="login" type="text" required class="validate"/>
-                    <label for="login">Логин</label>
+<div class="modal-content" style="padding: 0px 10px">
+    <form ng-cloak name="FormEdit">
+        <div class="section center-align form-title">
+            <span>Редактирование данных пользователя</span>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <!--<label for="name">Имя</label>-->
+                        <input id="name" ng-model="user.name" required class="validate" type="text"/>
+                    </div>
+                    <div class="input-field col s6">
+                        <!--<label for="surname">Фамилия</label>-->
+                        <input id="surname" ng-model="user.surname" required class="validate" type="text"/>
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <!--<label for="email">Email</label>-->
+                        <input id="email" ng-model="user.email" type="email" required class="validate"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <!--<label for="country">Страна</label>-->
+                        <input id="country" ng-model="user.country" required class="validate" type="text"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <!--<label for="area">Область, край и тд</label>-->
+                        <input id="area" ng-model="user.area" required class="validate" type="text"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <!--<label for="city">Город, поселок и тд.</label>-->
+                        <input id="city" ng-model="user.city" required class="validate" type="text"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <!--<label for="telephone">Телефон</label>-->
+                        <input id="telephone" ng-model="user.telephone" required class="validate" type="text"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="date" class="datepicker validate" ng-model="user.birthday" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <a class="waves-effect waves-light btn">Отмена</a>
+                    <input class="waves-effect waves-light btn" ng-disabled="FormEdit.$invalid"
+                           value="Сохранить" type="submit"/>
 
-                <div class="input-field col s6">
-                    <label for="password">Пароль</label>
-                    <input id="password" ng-model="password" type="password" required class="validate"/>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    <label for="name">Имя</label>
-                    <input id="name" ng-model="name" required class="validate" type="text"/>
-                </div>
-                <div class="input-field col s6">
-                    <label for="surname">Фамилия</label>
-                    <input id="surname" ng-model="surname" required class="validate" type="text"/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <label for="email">Email</label>
-                    <input id="email" ng-model="email" type="email" required class="validate"/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <label for="country">Страна</label>
-                    <input id="country" ng-model="country" required class="validate" type="text"/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <label for="area">Область, край и тд</label>
-                    <input id="area" ng-model="area" required class="validate" type="text"/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <label for="city">Город, поселок и тд.</label>
-                    <input id="city" ng-model="city" required class="validate" type="text"/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <label for="telephone">Телефон</label>
-                    <input id="telephone" ng-model="telephone" required class="validate" type="text"/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input type="date" class="datepicker validate" ng-model="birthday" required>
-                </div>
-            </div>
-            <div class="row">
-                <a class="waves-effect waves-light btn" ng-click="cancel()">Отмена</a>
-                <input class="waves-effect waves-light btn" ng-disabled="FormReg.$invalid"
-                       ng-click="register(login, password, name, surname, email, birthday,
-             country, area, city, telephone)" value="Зарегистрироваться" type="submit"/>
-
             </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>
+
+<!--<script>-->
+    <!--$(document).ready(function () {-->
+        <!--$('.datepicker').pickadate({-->
+            <!--selectMonths: true, // Creates a dropdown to control month-->
+            <!--selectYears: 15 // Creates a dropdown of 15 years to control year-->
+        <!--});-->
+    <!--});-->
+<!--</script>-->

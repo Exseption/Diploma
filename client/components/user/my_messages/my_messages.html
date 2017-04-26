@@ -1,1 +1,15 @@
-Мои сообщения
+<div class="view-cntr z-depth-1">
+    <div ng-repeat="d in dialogs">
+        {{d.started | amUtc | amLocal | amDateFormat:'LLL' }}
+    </div>
+
+
+
+
+    <div ng-repeat="m in messages.messages">
+        <div style="padding: 5px 9px;">
+            <div><b>{{m.person.name}} {{m.person.surname}} {{m.created | amUtc | amLocal | amDateFormat:'LLL' }}</b> </div>
+            <div style="padding: 5px 12px">{{m.body}}</div>
+        </div>
+    </div>
+</div>

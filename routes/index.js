@@ -205,12 +205,12 @@ exports.personByIdDialogs =function (req, res) {
             }
         }
     }).then(function (results) {
-        res.json(results);
+        res.send(results);
     });
 };
 
 exports.personByIdDialogDialogIdMessages = function (req, res) {
-    Dialog.findAll({
+    Dialog.findOne({
         where:{ $and: {
             $or: {
                 sender: req.params.id,

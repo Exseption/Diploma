@@ -1,15 +1,18 @@
 <div class="md-body-1 ws-person-card z-depth-1 view-cntr">
         <div class="md-title">
-            {{person.name}} {{person.surname}} <a style="cursor: pointer; font-size: smaller"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Перейти к диалогу">email</i></a>
+            {{person.name}} {{person.surname}} <a style="cursor: pointer; font-size: smaller"><i class="material-icons tooltipped">email</i></a>
         </div>
 
     <div style="padding-left: 15px">
-        <div class="md-caption">
-            Зарегистрирован: {{person.registrated | amUtc | amLocal | amDateFormat:'LLL'}}
+        <div>
+            <b>Зарегистрирован:</b> {{person.registrated | amUtc | amLocal | amDateFormat:'LLL'}}
         </div>
         <div>
-            <span class="md-body-2">Дата рождения:</span>
+            <span><b>Дата рождения:</b></span>
             {{person.birthday | amUtc | amLocal | amDateFormat:'LL'}}
+        </div>
+        <div>
+            <div><b>E-mail:</b> {{person.email}}</div> <div><b>Телефон:</b> {{person.telephone}}</div>
         </div>
         <div>
             <span class="md-body-2">Рейтинг:</span> {{person.rating}}

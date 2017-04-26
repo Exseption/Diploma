@@ -1,0 +1,48 @@
+<div class="row">
+    <form class="col s12">
+        <div class="section form-title center-align">
+            Редактирование вопроса
+        </div>
+        <div class="input-field col s8">
+            <input type="text" ng-model="question.title"/>
+        </div>
+
+        <div class="input-field col s2">
+            <input disabled type="date" class="datepicker" ng-model="question.created"/>
+        </div>
+
+        <div class="input-field col s2">
+            <input type="checkbox" id="closed" ng-model="question.closed"/>
+            <label for="closed">Закрыт</label>
+        </div>
+
+        <div class="input-field col s12">
+            <textarea class="materialize-textarea" ng-model="question.body"></textarea>
+        </div>
+
+
+
+        <div class="input-field col s6">
+            <input id="pay" type="checkbox" ng-model="question.payable"/>
+            <label for="pay">Платный</label>
+        </div>
+        <div class="input-field col s6">
+            <i class="material-icons prefix">attach_money</i>
+            <input type="text" ng-model="question.price"/>
+        </div>
+
+
+
+
+        <div class="modal-footer right-align col s12">
+
+            <a class="waves-light btn">Отмена</a>
+            <a class="waves-light btn">Сохранить</a>
+        </div>
+
+
+    </form>
+
+
+
+</div>

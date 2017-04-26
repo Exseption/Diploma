@@ -1,5 +1,5 @@
 <div class="z-depth-1 view-cntr">
-    <table>
+    <table class="highlight">
         <thead>
         <tr>
             <th>#</th>
@@ -13,8 +13,10 @@
             <td>{{$index + 1}}.</td>
             <td ng-bind="mq.title"></td>
             <td ng-bind="mq.created | amUtc | amLocal | amDateFormat:'LLL'"></td>
-            <td><a><i class="material-icons">description</i></a></td>
+            <td><a ng-click="edit_question(mq)"style="cursor: pointer"><i class="material-icons">description</i></a></td>
         </tr>
         </tbody>
     </table>
+
+
 </div>

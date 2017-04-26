@@ -77,9 +77,14 @@
                 url:'/my_files',
                 templateUrl:'components/user/my_files/my_files.html'
             })
+            //TODO
+            .state('my_dialogs', {
+                url:'/my_dialogs',
+                templateUrl:''
+            })
             .state('my_messages',{
                 url:'/my_messages',
-                templateUrl:'components/user/my_messages/my_messages.html'
+                template:'<my-dialogs></my-dialogs>'
             })
             .state('my_settings',{
                 url:'/my_settings',
@@ -149,9 +154,9 @@
         .run(function ($rootScope, SessionManager, $state) {
             $rootScope.$on('$stateChangeStart',
                 function(event, to) {
-                    if(to.data && to.data.needAdmin && SessionManager.person.usergroup !== 'admin'){
+                      if(to.data && to.data.needAdmin && SessionManager.person.usergroup !== 'admin'){
                         event.preventDefault();
-                        alert('Нужен доступ админа!');
+
                         $state.go('index');
                     }
                 }
@@ -168,72 +173,7 @@
         };
         })
 
-        .service('SessionManager', function ($cookies, $http, $mdDialog, $rootScope) { // session manager
-            const self = this;
-            const url ='http://localhost:3009/api/v1/';
 
-            if($cookies.getObject('person')){
-                self.person = $cookies.getObject('person');
-            }
-
-            self.auth = function(login, password, cookie) {
-                return $http.post(url + 'auth', 'login=' + login + '&pwd=' + password, {
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-                    }}).then(function (response) {
-                    if(_.isEmpty(response.data)){
-                        alert('Неправильный логин или пароль!!!');
-                        return;
-                    }
-                    console.log(cookie);
-                    if(cookie){
-                        $cookies.putObject('person', response.data[0]);
-                    }
-
-                    $rootScope.$emit('authenticated', response.data[0].name + ' ' + response.data[0].surname + ' successfully authenticated!' );
-                    self.person = response.data[0];
-                    $mdDialog.hide();
-                }, function (error) {
-                    console.log(error);
-                });
-            };
-            self.logout = function () {
-                delete self.person;
-                $cookies.remove('person');
-            };
-        })
-
-        .service('PeopleService', function (Restangular) {
-            const self = this;
-            self.deletePerson = function (id) {
-                return Restangular.one('delete/person',id).remove();
-            };
-
-            self.getRatings = function () {
-                return Restangular.one('ratings','people').getList();
-            };
-
-            self.getPerson = function (id) {
-                return Restangular.one('person', id).get();
-            };
-            self.getPeople = function () {
-                return Restangular.all('people').getList();
-            };
-            self.registerPerson = function (login, password, name, surname, email, birthday, country, area, city, telephone) {
-                return Restangular.all('create/person').post({
-                    login: login,
-                    password: password,
-                    name: name,
-                    surname: surname,
-                    email: email,
-                    birthday: birthday,
-                    country: country,
-                    area: area,
-                    city: city,
-                    telephone: telephone
-                })
-            }
-        })
 
         .directive('sidebar',function (SessionManager) { // sidebar
             return{
@@ -278,6 +218,8 @@
                         $mdDialog.show({
                             controller: function ($scope) {
                                 $scope.user = user;
+                                $scope.user.birthday = new Date($scope.user.birthday)
+
                             },
                             templateUrl: 'components/supervisor/users/resume.html',
                             parent: angular.element(document.body),
@@ -295,7 +237,10 @@
                 link: function (scope) {
                     QuestionService.getQuestions().then(function (questions) {
                         scope.questions = questions;
-                    })
+                    });
+                    scope.delete_this = function (question) {
+                        alert(question);
+                    }
                 }
             }
         })
@@ -306,7 +251,14 @@
                 controller: function ($scope, $mdDialog) {
                     $scope.auth = function() {
                         $mdDialog.show({
-                            controller: 'auth.form.ctrl',
+                            controller: function ($scope, SessionManager, $mdDialog) {
+                                $scope.cancel = function () {
+                                    $mdDialog.hide();
+                                };
+                                $scope.auth = function (login, password, cb) {
+                                    SessionManager.auth(login, password, cb);
+                                }
+                            },
                             templateUrl: 'shared/forms/auth/auth-form.html',
                             parent: angular.element(document.body),
                             clickOutsideToClose:true
@@ -331,14 +283,8 @@
                 }
             }
         })
-        .controller('auth.form.ctrl', function ($scope, SessionManager, $mdDialog) {
-            $scope.cancel = function () {
-                $mdDialog.hide();
-            };
-            $scope.auth = function (login, password, cb) {
-                SessionManager.auth(login, password, cb);
-            }
-        })
+
+
 
 
 
@@ -362,58 +308,40 @@
             }
         })
 
-        .controller('QuestionController', function ($scope, $stateParams, QuestionService) {
-            const id = $stateParams.id;
-            QuestionService.getQuestion(id).then(function (question) {
-                $scope.question = question;
-            });
-
-        })
         .directive('question', function () {
             return {
                 templateUrl:'components/question/question.html',
-                controller:'QuestionController'
+                controller:function ($scope, $stateParams, QuestionService) {
+                    const id = $stateParams.id;
+                    QuestionService.getQuestion(id).then(function (question) {
+                        $scope.question = question;
+                    });
+                }
             }
         })
 
-        .service('QuestionService', function (Restangular) {
-            const self = this;
-            self.getMyQuestions = function (id) { // получить вопросы в кабинете
-                return Restangular.one('questions/author', id).getList();
-            };
-            self.getQuestions = function () { //получаем все вопросы
-                return Restangular.all('questions').getList();
-            };
-            self.getQuestion = function (id) {
-                return Restangular.one('question',id).get();
-            };
-            self.createQuestion = function (title, body, author, payable, price) {
-                return Restangular.all('create/question').post({
-                    author: author,
-                    body: body,
-                    title: title,
-                    payable: payable,
-                    price: price
-                })
-            };
-            self.deleteQuestion = function (id) {
-                return Restangular.one('delete/question',id).remove();
-            };
-
-            self.getRatingAnswers = function () {
-                return Restangular.one('ratings','answers').getList();
-            };
-        })
 
 
-        .directive('myQuestions', function (QuestionService, SessionManager) {
+
+        .directive('myQuestions', function (QuestionService, SessionManager, $mdDialog) {
             return {
                 templateUrl:'components/user/my_questions/my_questions.html',
                 link: function (scope) {
                     var id = SessionManager.person.id;
                     QuestionService.getMyQuestions(id).then(function (my_questions) {
                         scope.my_questions = my_questions;
-                    })
+                    });
+                    scope.edit_question = function (question) {
+                        $mdDialog.show({
+                            templateUrl:"components/user/my_questions/edit-question.html",
+                            controller: function ($scope) {
+                                $scope.question = question;
+                                $scope.question.created = new Date($scope.question.created);
+                            },
+                            parent: angular.element(document.body),
+                            clickOutsideToClose:true
+                        })
+                    }
                 }
 
             }
@@ -434,6 +362,7 @@
             '<div flex><button ng-click="$ctrl.deletePerson($ctrl.pers.id)">Удалить</button></div>' +
             '</div><div layout="column"><div flex ng-repeat="q in $ctrl.pers.questions">{{q.title}}</div> </div>'
         })
+
         .component('answerLite', {
             bindings: {
                 a : '<'
@@ -505,17 +434,12 @@
                 }
             }
         })
-        .service('DialogService', function (Restangular) {
-            const self = this;
-            self.getDialogs = function (id) {
-                return Restangular.one('person', id).get('dialogs');
-            }
-        })
+
         .directive('dialogs', function (DialogService, SessionManager) {
             return {
                 controller: function ($scope) {
                     const id = SessionManager.person.id;
-                    console.log(id)
+                    console.log(id);
                     if(id){
                         DialogService.getDialogs(id).then(function (data) {
                             $scope.dialogs = data;
@@ -527,38 +451,28 @@
                 templateUrl: '../../components/dialog/messages.html'
             }
         })
-        .directive('answerVote', function (RatingService, SessionManager) {
+        .directive('answerVote', function (SessionManager) {
             return {
-                template:[  "<div layout='row'>",
-                    "<div flex='flex'>",
-                    "<md-button class='md-icon-button fix-but plus-vote' ng-click='votePlus(ans.id)'>",
-                    "<md-icon md-svg-icon='../assets/img/add.svg' aria-label='Плюс'></md-icon>",
-                    "</md-button>" +
-                    "<span class='md-body-2' ng-bind='ans.mark'></span>",
-                    "<md-button class='md-icon-button fix-but minus-vote' ng-click='voteMinus(ans.id)'>",
-                    "<md-icon md-svg-icon='../assets/img/remove.svg' aria-label='Минус'></md-icon>",
-                    "</md-button>",
-                    "</div>",
-                    "</div>"].join(""),
+                templateUrl:'components/answer/vote.html',
                 compile: function (elem, attrs) {
                     return {
                         pre: function (scope, elem) {
-                            if(!angular.isDefined(SessionManager.person)){
-                                elem.remove();
-                            }
+                            // if(!angular.isDefined(SessionManager.person)){
+                            //     elem.remove();
+                            // }
                         },
                         post: function (scope, elem) {
                             scope.votePlus = function(id){
-                                RatingService.votePlus(id).then(function (result) {
-                                    elem.html("<div class='md-body-2'>Спасибо за ваш голос!</div>");
-                                    return result;
-                                });
+                                // RatingService.votePlus(id).then(function (result) {
+                                //     elem.html("<div class='md-body-2'>Спасибо за ваш голос!</div>");
+                                //     return result;
+                                // });
                             };
                             scope.voteMinus = function(id){
-                                RatingService.voteMinus(id).then(function (result) {
-                                    elem.html("<div class='md-body-2'>Спасибо за ваш голос!</div>");
-                                    return result;
-                                });
+                                // RatingService.voteMinus(id).then(function (result) {
+                                //     elem.html("<div class='md-body-2'>Спасибо за ваш голос!</div>");
+                                //     return result;
+                                // });
                             };
                         }
                     }
@@ -578,7 +492,7 @@
                         post: function (scope, elem) {
                             $rootScope.$on('authenticated', function (e, data) {
                                 elem.css('display', 'none');
-                            })
+                            });
                             if(angular.isDefined(SessionManager.person)){
                                 elem.css('display', 'none');
                             }
@@ -716,15 +630,18 @@
 
             }
         })
-        .service('VoteService', function (Restangular) {
-            const self = this;
-            self.votePlus = function (id) {
-                return Restangular.all('vote/plus').post({id:id});
-            };
-            self.voteMinus = function (id) {
-                return Restangular.all('vote/minus').post({id:id});
+
+        .directive('library', function (LibraryService) {
+            return {
+                controller: function ($scope) {
+                    LibraryService.getBooks().then(function (data) {
+                        $scope.books = data
+                    });
+                },
+                templateUrl:'components/library/library.html'
             }
         })
+
         .directive('person', function (PeopleService) {
             return {
                 controller: function($scope, $stateParams){
@@ -741,20 +658,141 @@
                 templateUrl:'components/person/person.html'
             }
         })
+
+        .service('DialogService', function (Restangular) {
+            const self = this;
+            self.getDialogs = function (id) {
+                return Restangular.one('person', id).customGET('dialogs');
+            };
+            self.getDialogMessages = function (id, dialogId) {
+                return Restangular.one('person',id).one('dialog', dialogId).customGET('messages');
+            };
+        })
+
+        .directive('myDialogs', function (DialogService,SessionManager) {
+            return {
+                templateUrl: 'components/user/my_messages/my_messages.html',
+                link: function (scope) {
+                    DialogService.getDialogs(SessionManager.person.id).then(function (dialogs) {
+                       scope.dialogs = dialogs;
+                    });
+                    DialogService.getDialogMessages(SessionManager.person.id, 1).then(function (messages) {
+                        scope.messages = messages;
+                    })
+                }
+            }
+        })
+
+        .service('SessionManager', function ($cookies, $http, $mdDialog, $rootScope) { // session manager
+            const self = this;
+            const url ='http://localhost:3009/api/v1/';
+
+            if($cookies.getObject('person')){
+                self.person = $cookies.getObject('person');
+            }
+
+            self.auth = function(login, password, cookie) {
+                return $http.post(url + 'auth', 'login=' + login + '&pwd=' + password, {
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+                    }}).then(function (response) {
+                    if(_.isEmpty(response.data)){
+                        alert('Неправильный логин или пароль!!!');
+                        return;
+                    }
+                    console.log(cookie);
+                    if(cookie){
+                        $cookies.putObject('person', response.data[0]);
+                    }
+
+                    $rootScope.$emit('authenticated', response.data[0].name + ' ' + response.data[0].surname + ' successfully authenticated!' );
+                    self.person = response.data[0];
+                    $mdDialog.hide();
+                }, function (error) {
+                    console.log(error);
+                });
+            };
+            self.logout = function () {
+                delete self.person;
+                $cookies.remove('person');
+            };
+        })
+
+        .service('PeopleService', function (Restangular) {
+            const self = this;
+            self.deletePerson = function (id) {
+                return Restangular.one('delete/person',id).remove();
+            };
+
+            self.getRatings = function () {
+                return Restangular.one('ratings','people').getList();
+            };
+
+            self.getPerson = function (id) {
+                return Restangular.one('person', id).get();
+            };
+            self.getPeople = function () {
+                return Restangular.all('people').getList();
+            };
+            self.registerPerson = function (login, password, name, surname, email, birthday, country, area, city, telephone) {
+                return Restangular.all('create/person').post({
+                    login: login,
+                    password: password,
+                    name: name,
+                    surname: surname,
+                    email: email,
+                    birthday: birthday,
+                    country: country,
+                    area: area,
+                    city: city,
+                    telephone: telephone
+                })
+            }
+        })
+
+        .service('VoteService', function (Restangular) {
+            const self = this;
+            self.votePlus = function (id) {
+                return Restangular.all('vote/plus').post({id:id});
+            };
+            self.voteMinus = function (id) {
+                return Restangular.all('vote/minus').post({id:id});
+            }
+        })
+
+        .service('QuestionService', function (Restangular) {
+            const self = this;
+            self.getMyQuestions = function (id) { // получить вопросы в кабинете
+                return Restangular.one('questions/author', id).getList();
+            };
+            self.getQuestions = function () { //получаем все вопросы
+                return Restangular.all('questions').getList();
+            };
+            self.getQuestion = function (id) {
+                return Restangular.one('question',id).get();
+            };
+            self.createQuestion = function (title, body, author, payable, price) {
+                return Restangular.all('create/question').post({
+                    author: author,
+                    body: body,
+                    title: title,
+                    payable: payable,
+                    price: price
+                })
+            };
+            self.deleteQuestion = function (id) {
+                return Restangular.one('delete/question',id).remove();
+            };
+
+            self.getRatingAnswers = function () {
+                return Restangular.one('ratings','answers').getList();
+            };
+        })
+
         .service('LibraryService', function (Restangular) {
             const self = this;
             self.getBooks = function () {
                 return Restangular.all('library').getList();
-            }
-        })
-        .directive('library', function (LibraryService) {
-            return {
-                controller: function ($scope) {
-                    LibraryService.getBooks().then(function (data) {
-                        $scope.books = data
-                    });
-                },
-                templateUrl:'components/library/library.html'
             }
         })
 

@@ -30,7 +30,7 @@
             <td ng-bind="p.registrated | amUtc | amLocal | amDateFormat:'LLL'"></td>
             <td ng-bind="p.email"></td>
             <td>
-                <input type="checkbox" ng-checked="p.active"/>
+                <input type="checkbox" ng-model="select"/>
                 <label></label>
             </td>
             <td class="person_data_edit"><a ng-click="edit_user(p)"><i class="material-icons">assignment_ind</i></a></td>
@@ -51,4 +51,6 @@
         </tr>
         </tbody>
     </table>
+
+
 </div>
