@@ -75,8 +75,14 @@ angular.module('ws')
     .directive('mySettings', function (Opts, SessionManager) {
        return {
            templateUrl:'components/user/my_settings/my_settings.html',
-           scope: {},
+           controller: function ($scope) {
+               $scope.person = SessionManager.person;
+           },
+           scope: {
+
+           },
            link: function (scope) {
+               scope.person = SessionManager.person;
                Opts.getOpts(SessionManager.person.id).then(function (opts) {
                    scope.opts = opts;
                });
@@ -85,6 +91,9 @@ angular.module('ws')
                        Materialize.toast('Настройки приватности изменены!', 5000);
 
                    })
+               };
+               scope.test = function () {
+                   alert(SessionManager.person.name)
                }
            }
        }
