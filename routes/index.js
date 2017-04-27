@@ -43,6 +43,25 @@ exports.getOpts = function (req, res) {
   })
 };
 
+exports.save_user_details = function (req, res) {
+    Person.update({
+        name: req.body.name,
+        surname: req.body.surname,
+        telephone: req.body.telephone,
+        email: req.body.email,
+        country: req.body.country,
+        area: req.body.area,
+        city: req.body.city
+    },{
+        where: {
+            id: req.body.id
+        }
+    }).then(function (success) {
+        res.send(success);
+    }, function (error) {
+        res.send(error);
+    })
+};
 
 exports.save_opts_changes = function (req, res) {
   Option.update({

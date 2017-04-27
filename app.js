@@ -44,7 +44,7 @@ app.post(api_version + '/create/person', routes.createPerson);
 app.get(api_version + '/opts/:userId', routes.getOpts);
 app.post(api_version + '/opts/save_changes', routes.save_opts_changes);
 app.post(api_version + '/question/save_changes', routes.save_question_changes);
-
+app.post(api_version + '/user/details', routes.save_user_details);
 app.use(function(req, res, next) {
   const err = new Error('Not Found');
   err.status = 404;

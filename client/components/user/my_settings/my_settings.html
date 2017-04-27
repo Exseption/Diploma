@@ -1,18 +1,66 @@
 <div class="view-cntr z-depth-1">
-    <fieldset>
-        <legend>Общие настройки</legend>
-        <div class="row">
-            <div class="col s1">
-                Имя
+    <form name="FormUserOptions">
+        <fieldset>
+            <legend>Общие настройки</legend>
+            <div class="row">
+                <div class="col s1">
+                    Имя
+                </div>
+                <div class="col s3">
+                    <input name="name" type="text" ng-model="name" ng-value="person.name">
+                </div>
+                <div class="col s1">
+                    Фамилия
+                </div>
+                <div class="col s4">
+                    <input name="surname" type="text" ng-value="person.surname" ng-model="surname">
+                </div>
             </div>
-            <div class="col s9">
-                <input type="text" ng-model="person.name">
+            <div class="row">
+                <div class="col s1">
+                    Телефон
+                </div>
+                <div class="col s2">
+                    <input name="telephone" type="text" ng-value="person.telephone" ng-model="telephone">
+                </div>
+                <div class="col s1">
+                    E-mail
+                </div>
+                <div class="col s3">
+                    <input name="email" type="text" ng-value="person.email" ng-disabled="true" ng-model="email">
+                </div>
+                <div class="col s1">
+                    Дата рождения
+                </div>
+                <div class="col s3">
+                    <input type="date" name="birthday" ng-value="person.birthday" ng-model="birthday">
+                </div>
             </div>
-        </div>
-        <div class="section">
-            <a class="btn" ng-click="test()">Test</a>
-        </div>
-    </fieldset>
+            <div class="row">
+                <div class="col s1">
+                    Страна
+                </div>
+                <div class="col s3">
+                    <input type="text" ng-value="person.country" ng-model="country">
+                </div>
+                <div class="col s1">
+                    Область, край
+                </div>
+                <div class="col s3">
+                    <input type="text" ng-value="person.area" ng-model="area">
+                </div>
+                <div class="col s1">
+                    Город
+                </div>
+                <div class="col s3">
+                    <input type="text" ng-value="person.city" ng-model="city">
+                </div>
+            </div>
+            <div class="section right-align">
+                <a class="btn" ng-click="test(name)" ng-disabled="FormUserOptions.$pristine">Сохранить</a>
+            </div>
+        </fieldset>
+    </form>
     <fieldset>
         <legend>Настройки приватности</legend>
         <form name="FormPrivate">
@@ -31,7 +79,7 @@
                 </div>
             </div>
             <div class="section right-align">
-                <a ng-disabled="FormPrivate.telephone.$pristine && FormPrivate.email.$pristine" class="waves-effect btn" ng-click="save_options_changes(opts.show_telephone, opts.show_email)">Сохранить</a>
+                <a ng-disabled="FormPrivate.$pristine" class="waves-effect btn" ng-click="save_options_changes(opts.show_telephone, opts.show_email)">Сохранить</a>
             </div>
         </form>
     </fieldset>

@@ -70,31 +70,78 @@ angular.module('ws')
                 email: email,
                 userId: userId
                 })
+        };
+        self.save_user_details = function (name, surname, telephone, email, country, area, city, id) {
+            return Restangular.all('user/details').post({
+                name: name,
+                surname: surname,
+                telephone: telephone,
+                email: email,
+                country: country,
+                area: area,
+                city: city,
+                id: id
+            })
         }
     })
     .directive('mySettings', function (Opts, SessionManager) {
        return {
-           templateUrl:'components/user/my_settings/my_settings.html',
            controller: function ($scope) {
                $scope.person = SessionManager.person;
+               $scope.person.birthday = new Date($scope.person.birthday);
            },
-           scope: {
-
-           },
+           templateUrl:'components/user/my_settings/my_settings.html',
            link: function (scope) {
-               scope.person = SessionManager.person;
+
+
+               // scope.person.birthday = new Date(scope.person.birthday);
                Opts.getOpts(SessionManager.person.id).then(function (opts) {
                    scope.opts = opts;
                });
                scope.save_options_changes = function (telephone, email) {
                    Opts.save_options_changes(telephone, email, SessionManager.person.id).then(function (success) {
                        Materialize.toast('Настройки приватности изменены!', 5000);
-
                    })
                };
                scope.test = function () {
-                   alert(SessionManager.person.name)
+                   if(!scope.name){
+                       scope.name = scope.person.name;
+                   }
+                   if(!scope.surname){
+                       scope.surname = scope.person.surname;
+                   }
+                   if(!scope.telephone){
+                       scope.telephone = scope.person.telephone;
+                   }
+                   if(!scope.email){
+                       scope.email = scope.person.email;
+                   }
+                   if(!scope.country){
+                       scope.country = scope.person.country;
+                   }
+                   if(!scope.area){
+                       scope.area = scope.person.area;
+                   }
+                   if(!scope.city){
+                       scope.city = scope.person.city;
+                   }
+
+                    Opts.save_user_details(
+                        scope.name,
+                        scope.surname,
+                        scope.telephone,
+                        scope.email,
+                        scope.country,
+                        scope.area,
+                        scope.city,
+                        scope.person.id
+                    ).then(function (success) {
+                        Materialize.toast('Общие настройки сохранены изменены!', 3000)
+                    }, function (error) {
+                        Materialize.toast('Ошибка сохранения данных!', 3000)
+                    })
                }
+
            }
        }
-    });
+    })
