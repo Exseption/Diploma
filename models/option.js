@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-    var Option = sequelize.define("question", {
+    var Option = sequelize.define("option", {
             show_email: {
                 type: DataTypes.BOOLEAN,
                 defaultValue: false

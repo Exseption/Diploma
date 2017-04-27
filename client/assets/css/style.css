@@ -9,14 +9,19 @@ main {
     flex: 1 0 auto;
 
 }
+
+legend {
+    font-weight: bold;
+}
 .page-menu {
     padding: 10px 15px;
 }
 .page-menu-link {
     padding: 10px 15px;
+    color: black;
 }
 .page-menu-link:hover {
-    background-color: #616161 ;
+    background-color: #eeeeee;
     /*transition-property: background-color;*/
     /*transition-duration: 0.3s;*/
     /*transition-timing-function: initial;*/

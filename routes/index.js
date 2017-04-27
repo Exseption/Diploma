@@ -7,6 +7,8 @@ const Answer = sequelize.import('../models/answer');
 const Dialog = sequelize.import('../models/dialog');
 const Message = sequelize.import('../models/message');
 const Book = sequelize.import('../models/book');
+const Option = sequelize.import(('../models/option'));
+
 const Attachment = sequelize.import('../models/attachment');
 
 Question.belongsTo(Person, {foreignKey: 'author'});
@@ -25,6 +27,57 @@ Dialog.belongsTo(Person,{foreignKey: 'destination'});
 Person.hasMany(Dialog,{foreignKey: 'destination'});
 Attachment.belongsTo(Message, {foreignKey: 'to_message'});
 Message.hasMany(Attachment, {foreignKey: 'to_message'});
+
+Person.hasMany(Option, {foreignKey: 'of_user'});
+Option.belongsTo(Person, {foreignKey: 'of_user'});
+
+
+
+exports.getOpts = function (req, res) {
+  Option.findOne({
+      where: {
+          of_user: req.params.userId
+      }
+  }).then(function (opts) {
+      res.send(opts)
+  })
+};
+
+
+exports.save_opts_changes = function (req, res) {
+  Option.update({
+      show_telephone: req.body.telephone,
+      show_email: req.body.email
+  },{
+      where: {
+      of_user: req.body.userId
+  }}
+  ).then(function (success) {
+      res.send(success);
+  })
+};
+
+exports.save_question_changes = function (req, res) {
+    if(req.body.payable === false){
+        req.body.money = 0;
+    }
+    Question.update({
+        title: req.body.title,
+        body: req.body.body,
+        closed: req.body.closed,
+        payable: req.body.payable,
+        price: req.body.money
+    },{
+        where: {
+            id: req.body.id
+        }
+    }).then(function (success) {
+        res.send(success);
+    }, function (error) {
+        res.send(error);
+    })
+};
+
 
 exports.library = function (req, res) { // получаем библиотеку
     Book.findAll(

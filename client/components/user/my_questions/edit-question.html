@@ -1,48 +1,42 @@
 <div class="row">
-    <form class="col s12">
+    <form name="FormQuestionEdit" class="col s12">
         <div class="section form-title center-align">
             Редактирование вопроса
         </div>
         <div class="input-field col s8">
-            <input type="text" ng-model="question.title"/>
+                <legend>Заголовок</legend>
+                <input id="question_title" type="text" ng-model="question.title" name="title"/>
         </div>
 
         <div class="input-field col s2">
+            <legend>Дата создания</legend>
             <input disabled type="date" class="datepicker" ng-model="question.created"/>
         </div>
 
         <div class="input-field col s2">
-            <input type="checkbox" id="closed" ng-model="question.closed"/>
-            <label for="closed">Закрыт</label>
+                <legend>Активность</legend>
+                <input type="checkbox" id="closed" ng-model="question.closed" name="closed">
+                <label for="closed" style="min-width: 94px; min-width: 94px">{{question.closed | true_false}}</label>
         </div>
 
         <div class="input-field col s12">
-            <textarea class="materialize-textarea" ng-model="question.body"></textarea>
+                <legend>Содержимое вопроса</legend>
+                <textarea class="materialize-textarea" ng-model="question.body" name="body"></textarea>
         </div>
 
-
-
-        <div class="input-field col s6">
-            <input id="pay" type="checkbox" ng-model="question.payable"/>
-            <label for="pay">Платный</label>
+            <div class="input-field col s2">
+                <input id="pay" type="checkbox" ng-model="question.payable" name="payable"/>
+                <label style="min-width: 122px; max-width: 122px" for="pay">{{question.payable | pay_free}}</label>
+            </div>
+            <div class="input-field col s2">
+                <legend>Цена, руб.</legend>
+                <input id="money" type="text" ng-model="question.price" ng-disabled="question.payable !== true" name="money">
+            </div>
+        <div class="modal-footer right-align col s12 section" >
+            <a class="waves-light btn" ng-click="cancel_edit()">Отмена</a>
+            <a id="save_btn" class="waves-light btn" ng-disabled="FormQuestionEdit.title.$pristine &&
+            FormQuestionEdit.body.$pristine && FormQuestionEdit.payable.$pristine &&
+            FormQuestionEdit.money.$pristine && FormQuestionEdit.closed.$pristine" ng-click="save_question_changes(question.title, question.body, question.closed, question.payable, question.price)">Сохранить</a>
         </div>
-        <div class="input-field col s6">
-            <i class="material-icons prefix">attach_money</i>
-            <input type="text" ng-model="question.price"/>
-        </div>
-
-
-
-
-        <div class="modal-footer right-align col s12">
-
-            <a class="waves-light btn">Отмена</a>
-            <a class="waves-light btn">Сохранить</a>
-        </div>
-
-
     </form>
-
-
-
 </div>

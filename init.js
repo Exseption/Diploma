@@ -4,14 +4,14 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 
 
 
-const Person = sequelize.import(__dirname + '/models/person');
-const Question = sequelize.import(__dirname + '/models/question');
-const Answer = sequelize.import(__dirname + '/models/answer');
-const Dialog = sequelize.import(__dirname + '/models/dialog');
-const Message = sequelize.import(__dirname + '/models/message');
-const Book = sequelize.import(__dirname + '/models/book');
-const Attachment = sequelize.import(__dirname + '/models/attachment');
-const Option = sequelize.import(__dirname + '/models/option');
+const Person = sequelize.import('./models/person');
+const Question = sequelize.import('./models/question');
+const Answer = sequelize.import('./models/answer');
+const Dialog = sequelize.import('./models/dialog');
+const Message = sequelize.import('./models/message');
+const Book = sequelize.import('./models/book');
+const Attachment = sequelize.import('./models/attachment');
+const Option = sequelize.import('./models/option');
 
 
 Question.belongsTo(Person, {foreignKey: 'author'});
@@ -35,6 +35,7 @@ Message.hasMany(Attachment, {foreignKey: 'to_message'});
 // need to remember
 Person.hasMany(Option, {foreignKey: 'of_user'});
 Option.belongsTo(Person, {foreignKey: 'of_user'});
+// sequelize.sync({force: true});
 
 
 sequelize.sync(
@@ -81,7 +82,8 @@ sequelize.sync(
         birthday: '1990-01-26',
         country: 'Россия',
         area: 'Амурская',
-        city: 'Благовещенск'
+        city: 'Благовещенск',
+        usergroup: 'admin'
     });
     Person.create({
         login:'user',
@@ -261,5 +263,20 @@ sequelize.sync(
         body:'Здравствуйте!',
         of_dialog: 3,
         sended_by: 3
-    })
+    });
+    Option.create({
+        show_email: true,
+        show_telephone: true,
+        of_user: 1
+    });
+    Option.create({
+        show_email: false,
+        show_telephone: true,
+        of_user: 2
+    });
+    Option.create({
+        show_email: true,
+        show_telephone: false,
+        of_user: 3
+    });
 });

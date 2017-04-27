@@ -41,6 +41,9 @@ app.delete(api_version + '/delete/person/:id', routes.deletePersonById);
 app.post(api_version + '/create/answer', routes.createAnswer);
 app.post(api_version + '/create/person', routes.createPerson);
 
+app.get(api_version + '/opts/:userId', routes.getOpts);
+app.post(api_version + '/opts/save_changes', routes.save_opts_changes);
+app.post(api_version + '/question/save_changes', routes.save_question_changes);
 
 app.use(function(req, res, next) {
   const err = new Error('Not Found');
