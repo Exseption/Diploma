@@ -12,7 +12,8 @@
             {{person.birthday | amUtc | amLocal | amDateFormat:'LL'}}
         </div>
         <div>
-            <div><b>E-mail:</b> {{person.email}}</div> <div><b>Телефон:</b> {{person.telephone}}</div>
+            <div ng-show="show_email === true"><b>E-mail:</b> {{person.email}}</div>
+            <div ng-show="show_telephone === true"><b>Телефон:</b> {{person.telephone}}</div>
         </div>
         <div>
             <span class="md-body-2">Рейтинг:</span> {{person.rating}}
@@ -30,7 +31,7 @@
     <div style="padding-top: 15px">
         <div class="md-subhead">Ответы пользователя</div>
         <div ng-repeat="ans in person.answers">
-            <answer-lite a="ans"></answer-lite>
+            <answer-lite a ="ans"></answer-lite>
         </div>
     </div>
 </div>

@@ -6,6 +6,7 @@ angular.module('ws')
                 const id = $stateParams.id;
                 QuestionService.getQuestion(id).then(function (question) {
                     $scope.question = question;
+                    console.log(question)
                 });
             }
         }

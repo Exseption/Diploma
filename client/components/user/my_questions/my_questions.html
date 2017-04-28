@@ -3,9 +3,10 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>Заголовок вопроса</th>
+            <th>Заголовок</th>
             <th>Дата публикации</th>
-            <th>Редактировать</th>
+            <th>Ответы</th>
+            <th>Свойства</th>
         </tr>
         </thead>
         <tbody>
@@ -13,6 +14,7 @@
             <td>{{$index + 1}}.</td>
             <td ng-bind="mq.title"></td>
             <td ng-bind="mq.created | amUtc | amLocal | amDateFormat:'LLL'"></td>
+            <td><a ng-click="view_answers(mq)" style="cursor:pointer;"><i class="material-icons">announcement</i></a></td>
             <td><a ng-click="edit_question(mq)"style="cursor: pointer"><i class="material-icons">description</i></a></td>
         </tr>
         </tbody>

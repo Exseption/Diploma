@@ -1,0 +1,23 @@
+<div class="row view-cntr z-depth-1">
+    <div ng-repeat="p in people" class="col s6 m6">
+
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">{{p.name}} {{p.surname}}</span>
+                        <p>I am a very simple card. I am good at containing small bits of information.
+                            I am convenient because I require little markup to use effectively.</p>
+                    </div>
+                    <div class="card-action">
+                        <a ui-sref="person({id: p.id})" style="cursor: pointer">Персональная страница</a>
+                        <!--<a href="#">This is a link</a>-->
+                    </div>
+                </div>
+
+
+
+
+    </div>
+</div>
+
+
+

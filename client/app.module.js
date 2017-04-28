@@ -103,6 +103,12 @@
                 template:'<my-settings></my-settings>'
             })
 
+
+            .state('people',{
+                url:'/people',
+                template: '<people-list></people-list>'
+            })
+
 //////////////////////////////////////////////////////////////////////////////////////
             //supervisor
             .state('sv_users',{

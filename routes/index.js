@@ -28,8 +28,8 @@ Person.hasMany(Dialog,{foreignKey: 'destination'});
 Attachment.belongsTo(Message, {foreignKey: 'to_message'});
 Message.hasMany(Attachment, {foreignKey: 'to_message'});
 
-Person.hasMany(Option, {foreignKey: 'of_user'});
-Option.belongsTo(Person, {foreignKey: 'of_user'});
+Person.hasMany(Option, {foreignKey: 'of_user', as: 'settings'});
+Option.belongsTo(Person, {foreignKey: 'of_user', as: 'settings'});
 
 
 
@@ -110,7 +110,11 @@ exports.myQuestions = function (req, res) {
     Question.findAll({
         where: {
             author: req.params.id
-        }
+
+        },
+        include: [{
+            model: Answer
+        }]
     }).then(function (results) {
         res.send(results);
     })
@@ -211,7 +215,12 @@ exports.personById = function (req, res) { // получаем пользова�
         },
             {
                 model: Answer
-            }]
+            },
+            {
+            model: Option,
+                as:'settings'
+            }
+            ]
     }).then(function (result) {
         res.json(result)
     })

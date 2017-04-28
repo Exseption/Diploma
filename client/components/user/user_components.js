@@ -7,6 +7,18 @@ angular.module('ws')
                 QuestionService.getMyQuestions(id).then(function (my_questions) {
                     scope.my_questions = my_questions;
                 });
+
+                scope.view_answers = function (mq) {
+                  $mdDialog.show({
+                      templateUrl:"components/user/my_questions/view_answers.html",
+                      controller: function ($scope) {
+                            $scope.mq = mq;
+                      },
+                      parent: angular.element(document.body),
+                      clickOutsideToClose:true
+                  })
+                };
+
                 scope.edit_question = function (question) {
                     $mdDialog.show({
                         templateUrl:"components/user/my_questions/edit-question.html",
@@ -100,12 +112,14 @@ angular.module('ws')
                });
                scope.save_options_changes = function (telephone, email) {
                    Opts.save_options_changes(telephone, email, SessionManager.person.id).then(function (success) {
+
                        Materialize.toast('Настройки приватности изменены!', 5000);
                    })
                };
                scope.test = function () {
                    if(!scope.name){
                        scope.name = scope.person.name;
+
                    }
                    if(!scope.surname){
                        scope.surname = scope.person.surname;
@@ -137,6 +151,8 @@ angular.module('ws')
                         scope.person.id
                     ).then(function (success) {
                         Materialize.toast('Общие настройки сохранены изменены!', 3000)
+                        SessionManager.auth(SessionManager.person.login, SessionManager.person.password, true);
+
                     }, function (error) {
                         Materialize.toast('Ошибка сохранения данных!', 3000)
                     })
