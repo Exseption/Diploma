@@ -6,8 +6,8 @@
         <div ng-repeat="m in messages.messages">
             <div class="row col s12">
                 <div ng-class="{'right-align': (m.person.name === my_name) && (m.person.surname === my_surname)}">
-                    <span class="teal lighten-5" style="padding: 5px 8px; border-radius: 3px;">
-                        <b>{{m.person.name}} {{m.person.surname}}, {{m.created | amUtc | amLocal | amDateFormat:'LLL' }}</b>
+                    <span class="teal lighten-5" style="padding: 5px 8px; border-radius: 5px;">
+                        <b><span ng-hide="(my_name === m.person.name) && (my_surname === m.person.surname)">{{m.person.name}} {{m.person.surname}},</span> {{m.created | amUtc | amLocal | amDateFormat:'LLL' }}</b>
                     </span>
                     <div class="col s12" style="margin-top: 5px">{{m.body}}</div>
                 </div>

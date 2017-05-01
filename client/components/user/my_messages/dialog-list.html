@@ -1,0 +1,7 @@
+<div class="sb-title blue darken-2">
+ДИАЛОГИ
+</div>
+<div class="sb-body">
+    <a style='display: block; padding: 5px 0' ng-repeat='dialog in dialogs' ui-sref='my_messages({dialogId: dialog.id })' ui-sref-active="active">{{dialog.caption}}</a>
+</div>
+

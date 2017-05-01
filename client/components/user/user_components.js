@@ -63,6 +63,16 @@ angular.module('ws')
         }
     })
 
+    .directive('dialogList', function (DialogService, SessionManager) {
+        return {
+            controller: function ($scope) {
+                DialogService.getDialogs(SessionManager.person.id).then(function (dialogs) {
+                    $scope.dialogs = dialogs;
+                });
+        },
+            templateUrl: "../../components/user/my_messages/dialog-list.html"
+        }
+    })
     .directive('myDialogs', function (DialogService, SessionManager) {
         return {
             templateUrl: '../../components/user/my_messages/my-dialogs.html',

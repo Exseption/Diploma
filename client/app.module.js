@@ -105,7 +105,12 @@
             //TODO
             .state('my_dialogs', {
                 url:'/my_dialogs',
-                template:'<my-dialogs></my-dialogs>'
+                views: {
+                    '': {
+                        template:'<my-dialogs></my-dialogs>'
+                    }
+                }
+
             })
             .state('my_messages', {
                 parent: 'my_dialogs',
