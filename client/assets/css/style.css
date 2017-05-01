@@ -65,6 +65,11 @@ legend {
 .menu-btn {
     padding: 8px 10px;
 }
+.search_result:hover {
+    cursor: pointer;
+    color: #E90000;
+}
+
 .menu-btn:hover {
     cursor: pointer;
     background-color: #e3f2fd;

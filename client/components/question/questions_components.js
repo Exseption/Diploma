@@ -32,6 +32,22 @@ angular.module('ws')
             }
         }
     })
+    .directive('searchQuestion' , function (Restangular) {
+        return {
+            templateUrl: '../../shared/search.html',
+            link: function (scope) {
+                scope.search_question = function (sq) {
+                        Restangular.all('search').post({
+                            body: sq
+                        }).then(function (results) {
+                            scope.results = results;
+                            console.log(results.plain())
+                        })
+                }
+            }
+        }
+    })
+
     .directive('createQuestion', function (QuestionService, SessionManager, $rootScope) {
         return {
             templateUrl: 'components/question/creating/create-question.html',

@@ -66,6 +66,10 @@
                 url:'/index',
                 templateUrl:'components/index_page/index.html'
             })
+            .state('search', {
+                url: '/search',
+                template: '<search-question></search-question>'
+            })
             .state('question', { // selected question
             url: '/question/:id',
             template: '<question></question>'

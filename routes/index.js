@@ -126,7 +126,11 @@ exports.myQuestions = function (req, res) {
 
 exports.questions = function (req, res) { // получаем вопросы
     Question.findAll(
-        {order: [['created', 'DESC']],
+        {
+            where:{
+                closed: false
+            },
+            order: [['created', 'DESC']],
             include: [
                 {
                     model: Person,
@@ -228,6 +232,19 @@ exports.test = function (req, res) {
         res.send(result);
     }, function (error) {
         console.log(error)
+    })
+};
+
+exports.search = function (req, res) {
+    Question.findAll({
+        where: {
+            $or: [{ body: {
+                $like: '%' + req.body.body + '%'
+            }}, { title:{$like: '%' + req.body.body + '%'}}]
+
+        }
+    }).then(function (result) {
+        res.send(result);
     })
 };
 
