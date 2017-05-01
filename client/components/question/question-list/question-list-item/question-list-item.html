@@ -1,8 +1,8 @@
-<div layout-margin style="margin-bottom: 20px; padding: 10px 15px; background-color: white" class="z-depth-1">
+<div layout-margin style="margin-bottom: 20px; padding: 10px 15px; background-color: white">
   <article>
     <header class="md-title question-title" ui-sref="question({id : item.id})" ng-bind="item.title"></header>
     <div class="md-caption" layout="row" style="padding-bottom: 10px">
-      <div class="ws-author" ui-sref="person({id: item.person.id})" style="padding-left: 20px">
+      <div ng-show="item.person" class="ws-author" ui-sref="person({id: item.person.id})" style="padding-left: 20px">
         {{item.person.name}}
         {{item.person.surname}},&nbsp
       </div>

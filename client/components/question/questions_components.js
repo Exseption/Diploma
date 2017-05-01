@@ -19,9 +19,9 @@ angular.module('ws')
                 });
             },
             template:
-            '<div ng-repeat="item in questions">' +
+            '<div style="background-color: white"><div ng-repeat="item in questions">' +
             '<question-list-item item="item"></question-list-item>' +
-            '</div>'
+            '</div></div>'
         }
     })
     .directive('questionListItem', function () {

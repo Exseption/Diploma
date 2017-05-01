@@ -30,8 +30,12 @@ app.get(api_version + '/ratings/people', routes.ratingsPeople);
 app.get(api_version + '/question/:id', routes.questionById);
 app.get(api_version + '/people', routes.people);
 app.get(api_version + '/person/:id', routes.personById);
+
+app.get(api_version + '/test', routes.test);
+
 app.post(api_version + '/auth', routes.auth);
 app.post(api_version + '/create/answer', routes.createAnswer);
+
 app.post(api_version + '/vote/plus', routes.votePlus);
 app.post(api_version + '/vote/minus', routes.voteMinus);
 

@@ -207,6 +207,30 @@ exports.people = function (req, res) { // получаем пользовате�
         })
 };
 
+exports.test = function (req, res) {
+    Question.find({
+        include: [{
+            model: Answer
+            // ,
+            // attributes: [[sequelize.fn('COUNT', 'id'), 'items']]
+
+            // ,
+            // attributes: ['id'
+            //     , [sequelize.fn('COUNT', sequelize.col('id')), 'items']
+            // ]
+        }]
+
+        // ,
+        // include: [{
+        //     model: Answer
+        // }]
+    }).then(function (result) {
+        res.send(result);
+    }, function (error) {
+        console.log(error)
+    })
+};
+
 exports.personById = function (req, res) { // получаем пользователя по id
     Person.findOne({
         // attributes: ['name', 'surname'],

@@ -12,7 +12,6 @@ gulp.task('dev', function() {
         server: 'client',
         open: false
     });
-
     gulp.watch('client/templates/pugs/**',['pug']);
     browserSync.watch('client/**',{ignored: 'client/templates/pugs/*.pug'})
         .on('change', browserSync.reload);
@@ -23,4 +22,19 @@ gulp.task('pug', function () {
         .pipe(pug({pretty: true}))
         .pipe(gulp.dest('client/templates'));
 });
+
+gulp.task('concat-js', function () {
+    return gulp.src(['./client/components/**/*.js', './client/shared/**/*.js', './models/*.js', 'app.js', './client/app.module.js'])
+        .pipe(concat('app.all.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('./dist/'))
+});
+
+gulp.task('concat-html', function () {
+    return gulp.src(['./client/**/*.html', './client.index.html'])
+        .pipe(concat('all.html.html'))
+        .pipe(gulp.dest('./dist/'))
+});
+
+
 gulp.task('default', ['dev']);

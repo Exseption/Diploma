@@ -8,16 +8,16 @@ angular.module('ws')
                     scope.my_questions = my_questions;
                 });
 
-                scope.view_answers = function (mq) {
-                  $mdDialog.show({
-                      templateUrl:"components/user/my_questions/view_answers.html",
-                      controller: function ($scope) {
-                            $scope.mq = mq;
-                      },
-                      parent: angular.element(document.body),
-                      clickOutsideToClose:true
-                  })
-                };
+                // scope.view_answers = function (mq) {
+                //   $mdDialog.show({
+                //       templateUrl:"components/user/my_questions/view_answers.html",
+                //       controller: function ($scope) {
+                //             $scope.mq = mq;
+                //       },
+                //       parent: angular.element(document.body),
+                //       clickOutsideToClose:true
+                //   })
+                // };
 
                 scope.edit_question = function (question) {
                     $mdDialog.show({
