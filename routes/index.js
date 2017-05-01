@@ -113,7 +113,11 @@ exports.myQuestions = function (req, res) {
 
         },
         include: [{
-            model: Answer
+            model: Answer,
+            include: {
+                model: Person,
+                attributes: ['id', 'name', 'surname']
+            }
         }]
     }).then(function (results) {
         res.send(results);
@@ -310,6 +314,19 @@ exports.personByIdDialogDialogIdMessages = function (req, res) {
     }).then(function (results) {
         res.json(results);
     });
+};
+
+exports.send_message = function (req, res) {
+    Message.create({
+        body: req.body.body,
+        of_dialog: req.body.of_dialog,
+        sended_by: req.body.sended_by
+
+    }).then(function (success) {
+        res.send(success);
+    },function (error) {
+        console.log(error);
+    })
 };
 
 exports.createQuestion = function (req, res) { //создаем вопрос

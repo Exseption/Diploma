@@ -1,0 +1,11 @@
+<div class="row view-cntr z-depth-1">
+    <div class="row" style="margin-left: 1px">
+        <div class="col s2">
+            <a style="display: block; padding: 5px 0" ng-repeat="dialog in dialogs"
+               ui-sref="my_messages({dialogId: dialog.id })">{{dialog.caption}}</a>
+        </div>
+        <div class="col s10">
+            <div ui-view></div>
+        </div>
+    </div>
+</div>

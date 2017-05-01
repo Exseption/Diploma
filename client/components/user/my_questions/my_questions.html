@@ -6,16 +6,16 @@
             <th>Заголовок</th>
             <th>Дата публикации</th>
             <th>Ответы</th>
-            <th>Свойства</th>
+            <!--<th>Свойства</th>-->
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="mq in my_questions">
             <td>{{$index + 1}}.</td>
-            <td ng-bind="mq.title"></td>
+            <td ng-bind="mq.title" ng-click="edit_question(mq)" style="cursor: pointer; outline: none"></td>
             <td ng-bind="mq.created | amUtc | amLocal | amDateFormat:'LLL'"></td>
             <td><a ng-click="view_answers(mq)" style="cursor:pointer;"><i class="material-icons">announcement</i></a></td>
-            <td><a ng-click="edit_question(mq)"style="cursor: pointer"><i class="material-icons">description</i></a></td>
+            <!--<td><a ><i class="material-icons">description</i></a></td>-->
         </tr>
         </tbody>
     </table>

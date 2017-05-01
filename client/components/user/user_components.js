@@ -54,22 +54,63 @@ angular.module('ws')
         self.getDialogMessages = function (id, dialogId) {
             return Restangular.one('person',id).one('dialog', dialogId).customGET('messages');
         };
+        self.send_message = function (message, dialogId, sended_by) {
+           return Restangular.all('dialog/send_message').post({
+               body: message,
+               of_dialog: dialogId,
+               sended_by : sended_by
+           })
+        }
     })
 
-    .directive('myDialogs', function (DialogService,SessionManager) {
+    .directive('myDialogs', function (DialogService, SessionManager) {
         return {
-            templateUrl: 'components/user/my_messages/my_messages.html',
+            templateUrl: '../../components/user/my_messages/my-dialogs.html',
             link: function (scope) {
                 DialogService.getDialogs(SessionManager.person.id).then(function (dialogs) {
                     scope.dialogs = dialogs;
                 });
-                DialogService.getDialogMessages(SessionManager.person.id, 1).then(function (messages) {
-                    scope.messages = messages;
-                })
             }
         }
     })
 
+    .directive('myMessages', function (DialogService, SessionManager, $stateParams) {
+        return {
+            templateUrl: '../../components/user/my_messages/my_messages.html',
+            link: function (scope) {
+                scope.my_name = SessionManager.person.name;
+                scope.my_surname = SessionManager.person.surname;
+                const dialogId = $stateParams.dialogId;
+                const sended_by = SessionManager.person.id;
+                scope.load_messages = function () {
+                    DialogService.getDialogMessages(SessionManager.person.id, dialogId ).then(function (messages) {
+                        scope.messages = messages;
+                    })
+                };
+                scope.send_message = function (message) {
+                    DialogService.send_message(message, dialogId, sended_by).then(function (success) {
+                        console.log(success)
+                        scope.load_messages();
+                    });
+                };
+                scope.load_messages();
+            }
+        }
+    })
+
+    .directive('myEnter', function () {
+        return function (scope, element, attrs) {
+            element.bind("keydown keypress", function (event) {
+                if(event.which === 13) {
+                    scope.$apply(function (){
+                        scope.$eval(attrs.myEnter);
+                    });
+                    scope._message = '';
+                    event.preventDefault();
+                }
+            });
+        };
+    })
 
     .service('Opts', function (Restangular) {
         var self = this;
@@ -108,6 +149,7 @@ angular.module('ws')
 
                // scope.person.birthday = new Date(scope.person.birthday);
                Opts.getOpts(SessionManager.person.id).then(function (opts) {
+                   $('.tooltipped').tooltip({delay: 50});
                    scope.opts = opts;
                });
                scope.save_options_changes = function (telephone, email) {

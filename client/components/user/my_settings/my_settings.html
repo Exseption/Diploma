@@ -3,33 +3,29 @@
         <fieldset>
             <legend>Общие настройки</legend>
             <div class="row">
-                <div class="col s1">
+                <div class="col s1 pt-label">
                     Имя
                 </div>
                 <div class="col s3">
                     <input name="name" type="text" ng-model="name" ng-value="person.name">
                 </div>
-                <div class="col s1">
+                <div class="col s1 pt-label">
                     Фамилия
                 </div>
-                <div class="col s4">
+                <div class="col s3">
                     <input name="surname" type="text" ng-value="person.surname" ng-model="surname">
                 </div>
+
             </div>
             <div class="row">
-                <div class="col s1">
+                <div class="col s1 pt-label">
                     Телефон
                 </div>
-                <div class="col s2">
+                <div class="col s3">
                     <input name="telephone" type="text" ng-value="person.telephone" ng-model="telephone">
                 </div>
-                <div class="col s1">
-                    E-mail
-                </div>
-                <div class="col s3">
-                    <input name="email" type="text" ng-value="person.email" ng-disabled="true" ng-model="email">
-                </div>
-                <div class="col s1">
+
+                <div class="col s1 pt-label">
                     Дата рождения
                 </div>
                 <div class="col s3">
@@ -37,19 +33,19 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col s1">
+                <div class="col s1 pt-label">
                     Страна
                 </div>
                 <div class="col s3">
                     <input type="text" ng-value="person.country" ng-model="country">
                 </div>
-                <div class="col s1">
+                <div class="col s1 pt-label">
                     Область, край
                 </div>
                 <div class="col s3">
                     <input type="text" ng-value="person.area" ng-model="area">
                 </div>
-                <div class="col s1">
+                <div class="col s1 pt-label">
                     Город
                 </div>
                 <div class="col s3">
@@ -57,6 +53,7 @@
                 </div>
             </div>
             <div class="section right-align">
+
                 <a class="btn" ng-click="test(name)" ng-disabled="FormUserOptions.$pristine">Сохранить</a>
             </div>
         </fieldset>
@@ -72,12 +69,21 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col s3">Показывать E-mail</div>
+                <div class="col s3">Показывать <a style="cursor: pointer" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Ваш e-mail: {{person.email}}">E-mail</a></div>
                 <div class="col s1">
                     <input id="email" class="filled-in" type="checkbox" ng-model="opts.show_email" name="email"/>
                     <label for="email"></label>
                 </div>
+
             </div>
+            <!--<div class="row">-->
+                <!--<div class="col s1 pt-label">-->
+                    <!--E-mail-->
+                <!--</div>-->
+                <!--<div class="col s3 pt-label">-->
+                    <!--<span>{{person.email}}</span>-->
+                <!--</div>-->
+            <!--</div>-->
             <div class="section right-align">
                 <a ng-disabled="FormPrivate.$pristine" class="waves-effect btn" ng-click="save_options_changes(opts.show_telephone, opts.show_email)">Сохранить</a>
             </div>

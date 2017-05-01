@@ -9,6 +9,19 @@ main {
     flex: 1 0 auto;
 
 }
+.cat-btn {
+    font-weight: bolder;
+    padding: 2px 10px;
+}
+.cat-btn:hover {
+    color: #01579b;
+    cursor: pointer;
+}
+
+.pt-label {
+    padding-top: 11px !important;
+    font-weight: bold;
+}
 
 legend {
     font-weight: bold;

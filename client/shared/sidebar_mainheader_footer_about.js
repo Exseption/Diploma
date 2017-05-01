@@ -71,3 +71,22 @@ angular.module('ws')
             }
         }
     })
+    .directive('footerDir', function () {
+        return {
+            templateUrl: '../shared/footer/footer-dir.html',
+            link: function (scope) {
+                scope.year = new Date().getUTCFullYear();
+            }
+        }
+    })
+
+    .directive('about', function () {
+        return {
+            templateUrl: '../shared/about.html',
+            link: function (scope) {
+                scope.title = 'Добро пожаловать на веб-сервис! Здесь мы можете найти ответы на интересующие вас правовые вопросы!';
+                scope.about = 'Данный проект является выпускной квалификационной работой студента Физико-математического факультета БГПУ г. Благовещенск в 2017 году Налимова Игоря.';
+                scope.contacts = '<b>email</b>: brain5ur9ery@gmail.com, <b>github</b>: https://github.com/Exseption';
+            }
+        }
+    })

@@ -46,7 +46,7 @@
 
         .filter('true_false', function () {
             return function (bool) {
-                return (bool === true) ? 'Активен' : 'Закрыт'
+                return (bool === true) ? 'Да' : 'Нет'
             }
         })
         .filter('pay_free', function () {
@@ -78,6 +78,15 @@
                 url: '/library',
                 template: '<library></library>'
             })
+            .state('category',{
+                parent:'library',
+                url:'/category/:cat',
+                template:'<lib-category></lib-category>'
+            })
+            .state('about', {
+                url: '/about',
+                template: '<about></about>'
+            })
 
 ///////////////////////////////////////////////////////////////////////////////////////
             //private
@@ -92,13 +101,14 @@
             //TODO
             .state('my_dialogs', {
                 url:'/my_dialogs',
-                templateUrl:''
-            })
-            .state('my_messages',{
-                url:'/my_messages',
                 template:'<my-dialogs></my-dialogs>'
             })
-            .state('my_settings',{
+            .state('my_messages', {
+                parent: 'my_dialogs',
+                url:'/my_messages/:dialogId',
+                template:'<my-messages></my-messages>'
+            })
+            .state('my_settings', {
                 url:'/my_settings',
                 template:'<my-settings></my-settings>'
             })

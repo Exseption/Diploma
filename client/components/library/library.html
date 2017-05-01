@@ -1,29 +1,29 @@
-<!--<div class="md-body-1" layout="column">-->
-    <!--<article layout-padding>-->
-      <!--<div ng-repeat="book in books"><a class="md-body-1 ws-book" ng-href="{{book.path}}">{{book.title}}</a>-->
-        <!--<div class="md-caption">{{book.category}}</div>-->
-      <!--</div>-->
-    <!--</article>-->
-  <!---->
-  <!---->
-  <!---->
-  <!---->
-<!--</div>-->
-
-
-
-
-<div class="row">
-  <div class="col s12">
-    <ul class="tabs">
-      <li class="tab col s3"><a href="#test1">Test 1</a></li>
-      <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
-      <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
-      <li class="tab col s3"><a href="#test4">Test 4</a></li>
-    </ul>
+<div class="view-cntr z-depth-1">
+  <div class="section center-align">
+    <a class="cat-btn"  ng-click="cat =  { category: 'Законодательства' }">Законодательства</a>
+    <a class="cat-btn"  ng-click="cat = { category: 'Образцы бланков и заявлений' }">Образцы бланков и заявлений</a>
+    <a class="cat-btn"  ng-click="cat = { category: 'Судебная практика' }">Судебная практика</a>
   </div>
-  <div id="test1" class="col s12">Test 1</div>
-  <div id="test2" class="col s12">Test 2</div>
-  <div id="test3" class="col s12">Test 3</div>
-  <div id="test4" class="col s12">Test 4</div>
+<div class="row" style="min-height: 70vh">
+  <div class="col s12">
+    <table class="highlight">
+      <tbody>
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Название</th>
+        <th>Дата загрузки</th>
+      </tr>
+      </thead>
+      <tr ng-repeat="book in books | filter: cat">
+        <td>{{$index + 1}}</td>
+        <td>{{book.title}}</td>
+        <td>{{book.createdAt | amUtc | amLocal | amDateFormat: 'LL'}}</td>
+        <td><a ng-href="{{book.path}}">Скачать</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 </div>

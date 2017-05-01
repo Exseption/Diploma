@@ -14,7 +14,7 @@
         </div>
 
         <div class="input-field col s2">
-                <legend>Активность</legend>
+                <legend>Закрыт</legend>
                 <input type="checkbox" id="closed" ng-model="question.closed" name="closed">
                 <label for="closed" style="min-width: 94px; min-width: 94px">{{question.closed | true_false}}</label>
         </div>
@@ -25,18 +25,24 @@
         </div>
 
             <div class="input-field col s2">
-                <input id="pay" type="checkbox" ng-model="question.payable" name="payable"/>
+                <input id="pay" type="checkbox" ng-model="question.payable" name="payable" ng-change="question.price = ''"/>
                 <label style="min-width: 122px; max-width: 122px" for="pay">{{question.payable | pay_free}}</label>
             </div>
             <div class="input-field col s2">
                 <legend>Цена, руб.</legend>
                 <input id="money" type="text" ng-model="question.price" ng-disabled="question.payable !== true" name="money">
             </div>
+
+        <div class="col s12 section" style="padding-bottom: 20px">
+            <div class="divider" style="margin-bottom: 10px"></div>
+            <legend>Ответы</legend>
+            <div class="input-field" ng-repeat="ans in question.answers">
+                <div>{{$index + 1}}. {{ans.body}} (<span ui-sref="person({id: ans.person.id})" style="cursor: pointer; outline: none" ng-click="cancel_edit()"><b>{{ans.person.name}} {{ans.person.surname}}/{{ans.created | amUtc | amLocal | amDateFormat: 'LLL'}}</b></span>)</div>
+            </div>
+        </div>
         <div class="modal-footer right-align col s12 section" >
             <a class="waves-light btn" ng-click="cancel_edit()">Отмена</a>
-            <a id="save_btn" class="waves-light btn" ng-disabled="FormQuestionEdit.title.$pristine &&
-            FormQuestionEdit.body.$pristine && FormQuestionEdit.payable.$pristine &&
-            FormQuestionEdit.money.$pristine && FormQuestionEdit.closed.$pristine" ng-click="save_question_changes(question.title, question.body, question.closed, question.payable, question.price)">Сохранить</a>
+            <a id="save_btn" class="waves-light btn" ng-disabled="FormQuestionEdit.$pristine" ng-click="save_question_changes(question.title, question.body, question.closed, question.payable, question.price)">Сохранить</a>
         </div>
     </form>
 </div>

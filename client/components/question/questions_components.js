@@ -26,7 +26,7 @@ angular.module('ws')
     })
     .directive('questionListItem', function () {
         return {
-            templateUrl: 'components/question/question-list/question-list-item/question-list-item.html',
+            templateUrl: '../../components/question/question-list/question-list-item/question-list-item.html',
             scope: {
                 item: '<'
             }
@@ -88,5 +88,4 @@ angular.module('ws')
         self.getRatingAnswers = function () {
             return Restangular.one('ratings','answers').getList();
         };
-
     })
