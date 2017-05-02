@@ -17,7 +17,6 @@ angular.module('ws')
                         parent: angular.element(document.body),
                         clickOutsideToClose:true
                     });
-                    // alert(user);
                 }
             }
         }

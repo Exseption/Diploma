@@ -35,7 +35,7 @@ angular.module('ws')
 
     .directive('mainHeader',function (SessionManager, $rootScope) {
         return {
-            templateUrl:'shared/header/main-header.html',
+            templateUrl:'../shared/header/main-header.html',
             controller: function ($scope, $mdDialog) {
                 $scope.auth = function() {
                     $mdDialog.show({
