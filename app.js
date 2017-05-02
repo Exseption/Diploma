@@ -43,6 +43,9 @@ app.post(api_version + '/vote/minus', routes.voteMinus);
 app.get(api_version + '/person/:id/dialogs', routes.personByIdDialogs);
 app.get(api_version + '/person/:id/dialog/:dialog/messages', routes.personByIdDialogDialogIdMessages);
 app.post(api_version + '/dialog/send_message', routes.send_message);
+app.post(api_version + '/dialog/create', routes.createDialog);
+
+app.delete(api_version + '/dialog/delete/:dialogId', routes.deleteDialog); // delete!
 
 app.post(api_version + '/create/question', routes.createQuestion);
 app.delete(api_version + '/delete/question/:id', routes.deleteQuestionById);

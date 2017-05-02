@@ -27,3 +27,11 @@ angular.module('ws')
             }
         }
     })
+    .directive('libSearch', function () {
+       return {
+           templateUrl: '../../components/library/lib-search.html',
+           link: function (scope) {
+
+           }
+       }
+    });

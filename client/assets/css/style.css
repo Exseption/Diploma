@@ -8,6 +8,12 @@ body {
 main {
     flex: 1 0 auto;
 }
+.question-table-header {
+    padding: 5px 10px;
+    text-transform: uppercase;
+    font-weight: bolder
+}
+
 .cat-btn {
     font-weight: bolder;
     padding: 2px 10px;
@@ -15,6 +21,18 @@ main {
 .cat-btn:hover {
     color: #01579b;
     cursor: pointer;
+}
+
+.fix_icons_align {
+    vertical-align: middle;
+    padding-bottom: 3px;
+}
+
+
+.you_may_click_here {
+    cursor: pointer;
+    outline: none;
+
 }
 .pt-label {
     padding-top: 11px !important;
@@ -84,4 +102,5 @@ legend {
 .view-cntr {
     padding: 5px 10px;
     background-color: white;
+    min-height: 70vh
 }

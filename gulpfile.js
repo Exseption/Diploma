@@ -26,7 +26,7 @@ gulp.task('pug', function () {
 gulp.task('concat-js', function () {
     return gulp.src(['./client/components/**/*.js', './client/shared/**/*.js', './models/*.js', 'app.js', './client/app.module.js'])
         .pipe(concat('app.all.js'))
-        .pipe(uglify())
+
         .pipe(gulp.dest('./dist/'))
 });
 

@@ -348,7 +348,7 @@ exports.personByIdDialogDialogIdMessages = function (req, res) {
             model: Message,
             include: {
                 model: Person,
-                attributes: ['name', 'surname']
+                attributes: ['name', 'surname', 'id']
 
             }
         }]
@@ -367,6 +367,30 @@ exports.send_message = function (req, res) {
         res.send(success);
     },function (error) {
         console.log(error);
+    })
+};
+
+exports.createDialog = function (req, res) {
+    Dialog.create({
+        caption: req.body.caption,
+        sender: req.body.sender,
+        destination: req.body.destination
+    }).then(function (success) {
+        res.send(success);
+    }, function (error) {
+        res.send(error); //make error handling on frontend
+    })
+};
+exports.deleteDialog = function (req, res) {
+    Dialog.destroy({
+        where: {
+            id: req.params.dialogId
+        }
+    }).then(function (rowDeleted) {
+        res.status(200).end('OK')
+    }, function (err) {
+        res.send(err);
+        console.log(err);
     })
 };
 

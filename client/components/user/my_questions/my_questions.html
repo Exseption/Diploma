@@ -1,4 +1,5 @@
 <div class="z-depth-1 view-cntr">
+    <div class="blue lighten-5 question-table-header" >Активные вопросы</div>
     <table class="highlight">
         <thead>
         <tr>
@@ -9,7 +10,26 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="mq in my_questions">
+        <tr ng-repeat="mq in my_questions | filter: { closed: false }">
+            <td>{{$index + 1}}.</td>
+            <td ng-bind="mq.title" ng-click="edit_question(mq)" style="cursor: pointer; outline: none"></td>
+            <td ng-bind="mq.created | amUtc | amLocal | amDateFormat:'LLL'"></td>
+            <td><a style="cursor:pointer;"><i class="material-icons">announcement</i></a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="blue lighten-5 question-table-header">Закрытые вопросы</div>
+    <table class="highlight">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Заголовок</th>
+            <th>Дата публикации</th>
+            <th>Ответов</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="mq in my_questions | filter: { closed: true }">
             <td>{{$index + 1}}.</td>
             <td ng-bind="mq.title" ng-click="edit_question(mq)" style="cursor: pointer; outline: none"></td>
             <td ng-bind="mq.created | amUtc | amLocal | amDateFormat:'LLL'"></td>

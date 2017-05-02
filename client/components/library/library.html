@@ -4,6 +4,8 @@
     <a class="cat-btn"  ng-click="cat = { category: 'Образцы бланков и заявлений' }">Образцы бланков и заявлений</a>
     <a class="cat-btn"  ng-click="cat = { category: 'Судебная практика' }">Судебная практика</a>
   </div>
+  <lib-search></lib-search>
+
 <div class="row" style="min-height: 70vh">
   <div class="col s12">
     <table class="highlight">
@@ -15,7 +17,7 @@
         <th>Дата загрузки</th>
       </tr>
       </thead>
-      <tr ng-repeat="book in books | filter: cat">
+      <tr ng-repeat="book in books | filter: cat | filter: lib_search">
         <td>{{$index + 1}}</td>
         <td>{{book.title}}</td>
         <td>{{book.createdAt | amUtc | amLocal | amDateFormat: 'LL'}}</td>

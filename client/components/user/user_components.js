@@ -7,18 +7,6 @@ angular.module('ws')
                 QuestionService.getMyQuestions(id).then(function (my_questions) {
                     scope.my_questions = my_questions;
                 });
-
-                // scope.view_answers = function (mq) {
-                //   $mdDialog.show({
-                //       templateUrl:"components/user/my_questions/view_answers.html",
-                //       controller: function ($scope) {
-                //             $scope.mq = mq;
-                //       },
-                //       parent: angular.element(document.body),
-                //       clickOutsideToClose:true
-                //   })
-                // };
-
                 scope.edit_question = function (question) {
                     $mdDialog.show({
                         templateUrl:"components/user/my_questions/edit-question.html",
@@ -63,23 +51,58 @@ angular.module('ws')
         }
     })
 
-    .directive('dialogList', function (DialogService, SessionManager) {
-        return {
-            controller: function ($scope) {
-                DialogService.getDialogs(SessionManager.person.id).then(function (dialogs) {
-                    $scope.dialogs = dialogs;
-                });
-        },
-            templateUrl: "../../components/user/my_messages/dialog-list.html"
-        }
-    })
-    .directive('myDialogs', function (DialogService, SessionManager) {
+    .directive('myDialogs', function (DialogService, SessionManager, $rootScope) {
         return {
             templateUrl: '../../components/user/my_messages/my-dialogs.html',
             link: function (scope) {
-                DialogService.getDialogs(SessionManager.person.id).then(function (dialogs) {
-                    scope.dialogs = dialogs;
+
+                scope.loadDialogs = function () {
+                    DialogService.getDialogs(SessionManager.person.id).then(function (dialogs) {
+                        scope.dialogs = dialogs;
+                    });
+                };
+                scope.loadDialogs();
+                $rootScope.$on('dialog_deleted', function (event, data) {
+                  scope.loadDialogs();
+                })
+            }
+        }
+    })
+
+    .directive('createDialog', function (Restangular, SessionManager, $stateParams, $state) {
+        return {
+            link: function (scope, element) {
+                const sender = SessionManager.person.id;
+                const destination = $stateParams.id;
+                element.on('click', function () {
+                    return Restangular.all('dialog/create').post({
+                        caption: 'Диалог ' + moment(new Date).format('LLL'),
+                        sender: sender,
+                        destination: destination
+                    }).then(function (result) {
+                        console.log(result);
+                        Materialize.toast('Диалог с пользователем успешно создан!', 2000);
+                        $state.go('my_dialogs');
+                    }, function (err) {
+                        console.log(err);
+                    })
                 });
+            }
+        }
+    })
+    .directive('deleteDialog', function (Restangular, $stateParams, $rootScope, $state) {
+        return {
+            link: function (scope, elem) {
+                const dialogId = $stateParams.dialogId;
+                elem.on('click', function () {
+                    return Restangular.one('dialog/delete', dialogId).remove().then(function () {
+                        Materialize.toast('Диалог успешно удален!', 3000);
+                        $rootScope.$emit('dialog_deleted', {id: dialogId});
+                        $state.go('my_messages')
+                    }, function (err) {
+                        console.log(err);
+                    })
+                })
             }
         }
     })

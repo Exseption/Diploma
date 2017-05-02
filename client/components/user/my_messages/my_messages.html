@@ -1,4 +1,5 @@
 <div ng-show="messages" class="section center-align"><b>{{messages.caption}}, {{messages.started | amUtc | amLocal | amDateFormat: 'LLL' }}</b>
+    <a delete-dialog class="you_may_click_here"><i class="material-icons fix_icons_align">delete_forever</i> </a>
 </div>
 
 <div style="padding: 5px 9px;">
@@ -7,7 +8,7 @@
             <div class="row col s12">
                 <div ng-class="{'right-align': (m.person.name === my_name) && (m.person.surname === my_surname)}">
                     <span class="teal lighten-5" style="padding: 5px 8px; border-radius: 5px;">
-                        <b><span ng-hide="(my_name === m.person.name) && (my_surname === m.person.surname)">{{m.person.name}} {{m.person.surname}},</span> {{m.created | amUtc | amLocal | amDateFormat:'LLL' }}</b>
+                        <b><span class="you_may_click_here" ui-sref="person({id: m.person.id})" ng-hide="(my_name === m.person.name) && (my_surname === m.person.surname)">{{m.person.name}} {{m.person.surname}},</span> {{m.created | amUtc | amLocal | amDateFormat:'LLL' }}</b>
                     </span>
                     <div class="col s12" style="margin-top: 5px">{{m.body}}</div>
                 </div>
