@@ -1,7 +1,27 @@
 angular.module('ws')
-    .directive('login', function (SessionManager, $rootScope) {
+    .directive('login', function (SessionManager, $rootScope, $mdDialog) {
         return {
-            template:'<a ng-click="auth()">Войти</a>',
+            controller: function ($scope) {
+                $scope.auth = function () {
+                    $mdDialog.show({
+                        controller: function ($scope, SessionManager) {
+                            $scope.cancel = function () {
+                                $mdDialog.hide();
+                            };
+                            $scope.auth = function (login, password, cb) {
+                                SessionManager.auth(login, password, cb);
+                            }
+                        },
+                        templateUrl: 'shared/forms/auth/auth-form.html',
+                        parent: angular.element(document.body),
+                        clickOutsideToClose: true
+                    })
+                        .then(function () {
+                            },
+                            function () {
+                            });
+                }
+            },
             compile: function () {
                 return {
                     pre: function (scope, elem) {
@@ -10,6 +30,9 @@ angular.module('ws')
                         }
                     },
                     post: function (scope, elem) {
+                        elem.on('click', function () {
+                            scope.auth();
+                        });
                         $rootScope.$on('authenticated', function (e, data) {
                             elem.css('display', 'none');
                         });
@@ -23,7 +46,6 @@ angular.module('ws')
     })
     .directive('exitButton', function (SessionManager, $cookies, $state, $rootScope) {
         return {
-            template:"<a ng-click='exit()'>Выход</a>",
             compile: function (elem, attrs, linker) {
                 return {
                     pre: function (scope, elem) {
@@ -34,15 +56,15 @@ angular.module('ws')
                     post: function (scope, elem) {
                         $rootScope.$on('authenticated', function (e, data) {
                             //TODO настроить появление
-                            // elem.append("<button class='simple-button-primary md-button md-ink-ripple' " +
-                            //     "type='button'  ng-click='exit()'>Выход</button>");
                             elem.css('display', 'block');
                         });
-
                         scope.exit = function () {
                             SessionManager.logout();
                             //TODO window reload
-                        }
+                        };
+                        elem.on('click', function () {
+                          scope.exit();
+                        });
                     }
                 }
             }
@@ -50,9 +72,8 @@ angular.module('ws')
     })
     .directive('ask', function (SessionManager, $rootScope, $mdDialog, QuestionService, $mdToast) {
         return {
-            template: '<a ng-click="openQuestionDialog()">Задать вопрос</a>',
             controller: function ($scope) {
-                $scope.openQuestionDialog = function(ev) {
+                $scope.openQuestionDialog = function() {
                     $mdDialog.show({
                         controller: function ($scope) {
                             $scope.hide = function () {
@@ -61,11 +82,7 @@ angular.module('ws')
                             $scope.payable = 'free';
                             $scope.createQuestion = function (title, body, author, payable, price ) {
                                 const personId = SessionManager.person.id;
-                                if(payable === 'free'){
-                                    payable = false;
-                                } else {
-                                    payable = true;
-                                }
+                                payable = payable !== 'free';
                                 QuestionService.createQuestion(title, body, personId, payable, price).then(function (result) {
                                     console.log(result);
                                     $mdDialog.hide();
@@ -91,6 +108,9 @@ angular.module('ws')
                         }
                     },
                     post: function (scope, elem) {
+                        elem.on('click', function () {
+                            scope.openQuestionDialog();
+                        });
                         $rootScope.$on('authenticated', function (e, data) {
                             elem.css('display', 'block')
                         })
@@ -102,17 +122,14 @@ angular.module('ws')
     })
     .directive('reg', function ($mdDialog, SessionManager, PeopleService, $rootScope) {
         return {
-            template:"<a ng-click='register()'>Регистрация</a>",
             controller: function ($scope) {
                 $scope.register = function () {
                     $mdDialog.show({
                         controller: function ($scope) {
-
                             $('.datepicker').pickadate({
                                 selectMonths: true,
                                 selectYears: 50
                             });
-
                             $scope.cancel = function () {
                                 $mdDialog.hide();
                             };
@@ -147,6 +164,9 @@ angular.module('ws')
                         }
                     },
                     post: function (scope, elem) {
+                        elem.on('click', function () {
+                            scope.register();
+                        });
                         $rootScope.$on('authenticated', function (e, data) {
                             elem.remove();
                         })

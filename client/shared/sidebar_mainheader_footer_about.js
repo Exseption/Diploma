@@ -36,27 +36,6 @@ angular.module('ws')
     .directive('mainHeader',function (SessionManager, $rootScope) {
         return {
             templateUrl:'../shared/header/main-header.html',
-            controller: function ($scope, $mdDialog) {
-                $scope.auth = function() {
-                    $mdDialog.show({
-                        controller: function ($scope, SessionManager, $mdDialog) {
-                            $scope.cancel = function () {
-                                $mdDialog.hide();
-                            };
-                            $scope.auth = function (login, password, cb) {
-                                SessionManager.auth(login, password, cb);
-                            }
-                        },
-                        templateUrl: 'shared/forms/auth/auth-form.html',
-                        parent: angular.element(document.body),
-                        clickOutsideToClose:true
-                    })
-                        .then(function() {
-                            },
-                            function() {
-                            });
-                }
-            },
             compile: function (element, attr) {
                 return {
                     pre: function () {
