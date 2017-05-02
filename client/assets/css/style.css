@@ -27,7 +27,9 @@ main {
     vertical-align: middle;
     padding-bottom: 3px;
 }
-
+span.badge.new:after {
+    content: " новых";
+}
 
 .you_may_click_here {
     cursor: pointer;

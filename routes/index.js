@@ -212,11 +212,14 @@ exports.people = function (req, res) { // получаем пользовате�
 };
 
 exports.test = function (req, res) {
-    Question.find({
+    Question.findAll({
+        // attributes: [[sequelize.fn('COUNT','id'), 'items']]
+        // ,
         include: [{
             model: Answer
-            // ,
-            // attributes: [[sequelize.fn('COUNT', 'id'), 'items']]
+            ,
+            attributes: [[sequelize.fn('COUNT','id'), 'items']]
+            // ,group:['to_question']
 
             // ,
             // attributes: ['id'
