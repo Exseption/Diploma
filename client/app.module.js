@@ -64,7 +64,7 @@
         $stateProvider
             .state('index',{ // index page
                 url:'/index',
-                templateUrl:'components/index_page/index.html'
+                template:'<question-list></question-list>'
             })
             .state('search', {
                 url: '/search',

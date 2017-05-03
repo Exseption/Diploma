@@ -1,7 +1,29 @@
 angular.module('ws')
     .directive('question', function () {
         return {
-            templateUrl:'components/question/question.html',
+            template: `<div class="md-body-1 z-depth-1 view-cntr" layout="column">
+  <div layout="row">
+    <div flex="flex" class="main-view-here">
+      <div layout-margin >
+        <article>
+          <div class="md-title">{{question.title}}</div>
+          <div class="md-caption ws-author" style="padding-left:10px;" ui-sref="person({id: question.person.id})">{{question.person.name}} {{question.person.surname}}</div>
+          <span am-time-ago="question.created" class="md-caption" style="padding-left:10px;"></span>
+          <div class="md-body-1 ws-body" ng-bind-html="question.body"></div>
+        </article>
+        <div layout="column" layout-padding="50px">
+          <div class="md-body-2">
+            <md-divider></md-divider>Ответы
+          </div>
+          <div ng-repeat="ans in question.answers">
+            <answer ans="ans">{{$index+1}}.</answer>
+          </div>
+          <answer-create to="question.id"></answer-create>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
             controller:function ($scope, $stateParams, QuestionService) {
                 const id = $stateParams.id;
                 QuestionService.getQuestion(id).then(function (question) {
@@ -26,7 +48,22 @@ angular.module('ws')
     })
     .directive('questionListItem', function () {
         return {
-            templateUrl: '../../components/question/question-list/question-list-item/question-list-item.html',
+            template: `<div style="margin-bottom: 5px; padding: 10px 15px; background-color: white">
+  <article>
+    <header class="md-title question-title" ui-sref="question({id : item.id})" ng-bind="item.title"></header>
+    <div class="md-caption" layout="row" style="padding-bottom: 10px">
+      <div ng-show="item.person" class="ws-author" ui-sref="person({id: item.person.id})" style="padding-left: 20px">
+        {{item.person.name}}
+        {{item.person.surname}},&nbsp
+      </div>
+      <span am-time-ago="item.created"></span>
+    </div>
+    <div class="divider" style="margin-bottom: 10px"></div>
+    <div class="truncate" ng-bind-html="item.body">
+    </div>
+  </article>
+</div>
+`,
             scope: {
                 item: '<'
             }
@@ -107,7 +144,42 @@ angular.module('ws')
 
     .directive('createQuestion', function (QuestionService, SessionManager, $rootScope) {
         return {
-            templateUrl: 'components/question/creating/create-question.html',
+            template: `<form ng-cloak name="FormCreateQuestion">
+      <div class="section center-align form-title">
+      <div>Задать вопрос сообществу пользователей</div>
+      </div>
+      <div class="row">
+          <div class="col s12">
+              <div class="input-field col s12">
+                  <input ng-model="title" type="text" id="q_title"
+                         required class="validate"/>
+                  <label for="q_title">Заголовок</label>
+              </div>
+
+              <div class="input-field col s12">
+                  <textarea id="mtarea" ng-model="body" required class="validate materialize-textarea"></textarea>
+                  <label for="mtarea">Тело вопроса</label>
+              </div>
+              <div class="input-field col s6">
+                  <md-radio-group ng-model="payable" required >
+                      <md-radio-button value="payme">Платный</md-radio-button>
+                      <md-radio-button value="free">Бесплатный</md-radio-button>
+                  </md-radio-group>
+              </div>
+              <div class="input-field col s6">
+                  <input id="pay-him" class="validate" ng-model="price" type="text" ng-disabled="payable !== 'payme'"/>
+                  <label for="pay-him">Цена вопроса, руб.</label>
+              </div>
+          </div>
+          <div class="modal-footer right-align">
+              <div class="col s12">
+                  <a ng-click="hide()" class="modal-action waves-effect waves-green btn-flat">Отмена</a>
+                  <input type="submit" class="modal-action waves-effect waves-green btn-flat" ng-click="createQuestion(title, body, author, payable, price)" ng-disabled="FormCreateQuestion.$invalid" value="Отправить"/>
+              </div>
+          </div>
+      </div>
+  </form>
+`,
             compile: function (elem, attrs) {
                 return {
                     pre: function (scope, elem) {
