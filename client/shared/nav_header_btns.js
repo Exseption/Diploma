@@ -12,7 +12,33 @@ angular.module('ws')
                                 SessionManager.auth(login, password, cb);
                             }
                         },
-                        templateUrl: 'shared/forms/auth/auth-form.html',
+                        template: `<form name="FormAuth">
+    <div class="section center-align form-title">
+      <span>Авторизация пользователя</span>
+    </div>
+    <div class="row">
+      <div class="col s12">
+    <div class="row">
+      <div class="input-field">
+        <input id="login" ng-model="login" type="text" class="validate" required/>
+        <label for="login">Логин:</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field">
+        <input id="password" ng-model="password" type="password" class="validate" required/>
+        <label for="password">Пароль:</label>
+      </div>
+    </div>
+    <p>
+      <input type="checkbox" ng-model="cb" id="chkbx"/>
+      <label for="chkbx">Запомнить меня</label>
+    </p>
+    <a class="waves-effect waves-light btn" ng-click="cancel()">Отмена</a>
+    <a class="waves-effect waves-light btn" ng-click="auth(login, password, cb)" ng-disabled="FormAuth.$invalid">Войти</a>
+    </div>
+    </div>
+  </form>`,
                         parent: angular.element(document.body),
                         clickOutsideToClose: true
                     })
@@ -144,7 +170,78 @@ angular.module('ws')
                                     })
                             }
                         },
-                        templateUrl: 'shared/buttons/reg.html',
+                        template: `<form ng-cloak name="FormReg">
+<div class="section center-align form-title">
+      <span>Регистрация нового пользователя</span>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="login" ng-model="login" type="text" required class="validate"/>
+            <label for="login">Логин</label>
+          </div>
+
+          <div class="input-field col s6">
+            <label for="password">Пароль</label>
+            <input id="password" ng-model="password" type="password" required class="validate"/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <label for="name">Имя</label>
+            <input id="name" ng-model="name" required class="validate" type="text"/>
+          </div>
+          <div class="input-field col s6">
+            <label for="surname">Фамилия</label>
+            <input id="surname" ng-model="surname" required class="validate" type="text"/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <label for="email">Email</label>
+            <input id="email" ng-model="email" type="email" required class="validate"/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <label for="country">Страна</label>
+            <input id="country" ng-model="country" required class="validate" type="text"/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <label for="area">Область, край и тд</label>
+            <input id="area" ng-model="area" required class="validate" type="text"/>
+          </div>
+        </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <label for="city">Город, поселок и тд.</label>
+        <input id="city" ng-model="city" required class="validate" type="text"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <label for="telephone">Телефон</label>
+        <input id="telephone" ng-model="telephone" required class="validate" type="text"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="date" class="datepicker" ng-model="birthday" required>
+      </div>
+    </div>
+        <div class="row">
+          <a class="waves-effect waves-light btn" ng-click="cancel()">Отмена</a>
+          <input class="waves-effect waves-light btn" ng-disabled="FormReg.$invalid"
+                 ng-click="register(login, password, name, surname, email, birthday,
+             country, area, city, telephone)" value="Зарегистрироваться" type="submit"/>
+
+        </div>
+      </div>
+    </div>
+  </form>`,
                         parent: angular.element(document.body),
                         clickOutsideToClose:true
                     })
