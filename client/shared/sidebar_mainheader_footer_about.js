@@ -28,13 +28,17 @@ angular.module('ws')
             }
             ,
             template:`<div class="sidebar-container z-depth-1" id="user">
-    <div class="sb-title blue darken-2">
+    <div class="sb-title">
         МЕНЮ ПОЛЬЗОВАТЕЛЯ
     </div>
     <div class="sb-body">
         <div class="row" style="margin-bottom: 0">
             <a class="valign-wrapper menu-btn" ui-sref="my_questions" ui-sref-active="active"><i class="material-icons i-menu">live_help</i>Мои вопросы</a>
             <a class="valign-wrapper menu-btn" ui-sref="my_messages" ui-sref-active="active"><i class="material-icons i-menu">chat_bubble_outline</i>Мои диалоги<span class="new badge">4</span></a>
+            <div class="valign-wrapper" style="padding: 10px; padding-left: 40px">
+                <!--<a class="valign-wrapper menu-btn" ng-repeat="dialog in dialogs"-->
+                   <!--ui-sref="my_messages({dialogId: dialog.id })" ui-sref-active="active">{{dialog.caption}}</a>-->
+            </div>
             <div class="divider"></div>
             <a class="valign-wrapper menu-btn" ui-sref="my_settings" ui-sref-active="active"><i class="material-icons i-menu">settings</i>Настройки</a>
         </div>
@@ -42,7 +46,7 @@ angular.module('ws')
 </div>
 
 <div class="sidebar-container z-depth-1" id="admin">
-    <div class="sb-title blue darken-2">
+    <div class="sb-title">
         МЕНЮ АДМИНИСТРАТОРА
     </div>
     <div class="sb-body">
@@ -57,7 +61,21 @@ angular.module('ws')
             <a class="valign-wrapper menu-btn" ui-sref="sv_settings" ui-sref-active="active"><i class="material-icons i-menu">settings</i>Настройки</a>
         </div>
     </div>
-</div>`
+</div>
+
+<div class="sidebar-container z-depth-1">
+    <!--<div class="sb-title">-->
+        <!--МЕНЮ-->
+    <!--</div>-->
+    <div class="sb-body">
+        <div class="row" style="margin-bottom: 0">
+            <a class="valign-wrapper menu-btn" ui-sref-active="active"><i class="material-icons i-menu">archive</i>Архив</a>
+            <a class="valign-wrapper menu-btn" ui-sref-active="active"><i class="material-icons i-menu">mail</i>Обратная связь</a>
+        </div>
+    </div>
+</div>
+
+`
         }
     })
 
@@ -66,15 +84,15 @@ angular.module('ws')
     .directive('mainHeader',function (SessionManager, $rootScope) {
         return {
             template: `<nav class="nav-extended mb">
-    <div class="nav-wrapper blue darken-2">
+    <div class="nav-wrapper dark-primary-color" style="min-height: 98px">
         <div class="container">
-            <a href="#" class="brand-logo"><i class="material-icons">account_balance</i>ВДИПЛОМЕ</a>
+            <a href="#" class="brand-logo nav-btns">ВДИПЛОМЕ</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a ui-sref="search"><i class="material-icons">search</i></a></li>
-                <li><a ask>Задать вопрос</a></li>
-                <li><a login>Войти</a></li>
+                <li><a class="nav-btns" ui-sref="search">Поиск</a></li>
+                <li><a class="nav-btns" ask>Задать вопрос</a></li>
+                <li><a class="nav-btns" login>Войти</a></li>
                 <li><a reg>Регистрация</a></li>
-                <li><a exit-button>Выход</a></li>
+                <li><a class="nav-btns" exit-button>Выход</a></li>
             </ul>
         </div>
     </div>

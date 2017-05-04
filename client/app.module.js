@@ -110,7 +110,6 @@
                         template:'<my-dialogs></my-dialogs>'
                     }
                 }
-
             })
             .state('my_messages', {
                 parent: 'my_dialogs',

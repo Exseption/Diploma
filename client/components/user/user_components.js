@@ -1,7 +1,13 @@
 angular.module('ws')
     .directive('myQuestions', function (QuestionService, SessionManager, $mdDialog) {
         return {
-            template:`<div class="z-depth-1 view-cntr">
+            template:`
+<div class="z-depth-1">
+    <div style="padding: 7px 0" class="valign-wrapper white sb-title">
+    <div class="col s12">МОИ ВОПРОСЫ</div>
+    <!--<div class="col s2 right-align"><a class="btn-floating"><i class="material-icons fix_icons_align">help_outline</i></a></div>-->
+    </div>
+    <div class="view-cntr">
     <div class="blue lighten-5 question-table-header" >Активные вопросы</div>
     <table class="highlight">
         <thead>
@@ -16,7 +22,7 @@ angular.module('ws')
             <td>{{$index + 1}}.</td>
             <td ng-bind="mq.title" ng-click="edit_question(mq)" style="cursor: pointer; outline: none"></td>
             <td ng-bind="mq.created | amUtc | amLocal | amDateFormat:'LLL'"></td>
-            <td><a style="cursor:pointer;"><span class="new badge red">3</span></a></td>
+            <td><a class="you_may_click_here"><span class="new badge red">3</span></a></td>
         </tr>
         </tbody>
     </table>
@@ -34,10 +40,12 @@ angular.module('ws')
             <td>{{$index + 1}}.</td>
             <td ng-bind="mq.title" ng-click="edit_question(mq)" style="cursor: pointer; outline: none"></td>
             <td ng-bind="mq.created | amUtc | amLocal | amDateFormat:'LLL'"></td>
-            <td><a style="cursor:pointer;"><span class="new badge red">3</span></a></td>
+            <td><a class="you_may_click_here"><span class="new badge red">3</span></a></td>
         </tr>
         </tbody>
     </table>
+</div>
+    
 </div>`,
             link: function (scope) {
                 var id = SessionManager.person.id;
@@ -141,7 +149,7 @@ angular.module('ws')
             template: `<div class="row view-cntr z-depth-1">
     <div class="row" style="margin-left: 1px">
         <div class="col s4">
-            <div class="sb-title grey lighten-1">
+            <div class="sb-title">
                 ДИАЛОГИ
             </div>
             <div class="sb-body">
@@ -149,7 +157,6 @@ angular.module('ws')
                    ui-sref="my_messages({dialogId: dialog.id })" ui-sref-active="active">{{dialog.caption}}</a>
             </div>
         </div>
-
         <div class="col s8">
             <div ui-view></div>
         </div>
@@ -157,7 +164,6 @@ angular.module('ws')
 </div>
 `,
             link: function (scope) {
-
                 scope.loadDialogs = function () {
                     DialogService.getDialogs(SessionManager.person.id).then(function (dialogs) {
                         scope.dialogs = dialogs;
