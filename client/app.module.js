@@ -66,6 +66,14 @@
                 url:'/index',
                 template:'<question-list></question-list>'
             })
+            .state('news', {
+                url: '/news',
+                template: `<div class="view-cntr">Новости</div>`
+            })
+            .state('archive', {
+                url: '/archive',
+                template: `<div class="view-cntr">Архив</div>`
+            })
             .state('search', {
                 url: '/search',
                 template: '<search-question></search-question>'
@@ -107,7 +115,7 @@
                 url:'/my_dialogs',
                 views: {
                     '': {
-                        template: `<div class="view-cntr z-depth-1">
+                        template: `<div class="view-cntr">
                                     <div ui-view></div>
                                     </div>`
                     },

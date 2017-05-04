@@ -2,7 +2,7 @@ angular.module('ws')
     .directive('myQuestions', function (QuestionService, SessionManager, $mdDialog) {
         return {
             template:`
-<div class="z-depth-1">
+<div>
     <div style="padding: 7px 0" class="valign-wrapper white sb-title">
     <div class="col s12">МОИ ВОПРОСЫ</div>
     <!--<div class="col s2 right-align"><a class="btn-floating"><i class="material-icons fix_icons_align">help_outline</i></a></div>-->
@@ -148,7 +148,7 @@ angular.module('ws')
         return {
             template: `
                 <a class="valign-wrapper dialogs-sublist" ng-repeat="dialog in dialogs"
-                   ui-sref="my_messages({dialogId: dialog.id })" ui-sref-active="active">- {{dialog.caption}}</a>
+                   ui-sref="my_messages({dialogId: dialog.id })" ui-sref-active="active">{{dialog.caption}}</a>
 `,
             link: function (scope) {
                 scope.loadDialogs = function () {
@@ -233,9 +233,13 @@ angular.module('ws')
     .directive('myMessages', function (DialogService, SessionManager, $stateParams, $rootScope) {
         return {
             template: `
-<div class="center-align" ng-show="messages"><b>{{messages.caption}}, {{messages.started | amUtc | amLocal | amDateFormat: 'LLL' }}</b>
-    <a rename-dialog class="btn-floating waves-effect waves-circle"><i class="material-icons">create</i></a>
+<div class="row valign-wrapper cyan lighten-3" style="padding: 10px 0" ng-show="messages">
+<div class="col s10"><b>Диалог: {{messages.caption}}, {{messages.started | amUtc | amLocal | amDateFormat: 'LLL' }}</b></div>
+<div class="col s2 right-align"><a rename-dialog class="btn-floating waves-effect waves-circle green"><i class="material-icons">create</i></a>
     <a delete-dialog class="btn-floating red"><i class="material-icons fix_icons_align">delete_forever</i></a>
+    </div>
+    
+    
 </div>
 <div style="padding: 5px 9px;">
     <div style="min-height: 500px; max-height: 500px; overflow-y: scroll">
@@ -333,7 +337,7 @@ angular.module('ws')
                $scope.person = SessionManager.person;
                $scope.person.birthday = new Date($scope.person.birthday);
            },
-           template:`<div class="view-cntr z-depth-1">
+           template:`<div class="view-cntr">
     <form name="FormUserOptions">
         <fieldset>
             <legend>Общие настройки</legend>

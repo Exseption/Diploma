@@ -68,7 +68,8 @@ angular.module('ws')
     <!--</div>-->
     <div class="sb-body">
         <div class="row" style="margin-bottom: 0">
-            <a class="valign-wrapper menu-btn" ui-sref-active="active"><i class="material-icons i-menu">archive</i>Архив</a>
+            <a class="valign-wrapper menu-btn" ui-sref-active="active" ui-sref="news"><i class="material-icons i-menu">fiber_new</i>Новости</a>
+            <a class="valign-wrapper menu-btn" ui-sref-active="active" ui-sref="archive"><i class="material-icons i-menu">archive</i>Архив</a>
             <a class="valign-wrapper menu-btn" ui-sref-active="active"><i class="material-icons i-menu">mail</i>Обратная связь</a>
         </div>
     </div>

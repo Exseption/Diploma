@@ -127,7 +127,7 @@ legend {
     cursor: pointer;
 }
 .view-cntr {
-    padding: 5px 10px;
+    padding: 0 10px;
     background-color: white;
     min-height: 70vh
 }
