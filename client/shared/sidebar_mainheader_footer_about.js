@@ -36,8 +36,7 @@ angular.module('ws')
             <a class="valign-wrapper menu-btn" ui-sref="my_questions" ui-sref-active="active"><i class="material-icons i-menu">live_help</i>Мои вопросы</a>
             <a class="valign-wrapper menu-btn" ui-sref="my_messages" ui-sref-active="active"><i class="material-icons i-menu">chat_bubble_outline</i>Мои диалоги<span class="new badge">4</span></a>
             <div class="valign-wrapper" style="padding: 10px; padding-left: 40px">
-                <!--<a class="valign-wrapper menu-btn" ng-repeat="dialog in dialogs"-->
-                   <!--ui-sref="my_messages({dialogId: dialog.id })" ui-sref-active="active">{{dialog.caption}}</a>-->
+               <div ui-view="_dialogs"></div>
             </div>
             <div class="divider"></div>
             <a class="valign-wrapper menu-btn" ui-sref="my_settings" ui-sref-active="active"><i class="material-icons i-menu">settings</i>Настройки</a>

@@ -107,7 +107,12 @@
                 url:'/my_dialogs',
                 views: {
                     '': {
-                        template:'<my-dialogs></my-dialogs>'
+                        template: `<div class="view-cntr z-depth-1">
+                                    <div ui-view></div>
+                                    </div>`
+                    },
+                    "_dialogs": {
+                        template: '<my-dialogs></my-dialogs>'
                     }
                 }
             })

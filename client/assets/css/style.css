@@ -51,7 +51,6 @@ span.badge.new:after {
 .nav-btns {
     line-height: 98px;
 }
-
 .pt-label {
     padding-top: 11px !important;
     font-weight: bold;
@@ -101,6 +100,15 @@ legend {
 }
 .menu-btn {
     padding: 8px 10px;
+}
+
+.dialogs-sublist {
+    padding-top: 0;
+    font-weight: 400 ;
+}
+
+.dialogs-sublist.active {
+    font-weight: bolder ;
 }
 .search_result:hover {
     cursor: pointer;

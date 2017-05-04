@@ -44,6 +44,7 @@ app.get(api_version + '/person/:id/dialogs', routes.personByIdDialogs);
 app.get(api_version + '/person/:id/dialog/:dialog/messages', routes.personByIdDialogDialogIdMessages);
 app.post(api_version + '/dialog/send_message', routes.send_message);
 app.post(api_version + '/dialog/create', routes.createDialog);
+app.post(api_version + '/dialog/rename', routes.renameDialog);
 
 app.delete(api_version + '/dialog/delete/:dialogId', routes.deleteDialog); // delete!
 

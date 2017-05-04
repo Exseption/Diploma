@@ -146,22 +146,9 @@ angular.module('ws')
 
     .directive('myDialogs', function (DialogService, SessionManager, $rootScope) {
         return {
-            template: `<div class="row view-cntr z-depth-1">
-    <div class="row" style="margin-left: 1px">
-        <div class="col s4">
-            <div class="sb-title">
-                ДИАЛОГИ
-            </div>
-            <div class="sb-body">
-                <a class="valign-wrapper menu-btn" ng-repeat="dialog in dialogs"
-                   ui-sref="my_messages({dialogId: dialog.id })" ui-sref-active="active">{{dialog.caption}}</a>
-            </div>
-        </div>
-        <div class="col s8">
-            <div ui-view></div>
-        </div>
-    </div>
-</div>
+            template: `
+                <a class="valign-wrapper dialogs-sublist" ng-repeat="dialog in dialogs"
+                   ui-sref="my_messages({dialogId: dialog.id })" ui-sref-active="active">- {{dialog.caption}}</a>
 `,
             link: function (scope) {
                 scope.loadDialogs = function () {
@@ -172,6 +159,9 @@ angular.module('ws')
                 scope.loadDialogs();
                 $rootScope.$on('dialog_deleted', function (event, data) {
                   scope.loadDialogs();
+                });
+                $rootScope.$on('dialog_renamed', function (event, data) {
+                    scope.loadDialogs();
                 })
             }
         }
@@ -198,14 +188,39 @@ angular.module('ws')
             }
         }
     })
+    .directive('renameDialog', function (Restangular, $stateParams, $rootScope, $mdDialog) {
+        return {
+            link: function (scope, element) {
+                let dialogId = $stateParams.dialogId;
+                element.on('click', function () {
+                    $mdDialog.show(
+                        $mdDialog.prompt()
+                        .title('Переименовать диалог')
+                        .textContent('Введите новое название диалога')
+                        .placeholder('Название')
+                        .ok('Переименовать')
+                        .cancel('Отмена')).then(function (result) {
+                        return Restangular.all('dialog/rename').post({
+                            id: dialogId,
+                            caption: result
+                        }).then(function (success) {
+                            $rootScope.$emit('dialog_renamed', {});
+                        })
+                    }, function (cancel) {
+                        console.log('Canceled!')
+                    })
+                });
+            }
+        }
+    })
     .directive('deleteDialog', function (Restangular, $stateParams, $rootScope, $state) {
         return {
             link: function (scope, elem) {
-                const dialogId = $stateParams.dialogId;
+                let dialogId = $stateParams.dialogId;
                 elem.on('click', function () {
                     return Restangular.one('dialog/delete', dialogId).remove().then(function () {
                         Materialize.toast('Диалог успешно удален!', 3000);
-                        $rootScope.$emit('dialog_deleted', {id: dialogId});
+                        $rootScope.$emit('dialog_deleted', { id: dialogId });
                         $state.go('my_messages')
                     }, function (err) {
                         console.log(err);
@@ -215,12 +230,13 @@ angular.module('ws')
         }
     })
 
-    .directive('myMessages', function (DialogService, SessionManager, $stateParams) {
+    .directive('myMessages', function (DialogService, SessionManager, $stateParams, $rootScope) {
         return {
-            template: `<div ng-show="messages" class="section center-align"><b>{{messages.caption}}, {{messages.started | amUtc | amLocal | amDateFormat: 'LLL' }}</b>
-    <a delete-dialog class="you_may_click_here"><i class="material-icons fix_icons_align">delete_forever</i> </a>
+            template: `
+<div class="center-align" ng-show="messages"><b>{{messages.caption}}, {{messages.started | amUtc | amLocal | amDateFormat: 'LLL' }}</b>
+    <a rename-dialog class="btn-floating waves-effect waves-circle"><i class="material-icons">create</i></a>
+    <a delete-dialog class="btn-floating red"><i class="material-icons fix_icons_align">delete_forever</i></a>
 </div>
-
 <div style="padding: 5px 9px;">
     <div style="min-height: 500px; max-height: 500px; overflow-y: scroll">
         <div ng-repeat="m in messages.messages">
@@ -236,9 +252,12 @@ angular.module('ws')
     </div>
 <div class="row section">
     <form name="FormDialog" class="col s12">
-        <div class="input-field col s12">
+        <div class="input-field col s11">
             <input ng-model="_message" id="message" type="text" class="input" my-enter="send_message(_message)">
             <label for="message">Ваше сообщение</label>
+        </div>
+        <div class="input-field">
+            <a class="btn-floating waves-effect waves-circle" ng-click="send_message(_message)"><i class="material-icons">send</i></a>  
         </div>
     </form>
 </div>
@@ -253,13 +272,18 @@ angular.module('ws')
                         scope.messages = messages;
                     })
                 };
+
                 scope.send_message = function (message) {
                     DialogService.send_message(message, dialogId, sended_by).then(function (success) {
-                        console.log(success)
+                        console.log(success);
+                        scope._message = '';
                         scope.load_messages();
                     });
                 };
                 scope.load_messages();
+                $rootScope.$on('dialog_renamed', function () {
+                    scope.load_messages();
+                });
             }
         }
     })

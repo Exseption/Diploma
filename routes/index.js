@@ -384,6 +384,20 @@ exports.createDialog = function (req, res) {
         res.send(error); //make error handling on frontend
     })
 };
+
+exports.renameDialog = function (req, res) {
+  Dialog.update({
+    caption: req.body.caption
+  },
+      {
+      where: {
+          id: req.body.id
+      }
+  }).then(function (success) {
+      res.send(success);
+  })
+};
+
 exports.deleteDialog = function (req, res) {
     Dialog.destroy({
         where: {
