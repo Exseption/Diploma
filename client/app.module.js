@@ -127,6 +127,11 @@
             .state('my_messages', {
                 parent: 'my_dialogs',
                 url:'/my_messages/:dialogId',
+                views: {
+                  '' : {
+                      template: `<my-messages></my-messages>`
+                  }
+                },
                 template:'<my-messages></my-messages>'
             })
             .state('my_settings', {

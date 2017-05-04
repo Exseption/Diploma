@@ -2,12 +2,16 @@ angular.module('ws')
     .directive('myQuestions', function (QuestionService, SessionManager, $mdDialog) {
         return {
             template:`
+
 <div>
-    <div style="padding: 7px 0" class="valign-wrapper white sb-title">
-    <div class="col s12">МОИ ВОПРОСЫ</div>
-    <!--<div class="col s2 right-align"><a class="btn-floating"><i class="material-icons fix_icons_align">help_outline</i></a></div>-->
-    </div>
+    
     <div class="view-cntr">
+    <div class="row valign-wrapper cyan lighten-3" style="padding: 10px 0">
+<div class="col s10"><b>МОИ ВОПРОСЫ</b></div>
+<div class="col s2 right-align">
+<a ask class="btn-floating waves-effect waves-circle green"><i class="material-icons">message</i></a>
+</div>
+</div>
     <div class="blue lighten-5 question-table-header" >Активные вопросы</div>
     <table class="highlight">
         <thead>
@@ -235,12 +239,12 @@ angular.module('ws')
             template: `
 <div class="row valign-wrapper cyan lighten-3" style="padding: 10px 0" ng-show="messages">
 <div class="col s10"><b>{{messages.caption | uppercase}}, {{messages.started | amUtc | amLocal | amDateFormat: 'LLL' }}</b></div>
-<div class="col s2 right-align"><a rename-dialog class="btn-floating waves-effect waves-circle green"><i class="material-icons">create</i></a>
-    <a delete-dialog class="btn-floating red"><i class="material-icons fix_icons_align">delete_forever</i></a>
-    </div>
-    
-    
+<div class="col s2 right-align">
+<a rename-dialog class="btn-floating waves-effect waves-circle green"><i class="material-icons">create</i></a>
+<a delete-dialog class="btn-floating red"><i class="material-icons fix_icons_align">delete_forever</i></a>
 </div>
+</div>
+
 <div style="padding: 5px 9px;">
     <div style="min-height: 500px; max-height: 500px; overflow-y: scroll">
         <div ng-repeat="m in messages.messages">
@@ -338,6 +342,12 @@ angular.module('ws')
                $scope.person.birthday = new Date($scope.person.birthday);
            },
            template:`<div class="view-cntr">
+<div class="row valign-wrapper cyan lighten-3" style="padding: 10px 0">
+<div class="col s12"><b>{{'настройки пользователя' | uppercase}}</b></div>
+<div class="col s2 right-align">
+<a class="btn-floating waves-effect waves-circle green"><i class="material-icons">help_outline</i></a>
+</div>
+</div>
     <form name="FormUserOptions">
         <fieldset>
             <legend>Общие настройки</legend>
