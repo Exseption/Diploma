@@ -234,7 +234,7 @@ angular.module('ws')
         return {
             template: `
 <div class="row valign-wrapper cyan lighten-3" style="padding: 10px 0" ng-show="messages">
-<div class="col s10"><b>Диалог: {{messages.caption}}, {{messages.started | amUtc | amLocal | amDateFormat: 'LLL' }}</b></div>
+<div class="col s10"><b>{{messages.caption | uppercase}}, {{messages.started | amUtc | amLocal | amDateFormat: 'LLL' }}</b></div>
 <div class="col s2 right-align"><a rename-dialog class="btn-floating waves-effect waves-circle green"><i class="material-icons">create</i></a>
     <a delete-dialog class="btn-floating red"><i class="material-icons fix_icons_align">delete_forever</i></a>
     </div>
