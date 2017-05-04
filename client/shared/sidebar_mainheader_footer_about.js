@@ -35,9 +35,7 @@ angular.module('ws')
         <div class="row" style="margin-bottom: 0">
             <a class="valign-wrapper menu-btn" ui-sref="my_questions" ui-sref-active="active"><i class="material-icons i-menu">live_help</i>Мои вопросы</a>
             <a class="valign-wrapper menu-btn" ui-sref="my_messages" ui-sref-active="active"><i class="material-icons i-menu">chat_bubble_outline</i>Мои диалоги<span class="new badge">4</span></a>
-            <div class="valign-wrapper" style="padding: 10px; padding-left: 40px">
                <div ui-view="_dialogs"></div>
-            </div>
             <div class="divider"></div>
             <a class="valign-wrapper menu-btn" ui-sref="my_settings" ui-sref-active="active"><i class="material-icons i-menu">settings</i>Настройки</a>
         </div>
@@ -70,7 +68,7 @@ angular.module('ws')
         <div class="row" style="margin-bottom: 0">
             <a class="valign-wrapper menu-btn" ui-sref-active="active" ui-sref="news"><i class="material-icons i-menu">fiber_new</i>Новости</a>
             <a class="valign-wrapper menu-btn" ui-sref-active="active" ui-sref="archive"><i class="material-icons i-menu">archive</i>Архив</a>
-            <a class="valign-wrapper menu-btn" ui-sref-active="active"><i class="material-icons i-menu">mail</i>Обратная связь</a>
+            <a class="valign-wrapper menu-btn" ui-sref-active="active" ui-sref="feedback"><i class="material-icons i-menu">mail</i>Обратная связь</a>
         </div>
     </div>
 </div>
@@ -91,7 +89,7 @@ angular.module('ws')
                 <li><a class="nav-btns" ui-sref="search">Поиск</a></li>
                 <li><a class="nav-btns" ask>Задать вопрос</a></li>
                 <li><a class="nav-btns" login>Войти</a></li>
-                <li><a reg>Регистрация</a></li>
+                <li><a class="nav-btns" reg>Регистрация</a></li>
                 <li><a class="nav-btns" exit-button>Выход</a></li>
             </ul>
         </div>
@@ -120,6 +118,43 @@ angular.module('ws')
             }
         }
     })
+    .directive('feedback' , function (Restangular) {
+        return {
+            template: `
+            <div class="view-cntr">
+            <div class="row cyan lighten-3" style="padding: 10px 0;">
+            <div class="col s12 valign-wrapper" style="min-height: 38px;"><b>ФОРМА ОБРАТНОЙ СВЯЗИ</b></div>
+            </div>
+            <div class="container">
+            <div class="col s12">
+            <form name="FormFeedback">
+                <div class="input-field">
+                    <input id="_name" ng-model="_name" type="text" class="validate" required name="your_name"> 
+                    <label for="_name">Ваши имя</label>
+                </div>
+                <div class="input-field">
+                <textarea ng-model="_fb" class="materialize-textarea validate" required placeholder="Ваши отзыв, предложение, жалоба" name="your_feedback"></textarea>
+                </div>
+                <div class="row right-align">
+                <button ng-click="send_feedback()" type="submit" class="btn waves-effect green" ng-disabled="FormFeedback.your_name.$invalid || FormFeedback.your_feedback.$invalid">Отправить</button>
+            </div>
+            </form>
+            </div>
+            </div>
+            
+            </div>
+            `,
+            link: function (scope) {
+                scope.send_feedback = function () {
+                    Restangular.all('feedback').post({
+                        name: scope._name,
+                        message: scope._fb
+                    })
+                }
+            }
+        }
+    })
+
     .directive('footerDir', function () {
         return {
             template: `<footer class="page-footer grey darken-1">

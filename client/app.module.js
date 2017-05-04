@@ -66,6 +66,12 @@
                 url:'/index',
                 template:'<question-list></question-list>'
             })
+            .state('feedback', {
+                url: '/feedback',
+                template: `
+                <feedback></feedback>
+                `
+            })
             .state('news', {
                 url: '/news',
                 template: `<div class="view-cntr">Новости</div>`

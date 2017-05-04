@@ -80,6 +80,9 @@ legend {
     /*color: white;*/
     font-weight: bolder;
 }
+.sb-body {
+    padding-top: 0px;
+}
 .question-title:hover {
     color: #0d47a1;
     cursor: pointer;
@@ -103,8 +106,13 @@ legend {
 }
 
 .dialogs-sublist {
+    display: block;
+
     padding-top: 0;
     font-weight: 400 ;
+}
+.dialog_sublist_container {
+    padding: 5px 60px;
 }
 
 .dialogs-sublist.active {

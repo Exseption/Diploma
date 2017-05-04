@@ -43,6 +43,11 @@ exports.getOpts = function (req, res) {
   })
 };
 
+exports.feedback = function (req, res) {
+  res.send(req.body)
+};
+
+
 exports.save_user_details = function (req, res) {
     Person.update({
         name: req.body.name,

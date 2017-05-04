@@ -60,6 +60,8 @@ app.post(api_version + '/question/save_changes', routes.save_question_changes);
 app.post(api_version + '/user/details', routes.save_user_details);
 
 
+app.post(api_version + '/feedback', routes.feedback)
+
 
 app.use(function(req, res, next) {
   const err = new Error('Not Found');

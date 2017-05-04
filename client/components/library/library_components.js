@@ -7,7 +7,10 @@ angular.module('ws')
                 });
             },
             template: `<div class="view-cntr">
-  <div class="section center-align">
+<div class="row cyan lighten-3" style="padding: 10px 0;">
+<div class="col s12 valign-wrapper" style="min-height: 38px;"><b>БИБЛИОТЕКА</b></div>
+</div>
+  <div class="center-align">
     <a class="cat-btn"  ng-click="cat =  { category: 'Законодательства' }">Законодательства</a>
     <a class="cat-btn"  ng-click="cat = { category: 'Образцы бланков и заявлений' }">Образцы бланков и заявлений</a>
     <a class="cat-btn"  ng-click="cat = { category: 'Судебная практика' }">Судебная практика</a>

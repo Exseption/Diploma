@@ -151,8 +151,9 @@ angular.module('ws')
     .directive('myDialogs', function (DialogService, SessionManager, $rootScope) {
         return {
             template: `
-                <a class="valign-wrapper dialogs-sublist" ng-repeat="dialog in dialogs"
-                   ui-sref="my_messages({dialogId: dialog.id })" ui-sref-active="active">{{dialog.caption}}</a>
+<div class="dialog_sublist_container">
+ <a class="valign-wrapper dialogs-sublist" ng-repeat="dialog in dialogs" ui-sref="my_messages({dialogId: dialog.id })" ui-sref-active="active">{{dialog.caption}}</a>
+</div>     
 `,
             link: function (scope) {
                 scope.loadDialogs = function () {
@@ -217,18 +218,29 @@ angular.module('ws')
             }
         }
     })
-    .directive('deleteDialog', function (Restangular, $stateParams, $rootScope, $state) {
+    .directive('deleteDialog', function (Restangular, $stateParams, $rootScope, $state, $mdDialog) {
         return {
             link: function (scope, elem) {
                 let dialogId = $stateParams.dialogId;
                 elem.on('click', function () {
-                    return Restangular.one('dialog/delete', dialogId).remove().then(function () {
-                        Materialize.toast('Диалог успешно удален!', 3000);
-                        $rootScope.$emit('dialog_deleted', { id: dialogId });
-                        $state.go('my_messages')
-                    }, function (err) {
-                        console.log(err);
-                    })
+                    $mdDialog.show(
+                        $mdDialog.confirm()
+                            .title('Удаление диалога')
+                            .textContent('Вы действительно хотите удалить этот диалог?')
+                            .ok('ОК')
+                            .cancel('Отмена') 
+                    ).then(function () {
+                        return Restangular.one('dialog/delete', dialogId).remove().then(function () {
+                            Materialize.toast('Диалог успешно удален!', 3000);
+                            $rootScope.$emit('dialog_deleted', { id: dialogId });
+                            $state.go('my_messages')
+                        }, function (err) {
+                            console.log(err);
+                        })
+                    }, function () {
+                        console.log('canceled!');
+                    });
+
                 })
             }
         }
@@ -345,7 +357,7 @@ angular.module('ws')
 <div class="row valign-wrapper cyan lighten-3" style="padding: 10px 0">
 <div class="col s12"><b>{{'настройки пользователя' | uppercase}}</b></div>
 <div class="col s2 right-align">
-<a class="btn-floating waves-effect waves-circle green"><i class="material-icons">help_outline</i></a>
+<a style="visibility: hidden;" class="btn-floating waves-effect waves-circle green"><i class="material-icons">help_outline</i></a>
 </div>
 </div>
     <form name="FormUserOptions">

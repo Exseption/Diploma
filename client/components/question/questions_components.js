@@ -40,10 +40,18 @@ angular.module('ws')
                     $scope.questions = questions;
                 });
             },
-            template:
-            '<div style="background-color: white"><div ng-repeat="item in questions">' +
-            '<question-list-item item="item"></question-list-item>' +
-            '</div></div>'
+            template:`
+<div class="view-cntr">
+<div class="row cyan lighten-3" style="padding: 10px 0">
+<div class="col valign-wrapper s12" style="min-height: 38px"><b>ПОСЛЕДНИЕ ВОПРОСЫ</b></div>
+</div>
+<div style="background-color: white"><div ng-repeat="item in questions">
+            <question-list-item item="item"></question-list-item>
+                        </div></div>
+</div>
+
+
+`
         }
     })
     .directive('questionListItem', function () {
