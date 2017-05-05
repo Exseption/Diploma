@@ -31,6 +31,7 @@ Message.hasMany(Attachment, {foreignKey: 'to_message'});
 Person.hasMany(Option, {foreignKey: 'of_user', as: 'settings'});
 Option.belongsTo(Person, {foreignKey: 'of_user', as: 'settings'});
 
+const Feedback = sequelize.import('../models/feedback');
 
 
 exports.getOpts = function (req, res) {
@@ -44,7 +45,15 @@ exports.getOpts = function (req, res) {
 };
 
 exports.feedback = function (req, res) {
-  res.send(req.body)
+  Feedback.create({
+      name: req.body.name,
+      body: req.body.message
+  }).then(function (success) {
+      res.send(success);
+  }, function (error) {
+      console.log(error);
+      res.status(400).end('ERROR');
+  })
 };
 
 
@@ -136,7 +145,9 @@ exports.questions = function (req, res) { // получаем вопросы
                 closed: false
             },
             order: [['created', 'DESC']],
-            include: [
+            include: [{
+                model: Answer
+            },
                 {
                     model: Person,
                     attributes: ['id', 'name', 'surname']
@@ -341,6 +352,21 @@ exports.personByIdDialogs =function (req, res) {
     }).then(function (results) {
         res.send(results);
     });
+};
+
+exports.archive = function (req, res) {
+    Question.findAll({
+        where: {
+            closed: true
+        }, include: [{
+            model: Answer
+        },{
+            model: Person,
+            attributes: {exclude: ['login', 'password']}
+        }]
+    }).then(function (results) {
+        res.send(results);
+    })
 };
 
 exports.personByIdDialogDialogIdMessages = function (req, res) {

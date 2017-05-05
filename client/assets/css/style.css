@@ -28,7 +28,7 @@ main {
     padding-bottom: 3px;
 }
 span.badge.new:after {
-    content: " новых";
+    content: "";
 }
 
 .you_may_click_here {
@@ -107,7 +107,7 @@ legend {
 
 .dialogs-sublist {
     display: block;
-
+    color: red;
     padding-top: 0;
     font-weight: 400 ;
 }

@@ -1,19 +1,20 @@
 angular.module('ws')
     .directive('question', function () {
         return {
-            template: `<div class="md-body-1 z-depth-1 view-cntr" layout="column">
-  <div layout="row">
-    <div flex="flex" class="main-view-here">
-      <div layout-margin >
-        <article>
-          <div class="md-title">{{question.title}}</div>
-          <div class="md-caption ws-author" style="padding-left:10px;" ui-sref="person({id: question.person.id})">{{question.person.name}} {{question.person.surname}}</div>
-          <span am-time-ago="question.created" class="md-caption" style="padding-left:10px;"></span>
-          <div class="md-body-1 ws-body" ng-bind-html="question.body"></div>
-        </article>
-        <div layout="column" layout-padding="50px">
-          <div class="md-body-2">
-            <md-divider></md-divider>Ответы
+            template: `
+<div class="z-depth-1 view-cntr">
+  <div class="row">
+  
+    <div class="col s12">
+      <div>
+          <h5>{{question.title}}</h5>
+          <span ui-sref="person({id: question.person.id})">{{question.person.name}} {{question.person.surname}}</span>
+          ,&nbsp;<span am-time-ago="question.created"></span>
+          <div ng-bind-html="question.body"></div>
+        <div>
+          <div>
+            <div class="divider"></div>
+            Ответы
           </div>
           <div ng-repeat="ans in question.answers">
             <answer ans="ans">{{$index+1}}.</answer>
@@ -56,20 +57,18 @@ angular.module('ws')
     })
     .directive('questionListItem', function () {
         return {
-            template: `<div style="margin-bottom: 5px; padding: 10px 15px; background-color: white">
-  <article>
-    <header class="md-title question-title" ui-sref="question({id : item.id})" ng-bind="item.title"></header>
-    <div class="md-caption" layout="row" style="padding-bottom: 10px">
-      <div ng-show="item.person" class="ws-author" ui-sref="person({id: item.person.id})" style="padding-left: 20px">
-        {{item.person.name}}
-        {{item.person.surname}},&nbsp
-      </div>
-      <span am-time-ago="item.created"></span>
+            template: `
+<div class="section z-depth-1" style="padding: 5px 10px; margin: 15px 10px">
+    <h5 class="you_may_click_here" ui-sref="question({id : item.id})">{{item.title}}
+    <span class="new badge red">{{item.answers.length}}</span> </h5>
+    <div>
+    
+      <span class="you_may_click_here" ng-show="item.person" ui-sref="person({id: item.person.id})">
+        {{item.person.name}} {{item.person.surname}}</span>,&nbsp<span am-time-ago="item.created"></span>
+        
     </div>
-    <div class="divider" style="margin-bottom: 10px"></div>
-    <div class="truncate" ng-bind-html="item.body">
-    </div>
-  </article>
+    <div class="divider"></div>
+    <div class="truncate" ng-bind-html="item.body"></div>
 </div>
 `,
             scope: {
@@ -151,11 +150,14 @@ angular.module('ws')
     })
     .service('QuestionService', function (Restangular) {
         const self = this;
+        self.archive = function () {
+            return Restangular.all('archive').getList();
+        };
         self.getMyQuestions = function (id) { // получить вопросы в кабинете
             return Restangular.one('questions/author', id).getList();
         };
         self.save_question_changes = function (title, body, closed, payable, money, questionId) {
-          return Restangular.all('question/save_changes').post({
+            return Restangular.all('question/save_changes').post({
               title: title,
               body: body,
               closed: closed,

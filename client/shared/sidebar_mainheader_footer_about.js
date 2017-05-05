@@ -34,14 +34,13 @@ angular.module('ws')
     <div class="sb-body">
         <div class="row" style="margin-bottom: 0">
             <a class="valign-wrapper menu-btn" ui-sref="my_questions" ui-sref-active="active"><i class="material-icons i-menu">live_help</i>Мои вопросы</a>
-            <a class="valign-wrapper menu-btn" ui-sref="my_messages" ui-sref-active="active"><i class="material-icons i-menu">chat_bubble_outline</i>Мои диалоги<span class="new badge">4</span></a>
+            <a class="valign-wrapper menu-btn" ui-sref="my_messages" ui-sref-active="active"><i class="material-icons i-menu">chat_bubble_outline</i>Мои диалоги</a>
                <div ui-view="_dialogs"></div>
             <div class="divider"></div>
             <a class="valign-wrapper menu-btn" ui-sref="my_settings" ui-sref-active="active"><i class="material-icons i-menu">settings</i>Настройки</a>
         </div>
     </div>
 </div>
-
 <div class="sidebar-container z-depth-1" id="admin">
     <div class="sb-title">
         МЕНЮ АДМИНИСТРАТОРА
@@ -141,20 +140,50 @@ angular.module('ws')
             </form>
             </div>
             </div>
-            
             </div>
             `,
-            link: function (scope) {
+            link: function (scope, element) {
                 scope.send_feedback = function () {
                     Restangular.all('feedback').post({
                         name: scope._name,
                         message: scope._fb
+                    }).then(function (success) {
+                        Materialize.toast('Спасибо за ваше сообщение! Ваш отзыв очень важен для нас!', 3000);
+                        console.log(success);
+                        scope._name = '';
+                        scope._fb = '';
+                        console.log(element);
                     })
                 }
             }
         }
     })
 
+    .directive('archive', function (QuestionService) {
+        return {
+            template: `
+            <div class="view-cntr">
+           <div class="row cyan lighten-3" style="padding: 10px 0;">
+            <div class="col s12 valign-wrapper" style="min-height: 38px;"><b>АРХИВ</b></div>
+            </div>
+  
+            
+            <div class="row">
+            <div class="col s12">
+             <div ng-repeat="arch in archive">
+             {{arch.title}}
+            </div>
+            </div>
+            </div>
+           
+            `,
+            link: function (scope, elem) {
+                QuestionService.archive().then(function (results) {
+                    scope.archive = results;
+                })
+            }
+        }
+    })
     .directive('footerDir', function () {
         return {
             template: `<footer class="page-footer grey darken-1">

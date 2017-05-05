@@ -19,6 +19,7 @@ angular.module('ws')
             <th>#</th>
             <th>Заголовок</th>
             <th>Дата публикации</th>
+            <th class="left-align">Ответов</th>
         </tr>
         </thead>
         <tbody>
@@ -26,7 +27,7 @@ angular.module('ws')
             <td>{{$index + 1}}.</td>
             <td ng-bind="mq.title" ng-click="edit_question(mq)" style="cursor: pointer; outline: none"></td>
             <td ng-bind="mq.created | amUtc | amLocal | amDateFormat:'LLL'"></td>
-            <td><a class="you_may_click_here"><span class="new badge red">3</span></a></td>
+            <td><a class="you_may_click_here"><span class="new badge red">{{mq.answers.length}}</span></a></td>
         </tr>
         </tbody>
     </table>
@@ -37,6 +38,7 @@ angular.module('ws')
             <th>#</th>
             <th>Заголовок</th>
             <th>Дата публикации</th>
+            <th class="right-align">Ответов</th>
         </tr>
         </thead>
         <tbody>
@@ -44,7 +46,7 @@ angular.module('ws')
             <td>{{$index + 1}}.</td>
             <td ng-bind="mq.title" ng-click="edit_question(mq)" style="cursor: pointer; outline: none"></td>
             <td ng-bind="mq.created | amUtc | amLocal | amDateFormat:'LLL'"></td>
-            <td><a class="you_may_click_here"><span class="new badge red">3</span></a></td>
+            <td><a class="you_may_click_here"><span class="new badge red">{{mq.answers.length}}</span></a></td>
         </tr>
         </tbody>
     </table>

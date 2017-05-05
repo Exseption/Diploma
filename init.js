@@ -13,6 +13,7 @@ const Book = sequelize.import('./models/book');
 const Attachment = sequelize.import('./models/attachment');
 const Option = sequelize.import('./models/option');
 
+const Feedback = sequelize.import('./models/feedback'); // для обратной связи
 
 Question.belongsTo(Person, {foreignKey: 'author'});
 Person.hasMany(Question, {foreignKey: 'author'}); //чет падазрительна
