@@ -24,9 +24,9 @@ angular.module('ws')
                 if(cookie){
                     $cookies.putObject('person', response.data[0]);
                 }
-
-                $rootScope.$emit('authenticated', response.data[0].name + ' ' + response.data[0].surname + ' successfully authenticated!' );
                 self.person = response.data[0];
+                $rootScope.$emit('authenticated', response.data[0].name + ' ' + response.data[0].surname + ' successfully authenticated!' );
+
                 $mdDialog.hide();
             }, function (error) {
                 console.log(error);

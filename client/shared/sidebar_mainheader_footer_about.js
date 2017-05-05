@@ -16,7 +16,7 @@ angular.module('ws')
             }
         }
     })
-    .directive('sidebar',function (SessionManager) { // sidebar
+    .directive('sidebar',function (SessionManager, $rootScope) { // sidebar
         return{
             controller: function ($scope, PeopleService) {
                 PeopleService.getRatings().then(function (ratings) {
@@ -27,19 +27,29 @@ angular.module('ws')
             compile: function (elem) {
                 return {
                     pre: function (scope, elem) {
-                        if(!angular.isDefined(SessionManager.person)){
-                            angular.element(document.querySelector('#admin')).css('display','none');
-                            angular.element(document.querySelector('#user')).css('display','none');
-                        } else {
-                            var role = SessionManager.person.usergroup;
-                            if(role === 'user'){
-                                angular.element(document.querySelector('#admin')).css('display','none');
-                            } else if(role === 'admin'){
-                                angular.element(document.querySelector('#user')).css('display','none');
-                            }
+                        if(!angular.isDefined(SessionManager.person)) {
+                            angular.element(document.querySelector('#admin')).css('display', 'none');
+                            angular.element(document.querySelector('#user')).css('display', 'none');
                         }
                     },
                     post: function (scope, elem) {
+                        // todo ...!
+                        let role = SessionManager.person.usergroup;
+                        function exit(visibility) {
+                            if (role === 'user') {
+                                angular.element(document.querySelector('#user')).css('display',visibility);
+                            } else if(role === 'admin'){
+                                angular.element(document.querySelector('#admin')).css('display',visibility);
+                            }
+                        }
+
+                        $rootScope.$on('authenticated', function () {
+                            exit('block');
+                        });
+                        $rootScope.$on('exited', function () {
+                            alert('!')
+                            exit('none');
+                        })
                     }
                 }
             }

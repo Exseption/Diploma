@@ -30,11 +30,52 @@ angular.module('ws')
         bindings: {
             a : '<'
         },
-        templateUrl: 'components/answer/answer-lite.html'
+        template: `
+        <article class='answer-in-question' style="padding: 0 15px">
+    <div layout='row'>
+        <div layout='row'>
+            <!--{{$ctrl.a.created | amUtc | amLocal | amDateFormat:'LLL'}}-->
+            <!--{{$ctrl.a.created | amUtc | amLocal | amDateFormat:'LLL'}}-->
+            <span am-time-ago="$ctrl.a.created"></span>
+           </div>
+        <div flex='flex'>
+
+        </div>
+    </div>
+    <div class="md-body-2">Оценка: {{$ctrl.a.mark}}</div>
+    <div class='md-body-1 ws-body' style="padding-top: 5px; padding-bottom: 10px">{{$ctrl.a.body}}</div>
+</article>
+        
+        `
     })
     .directive('answerCreate', function (AnswerService, SessionManager, $stateParams) {
         return {
-            templateUrl:"../../components/answer/answer-create.html",
+            template:`
+            <div layout='column'>
+    <form name="FormAnswer">
+        <label for='answer-text'>Дайте свой ответ</label>
+        <textarea rows='10' ng-model='answer_text' class='materialize-textarea validate' id='answer-text' required></textarea>
+        <div class='md-body-1' layou='row'></div>
+
+        <div class="row">
+
+        </div>
+        <div class="file-field input-field col s5 ">
+            <div class="btn">Файл
+                <!--<span></span>-->
+                <input type="file">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+        </div>
+
+        <div layout='col s7' layout-align='end end'>
+            <a class='light-blue darken-3 btn' layout-align='end end'
+               ng-click='answer(answer_text)' ng-disabled="FormAnswer.$invalid">Ответить</a>
+        </div>
+    </form>
+            `,
             compile: function (elem, attrs) {
                 return {
                     pre: function (scope, elem, attrs) {

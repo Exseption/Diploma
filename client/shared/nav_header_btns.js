@@ -86,7 +86,7 @@ angular.module('ws')
                         });
                         scope.exit = function () {
                             SessionManager.logout();
-                            //TODO window reload
+                            $rootScope.$emit('exited', null)
                         };
                         elem.on('click', function () {
                           scope.exit();
