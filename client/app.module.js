@@ -70,13 +70,13 @@
                 url: '/feedback',
                 template: `<feedback></feedback>`
             })
-            .state('news', {
-                url: '/news',
-                template: `<div class="view-cntr">Новости</div>`
-            })
             .state('archive', {
                 url: '/archive',
                 template: `<archive></archive>`
+            })
+            .state('news', {
+                url: '/news',
+                template: `<news></news>`
             })
             .state('search', {
                 url: '/search',

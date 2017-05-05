@@ -1,4 +1,21 @@
 angular.module('ws')
+    .directive('news', function () {
+        return {
+            template: `<div class="view-cntr z-depth-1">
+<div class="row">
+<div class="col s12">
+<h5>Новости веб-сервиса</h5>
+<div>
+//TODO
+</div>
+</div>
+</div>
+</div>`,
+            link: function (scope) {
+
+            }
+        }
+    })
     .directive('sidebar',function (SessionManager) { // sidebar
         return{
             controller: function ($scope, PeopleService) {
@@ -71,13 +88,9 @@ angular.module('ws')
         </div>
     </div>
 </div>
-
 `
         }
     })
-
-
-
     .directive('mainHeader',function (SessionManager, $rootScope) {
         return {
             template: `<nav class="nav-extended mb">
