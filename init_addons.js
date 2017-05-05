@@ -11,5 +11,4 @@ const Feedback = sequelize.import('./models/feedback');
 sequelize.sync().then(function (success) {
     console.log('All OK')
 }, function (err) {
-    console.log(' WTF???');
 });

@@ -19,7 +19,7 @@ angular.module('ws')
             <th>#</th>
             <th>Заголовок</th>
             <th>Дата публикации</th>
-            <th class="left-align">Ответов</th>
+            <th class="right-align">Ответов</th>
         </tr>
         </thead>
         <tbody>

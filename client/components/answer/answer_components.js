@@ -2,7 +2,15 @@ angular.module('ws')
     .directive('answer', function () {
         return {
             transclude: true,
-            templateUrl: "components/answer/answer.html",
+            template: `
+<div class='row'>
+    <div class='col s12'>
+    <b>{{ans.person.name }} {{ans.person.surname}}</b>,&nbsp<span>{{ans.created | amUtc | amLocal | amDateFormat:'LLL'}}</span>
+    <div><span ng-transclude></span> {{ans.body}}</div>
+    </div>
+</div>
+<answer-vote></answer-vote>
+            `,
             scope:{
                 ans: "<"
             }
@@ -51,7 +59,15 @@ angular.module('ws')
     })
     .directive('answerVote', function (SessionManager) {
         return {
-            templateUrl:'components/answer/vote.html',
+            template:`  
+    <div class="valign-wrapper">
+        <div class="col s12 right-align">
+            <a class="btn-floating waves-effect waves-circle" ng-click='votePlus(ans.id)'><i class="material-icons fix_icons_align">thumb_up</i></a>
+            <span class='chip center-align' ng-bind='ans.mark'></span>
+            <a class="btn-floating waves-effect waves-circle" ng-click='voteMinus(ans.id)'><i class="material-icons fix_icons_align">thumb_down</i> </a>
+        </div>
+    </div>
+            `,
             compile: function (elem, attrs) {
                 return {
                     pre: function (scope, elem) {
