@@ -54,6 +54,31 @@
                 return (payable === true) ? 'Платный' : 'Бесплатный'
             }
         })
+        .filter('badge_caption', function () {
+            return function (length) {
+                let caption;
+                switch (length) {
+                    case 0 :
+                        caption = length + ' ответов';
+                        break;
+                    case 1 :
+                        caption = length + ' ответ';
+                        break;
+                    case 2 :
+                        caption = length + ' ответа';
+                        break;
+                    case 3 :
+                        caption = length + ' ответа';
+                        break;
+                    case 4 :
+                        caption = length + ' ответа';
+                        break;
+                    default:
+                        caption = length + ' ответов';
+                }
+                return caption;
+            }
+        })
 
         .config(function(RestangularProvider){
         RestangularProvider
@@ -74,9 +99,19 @@
                 url: '/archive',
                 template: `<archive></archive>`
             })
+            .state('questions', {
+                url: '/questions',
+                template: `
+                <questions-all></questions-all>
+                `
+            })
             .state('news', {
                 url: '/news',
-                template: `<news></news>`
+                template: `
+<page-container>
+<news bc="cyan"></news>
+</page-container>
+`
             })
             .state('search', {
                 url: '/search',

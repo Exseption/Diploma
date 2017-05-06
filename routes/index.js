@@ -8,6 +8,7 @@ const Dialog = sequelize.import('../models/dialog');
 const Message = sequelize.import('../models/message');
 const Book = sequelize.import('../models/book');
 const Option = sequelize.import(('../models/option'));
+const New = sequelize.import(('../models/new'));
 
 const Attachment = sequelize.import('../models/attachment');
 
@@ -30,6 +31,9 @@ Message.hasMany(Attachment, {foreignKey: 'to_message'});
 
 Person.hasMany(Option, {foreignKey: 'of_user', as: 'settings'});
 Option.belongsTo(Person, {foreignKey: 'of_user', as: 'settings'});
+
+New.belongsTo(Person,{foreignKey: 'author'});
+Person.hasMany(New,{foreignKey: 'author'});
 
 const Feedback = sequelize.import('../models/feedback');
 
@@ -157,6 +161,28 @@ exports.questions = function (req, res) { // получаем вопросы
         res.json(results);
     })
 };
+
+exports.digest_questions = function (req, res) { // получаем вопросы
+    Question.findAll(
+        {
+            limit: 10,
+            where:{
+                closed: false
+            },
+            order: [['created', 'DESC']],
+            include: [{
+                model: Answer
+            },
+                {
+                    model: Person,
+                    attributes: ['id', 'name', 'surname']
+                }
+            ]
+        }).then(function (results) {
+        res.json(results);
+    })
+};
+
 
 exports.ratingsAnswers = function (req, res) { // получаем рейтинги ответов по убыванию
     Answer.findAll(
@@ -353,6 +379,20 @@ exports.personByIdDialogs =function (req, res) {
         res.send(results);
     });
 };
+
+exports.news_digest = function (req, res) {
+ New.findAll({
+     limit: 5
+ }).then(function (results) {
+     res.send(results);
+ })
+};
+exports.news = function (req, res) {
+  New.findAll({}).then(function (results) {
+      res.send(results);
+  })
+};
+
 
 exports.archive = function (req, res) {
     Question.findAll({

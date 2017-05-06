@@ -12,6 +12,16 @@ body {
 main {
     flex: 1 0 auto;
 }
+.question_title {
+    text-transform: uppercase;
+    font-size: large;
+    color: #0D47A1;
+    font-weight: bolder;
+}
+
+.price_chip {
+    margin-left: 10px;
+}
 .question-table-header {
     padding: 5px 10px;
     /*text-transform: uppercase;*/

@@ -96,6 +96,84 @@ angular.module('ws')
             }
         }
     })
+    .service('NewsService', function (Restangular) {
+        let self = this;
+        self.digestNews = function () {
+            return Restangular.all('news/digest').getList();
+        }
+    })
+    .directive('news', function (NewsService) {
+        return {
+            scope: {
+                bc: '@'
+            },
+            link: function (scope) {
+              NewsService.digestNews().then(function (digest) {
+                  scope.digest = digest;
+              })
+            },
+            template: `
+            <div class="row {{bc}}" style="padding: 10px 0">
+                        <div class="col valign-wrapper s12" style="min-height: 38px"><b>НОВОСТИ</b></div>
+                        </div>
+                        <div class="row">
+                        <div class="col s12">
+                        <div ng-repeat="new in digest">
+                        <blockquote>
+              <div class="valign-wrapper question_title">{{new.title}}</div>
+                        <span>{{new.created | amUtc | amLocal | amDateFormat:'LLL'}}</span>
+                        <p>{{new.body}}</p>           
+</blockquote>                 
+</div>
+</div>
+</div>
+            `
+        }
+    })
+    .directive('askMainPage', function () {
+        return {
+            template: `
+      <div class="row">
+      <div class="col s12">
+      <div class="col s6">
+        <div class="center-align">
+            <h5 style="font-weight: bolder">Добро пожаловать!</h5>
+            <p>Здесь мы можете найти ответы на интересующие вас правовые вопросы!</p>
+<p>Данный проект является выпускной квалификационной работой студента Физико-математического факультета БГПУ г. Благовещенск в 2017 году Налимова Игоря.</p>
+        </div>
+    </div>
+          <div class="col s6 z-depth-1" style="margin-top: 10px; padding-bottom: 5px">
+              <div class="input-field col s12">
+                  <input ng-model="title" type="text" id="q_title"
+                         required class="validate"/>
+                  <label for="q_title">Заголовок</label>
+              </div>
+              <div class="input-field col s12">
+                  <textarea id="mtarea" ng-model="body" required class="validate materialize-textarea"></textarea>
+                  <label for="mtarea">Тело вопроса</label>
+              </div>
+              <div class="input-field col s6">
+                  <md-radio-group ng-model="payable" required disabled>
+                      <md-radio-button value="payme">Платный</md-radio-button>
+                      <md-radio-button value="free">Бесплатный</md-radio-button>
+                  </md-radio-group>
+              </div>
+              <div class="input-field col s6">
+                  <input id="pay-him" class="validate" ng-model="price" type="text" ng-disabled="payable !== 'payme'"/>
+                  <label for="pay-him">Цена вопроса, руб.</label>
+              </div>
+           <div class="right-align">
+              <div class="col s12">
+              <blockquote>Для того чтобы задать вопрос, зарегистрируйтесь или войдите под своим аккаунтом!</blockquote>
+                  <input ng-hide="true" type="submit" class="modal-action waves-effect waves-green btn-flat" ng-click="createQuestion(title, body, author, payable, price)" ng-disabled="FormCreateQuestion.$invalid" value="Задать вопрос"/>
+              </div>
+          </div>   
+          </div>
+</div>
+      </div>
+            `
+        }
+    })
     .directive('ask', function (SessionManager, $rootScope, $mdDialog, QuestionService, $mdToast) {
         return {
             controller: function ($scope) {

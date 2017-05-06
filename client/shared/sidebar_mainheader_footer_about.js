@@ -1,22 +1,19 @@
 angular.module('ws')
-    .directive('news', function () {
+    .directive('pageContainer', function () {
         return {
-            template: `<div class="view-cntr z-depth-1">
-<div class="row">
-<div class="col s12">
-<h5>Новости веб-сервиса</h5>
-<div>
-//TODO
+            transclude: true,
+            template: `
+            <div class="view-cntr">
+            <div class="row">
+            <div class="col s12">
+            <div ng-transclude></div>
 </div>
 </div>
 </div>
-</div>`,
-            link: function (scope) {
-
-            }
+            `
         }
     })
-    .directive('sidebar',function (SessionManager, $rootScope) { // sidebar
+    .directive('sidebar',function (SessionManager) { // sidebar
         return{
             controller: function ($scope, PeopleService) {
                 PeopleService.getRatings().then(function (ratings) {
@@ -27,29 +24,19 @@ angular.module('ws')
             compile: function (elem) {
                 return {
                     pre: function (scope, elem) {
-                        if(!angular.isDefined(SessionManager.person)) {
-                            angular.element(document.querySelector('#admin')).css('display', 'none');
-                            angular.element(document.querySelector('#user')).css('display', 'none');
+                        if(!angular.isDefined(SessionManager.person)){
+                            angular.element(document.querySelector('#admin')).css('display','none');
+                            angular.element(document.querySelector('#user')).css('display','none');
+                        } else {
+                            var role = SessionManager.person.usergroup;
+                            if(role === 'user'){
+                                angular.element(document.querySelector('#admin')).css('display','none');
+                            } else if(role === 'admin'){
+                                angular.element(document.querySelector('#user')).css('display','none');
+                            }
                         }
                     },
                     post: function (scope, elem) {
-                        // todo ...!
-                        let role = SessionManager.person.usergroup;
-                        function exit(visibility) {
-                            if (role === 'user') {
-                                angular.element(document.querySelector('#user')).css('display',visibility);
-                            } else if(role === 'admin'){
-                                angular.element(document.querySelector('#admin')).css('display',visibility);
-                            }
-                        }
-
-                        $rootScope.$on('authenticated', function () {
-                            exit('block');
-                        });
-                        $rootScope.$on('exited', function () {
-                            alert('!')
-                            exit('none');
-                        })
                     }
                 }
             }
@@ -98,15 +85,19 @@ angular.module('ws')
         </div>
     </div>
 </div>
+
 `
         }
     })
+
+
+
     .directive('mainHeader',function (SessionManager, $rootScope) {
         return {
             template: `<nav class="nav-extended mb">
     <div class="nav-wrapper dark-primary-color" style="min-height: 98px">
         <div class="container">
-            <a href="#" class="brand-logo nav-btns">ВДИПЛОМЕ</a>
+            <a href="#" class="brand-logo nav-btns">ЦЕНТР ПРАВОВЫХ КОНСУЛЬТАЦИЙ</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a class="nav-btns" ui-sref="search">Поиск</a></li>
                 <li><a class="nav-btns" ask>Задать вопрос</a></li>
@@ -119,7 +110,7 @@ angular.module('ws')
     <div class="nav-content white">
        <div class="center-align page-menu">
            <a ui-sref="index" class="page-menu-link">Главная</a>
-           <a ui-sref="index" class="page-menu-link">Вопросы</a>
+           <a ui-sref="questions" class="page-menu-link">Вопросы</a>
            <a ui-sref="people" class="page-menu-link">Участники</a>
            <a ui-sref="library" class="page-menu-link">Библиотека</a>
            <a ui-sref="about" class="page-menu-link">О нас</a>

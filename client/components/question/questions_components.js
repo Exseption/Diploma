@@ -4,7 +4,6 @@ angular.module('ws')
             template: `
 <div class="z-depth-1 view-cntr">
   <div class="row">
-  
     <div class="col s12">
       <div>
           <h5>{{question.title}}</h5>
@@ -37,21 +36,22 @@ angular.module('ws')
     .directive('questionList', function (QuestionService) {
         return {
             controller: function ($scope) {
-                QuestionService.getQuestions().then(function (questions) {
+                QuestionService.digest_questions().then(function (questions) {
                     $scope.questions = questions;
                 });
             },
             template:`
-<div class="view-cntr">
-<div class="row cyan lighten-3" style="padding: 10px 0">
-<div class="col valign-wrapper s12" style="min-height: 38px"><b>ПОСЛЕДНИЕ ВОПРОСЫ</b></div>
-</div>
-<div style="background-color: white"><div ng-repeat="item in questions">
-            <question-list-item item="item"></question-list-item>
-                        </div></div>
-</div>
-
-
+                        <div class="view-cntr">
+                                                <ask-main-page></ask-main-page>
+                        <div class="row grey lighten-4" style="padding: 10px 0">
+                        <div class="col valign-wrapper s12" style="min-height: 38px"><b>ПОСЛЕДНИЕ ВОПРОСЫ</b></div>
+                        </div>
+                        <div style="background-color: white"><div ng-repeat="item in questions">
+                                    <question-list-item item="item"></question-list-item>
+                                                </div>
+                                                </div>
+                                                <news bc="grey lighten-4"></news>
+                        </div>
 `
         }
     })
@@ -59,15 +59,14 @@ angular.module('ws')
         return {
             template: `
 <div class="section z-depth-1" style="padding: 5px 10px; margin: 15px 10px">
-    <h5 class="you_may_click_here" ui-sref="question({id : item.id})">{{item.title}}
-    <span class="new badge red">{{item.answers.length}}</span> </h5>
-    <div>
-    
+    <div class="valign-wrapper you_may_click_here question_title" ui-sref="question({id : item.id})">{{item.title}}
+    <span ng-show="item.price" class="new badge price_chip">{{item.price}} руб.</span>
+    <span class="new badge red lighten-1">{{item.answers.length | badge_caption}}</span> </div>
+    <div style="padding-left: 15px"> 
       <span class="you_may_click_here" ng-show="item.person" ui-sref="person({id: item.person.id})">
         {{item.person.name}} {{item.person.surname}}</span>,&nbsp<span am-time-ago="item.created"></span>
-        
-    </div>
     <div class="divider"></div>
+    </div>
     <div class="truncate" ng-bind-html="item.body"></div>
 </div>
 `,
@@ -148,6 +147,29 @@ angular.module('ws')
             }
         }
     })
+
+    .directive('questionsAll', function (QuestionService) {
+        return {
+            template: `
+            <div class="view-cntr">
+<div class="row">
+<div class="col s12">
+<div style="background-color: white"><div ng-repeat="item in questions">
+                                    <question-list-item item="item"></question-list-item>
+                                                </div>
+                                                </div>
+</div>
+</div>
+            </div>
+            `,
+            link: function (scope) {
+                QuestionService.getQuestions().then(function (questions) {
+                    scope.questions = questions;
+                })
+            }
+        }
+    })
+
     .service('QuestionService', function (Restangular) {
         const self = this;
         self.archive = function () {
@@ -169,6 +191,9 @@ angular.module('ws')
 
         self.getQuestions = function () { //получаем все вопросы
             return Restangular.all('questions').getList();
+        };
+        self.digest_questions = function () {
+            return Restangular.all('questions/digest').getList();
         };
         self.getQuestion = function (id) {
             return Restangular.one('question',id).get();
