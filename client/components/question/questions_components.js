@@ -2,14 +2,21 @@ angular.module('ws')
     .directive('question', function () {
         return {
             template: `
-<div class="z-depth-1 view-cntr">
-  <div class="row">
+<div class="view-cntr">
+<div class="row teal lighten-3" style="padding: 10px 0;">
+            <div class="col s10 valign-wrapper question_title" style="min-height: 38px;">
+             {{question.title}}
+            </div>
+<div class="col s2 right-align" >
+<div>
+<span ng-show="question.price" class="new badge indigo">{{question.price}}</span>
+</div>
+    </div>
+</div>
+  <div class="row" >
     <div class="col s12">
-    <div class="section">
-    <div class="question_title" >{{question.title}}</div>
           <span style="padding-left: 20px" ui-sref="person({id: question.person.id})">{{question.person.name}} {{question.person.surname}}</span>
           ,&nbsp;<span am-time-ago="question.created"></span>
-</div>
           
           <div style="text-indent: 20px" ng-bind-html="question.body"></div>
         <div class="answers_container">
@@ -60,7 +67,7 @@ angular.module('ws')
 <div class="section" style="padding: 5px 10px; margin: 15px 10px">
     <div class="valign-wrapper you_may_click_here question_title" ui-sref="question({id : item.id})">{{item.title}}
     <span ng-show="item.price" class="new badge price_chip">{{item.price}} руб.</span>
-    <span class="new badge red lighten-1">{{item.answers.length | badge_caption}}</span> </div>
+    <span class="new badge red lighten-1">{{item.answers.length | badge_caption}}</span></div>
     <div style="padding-left: 15px"> 
       <span class="you_may_click_here" ng-show="item.person" ui-sref="person({id: item.person.id})">
         {{item.person.name}} {{item.person.surname}}</span>,&nbsp<span am-time-ago="item.created"></span>

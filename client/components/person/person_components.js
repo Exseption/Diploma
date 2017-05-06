@@ -49,11 +49,6 @@ angular.module('ws')
 <a class="btn-floating blue" create-dialog><i class="material-icons you_may_click_here fix_icons_align">email</i></a>
 </div>
             </div>
-            
-        <div class="person_page_head">
-            &nbsp;
-        </div>
-
     <div style="padding-left: 15px">
         <div>
             <b>Зарегистрирован:</b> {{person.registrated | amUtc | amLocal | amDateFormat:'LLL'}}
