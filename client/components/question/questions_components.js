@@ -5,22 +5,21 @@ angular.module('ws')
 <div class="z-depth-1 view-cntr">
   <div class="row">
     <div class="col s12">
-      <div>
-          <h5>{{question.title}}</h5>
+    <div class="section">
+    <div class="question_title" >{{question.title}}</div>
           <span ui-sref="person({id: question.person.id})">{{question.person.name}} {{question.person.surname}}</span>
           ,&nbsp;<span am-time-ago="question.created"></span>
+</div>
+          
           <div ng-bind-html="question.body"></div>
-        <div>
-          <div>
-            <div class="divider"></div>
-            Ответы
-          </div>
+        <div class="answers_container">
+        <div class="divider"></div>
+            <b class="blue-text">Ответы</b>
           <div ng-repeat="ans in question.answers">
-            <answer ans="ans">{{$index+1}}.</answer>
+            <blockquote class="answers"><answer ans="ans">{{$index+1}}.</answer></blockquote>
           </div>
           <answer-create to="question.id"></answer-create>
-        </div>
-      </div>
+</div>  
     </div>
   </div>
 </div>`,

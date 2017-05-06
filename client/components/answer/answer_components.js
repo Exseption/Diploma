@@ -60,15 +60,14 @@ angular.module('ws')
         <div class="row">
 
         </div>
-        <div class="file-field input-field col s5 ">
-            <div class="btn">Файл
-                <!--<span></span>-->
-                <input type="file">
-            </div>
-            <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
-            </div>
-        </div>
+        <!--<div class="file-field input-field col s5 ">-->
+            <!--<div class="btn">Файл-->
+                <!--<input type="file">-->
+            <!--</div>-->
+            <!--<div class="file-path-wrapper">-->
+                <!--<input class="file-path validate" type="text">-->
+            <!--</div>-->
+        <!--</div>-->
 
         <div layout='col s7' layout-align='end end'>
             <a class='light-blue darken-3 btn' layout-align='end end'

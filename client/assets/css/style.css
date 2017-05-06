@@ -12,6 +12,12 @@ body {
 main {
     flex: 1 0 auto;
 }
+.answers:first-child {
+    margin-top: 0 !important;
+}
+.answers_container {
+    padding: 10px 40px;
+}
 .question_title {
     text-transform: uppercase;
     font-size: large;
