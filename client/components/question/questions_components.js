@@ -7,14 +7,14 @@ angular.module('ws')
     <div class="col s12">
     <div class="section">
     <div class="question_title" >{{question.title}}</div>
-          <span ui-sref="person({id: question.person.id})">{{question.person.name}} {{question.person.surname}}</span>
+          <span style="padding-left: 20px" ui-sref="person({id: question.person.id})">{{question.person.name}} {{question.person.surname}}</span>
           ,&nbsp;<span am-time-ago="question.created"></span>
 </div>
           
-          <div ng-bind-html="question.body"></div>
+          <div style="text-indent: 20px" ng-bind-html="question.body"></div>
         <div class="answers_container">
         <div class="divider"></div>
-            <b class="blue-text">Ответы</b>
+            <div class="green lighten-5" style="padding-left: 10px;"><b class="blue-text">Ответы</b></div>
           <div ng-repeat="ans in question.answers">
             <blockquote class="answers"><answer ans="ans">{{$index+1}}.</answer></blockquote>
           </div>
@@ -57,7 +57,7 @@ angular.module('ws')
     .directive('questionListItem', function () {
         return {
             template: `
-<div class="section z-depth-1" style="padding: 5px 10px; margin: 15px 10px">
+<div class="section" style="padding: 5px 10px; margin: 15px 10px">
     <div class="valign-wrapper you_may_click_here question_title" ui-sref="question({id : item.id})">{{item.title}}
     <span ng-show="item.price" class="new badge price_chip">{{item.price}} руб.</span>
     <span class="new badge red lighten-1">{{item.answers.length | badge_caption}}</span> </div>
@@ -66,7 +66,7 @@ angular.module('ws')
         {{item.person.name}} {{item.person.surname}}</span>,&nbsp<span am-time-ago="item.created"></span>
     <div class="divider"></div>
     </div>
-    <div class="truncate" ng-bind-html="item.body"></div>
+    <div ng-bind-html="item.body | limitTo: 250" style="text-indent: 15px"></div>
 </div>
 `,
             scope: {

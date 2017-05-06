@@ -39,9 +39,19 @@ angular.module('ws')
                     $scope.people = people;
                 });
             },
-            template: `<div class="md-body-1 ws-person-card z-depth-1 view-cntr">
-        <div class="md-title">
-            {{person.name}} {{person.surname}} <a create-dialog><i class="material-icons you_may_click_here fix_icons_align">email</i></a>
+            template: `
+<div class="view-cntr">
+<div class="row green lighten-1" style="padding: 10px 0;">
+            <div class="col s10 valign-wrapper person_page_head" style="min-height: 38px;">
+            {{person.name}} {{person.surname}} 
+
+</div><div class="col s2 right-align">
+<a class="btn-floating blue" create-dialog><i class="material-icons you_may_click_here fix_icons_align">email</i></a>
+</div>
+            </div>
+            
+        <div class="person_page_head">
+            &nbsp;
         </div>
 
     <div style="padding-left: 15px">

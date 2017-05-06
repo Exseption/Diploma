@@ -6,7 +6,7 @@ angular.module('ws')
 <div class='row'>
     <div class='col s12'>
     <b>{{ans.person.name }} {{ans.person.surname}}</b>,&nbsp<span>{{ans.created | amUtc | amLocal | amDateFormat:'LLL'}}</span>
-    <div><span ng-transclude></span> {{ans.body}}</div>
+    <div style="text-indent: 20px"><span ng-transclude></span>{{ans.body}}</div>
     </div>
 </div>
 <answer-vote></answer-vote>
@@ -32,15 +32,10 @@ angular.module('ws')
         },
         template: `
         <article class='answer-in-question' style="padding: 0 15px">
-    <div layout='row'>
-        <div layout='row'>
-            <!--{{$ctrl.a.created | amUtc | amLocal | amDateFormat:'LLL'}}-->
-            <!--{{$ctrl.a.created | amUtc | amLocal | amDateFormat:'LLL'}}-->
+    <div class='row'>
+        <div class='row'>
             <span am-time-ago="$ctrl.a.created"></span>
            </div>
-        <div flex='flex'>
-
-        </div>
     </div>
     <div class="md-body-2">Оценка: {{$ctrl.a.mark}}</div>
     <div class='md-body-1 ws-body' style="padding-top: 5px; padding-bottom: 10px">{{$ctrl.a.body}}</div>
@@ -56,19 +51,8 @@ angular.module('ws')
         <label for='answer-text'>Дайте свой ответ</label>
         <textarea rows='10' ng-model='answer_text' class='materialize-textarea validate' id='answer-text' required></textarea>
         <div class='md-body-1' layou='row'></div>
-
         <div class="row">
-
         </div>
-        <!--<div class="file-field input-field col s5 ">-->
-            <!--<div class="btn">Файл-->
-                <!--<input type="file">-->
-            <!--</div>-->
-            <!--<div class="file-path-wrapper">-->
-                <!--<input class="file-path validate" type="text">-->
-            <!--</div>-->
-        <!--</div>-->
-
         <div layout='col s7' layout-align='end end'>
             <a class='light-blue darken-3 btn' layout-align='end end'
                ng-click='answer(answer_text)' ng-disabled="FormAnswer.$invalid">Ответить</a>
@@ -86,9 +70,7 @@ angular.module('ws')
                         scope.answer = function (answer_text) {
                             const personId = SessionManager.person.id;
                             const question = $stateParams.id;
-                            // alert(question+' '+ personId+' '+ answer_text)
                             AnswerService.createAnswer(question, answer_text, personId).then(function (res) {
-                                // console.log(res);
                                 elem.html("<h3>Спасибо за ваш ответ!</h3>")
                             })
                         }
@@ -97,7 +79,7 @@ angular.module('ws')
             }
         }
     })
-    .directive('answerVote', function (SessionManager) {
+    .directive('answerVote', function (SessionManager, VoteService) {
         return {
             template:`  
     <div class="valign-wrapper">
@@ -111,22 +93,22 @@ angular.module('ws')
             compile: function (elem, attrs) {
                 return {
                     pre: function (scope, elem) {
-                        // if(!angular.isDefined(SessionManager.person)){
-                        //     elem.remove();
-                        // }
+                        if(!angular.isDefined(SessionManager.person)){
+                            elem.remove();
+                        }
                     },
                     post: function (scope, elem) {
                         scope.votePlus = function(id){
-                            // RatingService.votePlus(id).then(function (result) {
-                            //     elem.html("<div class='md-body-2'>Спасибо за ваш голос!</div>");
-                            //     return result;
-                            // });
+                            VoteService.votePlus(id).then(function (result) {
+                                elem.html("<div class='md-body-2'>Спасибо за ваш голос!</div>");
+                                return result;
+                            });
                         };
                         scope.voteMinus = function(id){
-                            // RatingService.voteMinus(id).then(function (result) {
-                            //     elem.html("<div class='md-body-2'>Спасибо за ваш голос!</div>");
-                            //     return result;
-                            // });
+                            VoteService.voteMinus(id).then(function (result) {
+                                elem.html("<div class='md-body-2'>Спасибо за ваш голос!</div>");
+                                return result;
+                            });
                         };
                     }
                 }

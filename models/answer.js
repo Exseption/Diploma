@@ -2,7 +2,7 @@
 module.exports = function(sequelize, DataTypes) {
     var Answer = sequelize.define("answer", {
         body: {
-            type: DataTypes.STRING
+            type: DataTypes.TEXT
         },
         mark: {
             type: DataTypes.DOUBLE

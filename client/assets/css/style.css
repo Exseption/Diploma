@@ -12,8 +12,15 @@ body {
 main {
     flex: 1 0 auto;
 }
+.person_page_head {
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-size: large;
+}
+
 .answers:first-child {
     margin-top: 0 !important;
+    border-left: none;
 }
 .answers_container {
     padding: 10px 40px;

@@ -142,14 +142,14 @@ angular.module('ws')
 <p>Данный проект является выпускной квалификационной работой студента Физико-математического факультета БГПУ г. Благовещенск в 2017 году Налимова Игоря.</p>
         </div>
     </div>
-          <div class="col s6 z-depth-1" style="margin-top: 10px; padding-bottom: 5px">
+          <div class="col s6" style="margin-top: 10px; padding-bottom: 5px">
               <div class="input-field col s12">
                   <input ng-model="title" type="text" id="q_title"
                          required class="validate"/>
                   <label for="q_title">Заголовок</label>
               </div>
               <div class="input-field col s12">
-                  <textarea id="mtarea" ng-model="body" required class="validate materialize-textarea"></textarea>
+                  <textarea id="mtarea" ng-model="body" required class="validate materialize-textarea" paragraph-slicer></textarea>
                   <label for="mtarea">Тело вопроса</label>
               </div>
               <div class="input-field col s6">
@@ -197,6 +197,7 @@ angular.module('ws')
                                     )
                                 })
                             }
+                            $('#mtarea').trigger('autoresize');
                         },
                         template: `<form ng-cloak name="FormCreateQuestion">
       <div class="section center-align form-title">
@@ -209,9 +210,8 @@ angular.module('ws')
                          required class="validate"/>
                   <label for="q_title">Заголовок</label>
               </div>
-
               <div class="input-field col s12">
-                  <textarea id="mtarea" ng-model="body" required class="validate materialize-textarea"></textarea>
+                  <textarea id="mtarea" ng-model="body" required class="validate materialize-textarea" paragraph-slicer></textarea>
                   <label for="mtarea">Тело вопроса</label>
               </div>
               <div class="input-field col s6">
@@ -228,7 +228,7 @@ angular.module('ws')
           <div class="modal-footer right-align">
               <div class="col s12">
                   <a ng-click="hide()" class="modal-action waves-effect waves-green btn-flat">Отмена</a>
-                  <input type="submit" class="modal-action waves-effect waves-green btn-flat" ng-click="createQuestion(title, body, author, payable, price)" ng-disabled="FormCreateQuestion.$invalid" value="Отправить"/>
+                  <input type="submit" class="modal-action waves-effect waves-green btn-flat" ng-click="createQuestion(title, _body, author, payable, price)" ng-disabled="FormCreateQuestion.$invalid" value="Отправить"/>
               </div>
           </div>
       </div>
@@ -253,9 +253,21 @@ angular.module('ws')
                         $rootScope.$on('authenticated', function (e, data) {
                             elem.css('display', 'block')
                         })
-
                     }
                 }
+            }
+        }
+    })
+    .directive('paragraphSlicer', function () {
+        return {
+            link: function (scope, element) {
+                scope._body = '';
+                element.bind("keypress", function (event) {
+                    if(event.which === 13) {
+                        // scope._body = scope.body.replace(/\r?\n/g, '<br/>'); //formatted text for store
+                        scope._body += '<p>' + scope.body + '</p>'; //formatted text for store
+                    }
+                });
             }
         }
     })

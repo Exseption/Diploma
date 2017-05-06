@@ -6,10 +6,10 @@ angular.module('ws')
 <div>
     
     <div class="view-cntr">
-    <div class="row valign-wrapper cyan lighten-3" style="padding: 10px 0">
+    <div class="row valign-wrapper teal lighten-2" style="padding: 10px 0">
 <div class="col s10"><b>МОИ ВОПРОСЫ</b></div>
 <div class="col s2 right-align">
-<a ask class="btn-floating waves-effect waves-circle green"><i class="material-icons">message</i></a>
+<a ask class="btn-floating waves-effect waves-circle red z-depth-1"><i class="material-icons">message</i></a>
 </div>
 </div>
     <div class="blue lighten-5 question-table-header" >Активные вопросы</div>
@@ -83,7 +83,7 @@ angular.module('ws')
 
         <div class="input-field col s12">
                 <legend>Содержимое вопроса</legend>
-                <textarea class="materialize-textarea" ng-model="question.body" name="body"></textarea>
+                <textarea maxlength="10000" class="materialize-textarea" ng-model="question.body" name="body"></textarea>
         </div>
 
             <div class="input-field col s2">
@@ -154,7 +154,7 @@ angular.module('ws')
         return {
             template: `
 <div class="dialog_sublist_container">
- <a class="valign-wrapper dialogs-sublist" ng-repeat="dialog in dialogs" ui-sref="my_messages({dialogId: dialog.id })" ui-sref-active="active">{{dialog.caption}}</a>
+ <a class="valign-wrapper dialogs-sublist truncate" ng-repeat="dialog in dialogs" ui-sref="my_messages({dialogId: dialog.id })" ui-sref-active="active">{{dialog.caption}}</a>
 </div>     
 `,
             link: function (scope) {

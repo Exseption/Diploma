@@ -97,14 +97,14 @@ angular.module('ws')
             template: `<nav class="nav-extended mb">
     <div class="nav-wrapper dark-primary-color" style="min-height: 98px">
         <div class="container">
-            <a href="#" class="brand-logo nav-btns">ЦЕНТР ПРАВОВЫХ КОНСУЛЬТАЦИЙ</a>
+            <a href="#" class="brand-logo nav-btns">ВДИПЛОМЕ</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a class="nav-btns" ui-sref="search">Поиск</a></li>
                 <li><a class="nav-btns" ask>Задать вопрос</a></li>
                 <li><a class="nav-btns" login>Войти</a></li>
                 <li><a class="nav-btns" reg>Регистрация</a></li>
                 <li><a class="nav-btns" exit-button>Выход</a></li>
-            </ul>
+            </ul>       
         </div>
     </div>
     <div class="nav-content white">
@@ -135,7 +135,7 @@ angular.module('ws')
         return {
             template: `
             <div class="view-cntr">
-            <div class="row cyan lighten-3" style="padding: 10px 0;">
+            <div class="row blue-grey lighten-3" style="padding: 10px 0;">
             <div class="col s12 valign-wrapper" style="min-height: 38px;"><b>ФОРМА ОБРАТНОЙ СВЯЗИ</b></div>
             </div>
             <div class="container">
@@ -177,11 +177,9 @@ angular.module('ws')
         return {
             template: `
             <div class="view-cntr">
-           <div class="row cyan lighten-3" style="padding: 10px 0;">
+           <div class="row deep-purple lighten-3" style="padding: 10px 0;">
             <div class="col s12 valign-wrapper" style="min-height: 38px;"><b>АРХИВ</b></div>
             </div>
-  
-            
             <div class="row">
             <div class="col s12">
              <div ng-repeat="arch in archive">
@@ -189,7 +187,6 @@ angular.module('ws')
             </div>
             </div>
             </div>
-           
             `,
             link: function (scope, elem) {
                 QuestionService.archive().then(function (results) {
