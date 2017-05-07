@@ -108,9 +108,9 @@
             .state('news', {
                 url: '/news',
                 template: `
-<page-container>
-<news bc="cyan"></news>
-</page-container>
+                        <page-container>
+                        <news bc="cyan"></news>
+                        </page-container>
 `
             })
             .state('search', {

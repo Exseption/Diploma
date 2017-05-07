@@ -167,7 +167,7 @@ angular.module('ws')
            <div class="right-align">
               <div class="col s12">
               <!--<blockquote>Для того чтобы задать вопрос, зарегистрируйтесь или войдите под своим аккаунтом!</blockquote>-->
-                  <input ng-hide="false" type="submit" class="modal-action waves-effect waves-green btn blue-grey" ng-click="createQuestion(title, body, author, payable, price)" ng-disabled="FormCreateQuestion.$invalid" value="Задать вопрос"/>
+                  <input ng-hide="false" type="submit" class="modal-action waves-effect waves-green btn blue-grey lighten-5 black-text" ng-click="createQuestion(title, body, author, payable, price)" ng-disabled="FormCreateQuestion.$invalid" value="Задать вопрос"/>
               </div>
           </div>   
           </div>

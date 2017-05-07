@@ -351,7 +351,9 @@ exports.votePlus = function (req, res) { //голосуем за ответ в �
         }
     ).then(function (result) {
         res.send(result);
-    })
+    });
+    console.log('Need to update rating of user, huh')
+    //TODO select sum of user's marks and result set to rating, ok
 };
 
 exports.voteMinus = function (req, res) { //голосуем за ответ в минус

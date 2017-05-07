@@ -41,7 +41,7 @@ angular.module('ws')
                 }
             }
             ,
-            template:`<div class="sidebar-container z-depth-1" id="user">
+            template:`<div class="sidebar-container" id="user">
     <div class="sb-title">
         МЕНЮ ПОЛЬЗОВАТЕЛЯ
     </div>
@@ -55,7 +55,7 @@ angular.module('ws')
         </div>
     </div>
 </div>
-<div class="sidebar-container z-depth-1" id="admin">
+<div class="sidebar-container" id="admin">
     <div class="sb-title">
         МЕНЮ АДМИНИСТРАТОРА
     </div>
@@ -73,7 +73,7 @@ angular.module('ws')
     </div>
 </div>
 
-<div class="sidebar-container z-depth-1">
+<div class="sidebar-container">
     <!--<div class="sb-title">-->
         <!--МЕНЮ-->
     <!--</div>-->

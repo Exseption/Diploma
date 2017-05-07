@@ -1,7 +1,15 @@
 angular.module('ws')
     .directive('peopleList', function (PeopleService) {
         return {
-            template: `<div class="row view-cntr z-depth-1">
+            template: `<div class="row view-cntr">
+<div class="row light-blue lighten-4" style="padding: 10px 0;">
+            <div class="col s10 valign-wrapper question_title" style="min-height: 38px;">
+             УЧАСТНИКИ ВЕБ-СЕРВИСА
+            </div>
+            <div class="col s2 right-align">
+             <a class="btn-floating"><i class="material-icons indigo lighten-1">search</i> </a>
+</div>      
+</div>
 <div class="section">
 <form class="container">
 <div class="input-field">
@@ -21,17 +29,48 @@ angular.module('ws')
                         <a ui-sref="person({id: p.id})" style="cursor: pointer">Персональная страница</a>
                     </div>
                     <div>
+                    <blockquote>
                     Краткое описание
+                    
+</blockquote>
 </div>
                 </div>
     </div>
     </div>
 <div class="col s4">
 <div class="blue-grey lighten-5" style="padding: 5px">
-НАСТРОЙКИ
+        НАСТРОЙКИ
 </div>
 <div style="padding: 9px">
-Сортировка: <input>
+<div class="col s12">Рейтинг<div class="divider"></div></div>
+<div class="col s4">Сортировка: </div>
+<div class="col s8">
+<div>
+<input name="g1" type="radio" id="_desc">
+<label for="_desc">по возрастанию</label>
+</div>
+<div>
+<input name="g1" type="radio" id="_asc">
+<label for="_asc">по убыванию</label>
+</div>
+</div>
+     
+ 
+<div style="margin-top: 25px;" class="col s12">География<div class="divider"></div></div>
+<div class="col s12">
+<div class="input-field">
+<input type="text" id="country">
+<label for="country">Страна</label>
+</div>
+<div class="input-field">
+<input type="text" id="area">
+<label for="area">Область, край</label>
+</div>
+<div class="input-field">
+<input type="text" id="city">
+<label for="area">Город</label>
+</div>
+</div>
 </div>
 <form>
 <div class="input-field">

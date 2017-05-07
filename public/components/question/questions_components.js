@@ -158,6 +158,18 @@ angular.module('ws')
         return {
             template: `
             <div class="view-cntr">
+            <div class="row teal lighten-3" style="padding: 10px 0;">
+            <div class="col s10 valign-wrapper question_title" style="min-height: 38px;">
+             ВОПРОСЫ
+             
+            </div>
+            <div class="col s2 right-align">
+             <a class="btn-floating"><i class="material-icons blue">search</i> </a>
+</div>
+            
+</div>
+           
+
 <div class="row">
 <div class="col s12">
 <div style="background-color: white"><div ng-repeat="item in questions">
