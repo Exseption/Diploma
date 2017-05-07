@@ -41,7 +41,7 @@ angular.module('ws')
                 }
             }
             ,
-            template:`<div class="sidebar-container" id="user">
+            template:`<div class="sidebar-container"  id="user">
     <div class="sb-title">
         МЕНЮ ПОЛЬЗОВАТЕЛЯ
     </div>
@@ -135,7 +135,7 @@ angular.module('ws')
         return {
             template: `
             <div class="view-cntr">
-            <div class="row blue-grey lighten-3" style="padding: 10px 0;">
+            <div class="row blue lighten-4 lighten-4" style="padding: 10px 0;">
             <div class="col s12 valign-wrapper" style="min-height: 38px;"><b>ФОРМА ОБРАТНОЙ СВЯЗИ</b></div>
             </div>
             <div class="container">
@@ -177,7 +177,7 @@ angular.module('ws')
         return {
             template: `
             <div class="view-cntr">
-           <div class="row deep-purple lighten-3" style="padding: 10px 0;">
+           <div class="row blue lighten-4" style="padding: 10px 0;">
             <div class="col s12 valign-wrapper" style="min-height: 38px;"><b>АРХИВ</b></div>
             </div>
             <div class="row">

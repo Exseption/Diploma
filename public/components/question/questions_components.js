@@ -3,7 +3,7 @@ angular.module('ws')
         return {
             template: `
 <div class="view-cntr">
-<div class="row teal lighten-3" style="padding: 10px 0;">
+<div class="row blue lighten-4" style="padding: 10px 0;">
             <div class="col s10 valign-wrapper question_title" style="min-height: 38px;">
              {{question.title}}
             </div>
@@ -49,14 +49,14 @@ angular.module('ws')
             template:`
                         <div class="view-cntr">
                                                 <ask-main-page></ask-main-page>
-                        <div class="row grey lighten-4" style="padding: 10px 0">
+                        <div class="row blue lighten-4" style="padding: 10px 0">
                         <div class="col valign-wrapper s12" style="min-height: 38px"><b>ПОСЛЕДНИЕ ВОПРОСЫ</b></div>
                         </div>
                         <div style="background-color: white"><div ng-repeat="item in questions">
                                     <question-list-item item="item"></question-list-item>
                                                 </div>
                                                 </div>
-                                                <news bc="grey lighten-4"></news>
+                                                <news bc="blue lighten-4"></news>
                         </div>
 `
         }
@@ -158,7 +158,7 @@ angular.module('ws')
         return {
             template: `
             <div class="view-cntr">
-            <div class="row teal lighten-3" style="padding: 10px 0;">
+            <div class="row blue lighten-4" style="padding: 10px 0;">
             <div class="col s10 valign-wrapper question_title" style="min-height: 38px;">
              ВОПРОСЫ
              

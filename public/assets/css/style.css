@@ -88,6 +88,9 @@ legend {
 .page-menu {
     padding: 10px 15px;
 }
+.person_page_icon:hover {
+    color: grey;
+}
 .page-menu-link {
     padding: 10px 15px;
     color: black;
@@ -96,6 +99,7 @@ legend {
     background-color: #eeeeee;
 }
 .sidebar-container {
+    border: solid #D7D7D7 1px;
     background-color: white;
     margin-bottom: 8px;
 }
@@ -162,6 +166,7 @@ legend {
     cursor: pointer;
 }
 .view-cntr {
+    border: solid #D7D7D7 1px;
     padding: 0 10px;
     background-color: white;
     min-height: 70vh

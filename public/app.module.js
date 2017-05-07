@@ -109,7 +109,7 @@
                 url: '/news',
                 template: `
                         <page-container>
-                        <news bc="cyan"></news>
+                        <news bc="blue lighten-4"></news>
                         </page-container>
 `
             })
