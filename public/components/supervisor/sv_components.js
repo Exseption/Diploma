@@ -4,6 +4,7 @@ angular.module('ws')
             template:`
             <div class="view-cntr">
             <div class="valign-wrapper">
+            
                 <div class="col s6" style="text-transform: uppercase; font-weight: bolder; padding: 20px 0">
                     Обычные пользователи
                 </div>

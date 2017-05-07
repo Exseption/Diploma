@@ -16,8 +16,9 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(cookieParser());
 app.use(session({
                   secret: '_secret$-#=key',
-                  resave: false,
-                  saveUninitialized: false
+                  resave: true,
+                  saveUninitialized: true,
+                  cookie: { maxAge: 60000}
                 }));
 app.disable('x-powered-by');
 const api_version = '/api/v1';
