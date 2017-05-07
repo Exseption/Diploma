@@ -13,9 +13,9 @@ angular.module('ws')
 </div>
     </div>
 </div>
-  <div class="row" >
+  <div class="row">
     <div class="col s12">
-          <span style="padding-left: 20px" ui-sref="person({id: question.person.id})">{{question.person.name}} {{question.person.surname}}</span>
+          <span style="padding-left: 20px; font-weight: bolder; color: #0D47A1" ui-sref="person({id: question.person.id})">{{question.person.name}} {{question.person.surname}}</span>
           ,&nbsp;<span am-time-ago="question.created"></span>
           
           <div style="text-indent: 20px" ng-bind-html="question.body"></div>

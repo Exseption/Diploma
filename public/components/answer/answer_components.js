@@ -46,16 +46,18 @@ angular.module('ws')
     .directive('answerCreate', function (AnswerService, SessionManager, $stateParams) {
         return {
             template:`
-            <div layout='column'>
+            <div>
     <form name="FormAnswer">
         <label for='answer-text'>Дайте свой ответ</label>
         <textarea rows='10' ng-model='answer_text' class='materialize-textarea validate' id='answer-text' required></textarea>
         <div class='md-body-1' layou='row'></div>
         <div class="row">
         </div>
-        <div layout='col s7' layout-align='end end'>
-            <a class='light-blue darken-3 btn' layout-align='end end'
-               ng-click='answer(answer_text)' ng-disabled="FormAnswer.$invalid">Ответить</a>
+        <div class="right-align">
+        <a class='light-blue darken-3 btn'
+               ng-click='answer(answer_text)' ng-disabled="FormAnswer.$invalid"><i class="material-icons">attach_file</i></a>
+            <a class='light-blue darken-3 btn' 
+            ng-click='answer(answer_text)' ng-disabled="FormAnswer.$invalid">Ответить</a>
         </div>
     </form>
             `,

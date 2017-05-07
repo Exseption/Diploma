@@ -12,7 +12,8 @@ angular.module('ws')
                                 SessionManager.auth(login, password, cb);
                             }
                         },
-                        template: `<form name="FormAuth">
+                        template: `
+<form name="FormAuth">
     <div class="section center-align form-title">
       <span>Авторизация пользователя</span>
     </div>
@@ -38,7 +39,8 @@ angular.module('ws')
     <a class="waves-effect waves-light btn" ng-click="auth(login, password, cb)" ng-disabled="FormAuth.$invalid">Войти</a>
     </div>
     </div>
-  </form>`,
+  </form>
+`,
                         parent: angular.element(document.body),
                         clickOutsideToClose: true
                     })
@@ -164,8 +166,8 @@ angular.module('ws')
               </div>
            <div class="right-align">
               <div class="col s12">
-              <blockquote>Для того чтобы задать вопрос, зарегистрируйтесь или войдите под своим аккаунтом!</blockquote>
-                  <input ng-hide="true" type="submit" class="modal-action waves-effect waves-green btn-flat" ng-click="createQuestion(title, body, author, payable, price)" ng-disabled="FormCreateQuestion.$invalid" value="Задать вопрос"/>
+              <!--<blockquote>Для того чтобы задать вопрос, зарегистрируйтесь или войдите под своим аккаунтом!</blockquote>-->
+                  <input ng-hide="false" type="submit" class="modal-action waves-effect waves-green btn blue-grey" ng-click="createQuestion(title, body, author, payable, price)" ng-disabled="FormCreateQuestion.$invalid" value="Задать вопрос"/>
               </div>
           </div>   
           </div>

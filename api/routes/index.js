@@ -1,16 +1,16 @@
 const Sequelize = require('sequelize');
-const config = require('../config/config.json');
+const config = require('../db/config/config.json');
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
-const Person = sequelize.import('../models/person');
-const Question = sequelize.import('../models/question');
-const Answer = sequelize.import('../models/answer');
-const Dialog = sequelize.import('../models/dialog');
-const Message = sequelize.import('../models/message');
-const Book = sequelize.import('../models/book');
-const Option = sequelize.import(('../models/option'));
-const New = sequelize.import(('../models/new'));
+const Person = sequelize.import('../db/models/person');
+const Question = sequelize.import('../db/models/question');
+const Answer = sequelize.import('../db/models/answer');
+const Dialog = sequelize.import('../db/models/dialog');
+const Message = sequelize.import('../db/models/message');
+const Book = sequelize.import('../db/models/book');
+const Option = sequelize.import(('../db/models/option'));
+const New = sequelize.import(('../db/models/new'));
 
-const Attachment = sequelize.import('../models/attachment');
+const Attachment = sequelize.import('../db/models/attachment');
 
 Question.belongsTo(Person, {foreignKey: 'author'});
 Person.hasMany(Question, {foreignKey: 'author'}); //чет падазрительна
@@ -35,7 +35,7 @@ Option.belongsTo(Person, {foreignKey: 'of_user', as: 'settings'});
 New.belongsTo(Person,{foreignKey: 'author'});
 Person.hasMany(New,{foreignKey: 'author'});
 
-const Feedback = sequelize.import('../models/feedback');
+const Feedback = sequelize.import('../db/models/feedback');
 
 
 exports.getOpts = function (req, res) {

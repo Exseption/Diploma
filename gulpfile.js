@@ -9,29 +9,29 @@ const del = require('del');
 const newer = require('gulp-newer');
 gulp.task('dev', function() {
     browserSync.init({
-        server: 'client',
+        server: 'public',
         open: false
     });
-    gulp.watch('client/templates/pugs/**',['pug']);
-    browserSync.watch('client/**',{ignored: 'client/templates/pugs/*.pug'})
+    gulp.watch('public/templates/pugs/**',['pug']);
+    browserSync.watch('public/**',{ignored: 'public/templates/pugs/*.pug'})
         .on('change', browserSync.reload);
 });
 gulp.task('pug', function () {
-    return gulp.src('client/templates/pugs/*.pug')
+    return gulp.src('public/templates/pugs/*.pug')
          .pipe(newer('public/templates'))
         .pipe(pug({pretty: true}))
-        .pipe(gulp.dest('client/templates'));
+        .pipe(gulp.dest('public/templates'));
 });
 
 gulp.task('concat-js', function () {
-    return gulp.src(['./client/components/**/*.js', './client/shared/**/*.js', './models/*.js', 'app.js', './client/app.module.js'])
+    return gulp.src(['./public/components/**/*.js', './public/shared/**/*.js', './models/*.js', 'app.js', './public/app.module.js'])
         .pipe(concat('app.all.js'))
 
         .pipe(gulp.dest('./dist/'))
 });
 
 gulp.task('concat-html', function () {
-    return gulp.src(['./client/**/*.html', './client.index.html'])
+    return gulp.src(['./public/**/*.html', './public.index.html'])
         .pipe(concat('all.html.html'))
         .pipe(gulp.dest('./dist/'))
 });

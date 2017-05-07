@@ -2,9 +2,7 @@ angular.module('ws')
     .directive('myQuestions', function (QuestionService, SessionManager, $mdDialog) {
         return {
             template:`
-
 <div>
-    
     <div class="view-cntr">
     <div class="row valign-wrapper teal lighten-2" style="padding: 10px 0">
 <div class="col s10"><b>МОИ ВОПРОСЫ</b></div>
@@ -51,7 +49,6 @@ angular.module('ws')
         </tbody>
     </table>
 </div>
-    
 </div>`,
             link: function (scope) {
                 var id = SessionManager.person.id;
@@ -274,12 +271,15 @@ angular.module('ws')
     </div>
 <div class="row section">
     <form name="FormDialog" class="col s12">
-        <div class="input-field col s11">
+    <div class="row">
+    <div class="input-field col s10">
             <input ng-model="_message" id="message" type="text" class="input" my-enter="send_message(_message)">
             <label for="message">Ваше сообщение</label>
         </div>
-        <div class="input-field">
+        <div class="col s2">
+            <a class="btn-floating waves-effect waves-circle"><i class="material-icons blue">attach_file</i></a>  
             <a class="btn-floating waves-effect waves-circle" ng-click="send_message(_message)"><i class="material-icons">send</i></a>  
+        </div>
         </div>
     </form>
 </div>

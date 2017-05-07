@@ -2,18 +2,43 @@ angular.module('ws')
     .directive('peopleList', function (PeopleService) {
         return {
             template: `<div class="row view-cntr z-depth-1">
-    <div ng-repeat="p in people" class="col s6 m6">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">{{p.name}} {{p.surname}}</span>
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
+<div class="section">
+<form class="container">
+<div class="input-field">
+<input type="search" id="people_search">
+<label class="label-icon" for="people_search"><i class="material-icons">search</i> </label>
+</div>
+</form>
+</div>
+
+<div class="col s8">
+    <div ng-repeat="p in people">
+                <div class="section blue-grey lighten-5" style="padding: 10px; margin-bottom: 15px">
+                    <div class="valign-wrapper">
+                        <span class="question_title">{{p.name}} {{p.surname}}</span> <span ng-show="p.rating" style="margin-left: 5px" class="chip blue lighten-4">{{p.rating}}</span>
                     </div>
-                    <div class="card-action">
+                    <div>
                         <a ui-sref="person({id: p.id})" style="cursor: pointer">Персональная страница</a>
                     </div>
+                    <div>
+                    Краткое описание
+</div>
                 </div>
     </div>
+    </div>
+<div class="col s4">
+<div class="blue-grey lighten-5" style="padding: 5px">
+НАСТРОЙКИ
+</div>
+<div style="padding: 9px">
+Сортировка: <input>
+</div>
+<form>
+<div class="input-field">
+
+</div>
+</form>
+</div>
 </div>
 `,
             link: function (scope) {

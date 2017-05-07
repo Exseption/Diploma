@@ -7,15 +7,18 @@ angular.module('ws')
                 });
             },
             template: `<div class="view-cntr">
-<div class="row cyan lighten-3" style="padding: 10px 0;">
-<div class="col s12 valign-wrapper" style="min-height: 38px;"><b>БИБЛИОТЕКА</b></div>
+<div class="row cyan lighten-4" style="padding: 10px 0;">
+<div class="col s12 valign-wrapper" style="min-height: 38px;"><b>БИБЛИОТЕКА</b>
+<div class="col s7">
+<lib-search></lib-search>
+</div>
+</div>
 </div>
   <div class="center-align">
-    <a class="cat-btn"  ng-click="cat =  { category: 'Законодательства' }">Законодательства</a>
+    <a class="cat-btn"  ng-click="cat = { category: 'Законодательства' }">Законодательства</a>
     <a class="cat-btn"  ng-click="cat = { category: 'Образцы бланков и заявлений' }">Образцы бланков и заявлений</a>
     <a class="cat-btn"  ng-click="cat = { category: 'Судебная практика' }">Судебная практика</a>
   </div>
-  <lib-search></lib-search>
 <div class="row" style="min-height: 70vh">
   <div class="col s12">
     <table class="highlight">
@@ -48,14 +51,15 @@ angular.module('ws')
     })
     .directive('libSearch', function () {
        return {
-           template: `<div>
+           template: `
     <form>
-        <div class="input-field col s6">
+    <div class="input-field">
             <input type="search" ng-model="lib_search" id="lib_search">
             <label class="label-icon" for="lib_search"><i class="material-icons">search</i></label>
-        </div>
+</div>
+    
     </form>
-</div>`,
+`,
            link: function (scope) {
 
            }

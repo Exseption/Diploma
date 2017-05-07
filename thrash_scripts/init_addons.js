@@ -3,7 +3,7 @@
  */
 
 const Sequelize = require('sequelize');
-const config = require('./config/config.json');
+const config = require('../api/db/config/config.json');
 
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
 // const Feedback = sequelize.import('./models/feedback');
