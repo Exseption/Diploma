@@ -1,5 +1,5 @@
 angular.module('ws')
-    .directive('svUsers', function (AdminService, $mdDialog) {
+    .directive('svUsers', function (AdminService, $mdDialog, SessionManager) {
         return {
             template:`
             <div class="view-cntr">
@@ -15,12 +15,13 @@ angular.module('ws')
     <table class="highlight">
         <thead>
         <tr>
-            <th>#</th><th>Имя</th><th>Фамилия</th><th>Вопросов</th><th>Ответов</th><th>Активен</th><th>Резюме</th>
+            <th>#</th><th>ID</th><th>Имя</th><th>Фамилия</th><th>Вопросов</th><th>Ответов</th><th>Активен</th><th>Резюме</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="p in people | filter: { usergroup: 'user' }">
             <td>{{$index + 1}}.</td>
+            <td ng-bind="p.id"></td>
             <td ng-bind="p.name"></td>
             <td ng-bind="p.surname"></td>
             <td ng-bind="p.questions.length"></td>
@@ -34,22 +35,21 @@ angular.module('ws')
         </tbody>
     </table>
     <div class="valign-wrapper">
-                <div class="col s6" style="text-transform: uppercase; font-weight: bolder; padding: 20px 0">
+                <div class="col s12" style="text-transform: uppercase; font-weight: bolder; padding: 20px 0">
                     Администраторы
                 </div>
-                <div class="col s6 right-align">
-                    <a class="btn-floating" ng-click="create_new_user()"><i class="material-icons">person_add</i> </a>
-                </div>
+                
             </div>
     <table class="highlight">
         <thead>
         <tr>
-            <th>#</th><th>Имя</th><th>Фамилия</th><th>Вопросов</th><th>Ответов</th><th>Активен</th><th>Резюме</th>
+            <th>#</th><th>ID</th><th>Имя</th><th>Фамилия</th><th>Вопросов</th><th>Ответов</th><th>Активен</th><th>Резюме</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="p in people | filter: { usergroup: 'admin' }">
             <td>{{$index + 1}}.</td>
+            <td ng-bind="p.id"></td>
             <td ng-bind="p.name"></td>
             <td ng-bind="p.surname"></td>
             <td ng-bind="p.questions.length"></td>
@@ -65,6 +65,7 @@ angular.module('ws')
 </div>
 `,
             link: function (scope) {
+                scope.userId = SessionManager.person.id;
                 scope.create_new_user = function () {
                     alert('!');
                 };
@@ -117,8 +118,6 @@ angular.module('ws')
           <fieldset>
           <legend>Права</legend>
           <div class="input-field">
-          <!--<label for="group">Группа</label>-->
-                <!--<input type="text" class="validate" id="group" ng-value="user.usergroup">-->
                 <select ng-model="user.usergroup">
                     <option ng-value="user.usergroup">{{user.usergroup | group_filter}}</option>
                     <option ng-value="option_two">{{option_two | group_filter}}</option>
@@ -131,7 +130,6 @@ angular.module('ws')
         <input class="waves-effect waves-light btn" ng-disabled="FormEdit.$invalid"
                            value="Сохранить" type="submit"/>
 </div>
-        
         </div>
     </form>
 </div>
