@@ -44,14 +44,20 @@
         })
         .constant('_', window._)
 
+        .filter('group_filter', function () {
+            return function (group) {
+                return group === 'user' ? 'Пользователь' : 'Администратор';
+            }
+        })
+
         .filter('true_false', function () {
             return function (bool) {
-                return (bool === true) ? 'Да' : 'Нет'
+                return bool === true ? 'Да' : 'Нет'
             }
         })
         .filter('pay_free', function () {
             return function (payable) {
-                return (payable === true) ? 'Платный' : 'Бесплатный'
+                return payable === true ? 'Платный' : 'Бесплатный'
             }
         })
         .filter('badge_caption', function () {

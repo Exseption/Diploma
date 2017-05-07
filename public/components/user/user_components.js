@@ -4,7 +4,7 @@ angular.module('ws')
             template:`
 <div>
     <div class="view-cntr">
-    <div class="row valign-wrapper teal lighten-2" style="padding: 10px 0">
+    <div class="row valign-wrapper blue lighten-4" style="padding: 10px 0">
 <div class="col s10"><b>МОИ ВОПРОСЫ</b></div>
 <div class="col s2 right-align">
 <a ask class="btn-floating waves-effect waves-circle red z-depth-1"><i class="material-icons">message</i></a>
@@ -248,7 +248,7 @@ angular.module('ws')
     .directive('myMessages', function (DialogService, SessionManager, $stateParams, $rootScope) {
         return {
             template: `
-<div class="row valign-wrapper cyan lighten-3" style="padding: 10px 0" ng-show="messages">
+<div class="row valign-wrapper blue lighten-4" style="padding: 10px 0" ng-show="messages">
 <div class="col s10"><b>{{messages.caption | uppercase}}, {{messages.started | amUtc | amLocal | amDateFormat: 'LLL' }}</b></div>
 <div class="col s2 right-align">
 <a rename-dialog class="btn-floating waves-effect waves-circle green"><i class="material-icons">create</i></a>
@@ -356,7 +356,7 @@ angular.module('ws')
                $scope.person.birthday = new Date($scope.person.birthday);
            },
            template:`<div class="view-cntr">
-<div class="row valign-wrapper cyan lighten-3" style="padding: 10px 0">
+<div class="row valign-wrapper blue lighten-4" style="padding: 10px 0">
 <div class="col s12"><b>{{'настройки пользователя' | uppercase}}</b></div>
 <div class="col s2 right-align">
 <a style="visibility: hidden;" class="btn-floating waves-effect waves-circle green"><i class="material-icons">help_outline</i></a>

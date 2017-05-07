@@ -253,6 +253,19 @@ exports.people = function (req, res) { // получаем пользовате�
         })
 };
 
+exports.adm_people = function (req, res) { // получаем пользователей c вопросами и ответами
+    Person.findAll({
+        include:[{
+            model:Question
+        },{
+            model:Answer
+        }]
+    })
+        .then(function (results) {
+            res.send(results);
+        })
+};
+
 exports.test = function (req, res) {
     Question.findAll({
         // attributes: [[sequelize.fn('COUNT','id'), 'items']]

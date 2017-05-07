@@ -33,6 +33,8 @@ app.get(api_version + '/ratings/answers', routes.ratingsAnswers);
 app.get(api_version + '/ratings/people', routes.ratingsPeople);
 app.get(api_version + '/question/:id', routes.questionById);
 app.get(api_version + '/people', routes.people);
+app.get(api_version + '/admin/people', routes.adm_people);
+
 app.get(api_version + '/person/:id', routes.personById);
 
 app.get(api_version + '/test', routes.test);
