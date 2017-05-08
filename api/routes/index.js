@@ -374,6 +374,16 @@ exports.auth =function (req, res) { // авторизация пользоват
     })
 };
 
+exports.answers = function (req, res) {
+    Answer.findAll({
+      include: {
+          model: Person,
+          attributes: {exclude: ['login', 'password']}
+      }
+    }).then(function (results) {
+        res.send(results);
+    })
+};
 exports.createAnswer = function (req, res) { // создание ответа к вопросу
     Answer.create({
         body:req.body.body,
@@ -386,6 +396,7 @@ exports.createAnswer = function (req, res) { // создание ответа к
         console.log(error);
     })
 };
+
 exports.votePlus = function (req, res) { //голосуем за ответ в плюс
     Answer.update({
             mark: sequelize.literal("mark + 0.1")

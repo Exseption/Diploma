@@ -199,7 +199,9 @@
             })
             .state('sv_answers',{
                 url:'/supervisor/answers',
-                templateUrl:'components/supervisor/answers/answers.html',
+                template: `
+                <sv-answers></sv-answers>
+                `,
                 data: {
                     needAdmin: true
                 }

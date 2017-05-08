@@ -44,6 +44,7 @@ app.get(api_version + '/test', routes.test);
 app.post(api_version + '/search', routes.search);
 
 app.post(api_version + '/auth', routes.auth);
+app.get(api_version + '/answers', routes.answers);
 app.post(api_version + '/create/answer', routes.createAnswer);
 
 app.post(api_version + '/vote/plus', routes.votePlus);
@@ -60,7 +61,7 @@ app.delete(api_version + '/dialog/delete/:dialogId', routes.deleteDialog); // de
 app.post(api_version + '/create/question', routes.createQuestion);
 app.delete(api_version + '/delete/question/:id', routes.deleteQuestionById);
 app.delete(api_version + '/delete/person/:id', routes.deletePersonById);
-app.post(api_version + '/create/answer', routes.createAnswer);
+// app.post(api_version + '/create/answer', routes.createAnswer);
 app.post(api_version + '/create/person', routes.createPerson);
 
 app.get(api_version + '/opts/:userId', routes.getOpts);

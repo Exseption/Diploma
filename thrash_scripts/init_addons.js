@@ -14,7 +14,7 @@ const Person = sequelize.import('./models/person');
 const New = sequelize.import('./models/new');
 
 Person.hasMany(New, { foreignKey: 'author' });
-New.belongsTo(Person, { foreignKey:'author' })
+New.belongsTo(Person, { foreignKey:'author' });
 
 sequelize.sync().then(function (success) {
     New.create( {

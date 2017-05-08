@@ -24,6 +24,9 @@ angular.module('ws')
                 body: body,
                 author: author
             });
+        };
+        self.getAnswers = function () {
+            return Restangular.all('answers').getList();
         }
     })
     .component('answerLite', {

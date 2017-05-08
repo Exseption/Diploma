@@ -1,15 +1,81 @@
 angular.module('ws')
-    .directive('svPages', function () {
+    .directive('svAnswers', function (AnswerService) {
         return {
             template: `
+<page-struct-template>
+<title-here>
+Управление ответами
+</title-here>
+<content-here>
+<table class="highlight">
+        <thead>
+          <tr>
+              <th>#</th>
+              <th>Ответ</th>
+              <th>Оценка</th>
+              <th>Автор</th>
+              <th>Дата создания</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in answers">
+            <td>{{ $index + 1 }}</td>
+            <td style="max-width: 30vw">{{item.body}}</td>
+            <td>
+            {{item.mark}}
+            </td>
+            <td>{{item.person.name}} {{item.person.surname}}</td>
+            <td>{{item.created | amUtc | amLocal | amDateFormat: 'LLL'}}</td>
+          </tr>
+        </tbody>
+      </table>
+</content-here>
+</page-struct-template>
+`,
+            link: function (scope) {
+                AnswerService.getAnswers().then(function (answers) {
+                    scope.answers = answers;
+                })
+            }
+        }
+    })
+    .directive('pageStructTemplate', function () {
+        return {
+            transclude: {
+                title: 'titleHere',
+                content: 'contentHere'
+            }, template: `
             <div class="view-cntr">
           <div class="valign-wrapper">
                 <div class="col s12" style="text-transform: uppercase; font-weight: bolder; padding: 20px 0">
-                    Управление разделами и страницами
+                    <div ng-transclude="title"></div>
                 </div>
+            </div>
+            <div class="row">
+            <div class="col s12">
+            <div ng-transclude="content"></div>
+            </div>
+            </div>
           </div>
-          </div>
-            
+            `
+        }
+    })
+    .directive('svPages', function () {
+        return {
+            template: `
+<page-struct-template>
+<title-here>Управление разделами и страницами</title-here>
+<content-here>
+<div class="col s2">
+<div class="adm_pages">НОВОСТИ</div>
+<div class="adm_pages">СПРАВКА</div>
+<div class="adm_pages">О НАС</div>
+
+</div>
+<div class="col s10"></div>
+
+</content-here>
+</page-struct-template>
             `
         }
     })
@@ -22,36 +88,32 @@ angular.module('ws')
                     Настройки веб-сервиса
                 </div>
           </div>
-          
           <div class="row"><div class="col s12">
-            
-
 </div></div>
 </div>
             `,
             link: function (scope) {
-
             }
         }
     })
     .directive('svLibrary', function (LibraryService, $mdDialog) {
         return {
             template:`
-            <div class="adm_view_head" style="padding-top: 10px">
+            <div class="adm_view_head">
+            <div class="valign-wrapper">
+                <div class="col s12" style="text-transform: uppercase; font-weight: bolder; padding: 20px 0">
+                    Управление библиотекой
+                </div>
+            </div>
                             <a class="btn teal" ng-click="uploadBook()">Добавить книгу</a>
                             <a class="btn teal" ng-click="createCategory()">Добавить категорию</a>
             <div class="row" style="padding-top: 10px">
             <div class="col s12">
-</div>
-</div>
+            </div>
+            </div>
 </div>
             <div class="view-cntr">
-          <div class="valign-wrapper">
-                <div class="col s12" style="text-transform: uppercase; font-weight: bolder; padding: 20px 0">
-                    Управление библиотекой
-                </div>
-          </div>
-          <div class="row">
+              <div class="row">
             <div class="col s12">
                   <table class="highlight">
         <thead>
@@ -161,7 +223,6 @@ angular.module('ws')
   </form>
 </div>
 </div>
-
 `,
                         controller: function ($scope) {
                             $scope.cancel = function () {
@@ -182,15 +243,12 @@ angular.module('ws')
     .directive('svFeedback', function (FeedbackService) {
         return {
             template: `
-          <div class="view-cntr">
-          <div class="valign-wrapper">
-                <div class="col s12" style="text-transform: uppercase; font-weight: bolder; padding: 20px 0">
-                    Обратная связь
-                </div>
-          </div>
-          <div class="row">
-            <div class="col s12">
-            <table class="highlight">
+<page-struct-template>
+<title-here>
+Обратная связь
+</title-here>
+<content-here>
+<table class="highlight">
         <thead>
           <tr>
               <th>#</th>
@@ -208,9 +266,8 @@ angular.module('ws')
           </tr>
         </tbody>
       </table>
-</div>
-        </div>
-</div> 
+</content-here>
+</page-struct-template>
             `,
             link: function (scope) {
                 FeedbackService.getAll().then(function (feedback) {
@@ -240,23 +297,19 @@ angular.module('ws')
       </form>
                         </form>
                         </div>
-                        <!--<div class="col s2" style="margin-top: 4px"><a class="btn-floating" ng-click="create_new_user()"><i class="material-icons">person_add</i></a></div>-->
 </div>
                     </div>
                     <div class="col s6">
 </div>
                 </div>
             </div>
-</div>
+</div>           
             <div class="view-cntr">
             
             <div class="valign-wrapper">
                 <div class="col s12" style="text-transform: uppercase; font-weight: bolder; padding: 20px 0">
                     Обычные пользователи
                 </div>
-                <!--<div class="col s6 right-align">-->
-                    <!--<a class="btn-floating" ng-click="create_new_user()"><i class="material-icons">person_add</i> </a>-->
-                <!--</div>-->
             </div>
             
     <table class="highlight">
@@ -391,7 +444,12 @@ angular.module('ws')
     .directive('svQuestions', function (QuestionService) {
         return {
             template: `
-            <div class="view-cntr">
+
+<page-struct-template>
+<title-here>
+Управление вопросами
+</title-here>
+<content-here>
 <table class="highlight">
     <thead>
     <tr>
@@ -422,12 +480,9 @@ angular.module('ws')
     <div class="divider"></div>
     <div class="row right-align" style="padding: 10px 15px">
     </div>
-
-
-
-
-</div>
-            `,
+</content-here>
+</page-struct-template>
+`,
             link: function (scope) {
                 QuestionService.getAllQuestions().then(function (questions) {
                     scope.questions = questions;
