@@ -59,6 +59,11 @@ exports.feedback = function (req, res) {
       res.status(400).end('ERROR');
   })
 };
+exports.getAll = function (req, res) {
+    Feedback.findAll({}).then(function (feedback) {
+        res.send(feedback);
+    })
+}
 
 
 exports.save_user_details = function (req, res) {
@@ -366,7 +371,7 @@ exports.votePlus = function (req, res) { //голосуем за ответ в �
         res.send(result);
     });
     console.log('Need to update rating of user, huh')
-    //TODO select sum of user's marks and result set to rating, ok
+    //TODO select sum of user's marks and result set to rating
 };
 
 exports.voteMinus = function (req, res) { //голосуем за ответ в минус

@@ -204,9 +204,9 @@
                     needAdmin: true
                 }
             })
-            .state('sv_dialogs',{
-                url:'/supervisor/dialogs',
-                templateUrl:'components/supervisor/dialogs/dialogs.html',
+            .state('sv_feedback',{
+                url:'/supervisor/feedback',
+                template:`<sv-feedback></sv-feedback>`,
                 data: {
                     needAdmin: true
                 }
@@ -234,7 +234,7 @@
             })
             .state('sv_library',{
                 url:'/supervisor/library',
-                templateUrl:'components/supervisor/library/library.html',
+                template: `<sv-library></sv-library>`,
                 data: {
                     needAdmin: true
                 }

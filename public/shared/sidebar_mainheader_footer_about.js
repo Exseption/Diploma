@@ -66,7 +66,7 @@ angular.module('ws')
             <a class="valign-wrapper menu-btn" ui-sref="sv_answers" ui-sref-active="active"><i class="material-icons i-menu">message</i>Ответы</a>
             <a class="valign-wrapper menu-btn" ui-sref="sv_library" ui-sref-active="active"><i class="material-icons i-menu">library_books</i>Библиотека</a>
             <a class="valign-wrapper menu-btn" ui-sref="sv_pages" ui-sref-active="active"><i class="material-icons i-menu">view_headline</i>Страницы</a>
-            <a class="valign-wrapper menu-btn" ui-sref="sv_dialogs" ui-sref-active="active"><i class="material-icons i-menu">speaker_notes</i>Диалоги</a>
+            <a class="valign-wrapper menu-btn" ui-sref="sv_feedback" ui-sref-active="active"><i class="material-icons i-menu">speaker_notes</i>Обратная связь</a>
             <div class="divider"></div>
             <a class="valign-wrapper menu-btn" ui-sref="sv_settings" ui-sref-active="active"><i class="material-icons i-menu">settings</i>Настройки</a>
         </div>
@@ -171,6 +171,13 @@ angular.module('ws')
                 }
             }
         }
+    })
+
+    .service('FeedbackService', function (Restangular) {
+        let self = this;
+        self.getAll = function () {
+            return Restangular.all('feedback/all').getList();
+        };
     })
 
     .directive('archive', function (QuestionService) {

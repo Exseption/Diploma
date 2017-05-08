@@ -68,6 +68,8 @@ app.post(api_version + '/user/details', routes.save_user_details);
 
 
 app.post(api_version + '/feedback', routes.feedback);
+app.get(api_version + '/feedback/all', routes.getAll);
+
 app.get(api_version + '/archive', routes.archive);
 
 app.get(api_version + '/news/digest', routes.news_digest);

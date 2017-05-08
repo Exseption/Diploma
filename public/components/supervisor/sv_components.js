@@ -1,16 +1,228 @@
 angular.module('ws')
+    .directive('svLibrary', function (LibraryService, $mdDialog) {
+        return {
+            template:`
+            <div class="adm_view_head">
+            <fieldset>
+
+            <legend>Инструменты администратора</legend>
+                            <a class="btn teal" ng-click="uploadBook()">Добавить книгу</a>
+                            <a class="btn teal" ng-click="createCategory()">Добавить категорию</a>
+
+</fieldset>
+            <div class="row" style="padding-top: 10px">
+            <div class="col s12">
+</div>
+</div>
+</div>
+            <div class="view-cntr">
+          <div class="valign-wrapper">
+                <div class="col s12" style="text-transform: uppercase; font-weight: bolder; padding: 20px 0">
+                    Управление библиотекой
+                </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+                  <table class="highlight">
+        <thead>
+          <tr>
+              <th>#</th>
+              <th>Наименование</th>
+              <th>Категория</th>
+              <th>Ссылка</th>
+              <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="b in books">
+            <td>{{ $index + 1 }}</td>
+            <td>{{b.title}}</td>
+            <td>{{b.category}}</td>
+            <td>{{b.path}}</td>
+            <td><a ng-click="editBook(b)" class="you_may_click_here"><i class="material-icons fix_icons_align">library_books</i> </a></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+</div>
+          </div>
+            `,
+            link: function (scope) {
+                LibraryService.getBooks().then(function (books) {
+                    scope.books = books;
+                });
+                scope.createCategory = function () {
+                  //TODO cat
+                };
+                scope.editBook = function (book) {
+                    $mdDialog.show({
+                        template: `
+                    <div class="row" style="max-width: 40vw">
+                    <div class="col s12">
+                    <div class="section center-align form-title">Редактирование книги</div></div>
+                    <form class="col s12">
+                    
+                    <label for="title">Название</label>                  
+                    <input ng-value="book.title" type="text" class="validate" id="title">
+                    
+                    <label for="path">Путь</label>
+                    <input ng-value="book.path" type="text" class="validate" id="path">
+                    
+                    <label for="cat">Категория</label>
+                    <input ng-value="book.category" type="text" class="validate" id="cat"> 
+
+                    <label for="auth">Автор</label>
+                    <input ng-value="book.author" type="text" class="validate" id="auth"> 
+                    
+                    <div class="right-align">
+                    <a class="btn">Отмена</a>
+                    <a class="btn">Сохранить</a>
+</div>
+                    
+</form>
+</div>
+                        `,
+                        controller: function ($scope) {
+                            $scope.book = book;
+                        },
+                        clickOutsideToClose: true
+                    })
+                };
+                scope.uploadBook = function () {
+                    $mdDialog.show({
+                        template: `
+<div class="row" style="min-width: 30vw">
+<div class="col s12">
+<div class="section center-align form-title">
+Добавить новую книгу
+</div>
+  <form action="#">
+    <div class="input-field">
+    <input type="text" id="title">
+    <label for="title">Название книги</label>
+</div>
+<div class="input-field">
+    <input type="text" id="cat">
+    <label for="cat">Категория</label>
+</div>
+<div class="input-field">
+    <input type="text" id="auth">
+    <label for="auth">Автор (если есть)</label>
+</div>
+    <div></div>
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>File</span>
+        <input type="file">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+    <div class="section right-align">
+    <a class="btn" ng-click="cancel()">Отмена</a>
+    <a class="btn" ng-click="upload()">ОК</a>
+</div>
+  </form>
+</div>
+</div>
+
+`,
+                        controller: function ($scope) {
+                            $scope.cancel = function () {
+                                $mdDialog.hide();
+                            };
+                            $scope.upload = function () {
+                                //TODO upload
+                                alert('TODO!')
+                            }
+                        },
+                        clickOutsideToClose: true
+                    })
+                }
+            }
+        }
+    })
+
+    .directive('svFeedback', function (FeedbackService) {
+        return {
+            template: `
+          <div class="view-cntr">
+          <div class="valign-wrapper">
+                <div class="col s12" style="text-transform: uppercase; font-weight: bolder; padding: 20px 0">
+                    Обратная связь
+                </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+            <table class="highlight">
+        <thead>
+          <tr>
+              <th>#</th>
+              <th>Содержимое отзыва</th>
+              <th>Ник автора</th>
+              <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="f in feedback">
+            <td>{{$index + 1}}</td>
+            <td>{{f.body}}</td>
+            <td>{{f.name}}</td>
+            <td><a class="you_may_click_here" ng-click="delete_feedback(f)"><i class="material-icons fix_icons_align small">delete_forever</i></a></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+        </div>
+</div> 
+            `,
+            link: function (scope) {
+                FeedbackService.getAll().then(function (feedback) {
+                    scope.feedback = feedback;
+                });
+                scope.delete_feedback = function (feedback) {
+                    //TODO delete fb
+                }
+            }
+        }
+    })
     .directive('svUsers', function (AdminService, $mdDialog, SessionManager) {
         return {
             template:`
+            <div class="adm_view_head">
+            <div class="row" style="margin-top: 10px; margin-bottom: 0">
+                <div class="col s12">
+                    <div class="col s6">
+                        <div>
+                        <div class="col s12">
+                        <form >
+                         <form>
+        <div class="input-field">
+          <input id="search" type="search" required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        </div>
+      </form>
+                        </form>
+                        </div>
+                        <!--<div class="col s2" style="margin-top: 4px"><a class="btn-floating" ng-click="create_new_user()"><i class="material-icons">person_add</i></a></div>-->
+</div>
+                    </div>
+                    <div class="col s6">
+</div>
+                </div>
+            </div>
+</div>
             <div class="view-cntr">
-            <div class="valign-wrapper">
             
-                <div class="col s6" style="text-transform: uppercase; font-weight: bolder; padding: 20px 0">
+            <div class="valign-wrapper">
+                <div class="col s12" style="text-transform: uppercase; font-weight: bolder; padding: 20px 0">
                     Обычные пользователи
                 </div>
-                <div class="col s6 right-align">
-                    <a class="btn-floating" ng-click="create_new_user()"><i class="material-icons">person_add</i> </a>
-                </div>
+                <!--<div class="col s6 right-align">-->
+                    <!--<a class="btn-floating" ng-click="create_new_user()"><i class="material-icons">person_add</i> </a>-->
+                <!--</div>-->
             </div>
             
     <table class="highlight">
@@ -144,7 +356,40 @@ angular.module('ws')
     })
     .directive('svQuestions', function (QuestionService) {
         return {
-            templateUrl:'components/supervisor/questions/questions.html',
+            template: `
+            <div class="view-cntr">
+<table class="highlight">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Заголовок вопроса</th>
+        <th>Автор</th>
+        <th>Свойства</th>
+        <th>Выбрать</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="q in questions">
+        <td>{{$index + 1}}.</td>
+        <td ng-bind="q.title"></td>
+        <td>{{q.person.name}} {{q.person.surname}}</td>
+        <td><a><i class="material-icons">description</i></a></td>
+        <td>
+           <input type="checkbox"/><label></label>
+        </td>
+    </tr>
+    </tbody>
+</table>
+    <div class="divider"></div>
+    <div class="row right-align" style="padding: 10px 15px">
+        <a class="btn blue darken-2" disabled="">Удалить</a>
+    </div>
+
+
+
+
+</div>
+            `,
             link: function (scope) {
                 QuestionService.getQuestions().then(function (questions) {
                     scope.questions = questions;
