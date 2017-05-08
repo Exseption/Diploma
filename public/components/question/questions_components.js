@@ -210,6 +210,9 @@ angular.module('ws')
         self.getQuestions = function () { //получаем все вопросы
             return Restangular.all('questions').getList();
         };
+        self.getAllQuestions = function () { //получаем все вопросы
+            return Restangular.all('questions/all').getList();
+        };
         self.digest_questions = function () {
             return Restangular.all('questions/digest').getList();
         };

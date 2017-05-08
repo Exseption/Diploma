@@ -64,19 +64,16 @@ angular.module('ws')
             <a class="valign-wrapper menu-btn" ui-sref="sv_users" ui-sref-active="active"><i class="material-icons i-menu">supervisor_account</i>Пользователи</a>
             <a class="valign-wrapper menu-btn" ui-sref="sv_questions" ui-sref-active="active"><i class="material-icons i-menu">chat_bubble_outline</i>Вопросы</a>
             <a class="valign-wrapper menu-btn" ui-sref="sv_answers" ui-sref-active="active"><i class="material-icons i-menu">message</i>Ответы</a>
+            <div class="divider"></div>
             <a class="valign-wrapper menu-btn" ui-sref="sv_library" ui-sref-active="active"><i class="material-icons i-menu">library_books</i>Библиотека</a>
-            <a class="valign-wrapper menu-btn" ui-sref="sv_pages" ui-sref-active="active"><i class="material-icons i-menu">view_headline</i>Страницы</a>
+            <a class="valign-wrapper menu-btn" ui-sref="sv_pages" ui-sref-active="active"><i class="material-icons i-menu">view_headline</i>Страницы и разделы</a>
             <a class="valign-wrapper menu-btn" ui-sref="sv_feedback" ui-sref-active="active"><i class="material-icons i-menu">speaker_notes</i>Обратная связь</a>
             <div class="divider"></div>
             <a class="valign-wrapper menu-btn" ui-sref="sv_settings" ui-sref-active="active"><i class="material-icons i-menu">settings</i>Настройки</a>
         </div>
     </div>
 </div>
-
 <div class="sidebar-container">
-    <!--<div class="sb-title">-->
-        <!--МЕНЮ-->
-    <!--</div>-->
     <div class="sb-body">
         <div class="row" style="margin-bottom: 0">
             <a class="valign-wrapper menu-btn" ui-sref-active="active" ui-sref="news"><i class="material-icons i-menu">fiber_new</i>Новости</a>
@@ -85,13 +82,9 @@ angular.module('ws')
         </div>
     </div>
 </div>
-
 `
         }
     })
-
-
-
     .directive('mainHeader',function (SessionManager, $rootScope) {
         return {
             template: `<nav class="nav-extended mb">
@@ -125,7 +118,6 @@ angular.module('ws')
                         $rootScope.$on('authenticated', function (event, data) {
                             console.log(data)
                         })
-
                     }
                 }
             }
@@ -172,14 +164,12 @@ angular.module('ws')
             }
         }
     })
-
     .service('FeedbackService', function (Restangular) {
         let self = this;
         self.getAll = function () {
             return Restangular.all('feedback/all').getList();
         };
     })
-
     .directive('archive', function (QuestionService) {
         return {
             template: `
@@ -233,7 +223,6 @@ angular.module('ws')
             }
         }
     })
-
     .directive('about', function () {
         return {
             template: `<div class="view-cntr" style="min-height: 70vh">

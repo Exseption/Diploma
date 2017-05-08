@@ -1,15 +1,45 @@
 angular.module('ws')
+    .directive('svPages', function () {
+        return {
+            template: `
+            <div class="view-cntr">
+          <div class="valign-wrapper">
+                <div class="col s12" style="text-transform: uppercase; font-weight: bolder; padding: 20px 0">
+                    Управление разделами и страницами
+                </div>
+          </div>
+          </div>
+            
+            `
+        }
+    })
+    .directive('svSettings', function () {
+        return {
+            template: `
+            <div class="view-cntr">
+            <div class="valign-wrapper">
+                <div class="col s12" style="text-transform: uppercase; font-weight: bolder; padding: 20px 0">
+                    Настройки веб-сервиса
+                </div>
+          </div>
+          
+          <div class="row"><div class="col s12">
+            
+
+</div></div>
+</div>
+            `,
+            link: function (scope) {
+
+            }
+        }
+    })
     .directive('svLibrary', function (LibraryService, $mdDialog) {
         return {
             template:`
-            <div class="adm_view_head">
-            <fieldset>
-
-            <legend>Инструменты администратора</legend>
+            <div class="adm_view_head" style="padding-top: 10px">
                             <a class="btn teal" ng-click="uploadBook()">Добавить книгу</a>
                             <a class="btn teal" ng-click="createCategory()">Добавить категорию</a>
-
-</fieldset>
             <div class="row" style="padding-top: 10px">
             <div class="col s12">
 </div>
@@ -38,7 +68,11 @@ angular.module('ws')
           <tr ng-repeat="b in books">
             <td>{{ $index + 1 }}</td>
             <td>{{b.title}}</td>
-            <td>{{b.category}}</td>
+            <td>
+            
+            {{b.category}}
+            
+            </td>
             <td>{{b.path}}</td>
             <td><a ng-click="editBook(b)" class="you_may_click_here"><i class="material-icons fix_icons_align">library_books</i> </a></td>
           </tr>
@@ -363,26 +397,30 @@ angular.module('ws')
     <tr>
         <th>#</th>
         <th>Заголовок вопроса</th>
-        <th>Автор</th>
+        <th>Автор</th>        
+        <th>Цена, руб.</th>        
+        <th>Ответов</th>        
+        <th>Закрыт</th>
         <th>Свойства</th>
-        <th>Выбрать</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="q in questions">
         <td>{{$index + 1}}.</td>
-        <td ng-bind="q.title"></td>
-        <td>{{q.person.name}} {{q.person.surname}}</td>
-        <td><a><i class="material-icons">description</i></a></td>
+        <td class="you_may_click_here" ng-bind="q.title" ui-sref="question({id: q.id})"></td>
+        <td class="you_may_click_here" ui-sref="person({id: q.id})">{{q.person.name}} {{q.person.surname}}</td>
+        <td>{{q.price}}</td>
+        <td>{{q.answers.length}}</td>
         <td>
-           <input type="checkbox"/><label></label>
+           <input type="checkbox" id="cs_{{$index}}" ng-checked="q.closed" class="filled-in"/>
+           <label for="cs_{{$index}}"></label>
         </td>
+        <td><a class="you_may_click_here"><i class="material-icons">description</i></a></td>
     </tr>
     </tbody>
 </table>
     <div class="divider"></div>
     <div class="row right-align" style="padding: 10px 15px">
-        <a class="btn blue darken-2" disabled="">Удалить</a>
     </div>
 
 
@@ -391,7 +429,7 @@ angular.module('ws')
 </div>
             `,
             link: function (scope) {
-                QuestionService.getQuestions().then(function (questions) {
+                QuestionService.getAllQuestions().then(function (questions) {
                     scope.questions = questions;
                 });
                 scope.delete_this = function (question) {

@@ -37,6 +37,17 @@ Person.hasMany(New,{foreignKey: 'author'});
 
 const Feedback = sequelize.import('../db/models/feedback');
 
+var CryptoJS = require("crypto-js");
+
+// Encrypt
+var ciphertext = CryptoJS.AES.encrypt('my message', 'secret key 123');
+
+// Decrypt
+var bytes  = CryptoJS.AES.decrypt(ciphertext.toString(), 'secret key 123');
+var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+
+console.log(plaintext);
+
 
 exports.getOpts = function (req, res) {
   Option.findOne({
@@ -147,7 +158,7 @@ exports.myQuestions = function (req, res) {
     })
 };
 
-exports.questions = function (req, res) { // получаем вопросы
+exports.questions = function (req, res) { // получаем вопросы (незакрытые)
     Question.findAll(
         {
             where:{
@@ -166,6 +177,24 @@ exports.questions = function (req, res) { // получаем вопросы
         res.json(results);
     })
 };
+
+exports.all_questions = function (req, res) { // получаем вопросы
+    Question.findAll(
+        {
+            order: [['created', 'DESC']],
+            include: [{
+                model: Answer
+            },
+                {
+                    model: Person,
+                    attributes: ['id', 'name', 'surname']
+                }
+            ]
+        }).then(function (results) {
+        res.json(results);
+    })
+};
+
 
 exports.digest_questions = function (req, res) { // получаем вопросы
     Question.findAll(
@@ -549,7 +578,7 @@ exports.createAnswer = function (req, res) { //создаем ответ
 exports.createPerson = function (req, res) { // создаем нового пользователя
     Person.create({
         login:req.body.login,
-        password:req.body.password,
+        password: req.body.password,
         name:req.body.name,
         surname:req.body.surname,
         email: req.body.email,

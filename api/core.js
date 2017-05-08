@@ -27,6 +27,8 @@ app.get(api_version + '/questions/author/:id', routes.myQuestions);
 app.get(api_version + '/library', routes.library);
 
 app.get(api_version + '/questions', routes.questions);
+app.get(api_version + '/questions/all', routes.all_questions);
+
 app.get(api_version + '/questions/digest', routes.digest_questions);
 
 
@@ -66,7 +68,6 @@ app.post(api_version + '/opts/save_changes', routes.save_opts_changes);
 app.post(api_version + '/question/save_changes', routes.save_question_changes);
 app.post(api_version + '/user/details', routes.save_user_details);
 
-
 app.post(api_version + '/feedback', routes.feedback);
 app.get(api_version + '/feedback/all', routes.getAll);
 
@@ -74,6 +75,7 @@ app.get(api_version + '/archive', routes.archive);
 
 app.get(api_version + '/news/digest', routes.news_digest);
 app.get(api_version + '/news', routes.news);
+
 
 app.use(function(req, res, next) {
   const err = new Error('Not Found');

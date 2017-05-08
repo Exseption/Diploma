@@ -220,14 +220,14 @@
             })
             .state('sv_settings',{
                 url:'/supervisor/settings',
-                templateUrl:'components/supervisor/settings/settings.html',
+                template: `<sv-settings></sv-settings>`,
                 data: {
                     needAdmin: true
                 }
             })
             .state('sv_pages',{
                 url:'/supervisor/pages',
-                templateUrl:'components/supervisor/pages/pages.html',
+                template:`<sv-pages></sv-pages>`,
                 data: {
                     needAdmin: true
                 }
