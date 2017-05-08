@@ -92,7 +92,6 @@ angular.module('ws')
         <div class="container">
             <a href="#" class="brand-logo nav-btns">ВДИПЛОМЕ</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a class="nav-btns" ui-sref="search">Поиск</a></li>
                 <li><a class="nav-btns" ask>Задать вопрос</a></li>
                 <li><a class="nav-btns" login>Войти</a></li>
                 <li><a class="nav-btns" reg>Регистрация</a></li>
