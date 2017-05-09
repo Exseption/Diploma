@@ -151,11 +151,6 @@
                 url:'/my_questions',
                 template: '<my-questions></my-questions>'
             })
-            .state('my_files',{
-                url:'/my_files',
-                templateUrl:'components/user/my_files/my_files.html'
-            })
-            //TODO
             .state('my_dialogs', {
                 url:'/my_dialogs',
                 views: {
@@ -234,6 +229,24 @@
                     needAdmin: true
                 }
             })
+
+            .state('sv_pages.adm_news',{
+                url:'/news',
+                template: `<adm-news-create></adm-news-create>`
+            })
+            .state('sv_pages.adm_help',{
+                url: '/help',
+                template: `
+                todo 2
+                `
+            })
+            .state('sv_pages.adm_about',{
+                url: '/about',
+                template: `
+                <about-us></about-us>
+                `
+            })
+
             .state('sv_library',{
                 url:'/supervisor/library',
                 template: `<sv-library></sv-library>`,

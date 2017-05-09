@@ -33,7 +33,6 @@ app.get(api_version + '/questions/digest', routes.digest_questions);
 app.post(api_version + '/question/close', routes.closeQuestion);
 app.post(api_version + '/question/open', routes.openQuestion);
 
-
 app.get(api_version + '/ratings/answers', routes.ratingsAnswers);
 app.get(api_version + '/ratings/people', routes.ratingsPeople);
 app.get(api_version + '/question/:id', routes.questionById);
@@ -79,7 +78,23 @@ app.get(api_version + '/archive', routes.archive);
 
 app.get(api_version + '/news/digest', routes.news_digest);
 app.get(api_version + '/news', routes.news);
+app.post(api_version + '/new', routes.createNew);
+app.post(api_version + '/new/update', routes.updateNew);
+app.delete(api_version + '/new/:id', routes.deleteNew);
 
+// читаем данные о нас
+const fs = require('fs');
+app.get(api_version + '/about', function (req, res) {
+    res.sendfile('./data/about.txt', undefined, function (err) {
+        if (err) throw err;
+    });
+});
+
+app.post(api_version + '/about', function (req, res) {
+    fs.writeFile("./data/about.txt", req.body.data, function(err) {
+        res.status(200).end('OK');
+    });
+});
 
 app.use(function(req, res, next) {
   const err = new Error('Not Found');

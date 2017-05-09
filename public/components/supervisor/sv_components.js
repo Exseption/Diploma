@@ -69,16 +69,208 @@ angular.module('ws')
 <title-here>Управление разделами и страницами</title-here>
 <content-here>
 <div class="col s2">
-<div class="adm_pages">НОВОСТИ</div>
-<div class="adm_pages">СПРАВКА</div>
-<div class="adm_pages">О НАС</div>
-
+<a class="adm_pages" ui-sref="sv_pages.adm_news" ui-sref-active="active">НОВОСТИ</a>
+<a class="adm_pages" ui-sref="sv_pages.adm_help" ui-sref-active="active">СПРАВКА</a>
+<a class="adm_pages" ui-sref="sv_pages.adm_about" ui-sref-active="active">О НАС</a>
 </div>
-<div class="col s10"></div>
-
+<div class="col s10">
+        <div ui-view></div>
+</div>
 </content-here>
 </page-struct-template>
-            `
+`
+        }
+    })
+    .directive('about', function (Restangular) {
+        return {
+            template: `<div class="view-cntr" style="min-height: 70vh">
+    <div class="row">
+        <div style="margin-bottom: 20px; padding: 10px 15px;">
+            <div class="center-align"><h5 ng-bind="title"></h5></div>
+            <div ng-bind="about" class="section"></div>
+            <div class="divider"></div>
+            <h6 style="font-weight: bolder">Наши контакты</h6>
+            <div ng-bind-html="contacts"></div>
+        </div>
+    </div>
+</div>`,
+            link: function (scope) {
+                Restangular.all('about').get().then(function (data) {
+                   // scope.data = data;
+                    console.log(data)
+                });
+
+                scope.title = 'Добро пожаловать на веб-сервис! Здесь мы можете найти ответы на интересующие вас правовые вопросы!';
+                scope.about = 'Данный проект является выпускной квалификационной работой студента Физико-математического факультета БГПУ г. Благовещенск в 2017 году Налимова Игоря.';
+                scope.contacts = 'brain5ur9ery@gmail.com';
+            }
+        }
+    })
+    .directive('aboutUs', function (Restangular) {
+        return {
+            template: `
+            <div class="section">
+                <div class="row">
+                    <div class="col s12">
+                        <form>
+                        <h5>Приветствие и текст</h5>
+                        <div class="input-field">
+                            <textarea id="title" class="materialize-textarea" ng-model="hello"></textarea>
+                            <label for="title">Заголовок, приветствие</label>            
+                        </div>
+                        <div class="input-field">
+                            <textarea id="about" class="materialize-textarea" ng-model="about"></textarea>
+                            <label for="about">Общий текст о веб-сервисе</label>            
+                        </div>
+                        <h5>Контакты</h5>
+                        <div class="input-field">
+                            <textarea id="developer" class="materialize-textarea" ng-model="developer"></textarea>
+                            <label for="developer">ФИО разработчика</label>            
+                        </div>
+                        <div class="input-field">
+                            <textarea id="contacts" class="materialize-textarea" ng-model="link"></textarea>
+                            <label for="contacts">Ссылка на github, VK и др</label>            
+                        </div>
+                        <div class="right-align">
+                        <input type="button" class="btn" value="Сохранить" ng-click="save()">
+</div>
+            </form>
+        </div>
+    </div>
+</div>
+            `,
+            link: function (scope, elem) {
+                // Restangular.all('about').get().then(function (data) {
+                //     scope.data = data;
+                // });
+                scope.save = function () {
+                    Restangular.all('about').post({
+                        data: scope.about
+                    }).then(function (results) {
+                        Materialize.toast('Сохранено!', 2000);
+                    }, function(err){
+                        Materialize.toast('Ошибка!', 2000);
+                    })
+                }
+            }
+        }
+    })
+    .directive('admNewsCreate', function (Restangular, SessionManager, $mdDialog, $rootScope) {
+        return {
+            template: `
+            <div class="section">
+                    <div class="row">
+                    <div class="col s12">
+                    <h5>Создание новости</h5>
+                    <form name="FormNewCreate">
+                    <div class="input-field">
+                    <input class="validate" id="title" ng-model="title" type="text" required>
+                    <label for="title">Заголовок новости</label>
+</div>
+<div class="input-field">
+<textarea class="materialize-textarea validate" id="body" ng-model="body" required></textarea>
+<label for="body">Содержимое новости</label>
+</div>
+<div class="right-align">
+<a class="btn" ng-click="publish()" type="submit" ng-disabled="FormNewCreate.$invalid">Опубликовать</a>
+</div>
+</form>
+<div class="section">
+<div ng-repeat="item in news" class=" blue-grey lighten-5"  style="margin: 10px 0; padding: 10px">
+<h6 style="font-size: larger; font-weight: 500">{{item.title}}
+</h6>
+<span>Дата создания: {{item.created | amUtc | amLocal | amDateFormat: 'LLL'}}</span>
+<a ng-click="deleteNew(item)" class="you_may_click_here"><i class="material-icons fix_icons_align">delete</i></a>
+<a ng-click="editNew(item)" class="you_may_click_here"><i class="material-icons fix_icons_align">edit</i></a>
+<blockquote>{{item.body}}</blockquote>
+</div>
+</div>
+</div>
+                    </div>
+                    </div>
+            `,
+            link: function (scope) {
+                scope.deleteNew = function (item) {
+                    $mdDialog.show(
+                        $mdDialog.confirm()
+                            .title('Удаление новости')
+                            .textContent('Вы действительно хотите удалить эту новость?')
+                            .ok('ОК')
+                            .cancel('Отмена')
+                    ).then(function () {
+                        Restangular.one('new', item.id).remove().then(function (results) {
+                            Materialize.toast('Новость удалена!', 2000);
+                            $rootScope.$emit('new_deleted', undefined);
+                        });
+                    },function () {
+                        // canceled
+                    });
+
+                };
+                scope.editNew = function (item) {
+                    $mdDialog.show({
+                        template: `
+                        <div class="row" style="min-width: 30vw">
+                        <div class="col s12">
+                        <div class="form-title section center-align">Редактирование новости</div>
+                        <label for="title">Заголовок новости</label>
+                        <input type="text" id="title" ng-model="title" ng-value="new.title">
+                        <label for="body">Содержимое новости</label>
+                        <input type="text" ng-model="body" ng-value="new.body" id="body">
+                        <div class="right-align">
+                            <a class="btn" ng-click="cancel()">Отмена</a>
+                            <a class="btn" ng-click="save()">Сохранить</a>
+                        </div>
+                        </div>
+                        </div>
+                        `,
+                        controller: function ($scope) {
+                            $scope.new = item;
+                            $scope.cancel = function () {
+                                $mdDialog.hide();
+                            };
+                            $scope.save = function () {
+                                Restangular.all('new/update').post({
+                                    title: $scope.title,
+                                    body: $scope.body,
+                                    id: item.id
+                                }).then(function (results) {
+                                    Materialize.toast('Новость обновлена', 2000);
+                                    $mdDialog.hide();
+                                    $rootScope.$emit('new_updated', undefined);
+                                })
+                            }
+                        },
+                        clickOutsideToClose: true
+                    })
+                };
+                function load() {
+                    Restangular.all('news').getList().then(function (news) {
+                        scope.news = news;
+                    });
+                }
+                load();
+
+                $rootScope.$on('new_updated', function (event, data) {
+                    load();
+                });
+
+                $rootScope.$on('new_deleted', function (event, data) {
+                    load();
+                });
+                let author = SessionManager.person.id;
+                scope.publish = function () {
+                    Restangular.all('new').post({
+                        title: scope.title,
+                        body: scope.body,
+                        author: author,
+                        created: new Date()
+                    }).then(function (results) {
+                        Materialize.toast('Новость создана');
+                        [scope.title, scope.body] = '';
+                    })
+                }
+            }
         }
     })
     .directive('svSettings', function () {

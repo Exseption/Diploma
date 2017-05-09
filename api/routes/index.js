@@ -37,16 +37,14 @@ Person.hasMany(New,{foreignKey: 'author'});
 
 const Feedback = sequelize.import('../db/models/feedback');
 
+// шифрование на стороне сервера
 var CryptoJS = require("crypto-js");
-
 // Encrypt
 var ciphertext = CryptoJS.AES.encrypt('my message', 'secret key 123');
-
 // Decrypt
 var bytes  = CryptoJS.AES.decrypt(ciphertext.toString(), 'secret key 123');
 var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-
-console.log(plaintext);
+//console.log(plaintext);
 
 
 exports.getOpts = function (req, res) {
@@ -451,9 +449,42 @@ exports.news_digest = function (req, res) {
  })
 };
 exports.news = function (req, res) {
-  New.findAll({}).then(function (results) {
+  New.findAll({
+      order: [['created', 'DESC']]
+  }).then(function (results) {
       res.send(results);
   })
+};
+exports.createNew = function (req, res) {
+    New.create({
+        title: req.body.title,
+        body: req.body.body,
+        author: req.body.author
+    }).then(function (results) {
+        res.send(results);
+    })
+};
+exports.updateNew = function (req, res) {
+  New.update({
+      body: req.body.body,
+      title: req.body.title,
+
+  }, {
+      where: {
+          id: req.body.id
+      }
+  }).then(function (results) {
+      res.send(results);
+  })
+};
+exports.deleteNew = function (req, res) {
+    New.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(function (results) {
+        res.status(200).end('OK');
+    })
 };
 exports.archive = function (req, res) {
     Question.findAll({
