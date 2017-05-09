@@ -152,10 +152,7 @@ angular.module('ws')
                         message: scope._fb
                     }).then(function (success) {
                         Materialize.toast('Спасибо за ваше сообщение! Ваш отзыв очень важен для нас!', 3000);
-                        console.log(success);
-                        scope._name = '';
-                        scope._fb = '';
-                        console.log(element);
+                        [scope._name, scope._fb] = '';
                     })
                 }
             }

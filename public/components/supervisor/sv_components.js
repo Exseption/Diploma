@@ -97,9 +97,7 @@ angular.module('ws')
             link: function (scope) {
                 Restangular.all('about').get().then(function (data) {
                    // scope.data = data;
-                    console.log(data)
                 });
-
                 scope.title = 'Добро пожаловать на веб-сервис! Здесь мы можете найти ответы на интересующие вас правовые вопросы!';
                 scope.about = 'Данный проект является выпускной квалификационной работой студента Физико-математического факультета БГПУ г. Благовещенск в 2017 году Налимова Игоря.';
                 scope.contacts = 'brain5ur9ery@gmail.com';
@@ -138,7 +136,7 @@ angular.module('ws')
         </div>
     </div>
 </div>
-            `,
+`,
             link: function (scope, elem) {
                 // Restangular.all('about').get().then(function (data) {
                 //     scope.data = data;

@@ -85,8 +85,12 @@ app.delete(api_version + '/new/:id', routes.deleteNew);
 // читаем данные о нас
 const fs = require('fs');
 app.get(api_version + '/about', function (req, res) {
-    res.sendfile('./data/about.txt', undefined, function (err) {
-        if (err) throw err;
+    fs.readFile('./data/about.txt','utf8', function (err, data) {
+        if (err) {
+            throw  err;
+        }
+        console.log(data);
+        res.send(req)
     });
 });
 
