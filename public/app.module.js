@@ -107,7 +107,7 @@
             })
             .state('questions', {
                 url: '/questions',
-                template: `
+                template: `;
                 <questions-all></questions-all>
                 `
             })

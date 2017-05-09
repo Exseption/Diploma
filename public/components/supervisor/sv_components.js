@@ -15,6 +15,7 @@ angular.module('ws')
               <th>Оценка</th>
               <th>Автор</th>
               <th>Дата создания</th>
+              <th>Блокировка</th>
           </tr>
         </thead>
         <tbody>
@@ -26,6 +27,7 @@ angular.module('ws')
             </td>
             <td>{{item.person.name}} {{item.person.surname}}</td>
             <td>{{item.created | amUtc | amLocal | amDateFormat: 'LLL'}}</td>
+            <td class="center-align"><input type="checkbox" class="filled-in" ng-checked="item.blocked" id="block{{$index}}"><label for="block{{$index}}"></label> </td>
           </tr>
         </tbody>
       </table>
@@ -240,7 +242,7 @@ angular.module('ws')
         }
     })
 
-    .directive('svFeedback', function (FeedbackService) {
+    .directive('svFeedback', function (FeedbackService, $mdDialog) {
         return {
             template: `
 <page-struct-template>
@@ -270,11 +272,28 @@ angular.module('ws')
 </page-struct-template>
             `,
             link: function (scope) {
-                FeedbackService.getAll().then(function (feedback) {
-                    scope.feedback = feedback;
-                });
-                scope.delete_feedback = function (feedback) {
-                    //TODO delete fb
+                function load() {
+                    return FeedbackService.getAll().then(function (feedback) {
+                        scope.feedback = feedback;
+                    });
+                }
+                load();
+                scope.delete_feedback = function (f) {
+                    $mdDialog.show(
+                        $mdDialog.confirm()
+                            .title('Удаление отзыва')
+                            .textContent('Вы действительно хотите удалить этот отзыв?')
+                            .ok('ОК')
+                            .cancel('Отмена')
+                    ).then(function () {
+                        FeedbackService.deleteFeedback(f.id).then(function (results) {
+                            Materialize.toast('Отзыв успешно удален!', 2000);
+                            let index = scope.feedback.indexOf(f);
+                            scope.feedback.splice(index, 1);
+                        })
+                    }, function () {
+                        // cancel
+                    })
                 }
             }
         }
@@ -285,9 +304,11 @@ angular.module('ws')
             <div class="adm_view_head">
             <div class="row" style="margin-top: 10px; margin-bottom: 0">
                 <div class="col s12">
+                <div style="text-transform: uppercase; font-weight: bolder">УПРАВЛЕНИЕ ПОЛЬЗОВАТЕЛЯМИ</div>
                     <div class="col s6">
                         <div>
                         <div class="col s12">
+                        
                         <form >
                          <form>
         <div class="input-field">
@@ -403,6 +424,15 @@ angular.module('ws')
             <input id="telephone" ng-value="user.telephone" required class="validate" type="text"/>
             <label for="date">Дата рождения</label>
             <input type="date" class="datepicker validate" ng-model="user.birthday" required>
+            <label for="login">Логин</label>
+            <input id="login" ng-value="user.login" required class="validate" type="text"/>
+            <div class="col s8">
+            <label for="pwd">Пароль</label>
+                <input id="pwd" ng-value="user.password" ng-model="pwd" required class="validate" type="password"/>
+</div>
+            <div style="padding-top: 30px" class="col s4">
+            <a class="you_may_click_here" show-pwd>Показать пароль</a>
+</div>
                     </fieldset>
         </div>
         <div class="col s6">
@@ -441,6 +471,24 @@ angular.module('ws')
             }
         }
     })
+    .directive('showPwd', function () {
+        return {
+            link: function (scope, elem) {
+                let shown = false
+                elem.on('click', function () {
+                    if (!shown) {
+                        angular.element(document.getElementById('pwd')).attr('type', 'text');
+                        elem.html('Скрыть пароль');
+                        shown = true;
+                    } else {
+                        angular.element(document.getElementById('pwd')).attr('type', 'password');
+                        elem.html('Показать пароль');
+                        shown = false;
+                    }
+                })
+            }
+        }
+    })
     .directive('svQuestions', function (QuestionService) {
         return {
             template: `
@@ -454,6 +502,7 @@ angular.module('ws')
     <thead>
     <tr>
         <th>#</th>
+        <th>ID</th>
         <th>Заголовок вопроса</th>
         <th>Автор</th>        
         <th>Цена, руб.</th>        
@@ -465,12 +514,13 @@ angular.module('ws')
     <tbody>
     <tr ng-repeat="q in questions">
         <td>{{$index + 1}}.</td>
+        <td>{{q.id}}.</td>
         <td class="you_may_click_here" ng-bind="q.title" ui-sref="question({id: q.id})"></td>
         <td class="you_may_click_here" ui-sref="person({id: q.id})">{{q.person.name}} {{q.person.surname}}</td>
         <td>{{q.price}}</td>
         <td>{{q.answers.length}}</td>
         <td>
-           <input type="checkbox" id="cs_{{$index}}" ng-checked="q.closed" class="filled-in"/>
+           <input type="checkbox" id="cs_{{$index}}" ng-checked="q.closed" class="filled-in" close-question="{{q.id}}"/>
            <label for="cs_{{$index}}"></label>
         </td>
         <td><a class="you_may_click_here"><i class="material-icons">description</i></a></td>
@@ -490,6 +540,32 @@ angular.module('ws')
                 scope.delete_this = function (question) {
                     alert(question);
                 }
+            }
+        }
+    })
+    .directive('closeQuestion', function (Restangular) {
+        return {
+            link: function (scope, element, attrs) {
+                let questionId = attrs.closeQuestion;
+                element.on('click', function () {
+                    if (element.attr('checked')) {
+                        // open question
+                        Restangular.all('question/open').post({
+                            id: questionId
+                        }).then(function (results) {
+                            Materialize.toast('Вопрос открыт для просмотра!', 2000);
+                        });
+                        element.attr('checked', false);
+                    } else {
+                        //close question
+                        Restangular.all('question/close').post({
+                            id: questionId
+                        }).then(function (results) {
+                           Materialize.toast('Вопрос закрыт!', 2000);
+                        });
+                        element.attr('checked', true);
+                    }
+                })
             }
         }
     })

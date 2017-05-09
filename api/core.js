@@ -30,6 +30,8 @@ app.get(api_version + '/questions', routes.questions);
 app.get(api_version + '/questions/all', routes.all_questions);
 
 app.get(api_version + '/questions/digest', routes.digest_questions);
+app.post(api_version + '/question/close', routes.closeQuestion);
+app.post(api_version + '/question/open', routes.openQuestion);
 
 
 app.get(api_version + '/ratings/answers', routes.ratingsAnswers);
@@ -71,6 +73,7 @@ app.post(api_version + '/user/details', routes.save_user_details);
 
 app.post(api_version + '/feedback', routes.feedback);
 app.get(api_version + '/feedback/all', routes.getAll);
+app.delete(api_version + '/feedback/delete/:id', routes.deleteFeedback);
 
 app.get(api_version + '/archive', routes.archive);
 

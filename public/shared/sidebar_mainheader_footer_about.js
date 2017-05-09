@@ -168,6 +168,9 @@ angular.module('ws')
         self.getAll = function () {
             return Restangular.all('feedback/all').getList();
         };
+        self.deleteFeedback = function (id) {
+            return Restangular.one('feedback/delete', id).remove();
+        }
     })
     .directive('archive', function (QuestionService) {
         return {

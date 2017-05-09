@@ -74,9 +74,16 @@ exports.getAll = function (req, res) {
     Feedback.findAll({}).then(function (feedback) {
         res.send(feedback);
     })
-}
-
-
+};
+exports.deleteFeedback = function (req, res) {
+    Feedback.destroy({
+        where: {
+            id: req.params.id
+        },
+    }).then(function () {
+        res.status(200).end('OK');
+    })
+};
 exports.save_user_details = function (req, res) {
     Person.update({
         name: req.body.name,
@@ -96,7 +103,6 @@ exports.save_user_details = function (req, res) {
         res.send(error);
     })
 };
-
 exports.save_opts_changes = function (req, res) {
   Option.update({
       show_telephone: req.body.telephone,
@@ -109,7 +115,6 @@ exports.save_opts_changes = function (req, res) {
       res.send(success);
   })
 };
-
 exports.save_question_changes = function (req, res) {
     if(req.body.payable === false){
         req.body.money = 0;
@@ -130,8 +135,6 @@ exports.save_question_changes = function (req, res) {
         res.send(error);
     })
 };
-
-
 exports.library = function (req, res) { // получаем библиотеку
     Book.findAll(
         {
@@ -139,7 +142,6 @@ exports.library = function (req, res) { // получаем библиотеку
         res.json(results);
     })
 };
-
 exports.myQuestions = function (req, res) {
     Question.findAll({
         where: {
@@ -157,7 +159,6 @@ exports.myQuestions = function (req, res) {
         res.send(results);
     })
 };
-
 exports.questions = function (req, res) { // получаем вопросы (незакрытые)
     Question.findAll(
         {
@@ -177,7 +178,6 @@ exports.questions = function (req, res) { // получаем вопросы (н
         res.json(results);
     })
 };
-
 exports.all_questions = function (req, res) { // получаем вопросы
     Question.findAll(
         {
@@ -194,8 +194,6 @@ exports.all_questions = function (req, res) { // получаем вопросы
         res.json(results);
     })
 };
-
-
 exports.digest_questions = function (req, res) { // получаем вопросы
     Question.findAll(
         {
@@ -216,8 +214,28 @@ exports.digest_questions = function (req, res) { // получаем вопро�
         res.json(results);
     })
 };
-
-
+exports.closeQuestion = function (req, res) {
+    Question.update({
+        closed: true
+    },{
+        where: {
+            id: req.body.id
+        }
+    }).then(function (results) {
+        res.send(results);
+    })
+};
+exports.openQuestion = function (req, res) {
+    Question.update({
+        closed: false
+    },{
+        where: {
+            id: req.body.id
+        }
+    }).then(function (results) {
+        res.send(results);
+    })
+};
 exports.ratingsAnswers = function (req, res) { // получаем рейтинги ответов по убыванию
     Answer.findAll(
         {
@@ -235,7 +253,6 @@ exports.ratingsAnswers = function (req, res) { // получаем рейтин�
         res.json(results);
     })
 };
-
 exports.ratingsPeople = function (req, res) { // получаем рейтинги пользователей по убыванию
     Person.findAll(
         {
@@ -250,8 +267,6 @@ exports.ratingsPeople = function (req, res) { // получаем рейтинг
         res.json(results);
     })
 };
-
-
 exports.questionById = function (req, res) { // получаем вопрос по id с ответами
     Question.findOne({
         where: {
@@ -271,7 +286,6 @@ exports.questionById = function (req, res) { // получаем вопрос п
         res.json(result)
     })
 };
-
 exports.people = function (req, res) { // получаем пользователей c вопросами и ответами
     Person.findAll({
         attributes:{ exclude: ['login', 'password']},
@@ -286,7 +300,6 @@ exports.people = function (req, res) { // получаем пользовате�
             res.send(results);
         })
 };
-
 exports.adm_people = function (req, res) { // получаем пользователей c вопросами и ответами
     Person.findAll({
         include:[{
@@ -299,7 +312,6 @@ exports.adm_people = function (req, res) { // получаем пользова�
             res.send(results);
         })
 };
-
 exports.test = function (req, res) {
     Question.findAll({
         // attributes: [[sequelize.fn('COUNT','id'), 'items']]
@@ -326,7 +338,6 @@ exports.test = function (req, res) {
         console.log(error)
     })
 };
-
 exports.search = function (req, res) {
     Question.findAll({
         where: {
@@ -339,7 +350,6 @@ exports.search = function (req, res) {
         res.send(result);
     })
 };
-
 exports.personById = function (req, res) { // получаем пользователя по id
     Person.findOne({
         // attributes: ['name', 'surname'],
@@ -362,7 +372,6 @@ exports.personById = function (req, res) { // получаем пользова�
         res.json(result)
     })
 };
-
 exports.auth =function (req, res) { // авторизация пользователя
     Person.findAll({
         where: {
@@ -373,7 +382,6 @@ exports.auth =function (req, res) { // авторизация пользоват
         res.json(result);
     })
 };
-
 exports.answers = function (req, res) {
     Answer.findAll({
       include: {
@@ -396,12 +404,10 @@ exports.createAnswer = function (req, res) { // создание ответа к
         console.log(error);
     })
 };
-
 exports.votePlus = function (req, res) { //голосуем за ответ в плюс
     Answer.update({
             mark: sequelize.literal("mark + 0.1")
-        }
-        ,
+        },
         {
             where:{
                 id: req.body.id
@@ -413,7 +419,6 @@ exports.votePlus = function (req, res) { //голосуем за ответ в �
     console.log('Need to update rating of user, huh')
     //TODO select sum of user's marks and result set to rating
 };
-
 exports.voteMinus = function (req, res) { //голосуем за ответ в минус
     Answer.update({
             mark: Sequelize.literal("mark - 0.1")
@@ -426,7 +431,6 @@ exports.voteMinus = function (req, res) { //голосуем за ответ в 
         res.send(result);
     })
 };
-
 exports.personByIdDialogs =function (req, res) {
     Dialog.findAll({
         where:{
@@ -439,7 +443,6 @@ exports.personByIdDialogs =function (req, res) {
         res.send(results);
     });
 };
-
 exports.news_digest = function (req, res) {
  New.findAll({
      limit: 5
@@ -452,8 +455,6 @@ exports.news = function (req, res) {
       res.send(results);
   })
 };
-
-
 exports.archive = function (req, res) {
     Question.findAll({
         where: {
@@ -468,7 +469,6 @@ exports.archive = function (req, res) {
         res.send(results);
     })
 };
-
 exports.personByIdDialogDialogIdMessages = function (req, res) {
     Dialog.findOne({
         where:{ $and: {
@@ -490,7 +490,6 @@ exports.personByIdDialogDialogIdMessages = function (req, res) {
         res.json(results);
     });
 };
-
 exports.send_message = function (req, res) {
     Message.create({
         body: req.body.body,
@@ -503,7 +502,6 @@ exports.send_message = function (req, res) {
         console.log(error);
     })
 };
-
 exports.createDialog = function (req, res) {
     Dialog.create({
         caption: req.body.caption,
@@ -515,7 +513,6 @@ exports.createDialog = function (req, res) {
         res.send(error); //make error handling on frontend
     })
 };
-
 exports.renameDialog = function (req, res) {
   Dialog.update({
     caption: req.body.caption
@@ -528,7 +525,6 @@ exports.renameDialog = function (req, res) {
       res.send(success);
   })
 };
-
 exports.deleteDialog = function (req, res) {
     Dialog.destroy({
         where: {
@@ -541,7 +537,6 @@ exports.deleteDialog = function (req, res) {
         console.log(err);
     })
 };
-
 exports.createQuestion = function (req, res) { //создаем вопрос
     Question.create({
         title: req.body.title,
@@ -553,7 +548,6 @@ exports.createQuestion = function (req, res) { //создаем вопрос
         res.send(result)
     });
 };
-
 exports.deleteQuestionById = function (req, res) {
     Question.destroy({
         where: {
@@ -563,7 +557,6 @@ exports.deleteQuestionById = function (req, res) {
         res.json(result);
     })
 };
-
 exports.deletePersonById = function (req, res) {
     Person.destroy({
         where: {
@@ -573,7 +566,6 @@ exports.deletePersonById = function (req, res) {
         res.json(result);
     })
 };
-
 exports.createAnswer = function (req, res) { //создаем ответ
     Answer.create({
         body: req.body.body,
@@ -585,7 +577,6 @@ exports.createAnswer = function (req, res) { //создаем ответ
 
     });
 };
-
 exports.createPerson = function (req, res) { // создаем нового пользователя
     Person.create({
         login:req.body.login,

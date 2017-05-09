@@ -7,6 +7,10 @@ module.exports = function(sequelize, DataTypes) {
         mark: {
             type: DataTypes.DOUBLE
         },
+        blocked: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
         created: {
             type: DataTypes.DATE,
             defaultValue: DataTypes.NOW
