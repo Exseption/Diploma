@@ -35,7 +35,9 @@ Option.belongsTo(Person, {foreignKey: 'of_user', as: 'settings'});
 New.belongsTo(Person,{foreignKey: 'author'});
 Person.hasMany(New,{foreignKey: 'author'});
 
+
 const Feedback = sequelize.import('../db/models/feedback');
+const Help = sequelize.import('../db/models/help');
 
 // шифрование на стороне сервера
 var CryptoJS = require("crypto-js");
@@ -486,6 +488,35 @@ exports.deleteNew = function (req, res) {
         res.status(200).end('OK');
     })
 };
+
+exports.help = function (req, res) {
+    Help.findAll({}).then(function (data) {
+        res.send(data);
+    })
+};
+exports.createHelp = function (req, res) {
+    Help.create({
+        section: req.body.section,
+        title: req.body.title,
+        content: req.body.content
+    }).then(function (results) {
+        res.send(results);
+    })
+};
+exports.editHelp = function (req, res) {
+    Help.update({
+        section: req.body.section,
+        title: req.body.title,
+        content: req.body.content
+    },
+        {
+        where: {
+        id: req.body.id
+            }
+        }
+    )
+};
+
 exports.archive = function (req, res) {
     Question.findAll({
         where: {

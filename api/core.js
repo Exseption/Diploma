@@ -82,20 +82,33 @@ app.post(api_version + '/new', routes.createNew);
 app.post(api_version + '/new/update', routes.updateNew);
 app.delete(api_version + '/new/:id', routes.deleteNew);
 
+app.get(api_version + '/help', routes.help);
+app.post(api_version + '/help', routes.createHelp);
+app.post(api_version + '/help/:id', routes.editHelp);
+
 // читаем данные о нас
 const fs = require('fs');
+let filePath = './data/about.txt';
+function readFile (file) {
+    return new Promise (function (resolve, reject) {
+        fs.readFile(file, 'utf8', function (err, data) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        })
+    })
+}
 app.get(api_version + '/about', function (req, res) {
-    fs.readFile('./data/about.txt','utf8', function (err, data) {
-        if (err) {
-            throw  err;
-        }
-        console.log(data);
-        res.send(req)
-    });
+    readFile(filePath).then(function (data) {
+        res.status(200).end(data);
+    })
 });
 
 app.post(api_version + '/about', function (req, res) {
-    fs.writeFile("./data/about.txt", req.body.data, function(err) {
+    fs.writeFile("./data/about.txt",
+        req.body.hello + '\n' + req.body.about + '\n' + req.body.developer + '\n' + req.body.link, function(err) {
         res.status(200).end('OK');
     });
 });

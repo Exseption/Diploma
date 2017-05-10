@@ -110,27 +110,27 @@ angular.module('ws')
             <div class="section">
                 <div class="row">
                     <div class="col s12">
-                        <form>
+                        <form name="FormAbout">
                         <h5>Приветствие и текст</h5>
                         <div class="input-field">
-                            <textarea id="title" class="materialize-textarea" ng-model="hello"></textarea>
+                            <textarea id="title" class="materialize-textarea validate" required ng-model="hello" ng-value="title"></textarea>
                             <label for="title">Заголовок, приветствие</label>            
                         </div>
                         <div class="input-field">
-                            <textarea id="about" class="materialize-textarea" ng-model="about"></textarea>
+                            <textarea id="about" class="materialize-textarea validate" required ng-model="about" ng-value="aboutUs"></textarea>
                             <label for="about">Общий текст о веб-сервисе</label>            
                         </div>
                         <h5>Контакты</h5>
                         <div class="input-field">
-                            <textarea id="developer" class="materialize-textarea" ng-model="developer"></textarea>
+                            <input type="text" id="developer" class="validate" required ng-model="developer" ng-value="dev">
                             <label for="developer">ФИО разработчика</label>            
                         </div>
                         <div class="input-field">
-                            <textarea id="contacts" class="materialize-textarea" ng-model="link"></textarea>
+                            <input id="contacts" class="validate" required ng-model="link" ng-value="contact" type="text">
                             <label for="contacts">Ссылка на github, VK и др</label>            
                         </div>
                         <div class="right-align">
-                        <input type="button" class="btn" value="Сохранить" ng-click="save()">
+                        <input ng-disabled="FormAbout.$invalid" type="button" class="btn" value="Сохранить" ng-click="save()">
 </div>
             </form>
         </div>
@@ -138,18 +138,80 @@ angular.module('ws')
 </div>
 `,
             link: function (scope, elem) {
-                // Restangular.all('about').get().then(function (data) {
-                //     scope.data = data;
-                // });
+                    // Restangular.all('about').get().then(function (data) {
+                    //     scope.data = data;
+                    // });
+                    //TODO fix read from file
+                scope.title = 'Добро пожаловать на веб-сервис! Здесь мы можете найти ответы на интересующие вас правовые вопросы!';
+                scope.aboutUs = 'Данный проект является выпускной квалификационной работой студента Физико-математического факультета БГПУ г. Благовещенск в 2017 году Налимова Игоря.';
+                scope.dev = 'Налимов Игорь';
+                scope.contact = 'brain5ur9ery@gmail.com';
+
                 scope.save = function () {
                     Restangular.all('about').post({
-                        data: scope.about
+                        hello: scope.hello,
+                        about: scope.about,
+                        developer: scope.developer,
+                        link: scope.link,
+
                     }).then(function (results) {
                         Materialize.toast('Сохранено!', 2000);
+                        [scope.hello, scope.about, scope.developer, scope.link] = '';
                     }, function(err){
                         Materialize.toast('Ошибка!', 2000);
                     })
                 }
+            }
+        }
+    })
+    .directive('helpList', function () {
+        return {
+            template: `
+            <h5>{{section}}</h5>
+                    <div ng-repeat="item in arr | filter: {section: section}">
+                        <div class="section blue-grey lighten-5" style="padding: 5px 10px; margin-bottom: 5px"> 
+                            <div style="text-transform: uppercase; font-weight: bold; color:green">{{item.title}}
+                            </div>
+                            <div style="padding-left: 10px">
+                            {{item.content}}<div class="right-align"><a ng-click="updateHelp(item)" class="you_may_click_here">Редактировать</a></div>
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="right-align">
+                    <a ng-click="createHelp(section)" class="btn-floating"><i class="material-icons">add</i></a></i>                    
+</div>
+            `,
+            scope: {
+                section: '@',
+                arr : '<'
+            },
+            link: function (scope) {
+                scope.createHelp = function (section) {
+
+                };
+                scope.updateHelp = function (help) {
+                    alert(help)
+                }
+            }
+        }
+    })
+    .directive('svHelp', function (Restangular) {
+        return {
+            template: `
+            <div class="section">
+                <div class="row">
+                    <div class="col s12">
+                    <help-list section="Вопросы" arr="help"></help-list>
+                    <help-list section="Ответы" arr="help"></help-list>
+                    <help-list section="Диалоги" arr="help"></help-list>
+                    </div>
+                    </div>
+                    </div>
+            `,
+            link: function (scope) {
+                Restangular.all('help').getList().then(function (data) {
+                    scope.help = data;
+                });
             }
         }
     })
@@ -446,14 +508,16 @@ angular.module('ws')
               <th>#</th>
               <th>Содержимое отзыва</th>
               <th>Ник автора</th>
+              <th>Дата создания</th>
               <th></th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="f in feedback">
             <td>{{$index + 1}}</td>
-            <td>{{f.body}}</td>
+            <td style="min-width: 20vw">{{f.body}}</td>
             <td>{{f.name}}</td>
+            <td>{{f.created | amUtc | amLocal | amDateFormat: 'LLL'}}</td>
             <td><a class="you_may_click_here" ng-click="delete_feedback(f)"><i class="material-icons fix_icons_align small">delete_forever</i></a></td>
           </tr>
         </tbody>

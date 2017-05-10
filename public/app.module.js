@@ -237,7 +237,7 @@
             .state('sv_pages.adm_help',{
                 url: '/help',
                 template: `
-                todo 2
+                <sv-help></sv-help>
                 `
             })
             .state('sv_pages.adm_about',{
