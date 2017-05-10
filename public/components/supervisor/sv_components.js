@@ -164,7 +164,7 @@ angular.module('ws')
             }
         }
     })
-    .directive('helpList', function () {
+    .directive('helpList', function ($mdDialog, Restangular) {
         return {
             template: `
             <h5>{{section}}</h5>
@@ -190,7 +190,28 @@ angular.module('ws')
 
                 };
                 scope.updateHelp = function (help) {
-                    alert(help)
+                    $mdDialog.show({
+                        template: `
+                        <div class="row" style="min-width: 20vw">
+                        <div class="col s12">
+                        <div>
+                        <div class="form-title">Редактирование справки</div>
+                        <div>{{help.title}}</div>
+                        <div>{{help.content}}</div>
+                        <div>{{help.section}}</div>
+                        </div>
+                        <div class="section right-align">
+                        <a class="btn">Отмена</a>
+                        <a class="btn">Сохранить</a>
+</div>
+</div>
+</div>
+                        `,
+                        clickOutsideToClose: true,
+                        controller: function ($scope) {
+                            $scope.help = help;
+                        }
+                    })
                 }
             }
         }
