@@ -12,7 +12,6 @@ gulp.task('dev', function() {
         server: 'public',
         open: false
     });
-    gulp.watch('public/templates/pugs/**',['pug']);
     browserSync.watch('public/**',{ignored: 'public/templates/pugs/*.pug'})
         .on('change', browserSync.reload);
 });
@@ -22,19 +21,15 @@ gulp.task('pug', function () {
         .pipe(pug({pretty: true}))
         .pipe(gulp.dest('public/templates'));
 });
-
 gulp.task('concat-js', function () {
     return gulp.src(['./public/components/**/*.js', './public/shared/**/*.js', './models/*.js', 'app.js', './public/app.module.js'])
         .pipe(concat('app.all.js'))
 
         .pipe(gulp.dest('./dist/'))
 });
-
 gulp.task('concat-html', function () {
     return gulp.src(['./public/**/*.html', './public.index.html'])
         .pipe(concat('all.html.html'))
         .pipe(gulp.dest('./dist/'))
 });
-
-
 gulp.task('default', ['dev']);

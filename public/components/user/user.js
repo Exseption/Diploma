@@ -146,7 +146,6 @@ angular.module('ws')
            })
         }
     })
-
     .directive('myDialogs', function (DialogService, SessionManager, $rootScope) {
         return {
             template: `
@@ -170,7 +169,6 @@ angular.module('ws')
             }
         }
     })
-
     .directive('createDialog', function (Restangular, SessionManager, $stateParams, $state) {
         return {
             link: function (scope, element) {
@@ -244,7 +242,6 @@ angular.module('ws')
             }
         }
     })
-
     .directive('myMessages', function (DialogService, SessionManager, $stateParams, $rootScope) {
         return {
             template: `
@@ -309,7 +306,6 @@ angular.module('ws')
             }
         }
     })
-
     .directive('myEnter', function () {
         return function (scope, element, attrs) {
             element.bind("keydown keypress", function (event) {
@@ -323,7 +319,6 @@ angular.module('ws')
             });
         };
     })
-
     .service('Opts', function (Restangular) {
         var self = this;
         self.getOpts = function (userId) {

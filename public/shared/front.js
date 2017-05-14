@@ -88,7 +88,7 @@ angular.module('ws')
             template: `<nav class="nav-extended mb">
     <div class="nav-wrapper dark-primary-color" style="min-height: 98px">
         <div class="container">
-            <a href="#" class="brand-logo nav-btns">ВДИПЛОМЕ</a>
+            <a href="#" class="brand-logo nav-btns">ЦЕНТР ПРАВОВЫХ КОНСУЛЬТАЦИЙ</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a class="nav-btns" ask>Задать вопрос</a></li>
                 <li><a class="nav-btns" login>Войти</a></li>
@@ -104,6 +104,7 @@ angular.module('ws')
            <a ui-sref="people" class="page-menu-link">Участники</a>
            <a ui-sref="library" class="page-menu-link">Библиотека</a>
            <a ui-sref="about" class="page-menu-link">О нас</a>
+           <a ui-sref="help" class="page-menu-link">Справка</a>
        </div>
     </div>
 </nav>`,
@@ -167,28 +168,7 @@ angular.module('ws')
             return Restangular.one('feedback/delete', id).remove();
         }
     })
-    .directive('archive', function (QuestionService) {
-        return {
-            template: `
-            <div class="view-cntr">
-           <div class="row blue lighten-4" style="padding: 10px 0;">
-            <div class="col s12 valign-wrapper" style="min-height: 38px;"><b>АРХИВ</b></div>
-            </div>
-            <div class="row">
-            <div class="col s12">
-             <div ng-repeat="arch in archive">
-             {{arch.title}}
-            </div>
-            </div>
-            </div>
-            `,
-            link: function (scope, elem) {
-                QuestionService.archive().then(function (results) {
-                    scope.archive = results;
-                })
-            }
-        }
-    })
+
     .directive('footerDir', function () {
         return {
             template: `<footer class="page-footer grey darken-1">
@@ -218,5 +198,26 @@ angular.module('ws')
             link: function (scope) {
                 scope.year = new Date().getUTCFullYear();
             }
+        }
+    })
+    .directive('pageStructTemplate', function () {
+        return {
+            transclude: {
+                title: 'titleHere',
+                content: 'contentHere'
+            }, template: `
+            <div class="view-cntr">
+          <div class="valign-wrapper">
+                <div class="col s12" style="text-transform: uppercase; font-weight: bolder; padding: 20px 0">
+                    <div ng-transclude="title"></div>
+                </div>
+            </div>
+            <div class="row">
+            <div class="col s12">
+            <div ng-transclude="content"></div>
+            </div>
+            </div>
+          </div>
+            `
         }
     })

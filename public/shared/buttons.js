@@ -98,40 +98,6 @@ angular.module('ws')
             }
         }
     })
-    .service('NewsService', function (Restangular) {
-        let self = this;
-        self.digestNews = function () {
-            return Restangular.all('news/digest').getList();
-        }
-    })
-    .directive('news', function (NewsService) {
-        return {
-            scope: {
-                bc: '@'
-            },
-            link: function (scope) {
-              NewsService.digestNews().then(function (digest) {
-                  scope.digest = digest;
-              })
-            },
-            template: `
-            <div class="row {{bc}}" style="padding: 10px 0">
-                        <div class="col valign-wrapper s12" style="min-height: 38px"><b>НОВОСТИ</b></div>
-                        </div>
-                        <div class="row">
-                        <div class="col s12">
-                        <div ng-repeat="new in digest">
-                        <blockquote>
-              <div class="valign-wrapper question_title">{{new.title}}</div>
-                        <span>{{new.created | amUtc | amLocal | amDateFormat:'LLL'}}</span>
-                        <p>{{new.body}}</p>           
-</blockquote>                 
-</div>
-</div>
-</div>
-            `
-        }
-    })
     .directive('askMainPage', function () {
         return {
             template: `
@@ -166,14 +132,13 @@ angular.module('ws')
               </div>
            <div class="right-align">
               <div class="col s12">
-              <!--<blockquote>Для того чтобы задать вопрос, зарегистрируйтесь или войдите под своим аккаунтом!</blockquote>-->
                   <input ng-hide="false" type="submit" class="modal-action waves-effect waves-green btn blue-grey lighten-5 black-text" ng-click="createQuestion(title, body, author, payable, price)" ng-disabled="FormCreateQuestion.$invalid" value="Задать вопрос"/>
               </div>
           </div>   
           </div>
 </div>
       </div>
-            `
+`
         }
     })
     .directive('ask', function (SessionManager, $rootScope, $mdDialog, QuestionService, $mdToast) {
@@ -266,8 +231,7 @@ angular.module('ws')
                 scope._body = '';
                 element.bind("keypress", function (event) {
                     if(event.which === 13) {
-                        // scope._body = scope.body.replace(/\r?\n/g, '<br/>'); //formatted text for store
-                        scope._body += '<p>' + scope.body + '</p>'; //formatted text for store
+                        scope._body += '<p>' + scope.body + '</p>';
                     }
                 });
             }
@@ -351,7 +315,6 @@ angular.module('ws')
         <input id="city" ng-model="city" required class="validate" type="text"/>
       </div>
 </div>
-       
       </div>
     </div>
     <div class="row">
@@ -361,8 +324,6 @@ angular.module('ws')
                  ng-click="register(login, password, name, surname, email, birthday,
              country, area, city, telephone)" value="Зарегистрироваться" type="submit"/>
 </div>
-          
-
         </div>
   </form>
 </div>
@@ -395,6 +356,5 @@ angular.module('ws')
                     }
                 }
             }
-
         }
     })

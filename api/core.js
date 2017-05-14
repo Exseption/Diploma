@@ -25,68 +25,49 @@ const api_version = '/api/v1';
 
 app.get(api_version + '/questions/author/:id', routes.myQuestions);
 app.get(api_version + '/library', routes.library);
-
 app.get(api_version + '/questions', routes.questions);
 app.get(api_version + '/questions/all', routes.all_questions);
-
 app.get(api_version + '/questions/digest', routes.digest_questions);
 app.post(api_version + '/question/close', routes.closeQuestion);
 app.post(api_version + '/question/open', routes.openQuestion);
-
 app.get(api_version + '/ratings/answers', routes.ratingsAnswers);
 app.get(api_version + '/ratings/people', routes.ratingsPeople);
 app.get(api_version + '/question/:id', routes.questionById);
 app.get(api_version + '/people', routes.people);
 app.get(api_version + '/admin/people', routes.adm_people);
-
 app.get(api_version + '/person/:id', routes.personById);
-
-app.get(api_version + '/test', routes.test);
 app.post(api_version + '/search', routes.search);
-
 app.post(api_version + '/auth', routes.auth);
 app.get(api_version + '/answers', routes.answers);
 app.post(api_version + '/create/answer', routes.createAnswer);
-
 app.post(api_version + '/vote/plus', routes.votePlus);
 app.post(api_version + '/vote/minus', routes.voteMinus);
-
 app.get(api_version + '/person/:id/dialogs', routes.personByIdDialogs);
 app.get(api_version + '/person/:id/dialog/:dialog/messages', routes.personByIdDialogDialogIdMessages);
 app.post(api_version + '/dialog/send_message', routes.send_message);
 app.post(api_version + '/dialog/create', routes.createDialog);
 app.post(api_version + '/dialog/rename', routes.renameDialog);
-
-app.delete(api_version + '/dialog/delete/:dialogId', routes.deleteDialog); // delete!
-
+app.delete(api_version + '/dialog/delete/:dialogId', routes.deleteDialog);
 app.post(api_version + '/create/question', routes.createQuestion);
 app.delete(api_version + '/delete/question/:id', routes.deleteQuestionById);
 app.delete(api_version + '/delete/person/:id', routes.deletePersonById);
-// app.post(api_version + '/create/answer', routes.createAnswer);
 app.post(api_version + '/create/person', routes.createPerson);
-
 app.get(api_version + '/opts/:userId', routes.getOpts);
 app.post(api_version + '/opts/save_changes', routes.save_opts_changes);
 app.post(api_version + '/question/save_changes', routes.save_question_changes);
 app.post(api_version + '/user/details', routes.save_user_details);
-
 app.post(api_version + '/feedback', routes.feedback);
 app.get(api_version + '/feedback/all', routes.getAll);
 app.delete(api_version + '/feedback/delete/:id', routes.deleteFeedback);
-
 app.get(api_version + '/archive', routes.archive);
-
 app.get(api_version + '/news/digest', routes.news_digest);
 app.get(api_version + '/news', routes.news);
 app.post(api_version + '/new', routes.createNew);
 app.post(api_version + '/new/update', routes.updateNew);
 app.delete(api_version + '/new/:id', routes.deleteNew);
-
 app.get(api_version + '/help', routes.help);
 app.post(api_version + '/help', routes.createHelp);
 app.post(api_version + '/help/:id', routes.editHelp);
-
-// читаем данные о нас
 const fs = require('fs');
 let filePath = './data/about.txt';
 function readFile (file) {
@@ -105,14 +86,12 @@ app.get(api_version + '/about', function (req, res) {
         res.status(200).end(data);
     })
 });
-
 app.post(api_version + '/about', function (req, res) {
     fs.writeFile("./data/about.txt",
         req.body.hello + '\n' + req.body.about + '\n' + req.body.developer + '\n' + req.body.link, function(err) {
         res.status(200).end('OK');
     });
 });
-
 app.use(function(req, res, next) {
   const err = new Error('Not Found');
   err.status = 404;
@@ -136,6 +115,4 @@ const server = app.listen(app.get('port'), function () {
 });
 const io = require('socket.io').listen(server);
 io.on('connection', function (socket) {
-    console.log('Кто-то подключился к основному каналу!');
-
 });

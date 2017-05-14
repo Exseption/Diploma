@@ -113,9 +113,7 @@ angular.module('ws')
                         <label for="city">Город</label>
                         <input ng-model="_city" id="city" class="input">
                     </div>
-
                 </fieldset>
-
             </div>
         </div>
         <div class="row">
@@ -153,7 +151,6 @@ angular.module('ws')
             }
         }
     })
-
     .directive('questionsAll', function (QuestionService) {
         return {
             template: `
@@ -166,10 +163,7 @@ angular.module('ws')
             <div class="col s2 right-align">
              <a class="btn-floating"><i class="material-icons blue">search</i> </a>
 </div>
-            
 </div>
-           
-
 <div class="row">
 <div class="col s12">
 <div style="background-color: white"><div ng-repeat="item in questions">
@@ -187,7 +181,6 @@ angular.module('ws')
             }
         }
     })
-
     .service('QuestionService', function (Restangular) {
         const self = this;
         self.archive = function () {

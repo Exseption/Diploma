@@ -10,7 +10,7 @@ angular.module('ws')
     </div>
 </div>
 <answer-vote></answer-vote>
-            `,
+`,
             scope:{
                 ans: "<"
             }
@@ -43,8 +43,7 @@ angular.module('ws')
     <div class="md-body-2">Оценка: {{$ctrl.a.mark}}</div>
     <div class='md-body-1 ws-body' style="padding-top: 5px; padding-bottom: 10px">{{$ctrl.a.body}}</div>
 </article>
-        
-        `
+`
     })
     .directive('answerCreate', function (AnswerService, SessionManager, $stateParams) {
         return {
@@ -63,7 +62,7 @@ angular.module('ws')
             ng-click='answer(answer_text)' ng-disabled="FormAnswer.$invalid">Ответить</a>
         </div>
     </form>
-            `,
+`,
             compile: function (elem, attrs) {
                 return {
                     pre: function (scope, elem, attrs) {
@@ -94,7 +93,7 @@ angular.module('ws')
             <a class="btn-floating waves-effect waves-circle" ng-click='voteMinus(ans.id)'><i class="material-icons fix_icons_align">thumb_down</i> </a>
         </div>
     </div>
-            `,
+`,
             compile: function (elem, attrs) {
                 return {
                     pre: function (scope, elem) {
@@ -128,6 +127,9 @@ angular.module('ws')
             });
         };
         self.voteMinus = function (id) {
-            return Restangular.all('vote/minus').post({id:id});
+            return Restangular.all('vote/minus').post(
+                {
+                    id:id
+                });
         }
     })

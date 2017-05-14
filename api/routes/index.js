@@ -9,9 +9,7 @@ const Message = sequelize.import('../db/models/message');
 const Book = sequelize.import('../db/models/book');
 const Option = sequelize.import(('../db/models/option'));
 const New = sequelize.import(('../db/models/new'));
-
 const Attachment = sequelize.import('../db/models/attachment');
-
 Question.belongsTo(Person, {foreignKey: 'author'});
 Person.hasMany(Question, {foreignKey: 'author'}); //чет падазрительна
 Answer.belongsTo(Question, {foreignKey: 'to_question'});
@@ -28,27 +26,13 @@ Dialog.belongsTo(Person,{foreignKey: 'destination'});
 Person.hasMany(Dialog,{foreignKey: 'destination'});
 Attachment.belongsTo(Message, {foreignKey: 'to_message'});
 Message.hasMany(Attachment, {foreignKey: 'to_message'});
-
 Person.hasMany(Option, {foreignKey: 'of_user', as: 'settings'});
 Option.belongsTo(Person, {foreignKey: 'of_user', as: 'settings'});
-
 New.belongsTo(Person,{foreignKey: 'author'});
 Person.hasMany(New,{foreignKey: 'author'});
-
-
 const Feedback = sequelize.import('../db/models/feedback');
 const Help = sequelize.import('../db/models/help');
-
-// шифрование на стороне сервера
 var CryptoJS = require("crypto-js");
-// Encrypt
-var ciphertext = CryptoJS.AES.encrypt('my message', 'secret key 123');
-// Decrypt
-var bytes  = CryptoJS.AES.decrypt(ciphertext.toString(), 'secret key 123');
-var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-//console.log(plaintext);
-
-
 exports.getOpts = function (req, res) {
   Option.findOne({
       where: {
@@ -58,7 +42,6 @@ exports.getOpts = function (req, res) {
       res.send(opts)
   })
 };
-
 exports.feedback = function (req, res) {
   Feedback.create({
       name: req.body.name,
@@ -146,7 +129,6 @@ exports.myQuestions = function (req, res) {
     Question.findAll({
         where: {
             author: req.params.id
-
         },
         include: [{
             model: Answer,
@@ -312,39 +294,12 @@ exports.adm_people = function (req, res) { // получаем пользова�
             res.send(results);
         })
 };
-exports.test = function (req, res) {
-    Question.findAll({
-        // attributes: [[sequelize.fn('COUNT','id'), 'items']]
-        // ,
-        include: [{
-            model: Answer
-            ,
-            attributes: [[sequelize.fn('COUNT','id'), 'items']]
-            // ,group:['to_question']
-
-            // ,
-            // attributes: ['id'
-            //     , [sequelize.fn('COUNT', sequelize.col('id')), 'items']
-            // ]
-        }]
-
-        // ,
-        // include: [{
-        //     model: Answer
-        // }]
-    }).then(function (result) {
-        res.send(result);
-    }, function (error) {
-        console.log(error)
-    })
-};
 exports.search = function (req, res) {
     Question.findAll({
         where: {
             $or: [{ body: {
                 $like: '%' + req.body.body + '%'
             }}, { title:{$like: '%' + req.body.body + '%'}}]
-
         }
     }).then(function (result) {
         res.send(result);
@@ -352,7 +307,6 @@ exports.search = function (req, res) {
 };
 exports.personById = function (req, res) { // получаем пользователя по id
     Person.findOne({
-        // attributes: ['name', 'surname'],
         where: {
             id: req.params.id
         },
@@ -516,7 +470,6 @@ exports.editHelp = function (req, res) {
         }
     )
 };
-
 exports.archive = function (req, res) {
     Question.findAll({
         where: {
@@ -545,7 +498,6 @@ exports.personByIdDialogDialogIdMessages = function (req, res) {
             include: {
                 model: Person,
                 attributes: ['name', 'surname', 'id']
-
             }
         }]
     }).then(function (results) {
@@ -557,7 +509,6 @@ exports.send_message = function (req, res) {
         body: req.body.body,
         of_dialog: req.body.of_dialog,
         sended_by: req.body.sended_by
-
     }).then(function (success) {
         res.send(success);
     },function (error) {
@@ -636,7 +587,6 @@ exports.createAnswer = function (req, res) { //создаем ответ
         mark: 0.0
     }).then(function (result) {
         res.send(result)
-
     });
 };
 exports.createPerson = function (req, res) { // создаем нового пользователя

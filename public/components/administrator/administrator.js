@@ -41,27 +41,6 @@ angular.module('ws')
             }
         }
     })
-    .directive('pageStructTemplate', function () {
-        return {
-            transclude: {
-                title: 'titleHere',
-                content: 'contentHere'
-            }, template: `
-            <div class="view-cntr">
-          <div class="valign-wrapper">
-                <div class="col s12" style="text-transform: uppercase; font-weight: bolder; padding: 20px 0">
-                    <div ng-transclude="title"></div>
-                </div>
-            </div>
-            <div class="row">
-            <div class="col s12">
-            <div ng-transclude="content"></div>
-            </div>
-            </div>
-          </div>
-            `
-        }
-    })
     .directive('svPages', function () {
         return {
             template: `
@@ -79,29 +58,6 @@ angular.module('ws')
 </content-here>
 </page-struct-template>
 `
-        }
-    })
-    .directive('about', function (Restangular) {
-        return {
-            template: `<div class="view-cntr" style="min-height: 70vh">
-    <div class="row">
-        <div style="margin-bottom: 20px; padding: 10px 15px;">
-            <div class="center-align"><h5 ng-bind="title"></h5></div>
-            <div ng-bind="about" class="section"></div>
-            <div class="divider"></div>
-            <h6 style="font-weight: bolder">Наши контакты</h6>
-            <div ng-bind-html="contacts"></div>
-        </div>
-    </div>
-</div>`,
-            link: function (scope) {
-                Restangular.all('about').get().then(function (data) {
-                   // scope.data = data;
-                });
-                scope.title = 'Добро пожаловать на веб-сервис! Здесь мы можете найти ответы на интересующие вас правовые вопросы!';
-                scope.about = 'Данный проект является выпускной квалификационной работой студента Физико-математического факультета БГПУ г. Благовещенск в 2017 году Налимова Игоря.';
-                scope.contacts = 'brain5ur9ery@gmail.com';
-            }
         }
     })
     .directive('aboutUs', function (Restangular) {
@@ -138,22 +94,19 @@ angular.module('ws')
 </div>
 `,
             link: function (scope, elem) {
-                    // Restangular.all('about').get().then(function (data) {
-                    //     scope.data = data;
-                    // });
-                    //TODO fix read from file
+                    Restangular.all('about').get().then(function (data) {
+                        scope.data = data;
+                    });
                 scope.title = 'Добро пожаловать на веб-сервис! Здесь мы можете найти ответы на интересующие вас правовые вопросы!';
                 scope.aboutUs = 'Данный проект является выпускной квалификационной работой студента Физико-математического факультета БГПУ г. Благовещенск в 2017 году Налимова Игоря.';
                 scope.dev = 'Налимов Игорь';
                 scope.contact = 'brain5ur9ery@gmail.com';
-
                 scope.save = function () {
                     Restangular.all('about').post({
                         hello: scope.hello,
                         about: scope.about,
                         developer: scope.developer,
                         link: scope.link,
-
                     }).then(function (results) {
                         Materialize.toast('Сохранено!', 2000);
                         [scope.hello, scope.about, scope.developer, scope.link] = '';
@@ -450,7 +403,6 @@ angular.module('ws')
                     <a class="btn">Отмена</a>
                     <a class="btn">Сохранить</a>
 </div>
-                    
 </form>
 </div>
                         `,
@@ -514,7 +466,6 @@ angular.module('ws')
             }
         }
     })
-
     .directive('svFeedback', function (FeedbackService, $mdDialog) {
         return {
             template: `
@@ -850,9 +801,7 @@ angular.module('ws')
             return Restangular.all('admin/people').getList();
         };
         self.updatePerson = function () {
-
         };
         self.blockPerson = function () {
-
         }
     })

@@ -1,4 +1,33 @@
 angular.module('ws')
+    .service('PeopleService', function (Restangular) {
+        const self = this;
+        self.deletePerson = function (id) {
+            return Restangular.one('delete/person',id).remove();
+        };
+        self.getRatings = function () {
+            return Restangular.one('ratings','people').getList();
+        };
+        self.getPerson = function (id) {
+            return Restangular.one('person', id).get();
+        };
+        self.getPeople = function () {
+            return Restangular.all('people').getList();
+        };
+        self.registerPerson = function (login, password, name, surname, email, birthday, country, area, city, telephone) {
+            return Restangular.all('create/person').post({
+                login: login,
+                password: password,
+                name: name,
+                surname: surname,
+                email: email,
+                birthday: birthday,
+                country: country,
+                area: area,
+                city: city,
+                telephone: telephone
+            })
+        }
+    })
     .directive('peopleList', function (PeopleService) {
         return {
             template: `<div class="view-cntr">
@@ -7,8 +36,6 @@ angular.module('ws')
              УЧАСТНИКИ ВЕБ-СЕРВИСА
             </div>
             <div class="col s2 right-align">
-            
-             <!--<a class="btn-floating"><i class="material-icons indigo lighten-1">search</i> </a>-->
 </div>      
 </div>
 <div class="section">
@@ -19,7 +46,6 @@ angular.module('ws')
 </div>
 </form>
 </div>
-
 <div class="col s8">
     <div ng-repeat="p in people">
                 <div class="section blue-grey lighten-5" style="padding: 10px; margin-bottom: 15px">
@@ -91,7 +117,6 @@ angular.module('ws')
                         $scope.person = person;
                         $scope.show_telephone = person.settings[0].show_telephone;
                         $scope.show_email = person.settings[0].show_email;
-
                     });
                 }
                 PeopleService.getPeople().then(function (people) {
@@ -120,24 +145,30 @@ angular.module('ws')
             <div ng-show="show_telephone === true"><b>Телефон:</b> {{person.telephone}}</div>
         </div>
         <div>
-            <span class="md-body-2">Рейтинг:</span> {{person.rating}}
+            <span><b>Рейтинг:</b></span> {{person.rating}}
         </div>
     </div>
 
     <md-divider></md-divider>
     <div style="padding-top: 15px">
-        <div class="md-subhead">Вопросы пользователя</div>
+        <div style="text-transform: uppercase; font-weight: bold">Вопросы пользователя</div>
             <div ng-repeat="question in person.questions">
-               <question-list-item item="question"></question-list-item>
+               <div class="blue-grey lighten-5 lite-ans-quest" ui-sref="question({id: question.id})">
+               {{question.title}}
+</div>
             </div>
     </div>
     <md-divider></md-divider>
     <div style="padding-top: 15px">
-        <div class="md-subhead">Ответы пользователя</div>
+        <div style="text-transform: uppercase; font-weight: bold">Ответы пользователя</div>
         <div ng-repeat="ans in person.answers">
-            <answer-lite a ="ans"></answer-lite>
+            <div  class="blue-grey lighten-5 lite-ans-quest">
+            {{ans.body}}
+            <div>{{ans.question}}</div>
+            <div class="right-align" style="font-weight: bolder">Оценка: {{ans.mark}}</div>
+            </div>
         </div>
     </div>
 </div>`
-        }
-    })
+}
+})
